@@ -1,0 +1,28 @@
+{
+    "name": "Robin de Zwart",
+    "short_name": "Robin",
+    "start_url": "/",
+    "id": "rdezwart",
+    "description": "Robin de Zwart's portfolio.",
+    "icons": [
+        {
+            "src": "/web-app-manifest-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/web-app-manifest-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/favicon.svg",
+            "sizes": "any"
+        }
+    ],
+    "theme_color": "#1e1e22",
+    "background_color": "#1e1e22",
+    "display": "minimal-ui"
+}
