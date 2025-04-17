@@ -3,9 +3,16 @@ include inc/_mixins
 doctype html
 html(lang="en")
   head
-    title Home - Robin de Zwart
+    title Robin de Zwart - Portfolio
     include inc/_boilerplate
     include inc/_icons
+
+    meta(property="og:title" content="Robin de Zwart - Portfolio")
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="https://rdezwart.ca/")
+    meta(property="og:image" content="https://rdezwart.ca/img/splash/home.png")
+    meta(property="og:description" content="I've grown a deep fascination with machine learning " +
+    "and artificial intelligence and have been steadily building my skills and knowledge over the past few years. :]")
 
   body
     div.content
