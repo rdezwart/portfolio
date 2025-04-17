@@ -1,0 +1,17 @@
+include inc/_mixins
+
+doctype html
+html(lang="en")
+  head
+    title Food Identifier - Robin de Zwart
+    include inc/_boilerplate
+    script(type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js" defer)
+
+  body
+    div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include inc/_name
+        include inc/content/_nav-list
+      main.main
+        include inc/content/_food-identifier

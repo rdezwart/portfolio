@@ -1,0 +1,38 @@
+include inc/_mixins
+
+doctype html
+html(lang="en")
+  head
+    title Home - Robin de Zwart
+    include inc/_boilerplate
+    include inc/_icons
+
+  body
+    div.content
+      main.main
+        h1.name-wrapper
+          | Hi, I&apos;m
+          |
+          include inc/_name
+
+        include inc/content/_bio
+
+        ul.socials
+          li: a.social-link(href!="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noreferrer")
+            i.fa-brands.fa-linkedin(aria-hidden="true")
+            span.fa-sr-only Robin&apos;s LinkedIn account
+          li: a.social-link(href!="https://github.com/rdezwart" target="_blank" rel="noreferrer")
+            i.fa-brands.fa-github(aria-hidden="true")
+            span.fa-sr-only Robin&apos;s GitHub account
+          li: a.social-link(href!="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer")
+            i.fa-solid.fa-face-smiling-hands(aria-hidden="true")
+            span.fa-sr-only Robin&apos;s Hugging Face account
+          li: a.social-link(href!="https://bsky.app/profile/rdezwart.bsky.social" target="_blank" rel="noreferrer")
+            i.fa-brands.fa-bluesky(aria-hidden="true")
+            span.fa-sr-only Robin&apos;s Blueksy account
+          li: a.social-link(href!="https://www.instagram.com/robindezwart/" target="_blank" rel="noreferrer")
+            i.fa-brands.fa-instagram(aria-hidden="true")
+            span.fa-sr-only Robin&apos;s Instagram account
+
+        nav(aria-label="Main")
+          include inc/content/_nav-list

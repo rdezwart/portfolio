@@ -1,0 +1,16 @@
+/* ---- ---- Variables ---- ---- */
+
+:root {
+  --orange: #ff9933;
+  --blue: #00eeff;
+  --white: #ffffff;
+  --dark: #1e1e22;
+  --grey: #cccccc;
+  --duration: 0.15s;
+}
+
+$main-width: 45rem;
+$content-gap: 3rem;
+$nav-width: 20rem;
+$page-padding: 1rem;
+$nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);

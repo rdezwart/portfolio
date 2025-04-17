@@ -1,0 +1,33 @@
+//- Originally wanted to have separate files for each mixin and include them where needed, but I found a bug that
+  caused excessive indentation when mixins were included anywhere OTHER than the very top of the file.
+  Figured it easiest to have them all in one file for this.
+
+//- Webstorm's PUG parser has issues. It doesn't recognize that default value assignment is valid syntax.
+  Documentation: https://pugjs.org/language/mixins.html#default-arguments-values
+  Bug report from 5(!!) years ago: https://youtrack.jetbrains.com/issue/WEB-38623/
+
+mixin nav-item(category, text, link, desc)
+  li.nav-item
+    div.nav-link-wrapper: a(href=link) #[span.highlight(aria-hidden="true") &gt; ]
+      | #[span.highlight &lbrack;]#{category}#[span.highlight &rbrack;] #{text}
+    if desc
+      p.description #{desc}
+
+
+//- Referenced: https://stackoverflow.com/a/56565423
+mixin h(level, heading)
+  -
+    level = Math.max(1, Math.min(6, level));
+    let arrows = ">".repeat(level - 1);
+    if (arrows !== "") arrows += " ";
+
+  //- There's a cleaner way of doing this conditional, but this avoids weird extra newlines
+  if arrows !== ""
+    #{"h" + level}
+      | #[span.highlight(aria-hidden="true") #{arrows}]#{heading}
+  else
+    #{"h" + level}
+      | #{heading}
+
+  if block
+    block

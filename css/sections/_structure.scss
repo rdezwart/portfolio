@@ -1,0 +1,93 @@
+/* ---- ---- Structure ---- ---- */
+
+@use "variables";
+
+html {
+  line-height: 1.3;
+}
+
+body {
+  display: flex;
+
+  min-height: 100vh;
+
+  background-color: var(--dark);
+  padding: 2rem variables.$page-padding;
+
+  // Referenced: https://stackoverflow.com/a/75241679
+  @supports (min-height: 100dvh) {
+    // Referenced: https://stackoverflow.com/a/72245072
+    min-height: 100dvh;
+  }
+}
+
+.content {
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem variables.$content-gap;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: auto;
+
+  nav {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+
+    padding: 1rem;
+
+    margin: 0 auto;
+    max-width: 20rem;
+  }
+}
+
+main {
+  // Referenced: https://stackoverflow.com/a/33455342 to avoid y-axis clipping
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  max-width: variables.$main-width;
+
+  background-color: var(--dark);
+
+  & > * {
+    margin: 0;
+  }
+}
+
+.sr-only {
+  // Referenced: https://guides.18f.gov/accessibility/hidden-content/
+  // FontAwesome also has this same class built in, but I need a backup for pages without FA sheets.
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* These are to simplify the Gradio app on the Food Identifier page. */
+.gradio-container {
+  .prose {
+
+    display: none;
+  }
+  #component-0 {
+    gap: 0;
+  }
+}
+
+.bio {
+  margin-bottom: -1rem;
+}

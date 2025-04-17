@@ -1,0 +1,126 @@
+/* ---- ---- Standards ---- ---- */
+
+/* ---- Elements ---- */
+
+* {
+  box-sizing: border-box;
+
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+
+  &:not(.gradio-container *) {
+    color: white;
+  }
+}
+
+/* -- Headings -- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  margin-bottom: 0.25rem;
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6 {
+}
+
+/* -- Other -- */
+
+section {
+  margin-top: 1.5rem;
+
+  & > h2 {
+    margin-top: 2.5rem;
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+
+  margin: 1.25rem 0 1.25rem;
+
+  // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
+  display: block;
+}
+
+.list {
+  padding-left: 2.5rem;
+
+  li::marker {
+    font-weight: 500;
+  }
+
+  li + li {
+    // Referenced: https://stackoverflow.com/a/63890844
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---- Classes ---- */
+
+.link {
+  color: var(--orange);
+  font-weight: 400;
+
+  // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
+  &:hover, &:focus {
+    color: var(--blue);
+    transition: color var(--duration);
+  }
+}
+
+.highlight, .name {
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
+}
+
+.highlight {
+  color: var(--blue) !important;
+
+  // Triple arrows didn't look the same as the rest. Realized it's a bitwise operator, figured it was a font issue.
+  // Did some digging and discovered font ligatures! And promptly turned them off.
+  font-variant-ligatures: none;
+}
+
+.introduction {
+  font-style: italic;
+  line-height: 1.4;
+  font-weight: 400;
+}

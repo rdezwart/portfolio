@@ -1,0 +1,64 @@
+// ---- ---- Functions ---- ---- //
+
+// NOTE: Turns out, validator doesn't like it when we try to insert content via CSS.
+// Worked hard on this, but have to scrap/shelve it. I turned it into a Pug mixin for now.
+
+@use "sass:math";
+@use "sass:string";
+
+/// Constructs a string of several arrows. For use with the `content` property.
+///
+/// @param {positive integer} $arrows - The number of arrows to generate.
+/// @param {boolean} $space [true] - Whether to append a space at the end.
+/// @return {quoted string} - The constructed string, in quotes.
+@function arrows($arrows, $space: true) {
+
+  $needed: math.max(0, $arrows); // Make sure we don't go negative
+  $content: "";
+
+  @if $needed > 0 {
+    @for $_ from 0 to $needed {
+      $content: string.insert($content, ">", -1);
+    }
+  }
+
+  @if $space {
+    $content: string.insert($content, " ", -1);
+  }
+
+  @return string.quote($content);
+}
+
+/// Constructs a string of several arrows, plus alt text. For use with the `content` property.
+///
+/// @param {positive integer} $arrows - The number of arrows to generate.
+/// @param {quoted string} $alt [""] - The alt text to be inserted.
+/// @param {boolean} $space [true] - Whether to append a space at the end.
+/// @return {unquoted string} - The constructed string, without quotes.
+@function arrows-with-alt($arrows, $alt: "", $space: true) {
+
+  $content: arrows($arrows, $space);
+  $content: string.unquote('"#{$content}" / "#{$alt}"');
+
+  @return $content;
+}
+
+// ---- ---- Mixins ---- ---- //
+
+@mixin prepend-arrows($arrows) {
+  &::before {
+    // Referenced: https://developer.mozilla.org/en-US/docs/Web/CSS/::before
+    // Referenced: https://stackoverflow.com/a/73215844 https://developer.mozilla.org/en-US/docs/Web/CSS/content
+    content: arrows($arrows);
+    color: var(--blue);
+
+    // Triple arrows didn't look the same as the rest. Realized it's a bitwise operator, figured it was a font issue.
+    // Did some digging and discovered font ligatures! And promptly turned them off.
+    // Referenced: https://blog.fontawesome.com/icon-unicodes-and-ligatures/
+    font-variant-ligatures: none;
+
+    @supports (content: arrows-with-alt($arrows)) {
+      content: arrows-with-alt($arrows);
+    }
+  }
+}
