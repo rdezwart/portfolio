@@ -1,0 +1,22 @@
+include inc/_mixins
+
+doctype html
+html(lang="en")
+  head
+    title AutolumeGallery - Robin de Zwart
+    include inc/_boilerplate
+
+    meta(property="og:title" content="AutolumeGallery - Robin de Zwart")
+    meta(property="og:url" content="https://rdezwart.ca/autolume-gallery.html")
+    meta(property="og:image" content="https://rdezwart.ca/img/splash/autolume-gallery.png")
+    meta(property="og:image:alt" content="Hi, I'm Robin; This is my project, AutolumeGallery.")
+    meta(property="og:description" content="An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.")
+
+  body
+    div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include inc/_name
+        include inc/content/_nav-list
+      main.main
+        include inc/content/_autolume-gallery
