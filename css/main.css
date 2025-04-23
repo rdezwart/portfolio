@@ -107,6 +107,7 @@ main > * {
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
+  overflow-wrap: anywhere;
 }
 *:not(.gradio-container *) {
   color: white;
