@@ -68,23 +68,27 @@ article
 
       p
         | The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed during my development. #[strong However, the application would heavily benefit from fine-tuning, which I was unable to provide.] I used the below image of a fridge (#[a.link(href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer") source]) for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
-      img.img(src="/img/food-identifier/base-example.png" alt="The inside of a fridge." loading="lazy" width="857" height="482")
+      a.img-link(href="/img/food-identifier/base-example.png" target="_blank")
+        img.img(src="/img/food-identifier/base-example.png" alt="The inside of a fridge." loading="lazy" width="857" height="482")
 
       p
         | I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here&apos;s what it detects in my test image with a threshold of 0.7:
-      img.img(src="/img/food-identifier/base-yolos.png" alt="The inside of a fridge, with coloured boxes labeling identified objects." loading="lazy" width="1260" height="732")
+      a.img-link(href="/img/food-identifier/base-yolos.png" target="_blank")
+        img.img(src="/img/food-identifier/base-yolos.png" alt="The inside of a fridge, with coloured boxes labeling identified objects." loading="lazy" width="1260" height="732")
 
       p
         | While it does a good job, it clearly does not capture everything, and this is where I would have loved to fine-tune the model with more specialized training data if I had more time and computational resources. For the purposes of this proof-of-concept, however, I think it does well enough.
       p
         | For another example, here&apos;s a photo of my friend&apos;s fridge and how it was parsed. It handles bottles extremely well, as likely that&apos;s one of the main labels the model is trained with, but it struggles with things like cartons.
-      img.img(src="/img/food-identifier/friend-fridge.png" alt="The results of object detection on my friend's fridge" loading="lazy" width="1344" height="1009")
+      a.img-link(href="/img/food-identifier/friend-fridge.png" target="_blank")
+        img.img(src="/img/food-identifier/friend-fridge.png" alt="The results of object detection on my friend's fridge" loading="lazy" width="1344" height="1009")
 
     section#conclusion
       +h(2, "Conclusion")
       p
         | The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small text, as I discovered through this fun bug:
-      img.img(src="/img/food-identifier/motrin-bug.png" alt="Image captioning result on a bottle of Motrin" loading="lazy" width="1495" height="847")
+      a.img-link(href="/img/food-identifier/motrin-bug.png" target="_blank")
+        img.img(src="/img/food-identifier/motrin-bug.png" alt="Image captioning result on a bottle of Motrin" loading="lazy" width="1495" height="847")
       p
         | The models themselves are not trained on data from a wide range of sources, providing some ethical concerns when it comes to recognizing foods from other cultures. This is something that could be alleviated with extensive fine-tuning, but it would still be nearly impossible to accommodate for everything. This is partially why I split the application into two halves instead of making it a single pipeline, as it allows users some additional manual control to caption individual items should the object detection not work correctly.
       p
