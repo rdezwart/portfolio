@@ -79,6 +79,23 @@ b, strong {
   display: block;
 }
 
+.img-link {
+  .img {
+    // Referenced: https://stackoverflow.com/a/78748625
+    // Solves blurry image on scale up
+    will-change: transform;
+
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+
+  &:hover, &:focus {
+    .img {
+      box-shadow: rgba(0, 0, 0, 100%) 0.5rem 0.5rem 0 0.1rem ;
+      transform: scale(1.01);
+    }
+  }
+}
+
 .list {
   padding-left: 2.5rem;
 
