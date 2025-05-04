@@ -13,6 +13,10 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 503#[span.highlight &colon; ] Service Unavailable
 

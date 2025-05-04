@@ -13,11 +13,15 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 500#[span.highlight &colon; ] Internal Server Error
 
         div
-          p Sorry, something went wrong.
+          p Sorry, something went wrong with the server. Please try again in a few minutes!
 
         nav(aria-label="Main")
           ul.nav-list

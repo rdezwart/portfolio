@@ -13,11 +13,15 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 404#[span.highlight &colon; ] Not Found
 
         div
-          p Sorry, that file could not be found.
+          p Sorry, that resource could not be found or was moved to a new URL. Did you make a typo?
 
         nav(aria-label="Main")
           ul.nav-list

@@ -13,11 +13,15 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 400#[span.highlight &colon; ] Bad Request
 
         div
-          p Sorry, something went wrong with your request. Please try again.
+          p Sorry, something went wrong with your request. Please try again!
 
         nav(aria-label="Main")
           ul.nav-list

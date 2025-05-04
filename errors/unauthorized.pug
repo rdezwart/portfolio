@@ -13,11 +13,15 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 401#[span.highlight &colon; ] Unauthorized
 
         div
-          p Sorry, you need to be logged in to access this file.
+          p Sorry, you need to be logged in to access this resource. Nice try!
 
         nav(aria-label="Main")
           ul.nav-list

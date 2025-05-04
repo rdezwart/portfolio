@@ -13,11 +13,16 @@ html(lang="en")
 
   body
     div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
         h1 Error 403#[span.highlight &colon; ] Forbidden
 
         div
-          p Sorry, you don't have permission to access this file.
+          p Sorry, you don't have permission to access this resource. Nice try!
+          p Feel free to contact me if you think this is a mistake.
 
         nav(aria-label="Main")
           ul.nav-list
