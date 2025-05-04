@@ -1,10 +1,10 @@
-include inc/_mixins
+include ../inc/_mixins
 
 doctype html
 html(lang="en")
   head
     title Food Identifier - Robin de Zwart
-    include inc/_boilerplate
+    include ../inc/_boilerplate
 
     meta(property="og:title" content="Food Identifier - Robin de Zwart")
     meta(property="og:url" content="https://rdezwart.ca/food-identifier.html")
@@ -18,7 +18,7 @@ html(lang="en")
     div.content
       nav.side-nav(aria-label="Main")
         div.name-wrapper
-          include inc/_name
-        include inc/content/_nav-list
+          include ../inc/_name
+        include ../inc/content/_nav-list
       main.main
-        include inc/content/_food-identifier
+        include ../inc/content/_food-identifier
