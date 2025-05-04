@@ -98,6 +98,23 @@ main > * {
   margin-bottom: -1rem;
 }
 
+.img-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.25rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+@media (width < 35rem) {
+  .img-list {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+.img-list .img-link {
+  margin: 0;
+}
+
 /* ---- ---- Standards ---- ---- */
 /* ---- Elements ---- */
 * {
@@ -159,12 +176,17 @@ b, strong {
   display: block;
 }
 
+.img-link {
+  display: block;
+  margin: 1.25rem 0 1.25rem;
+}
 .img-link .img {
   will-change: transform;
   -webkit-transition: -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
   transition: -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
   transition: box-shadow 0.1s, transform 0.1s;
   transition: box-shadow 0.1s, transform 0.1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
+  margin: 0;
 }
 .img-link:hover .img, .img-link:focus .img {
   -webkit-box-shadow: rgb(0, 0, 0) 0.5rem 0.5rem 0 0.1rem;

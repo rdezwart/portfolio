@@ -80,17 +80,22 @@ b, strong {
 }
 
 .img-link {
+  display: block;
+  margin: 1.25rem 0 1.25rem;
+
   .img {
     // Referenced: https://stackoverflow.com/a/78748625
     // Solves blurry image on scale up
     will-change: transform;
 
     transition: box-shadow 0.1s, transform 0.1s;
+
+    margin: 0;
   }
 
   &:hover, &:focus {
     .img {
-      box-shadow: rgba(0, 0, 0, 100%) 0.5rem 0.5rem 0 0.1rem ;
+      box-shadow: rgba(0, 0, 0, 100%) 0.5rem 0.5rem 0 0.1rem;
       transform: scale(1.01);
     }
   }
