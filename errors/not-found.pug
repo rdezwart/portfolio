@@ -1,30 +1,10 @@
-include ../inc/_mixins
+extends ../layouts/_error
 
-doctype html
-html(lang="en")
-  head
-    title Error 404 - Robin de Zwart
-    include ../inc/_boilerplate
+append vars
+  -
+    slug = "not-found"
+    errorCode = 404
+    errorName = "Not Found"
 
-    meta(property="og:title" content="Error 404 - Robin de Zwart")
-    meta(property="og:url" content="https://rdezwart.ca/errors/not-found.html")
-    meta(property="og:image" content="https://rdezwart.ca/img/splash/error.png")
-    meta(property="og:image:alt" content="Hi, I'm Robin; This is an error page.")
-
-  body
-    div.content
-      nav.side-nav(aria-label="Main")
-        div.name-wrapper
-          include ../inc/_name
-        include ../inc/content/_nav-list
-      main.main
-        h1 Error 404#[span.highlight &colon; ] Not Found
-
-        div
-          p Sorry, that resource could not be found or was moved. Double check your URL?
-
-        nav(aria-label="Main")
-          ul.nav-list
-            li.nav-item
-              div.nav-link-wrapper: a(href="/") #[span.highlight(aria-hidden="true") &gt; ]
-                |  Return Home
+block error-message
+  p Sorry, that resource could not be found or was moved. Double check your URL?
