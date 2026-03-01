@@ -1,0 +1,11 @@
+extends _default
+
+block url
+  meta(property="og:url" content=`https://rdezwart.ca/projects/${slug}.html`)
+
+block main
+  article
+    +h(1, title)
+    p.description #{description}
+
+    block article

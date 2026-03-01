@@ -1,0 +1,47 @@
+include ../inc/_mixins
+
+block vars
+  - let title = "Portfolio"
+  - let slug = ""
+  - let description = "Hi, I'm Robin;"
+
+- let pageTitle = `${title} - Robin de Zwart`
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(content="width=device-width, initial-scale=1.0" name="viewport")
+    title #{pageTitle}
+    meta(name="description" content=description)
+
+    block opengraph
+      meta(property="og:title" content=`${pageTitle}`)
+      block url
+        //- This is a block so it can be overwritten to account for subdirectories
+        meta(property="og:url" content=`https://rdezwart.ca/${slug}.html`)
+      meta(property="og:image" content=`https://rdezwart.ca/img/splash/${slug}.png`)
+      meta(property="og:image:alt" content=`Hi, I'm Robin; This is my project, ${title}.`)
+      meta(property="og:description" content=description)
+      include ../inc/_opengraph
+
+    block styles
+      include ../inc/_styles
+
+    block fonts
+      include ../inc/_fonts
+
+    block favicon
+      include ../inc/_favicon
+
+    block scripts
+      include ../inc/_scripts
+
+  body
+    div.content
+      nav.side-nav(aria-label="Main")
+        div.name-wrapper
+          include ../inc/_name
+        include ../inc/content/_nav-list
+      main.main
+        block main
