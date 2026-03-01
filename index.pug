@@ -1,56 +1,44 @@
-include inc/_mixins
+extends layouts/_default
 
-doctype html
-html(lang="en")
-  head
-    title Robin de Zwart - Portfolio
-    include inc/_boilerplate
-    include inc/_icons
+append vars
+  - title = "Portfolio"
+  - slug = "home"
+  -
+    description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
+            "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
 
-    meta(
-      name="description"
-      content="Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
-      "intelligence and have been steadily building my skills and knowledge over the past few years."
-    )
+block url
+  meta(property="og:url" content="https://rdezwart.ca/")
 
-    meta(property="og:title" content="Robin de Zwart - Portfolio")
-    meta(property="og:url" content="https://rdezwart.ca/")
-    meta(property="og:image" content="https://rdezwart.ca/img/splash/home.png")
-    meta(property="og:image:alt" content="Hi, I'm Robin; This is my portfolio.")
-    meta(property="og:description" content="I've grown a deep fascination with machine learning " +
-    "and artificial intelligence and have been steadily building my skills and knowledge over the past few years. :]")
+append styles
+  include inc/_icons
 
-  body
-    div.content
-      main.main
-        h1.name-wrapper
-          | Hi, I'm
-          |
-          include inc/_name
+block main
+  h1.name-wrapper
+    | Hi, I'm
+    |
+    include inc/_name
 
-        include inc/content/_bio
+  include inc/content/_bio
 
-        ul.socials
-          li: a.social-link(href!="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noreferrer")
-            i.fa-brands.fa-linkedin(aria-hidden="true")
-            span.fa-sr-only Robin's LinkedIn account
-          li: a.social-link(href!="https://github.com/rdezwart" target="_blank" rel="noreferrer")
-            i.fa-brands.fa-github(aria-hidden="true")
-            span.fa-sr-only Robin's GitHub account
-          li: a.social-link(href!="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer")
-            i.fa-solid.fa-face-smiling-hands(aria-hidden="true")
-            span.fa-sr-only Robin's Hugging Face account
-          //-
-            li: a.social-link(href!="mailto:robin@rdezwart.ca" target="_blank" rel="noreferrer")
-              i.fa-solid.fa-envelope(aria-hidden="true")
-              span.fa-sr-only Robin's email address
-          //-
-            li: a.social-link(href!="https://bsky.app/profile/rdezwart.bsky.social" target="_blank" rel="noreferrer")
-              i.fa-brands.fa-bluesky(aria-hidden="true")
-              span.fa-sr-only Robin's Blueksy account
-            li: a.social-link(href!="https://www.instagram.com/robindezwart/" target="_blank" rel="noreferrer")
-              i.fa-brands.fa-instagram(aria-hidden="true")
-              span.fa-sr-only Robin's Instagram account
-
-        nav(aria-label="Main")
-          include inc/content/_nav-list
+  ul.socials
+    li: a.social-link(href!="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noreferrer")
+      i.fa-brands.fa-linkedin(aria-hidden="true")
+      span.fa-sr-only Robin's LinkedIn account
+    li: a.social-link(href!="https://github.com/rdezwart" target="_blank" rel="noreferrer")
+      i.fa-brands.fa-github(aria-hidden="true")
+      span.fa-sr-only Robin's GitHub account
+    li: a.social-link(href!="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer")
+      i.fa-solid.fa-face-smiling-hands(aria-hidden="true")
+      span.fa-sr-only Robin's Hugging Face account
+    //-
+      li: a.social-link(href!="mailto:robin@rdezwart.ca" target="_blank" rel="noreferrer")
+        i.fa-solid.fa-envelope(aria-hidden="true")
+        span.fa-sr-only Robin's email address
+    //-
+      li: a.social-link(href!="https://bsky.app/profile/rdezwart.bsky.social" target="_blank" rel="noreferrer")
+        i.fa-brands.fa-bluesky(aria-hidden="true")
+        span.fa-sr-only Robin's Blueksy account
+      li: a.social-link(href!="https://www.instagram.com/robindezwart/" target="_blank" rel="noreferrer")
+        i.fa-brands.fa-instagram(aria-hidden="true")
+        span.fa-sr-only Robin's Instagram account

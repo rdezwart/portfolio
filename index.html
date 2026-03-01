@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Robin de Zwart - Portfolio</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Portfolio - Robin de Zwart</title>
+    <meta name="description" content="Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my skills and knowledge over the past few years. :]">
+    <meta property="og:title" content="Portfolio - Robin de Zwart">
+    <meta property="og:url" content="https://rdezwart.ca/">
+    <meta property="og:image" content="https://rdezwart.ca/img/splash/home.png">
+    <meta property="og:image:alt" content="Hi, I'm Robin; This is my portfolio.">
+    <meta property="og:description" content="Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my skills and knowledge over the past few years. :]">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:site_name" content="Robin de Zwart">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Robin_de_Zwart">
+    <meta name="author" content="Robin de Zwart">
     <link href="/css/normalize.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
+    <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/fa/css/brands.min.css" rel="stylesheet">
+    <link href="/fa/css/solid.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -15,28 +32,24 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_CA">
-    <meta property="og:site_name" content="Robin de Zwart">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="628">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@Robin_de_Zwart">
-    <meta name="author" content="Robin de Zwart">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
     <script src="/js/name.js" defer></script>
-    <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/fa/css/brands.min.css" rel="stylesheet">
-    <link href="/fa/css/solid.min.css" rel="stylesheet">
-    <meta name="description" content="Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my skills and knowledge over the past few years.">
-    <meta property="og:title" content="Robin de Zwart - Portfolio">
-    <meta property="og:url" content="https://rdezwart.ca/">
-    <meta property="og:image" content="https://rdezwart.ca/img/splash/home.png">
-    <meta property="og:image:alt" content="Hi, I'm Robin; This is my portfolio.">
-    <meta property="og:description" content="I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my skills and knowledge over the past few years. :]">
   </head>
   <body>
     <div class="content">
+      <nav class="side-nav" aria-label="Main">
+        <div class="name-wrapper"><span class="name"><a class="link" href="/">Robin<span class="sr-only"> de Zwart;</span><span class="letters" aria-hidden="true"><span> </span><span>d</span><span>e</span><span> </span><span>Z</span><span>w</span><span>a</span><span>r</span><span>t</span></span></a><span class="highlight" aria-hidden="true">;</span></span></div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <div class="nav-link-wrapper"><a href="/projects/autolume-gallery.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI + VR<span class="highlight">&rbrack;</span> AutolumeGallery</a></div>
+            <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link-wrapper"><a href="/projects/food-identifier.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI<span class="highlight">&rbrack;</span> Food Identifier</a></div>
+            <p class="description">Object detection and image captioning for food inside fridges.</p>
+          </li>
+        </ul>
+      </nav>
       <main class="main">
         <h1 class="name-wrapper">
           Hi, I'm
@@ -63,18 +76,6 @@
           <li><a class="social-link" href="https://github.com/rdezwart" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="fa-sr-only">Robin's GitHub account</span></a></li>
           <li><a class="social-link" href="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="fa-sr-only">Robin's Hugging Face account</span></a></li>
         </ul>
-        <nav aria-label="Main">
-          <ul class="nav-list">
-            <li class="nav-item">
-              <div class="nav-link-wrapper"><a href="/projects/autolume-gallery.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI + VR<span class="highlight">&rbrack;</span> AutolumeGallery</a></div>
-              <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
-            </li>
-            <li class="nav-item">
-              <div class="nav-link-wrapper"><a href="/projects/food-identifier.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI<span class="highlight">&rbrack;</span> Food Identifier</a></div>
-              <p class="description">Object detection and image captioning for food inside fridges.</p>
-            </li>
-          </ul>
-        </nav>
       </main>
     </div>
   </body>
