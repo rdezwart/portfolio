@@ -2,7 +2,7 @@ include ../inc/_mixins
 
 block vars
   - let title = "Portfolio"
-  - let slug = ""
+  - let slug = "home"
   - let description = "Hi, I'm Robin;"
 
 - let pageTitle = `${title} - Robin de Zwart`
@@ -18,10 +18,10 @@ html(lang="en")
     block opengraph
       meta(property="og:title" content=`${pageTitle}`)
       block url
-        //- This is a block so it can be overwritten to account for subdirectories
         meta(property="og:url" content=`https://rdezwart.ca/${slug}.html`)
       meta(property="og:image" content=`https://rdezwart.ca/img/splash/${slug}.png`)
-      meta(property="og:image:alt" content=`Hi, I'm Robin; This is my project, ${title}.`)
+      block image-alt
+        meta(property="og:image:alt" content=`Hi, I'm Robin; This is my portfolio.`)
       meta(property="og:description" content=description)
       include ../inc/_opengraph
 

@@ -3,6 +3,9 @@ extends _default
 block url
   meta(property="og:url" content=`https://rdezwart.ca/projects/${slug}.html`)
 
+block image-alt
+  meta(property="og:image:alt" content=`Hi, I'm Robin; This is my project, ${title}.`)
+
 block main
   article
     block article
