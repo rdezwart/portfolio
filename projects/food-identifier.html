@@ -53,14 +53,33 @@
           <p class="description">Object detection and image captioning for food inside fridges.</p>
           <section id="introduction">
             <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
-            <p class="introduction">The goal of this project is to create the foundation for an application that allows visually impaired people to identify food objects, such as those in refrigerators, by taking a photo of them and having the item described. According to this <a class="link" href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noreferrer">2018 article from the Canadian Journal of Ophthalmology</a>, 5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother of a friend of mine!</p>
+            <p class="introduction">
+              The goal of this project is to create the foundation for an application that allows visually impaired people to
+              identify food objects, such as those in refrigerators, by taking a photo of them and having the item described.
+              According to this
+              <a class="link" href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noreferrer">2018 article from the Canadian Journal of Ophthalmology</a>,
+              5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
+              with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
+              of a friend of mine!
+            </p>
             <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Use Case</h3>
-            <p>This application revolves around people with visual impairments, especially the elderly, having difficulties reading labels on food items or even identifying them in the first place.</p>
-            <p>An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to properly caption.</p>
+            <p>
+              This application revolves around people with visual impairments, especially the elderly, having difficulties
+              reading labels on food items or even identifying them in the first place.
+            </p>
+            <p>
+              An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of
+              a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
+              interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
+              properly caption.
+            </p>
           </section>
           <section id="the-app">
             <h2><span class="highlight" aria-hidden="true">&gt; </span>The App</h2>
-            <p>Here&apos;s a direct link to <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a></p>
+            <p>
+              Here&apos;s a direct link to
+              <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a>
+            </p>
             <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
             <noscript>
               <p>The embedded version of this project <strong>requires JavaScript to run.</strong></p>
@@ -70,42 +89,103 @@
               <p>This project uses two models, one for initial object detection and another captioning the detected objects.</p>
               <p><b>YOLOS:</b> <a class="link" href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noreferrer">hustvl/yolos-small-300</a></p>
               <ul class="list">
-                <li>YOLOS&apos; job is to find regions of the image that should have things worth captioning (such as bottles, produce, containers, etc.), then feed them to Moondream.</li>
+                <li>
+                  YOLOS&apos; job is to find regions of the image that should have things worth captioning (such as bottles,
+                  produce, containers, etc.), then feed them to Moondream.
+                </li>
               </ul>
               <p><b>Moondream:</b> <a class="link" href="https://huggingface.co/vikhyatk/moondream2" target="_blank" rel="noreferrer">vikhyatk/moondream2</a></p>
               <ul class="list">
-                <li>Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The default question for this app is &quot;What is this food item? Include any text on labels.&quot;</li>
+                <li>
+                  Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The
+                  default question for this app is &quot;What is this food item? Include any text on labels.&quot;
+                </li>
               </ul>
-              <p>I landed on these models after quite some searching to find options that were both lightweight and accurate, allowing for the possibility of mobile device implementations.</p>
-              <p>I found Moondream first, and while smaller than other Image-Text-to-Text models like <a class="link" href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noreferrer">LLaVa-Next</a>, I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS following not far behind.</p>
+              <p>
+                I landed on these models after quite some searching to find options that were both lightweight and accurate,
+                allowing for the possibility of mobile device implementations.
+              </p>
+              <p>
+                I found Moondream first, and while smaller than other Image-Text-to-Text models like
+                <a class="link" href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noreferrer">LLaVa-Next</a>,
+                I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
+                and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
+                following not far behind.
+              </p>
             </section>
             <section id="implementation">
               <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Implementation</h3>
-              <p>You can follow the exact process of development through my commits to the <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer">Hugging Face repository</a> for this project.</p>
+              <p>
+                You can follow the exact process of development through my commits to the
+                <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer">Hugging Face repository</a>
+                for this project.
+              </p>
               <p>To summarize things:</p>
               <ol class="list">
-                <li>I started by looking into different frameworks to build the app with, settling on <a class="link" href="https://www.gradio.app/" target="_blank" rel="noreferrer">Gradio</a>.</li>
-                <li>After setting up the repository, I began implementing an initial version of Moondream, referencing parts of their example code.</li>
+                <li>
+                  I started by looking into different frameworks to build the app with, settling on
+                  <a class="link" href="https://www.gradio.app/" target="_blank" rel="noreferrer">Gradio</a>.
+                </li>
+                <li>
+                  After setting up the repository, I began implementing an initial version of Moondream, referencing parts of
+                  their example code.
+                </li>
                 <li>I changed that implementation to utilize threading, for better performance.</li>
                 <li>With Moondream up and running, I started to implement YOLOS.</li>
                 <li>I hooked YOLOS into Gradio&apos;s file upload system, which required some reconfiguration.</li>
-                <li>I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio image gallery.</li>
+                <li>
+                  I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio
+                  image gallery.
+                </li>
                 <li>Finally, I linked the two systems together using a tab-based UI and tidied things up.</li>
               </ol>
             </section>
             <section id="testing">
               <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Testing</h3>
-              <p>The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed during my development. <strong>However, the application would heavily benefit from fine-tuning, which I was unable to provide.</strong> I used the below image of a fridge (<a class="link" href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer">source</a>) for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.</p><a class="img-link" href="/img/food-identifier/base-example.webp" target="_blank"><img class="img" src="/img/food-identifier/base-example.webp" alt="The inside of a fridge." loading="lazy" width="857" height="482"></a>
-              <p>I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here&apos;s what it detects in my test image with a threshold of 0.7:</p><a class="img-link" href="/img/food-identifier/base-yolos.webp" target="_blank"><img class="img" src="/img/food-identifier/base-yolos.webp" alt="The inside of a fridge, with coloured boxes labeling identified objects." loading="lazy" width="1260" height="732"></a>
-              <p>While it does a good job, it clearly does not capture everything, and this is where I would have loved to fine-tune the model with more specialized training data if I had more time and computational resources. For the purposes of this proof-of-concept, however, I think it does well enough.</p>
-              <p>For another example, here&apos;s a photo of my friend&apos;s fridge and how it was parsed. It handles bottles extremely well, as likely that&apos;s one of the main labels the model is trained with, but it struggles with things like cartons.</p><a class="img-link" href="/img/food-identifier/friend-fridge.webp" target="_blank"><img class="img" src="/img/food-identifier/friend-fridge.webp" alt="The results of object detection on my friend's fridge" loading="lazy" width="1344" height="1009"></a>
+              <p>
+                The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed
+                during my development. <strong>However, the application would heavily benefit from fine-tuning, which I was unable to provide.</strong>
+                I used the below image of a fridge
+                (<a class="link" href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer">source</a>)
+                for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
+              </p><a class="img-link" href="/img/food-identifier/base-example.webp" target="_blank"><img class="img" src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge."></a>
+              <p>
+                I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here&apos;s what it detects in
+                my test image with a threshold of 0.7:
+              </p><a class="img-link" href="/img/food-identifier/base-yolos.webp" target="_blank"><img class="img" src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732" alt="The inside of a fridge, with coloured boxes labeling identified objects."></a>
+              <p>
+                While it does a good job, it clearly does not capture everything, and this is where I would have loved to
+                fine-tune the model with more specialized training data if I had more time and computational resources. For
+                the purposes of this proof-of-concept, however, I think it does well enough.
+              </p>
+              <p>
+                For another example, here&apos;s a photo of my friend&apos;s fridge and how it was parsed. It handles bottles
+                extremely well, as likely that&apos;s one of the main labels the model is trained with, but it struggles with
+                things like cartons.
+              </p><a class="img-link" href="/img/food-identifier/friend-fridge.webp" target="_blank"><img class="img" src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009" alt="The results of object detection on my friend's fridge"></a>
             </section>
             <section id="conclusion">
               <h2><span class="highlight" aria-hidden="true">&gt; </span>Conclusion</h2>
-              <p>The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small text, as I discovered through this fun bug:</p><a class="img-link" href="/img/food-identifier/motrin-bug.webp" target="_blank"><img class="img" src="/img/food-identifier/motrin-bug.webp" alt="Image captioning result on a bottle of Motrin" loading="lazy" width="1495" height="847"></a>
-              <p>The models themselves are not trained on data from a wide range of sources, providing some ethical concerns when it comes to recognizing foods from other cultures. This is something that could be alleviated with extensive fine-tuning, but it would still be nearly impossible to accommodate for everything. This is partially why I split the application into two halves instead of making it a single pipeline, as it allows users some additional manual control to caption individual items should the object detection not work correctly.</p>
-              <p>Additional challenges present themselves when it comes to the accuracy of Moondream, as it is not free from biases in their training data.</p>
-              <p>Looking forward, if I were to develop a mobile app based on this concept, I&apos;d probably need to take another look at what models are available, given how frequently the field changes these days.</p>
+              <p>
+                The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
+                text, as I discovered through this fun bug:
+              </p><a class="img-link" href="/img/food-identifier/motrin-bug.webp" target="_blank"><img class="img" src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847" alt="Image captioning result on a bottle of Motrin"></a>
+              <p>
+                The models themselves are not trained on data from a wide range of sources, providing some ethical concerns
+                when it comes to recognizing foods from other cultures. This is something that could be alleviated with
+                extensive fine-tuning, but it would still be nearly impossible to accommodate for everything. This is
+                partially why I split the application into two halves instead of making it a single pipeline, as it allows
+                users some additional manual control to caption individual items should the object detection not work
+                correctly.
+              </p>
+              <p>
+                Additional challenges present themselves when it comes to the accuracy of Moondream, as it is not free from
+                biases in their training data.
+              </p>
+              <p>
+                Looking forward, if I were to develop a mobile app based on this concept, I&apos;d probably need to take
+                another look at what models are available, given how frequently the field changes these days.
+              </p>
             </section>
           </section>
         </article>
