@@ -35,7 +35,7 @@
   <body>
     <div class="content">
       <nav class="side-nav" aria-label="Main">
-        <div class="name-wrapper"><span class="name"><a class="link" href="/">Robin<span class="sr-only"> de Zwart;</span><span class="letters" aria-hidden="true"><span> </span><span>d</span><span>e</span><span> </span><span>Z</span><span>w</span><span>a</span><span>r</span><span>t</span></span></a><span class="highlight" aria-hidden="true">&semi;</span></span></div>
+        <div class="name-wrapper"><span class="name"><a class="link" href="/">Robin<span class="sr-only"> de Zwart;</span><span class="letters" aria-hidden="true"><span> </span><span>d</span><span>e</span><span> </span><span>Z</span><span>w</span><span>a</span><span>r</span><span>t</span></span></a><span class="highlight" aria-hidden="true">;</span></span></div>
         <ul class="nav-list">
           <li class="nav-item">
             <div class="nav-link-wrapper"><a href="/projects/autolume-gallery.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI + VR<span class="highlight">&rbrack;</span> AutolumeGallery</a></div>
@@ -77,7 +77,7 @@
           <section id="the-app">
             <h2><span class="highlight" aria-hidden="true">&gt; </span>The App</h2>
             <p>
-              Here&apos;s a direct link to
+              Here's a direct link to
               <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a>
             </p>
             <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
@@ -90,7 +90,7 @@
               <p><b>YOLOS:</b> <a class="link" href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noreferrer">hustvl/yolos-small-300</a></p>
               <ul class="list">
                 <li>
-                  YOLOS&apos; job is to find regions of the image that should have things worth captioning (such as bottles,
+                  YOLOS' job is to find regions of the image that should have things worth captioning (such as bottles,
                   produce, containers, etc.), then feed them to Moondream.
                 </li>
               </ul>
@@ -98,7 +98,8 @@
               <ul class="list">
                 <li>
                   Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The
-                  default question for this app is &quot;What is this food item? Include any text on labels.&quot;
+                  default question for this app is 
+                  <q>What is this food item? Include any text on labels.</q>
                 </li>
               </ul>
               <p>
@@ -132,7 +133,7 @@
                 </li>
                 <li>I changed that implementation to utilize threading, for better performance.</li>
                 <li>With Moondream up and running, I started to implement YOLOS.</li>
-                <li>I hooked YOLOS into Gradio&apos;s file upload system, which required some reconfiguration.</li>
+                <li>I hooked YOLOS into Gradio's file upload system, which required some reconfiguration.</li>
                 <li>
                   I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio
                   image gallery.
@@ -150,7 +151,7 @@
                 for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
               </p><a class="img-link" href="/img/food-identifier/base-example.webp" target="_blank"><img class="img" src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge."></a>
               <p>
-                I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here&apos;s what it detects in
+                I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
                 my test image with a threshold of 0.7:
               </p><a class="img-link" href="/img/food-identifier/base-yolos.webp" target="_blank"><img class="img" src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732" alt="The inside of a fridge, with coloured boxes labeling identified objects."></a>
               <p>
@@ -159,8 +160,8 @@
                 the purposes of this proof-of-concept, however, I think it does well enough.
               </p>
               <p>
-                For another example, here&apos;s a photo of my friend&apos;s fridge and how it was parsed. It handles bottles
-                extremely well, as likely that&apos;s one of the main labels the model is trained with, but it struggles with
+                For another example, here's a photo of my friend's fridge and how it was parsed. It handles bottles
+                extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
                 things like cartons.
               </p><a class="img-link" href="/img/food-identifier/friend-fridge.webp" target="_blank"><img class="img" src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009" alt="The results of object detection on my friend's fridge"></a>
             </section>
@@ -183,7 +184,7 @@
                 biases in their training data.
               </p>
               <p>
-                Looking forward, if I were to develop a mobile app based on this concept, I&apos;d probably need to take
+                Looking forward, if I were to develop a mobile app based on this concept, I'd probably need to take
                 another look at what models are available, given how frequently the field changes these days.
               </p>
             </section>
