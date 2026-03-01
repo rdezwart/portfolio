@@ -1,25 +1,64 @@
-include ../inc/_mixins
+extends ../layouts/_project
 
-doctype html
-html(lang="en")
-  head
-    title AutolumeGallery - Robin de Zwart
-    include ../inc/_boilerplate
+append vars
+  - title = "AutolumeGallery"
+  - slug = "autolume-gallery"
+  - description = "An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D."
 
-    meta(property="og:title" content="AutolumeGallery - Robin de Zwart")
-    meta(property="og:url" content="https://rdezwart.ca/autolume-gallery.html")
-    meta(property="og:image" content="https://rdezwart.ca/img/splash/autolume-gallery.png")
-    meta(property="og:image:alt" content="Hi, I'm Robin; This is my project, AutolumeGallery.")
-    meta(
-      property="og:description"
-      content="An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D."
-    )
+append article
+  section#abstract
+    +h(2, "Abstract")
 
-  body
-    div.content
-      nav.side-nav(aria-label="Main")
-        div.name-wrapper
-          include ../inc/_name
-        include ../inc/content/_nav-list
-      main.main
-        include ../inc/content/_autolume-gallery
+    p.introduction
+      | AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
+      | of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
+      | and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
+      | piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
+      | of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+
+    +h(3, "Links")
+    ul.list
+      li Code: #[a.link(href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer") GitHub]
+      li Paper: #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") View PDF]
+      li Dataset: #[a.link(href="https://voormeij.ca/" target="_blank" rel="noreferrer") Peter John Voormeij]
+
+    div.youtube-container
+      iframe(
+        src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&rel=0&hl=en-ca"
+        title="AutolumeGallery - Demo Video"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      )
+
+  section
+    +h(2, "Examples")
+
+    a.img-link(href="/img/autolume-gallery/canvas-1.webp" target="_blank")
+      img.img(src="/img/autolume-gallery/canvas-1.webp"
+        alt="The Autolume canvas in VR, a mix of greens, yellows, and whites."
+        loading="lazy" width="1920" height="1080")
+
+    div.img-list
+      a.img-link(href="/img/autolume-gallery/canvas-2.webp" target="_blank")
+        img.img(src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024"
+          alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+      a.img-link(href="/img/autolume-gallery/canvas-3.webp" target="_blank")
+        img.img(src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024"
+          alt="A composition saved from AutolumeGallery, primarily blues and greens.")
+      a.img-link(href="/img/autolume-gallery/canvas-4.webp" target="_blank")
+        img.img(src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024"
+          alt="A composition saved from AutolumeGallery, primarily whites and blues.")
+      a.img-link(href="/img/autolume-gallery/canvas-5.webp" target="_blank")
+        img.img(src="/img/autolume-gallery/canvas-5.webp"  loading="lazy" width="1024" height="1024"
+          alt="A composition saved from AutolumeGallery, primarily greens and whites.")
+
+  section
+    +h(2, "Under Construction")
+
+    p
+      | The rest of this page is still under construction, for now. If you're looking for more information about this
+      | project, please see the
+      | #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") paper] I wrote for it.
+
+    p Thank you for stopping by!
