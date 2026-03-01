@@ -6,7 +6,8 @@ block vars
     let slug = "home"
     let description = "Hi, I'm Robin;"
 
-- let pageTitle = `${title} - Robin de Zwart`
+block page-title
+  - let pageTitle = `${title} - Robin de Zwart`
 
 doctype html
 html(lang="en")
@@ -20,7 +21,8 @@ html(lang="en")
       meta(property="og:title" content=`${pageTitle}`)
       block url
         meta(property="og:url" content=`https://rdezwart.ca/${slug}.html`)
-      meta(property="og:image" content=`https://rdezwart.ca/img/splash/${slug}.png`)
+      block image
+        meta(property="og:image" content=`https://rdezwart.ca/img/splash/${slug}.png`)
       block image-alt
         meta(property="og:image:alt" content=`Hi, I'm Robin; This is my portfolio.`)
       meta(property="og:description" content=description)

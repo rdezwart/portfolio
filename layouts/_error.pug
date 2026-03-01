@@ -1,0 +1,39 @@
+extends _default
+
+append vars
+  -
+    slug = "teapot"
+    description = "This is an error page."
+    let errorCode = 418
+    let errorName = "I'm a teapot"
+
+prepend page-title
+  - title = `Error ${errorCode}: ${errorName}`
+
+block url
+  meta(property="og:url" content=`https://rdezwart.ca/errors/${slug}.html`)
+
+block image
+  meta(property="og:image" content="https://rdezwart.ca/img/splash/error.png")
+
+block image-alt
+  meta(property="og:image:alt" content="Hi, I'm Robin; This is an error page.")
+
+block main
+  h1 Error #{errorCode}#[span.highlight &colon; ] #{errorName}
+
+  div
+    block error-message
+      p I'm a little teapot
+      p Short and stout
+      p Here is my handle
+      p Here is my spout
+      p When I get all steamed up
+      p Hear me shout
+      p Tip me over and pour me out!
+
+  nav(aria-label="Main")
+    ul.nav-list
+      li.nav-item
+        div.nav-link-wrapper: a(href="/") #[span.highlight(aria-hidden="true") &gt; ]
+          |  Return Home
