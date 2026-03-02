@@ -26,25 +26,25 @@ html(lang="en")
       block image-alt
         meta(property="og:image:alt" content=`Hi, I'm Robin; This is my portfolio.`)
       meta(property="og:description" content=description)
-      include ../inc/_opengraph
+      include ../inc/head/_opengraph
 
     block styles
-      include ../inc/_styles
+      include ../inc/head/_styles
 
     block fonts
-      include ../inc/_fonts
+      include ../inc/head/_fonts
 
     block favicon
-      include ../inc/_favicon
+      include ../inc/head/_favicon
 
     block scripts
-      include ../inc/_scripts
+      include ../inc/head/_scripts
 
   body
     div.content
       nav.side-nav(aria-label="Main")
         div.name-wrapper
           include ../inc/_name
-        include ../inc/content/_nav-list
+        include ../inc/_nav-list
       main.main
         block main
