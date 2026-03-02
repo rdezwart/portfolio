@@ -95,7 +95,7 @@ b, strong {
 
   &:hover, &:focus {
     .img {
-      box-shadow: rgba(0, 0, 0, 100%) 0.5rem 0.5rem 0 0.1rem;
+      box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
       transform: scale(1.01);
     }
   }
