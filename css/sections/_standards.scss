@@ -85,8 +85,6 @@ b, strong {
 
   margin: 1.25rem 0 1.25rem;
 
-  transition: box-shadow 0.1s, outline-width 0.1s;
-
   // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
   display: block;
 }
@@ -95,14 +93,16 @@ b, strong {
   display: block;
   margin: 1.25rem 0 1.25rem;
 
+  transition: box-shadow 0.1s, outline-width 0.1s;
+
   .img {
     margin: 0;
   }
 
   &:hover, &:focus {
-    .img {
+    & {
       box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
-      outline: 0.2rem solid var(--orange)
+      outline: medium solid var(--orange);
     }
   }
 }

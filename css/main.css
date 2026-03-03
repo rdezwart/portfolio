@@ -185,24 +185,24 @@ b, strong {
   max-width: 100%;
   height: auto;
   margin: 1.25rem 0 1.25rem;
-  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
   display: block;
 }
 
 .img-link {
   display: block;
   margin: 1.25rem 0 1.25rem;
+  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
 }
 .img-link .img {
   margin: 0;
 }
-.img-link:hover .img, .img-link:focus .img {
+.img-link:hover, .img-link:focus {
   -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
           box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
-  outline: 0.2rem solid var(--orange);
+  outline: medium solid var(--orange);
 }
 
 .figure {
