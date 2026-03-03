@@ -52,12 +52,314 @@ append article
         img.img(src="/img/autolume-gallery/canvas-5.webp"  loading="lazy" width="1024" height="1024"
           alt="A composition saved from AutolumeGallery, primarily greens and whites.")
 
-  section
-    +h(2, "Under Construction")
+  section#introduction
+    +h(2, "Introduction")
 
     p
-      | The rest of this page is still under construction, for now. If you're looking for more information about this
-      | project, please see the
-      | #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") paper] I wrote for it.
+      | This project is dedicated to my grandfather, Peter John Voormeij, who passed away in early 2024. He was a Dutch
+      | painter and printmaker, and with this "Generative AI and Computational Creativity" course I wanted to explore
+      | and honour his abstract artwork in my own way. With the blessing of my family, I constructed a dataset of
+      | ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
+      | create an interactive experience that enables users to do the same.
+    p
+      | Having recently completed a Unity-based virtual reality course, I found myself wanting to dive deeper and
+      | further develop my skills in that area. With an improved understanding of what makes for an engaging experience,
+      | I ended up settling on VR for the user interaction half of the project.
+    p
+      | As the course progressed, it became clear that generative adversarial networks (GANs) would be a powerful
+      | option, as they run faster than diffusion models (e.g., Midjourney) and don't require nearly as much data.
+      | Essentially, GANs work by pitting two separate neural networks against each other in an arms race: a
+      | \emph{generator} network and a \emph{discriminator} network. The generator's job is to create new images from
+      | random noise, and the discriminator tries to tell apart the generator's fake output from the real training data.
+      | Both networks learn from their mistakes and try to improve at their assigned tasks over time. If everything goes
+      | perfectly, the discriminator ends up with a 50\% chance of making the correct prediction, meaning the
+      | generator's images are impossible for it to tell apart from the real images.
 
-    p Thank you for stopping by!
+  section#literature-review
+    +h(2, "Literature Review")
+
+    p
+      | Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
+      | locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
+      | development, improvements, and usage \cite{sobhan_autolume_2024}.
+    p
+      | An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
+      | highlighting the real-time image generation with a wide array of options and vectors to explore, all
+      | configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
+      | devices \cite{wright_open_1997}. Given the abstract nature of my dataset, working with Autolume's unique visual
+      | style felt like the right approach for the project.
+    p
+      | Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
+      | that streams video and audio to connected multimedia devices \cite{ndi_ndi_2025}.
+    p
+      | During the proposal peer review process, I was introduced to a demo video \cite{hobby_technology_latent_2024} of
+      | a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
+      | featured a different type of model, the user interface served as an inspiration and a confirmation that my
+      | initial idea was feasible.
+
+  section#system-design
+    +h(2, "System Design")
+
+    p
+      | I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
+      | the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
+      | extra effort!
+    p
+      | On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
+      | components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
+
+    ul.list
+      li Unity receives user input from the VR hardware and in-world interactables.
+      li Unity uses OSC to send decimals to Autolume-Live.
+      li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
+      li Autolume-Live uses NDI to broadcast generated images back to Unity.
+      li Unity receives NDI output and updates the virtual canvas.
+
+  section#implementation-details
+    +h(2, "Implementation Details")
+
+    p
+      | The current implementation requires Unity and Autolume-Live to be running on the same machine, as they both look
+      | to different ports on the local IP address. Detailed installation instructions can be found on the GitHub
+      | repository for this project, linked below the Abstract.
+
+    section#vr-hardware
+      +h(3, "VR Hardware")
+      p
+        | The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
+        | over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
+        | headset.
+
+    section#unity
+      +h(3, "Unity")
+
+      figure
+        a.img-link(href="/img/autolume-gallery/hierarchy.png" target="_blank")
+          img.img(src="/img/autolume-gallery/hierarchy.png" loading="lazy" width="286" height="239"
+            alt="Unity hierarchy for this project.")
+        figcaption Figure 1: Root hierarchy of the Gallery scene.
+
+      p
+        | The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
+        | \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
+      p
+        | There are comments in every script I wrote linking to any external resources I drew from.
+      p
+        | The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
+        | to show. I will run through each object and any relevant children.
+
+      section#directional-light
+        +h(4, "Directional Light")
+        p
+          | Standard Unity asset providing sunlight to the scene.
+        div.libraries
+          | Libraries: None.
+
+      section#xr-interaction-manager
+        +h(4, "XR Interaction Manager")
+        p
+          | Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
+          | the XR Origin.
+        div.libraries
+          | Libraries: XR Interaction Toolkit.
+
+      section#osc-manager
+        +h(4, "OSC Manager")
+        p
+          | Responsible for transmitting and receiving information over OSC. The transmitter connects to
+          | \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
+          | not trigger any of the transmissions itself, but will diligently send off any messages it's given.
+        div.libraries
+          | Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.
+
+      section#xr-origin
+        +h(4, "XR Origin (XR Rig) Affordance Variant")
+        p
+          | Contains the VR controller models, the player camera, locomotion controllers, and interactors of various
+          | types. This object is the user's gateway into the scene, being the digital equivalent of the user's physical
+          | hardware.
+        p
+          | The locomotion controllers are how the player can move around the scene. Types include "Turn" (rotating the
+          | camera a fixed amount with the joystick), "Move" (walking around with the joystick), and "Teleportation"
+          | (blinking the user to the target location).
+        p
+          | The interactor children also have various specifications, such as "Gaze" (where the user is looking), "Poke"
+          | (what the user is touching), "Near-Far" (what the user is pointing at), and "Teleport" (where the user wants
+          | to go).
+        p
+          | There are also "Affordance Callouts" attached to the controller, which are in charge of displaying the
+          | button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
+          | affordances are lifted from one of Unity's template VR starter projects.
+        div.libraries
+          | Libraries: XR Interaction Toolkit.
+
+      section#painting
+        +h(4, "Painting")
+        p
+          | The digital canvas Autolume is sending artwork to. There are four "Painting Panel" manipulator children,
+          | each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
+          | Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
+          | Live" on the local machine.
+        div.libraries
+          | Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.
+
+      section#vector-controllers
+        +h(4, "Vector Controller Left/Right")
+        p
+          | Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
+          | but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
+          | affordances labelling each podium.
+        div.libraries
+          | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+
+      section#layer-controller
+        +h(4, "Layer Controller")
+        p
+          | A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
+          | the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
+          | Autolume via the OSC Manager. There is an affordance labelling this podium.
+        div.libraries
+          | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+
+      section#seed-controller
+        +h(4, "Seed Controller")
+        p
+          | A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
+          | the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
+          | the OSC Manager. There is an affordance labelling this podium.
+        div.libraries
+          | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+
+      section#panel-resetter
+        +h(4, "Panel Resetter")
+        p
+          | A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
+          | positions and orientations. There is an affordance labelling this podium.
+        div.libraries
+          | Libraries: Custom, XR Interaction Toolkit.
+
+      section#environment
+        +h(4, "Environment")
+        p
+          | Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
+          | the experience launches.
+        div.libraries
+          | Libraries: XR Interaction Toolkit.
+
+      section#camera
+        +h(4, "Camera")
+        p
+          | A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
+          | can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
+          | application's data folder.
+        div.libraries
+          | Libraries: Custom.
+
+      section#quit-listener
+        +h(4, "QuitListener")
+        p
+          | Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.
+        div.libraries
+          | Libraries: Custom.
+
+    section#autolume-live
+      +h(3, "Autolume-Live")
+      p
+        | With the guidance of Arshia Sobhan, he and I used one of the Metacreation Lab's computers to train a model on
+        | my grandfather's artwork over the course of several days. He kept an eye on the training process while he was
+        | on campus, and eventually a suitable model emerged.
+      p
+        | Once transferred to my home computer, I used Autolume's "Feature Extractor" to find six meaningful latent
+        | space vectors. I chose vectors that created interesting changes in the artwork and was excited for users to
+        | explore.
+      p
+        | I created a preset containing the trained model, my chosen vectors, and several parameters listening to
+        | different OSC channels:
+
+      ul.list
+        li Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position
+        li Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation
+        li Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position
+        li Vector 2: \texttt{left/y}: Vector Controller Left's $y$ position
+        li Vector 3: \texttt{left/z}: Vector Controller Left's $z$ position
+        li Vector 4: \texttt{right/x}: Vector Controller Right's $x$ position
+        li Vector 5: \texttt{right/y}: Vector Controller Right's $y$ position
+        li Vector 6: \texttt{right/z}: Vector Controller Right's $z$ position
+        li Layer 3, Translation: \texttt{layer/x}: Layer Controller's $x$ position
+        li Layer 3, Translation: \texttt{layer/y}: Layer Controller's $y$ position
+        li Layer 3, Rotation: \texttt{layer/r}: Layer Controller's $z$ rotation
+        li Layer 3, Scale: \texttt{layer/s}: Layer Controller's $x$ scale
+
+  section#results
+    +h(2, "Results")
+
+    figure
+      //- image
+      figcaption
+        | Figure 2: The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
+        | showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
+        | this combination.
+
+    p
+      | During the early stages of development, I only had a single "Painting Panel". It directly matched the output
+      | from Autolume-Live and was great for prototyping and developing the code base! However, it didn't quite have the
+      | visual interest or interactivity I was looking for.
+    p
+      | See Figure \ref{fig:2}. If you like, use your hands to cover three-quarters of the image, leaving just the
+      | bottom left corner clear. You're now seeing what essentially was the original single-panel setup. I found it
+      | still interesting, but felt it was missing\ldots something. Now, uncover the rest of the image and notice how
+      | different the piece feels. To me, there's more complexity, feels unified, and is overall more aesthetically
+      | pleasing.
+    p
+      | Increasing the panel count and allowing users to change the structure of the piece itself was a huge realization
+      | and breakthrough for the project. It significantly increased the creative possibilities and opened many new
+      | doors for interactions and development directions. I love how the user is able to take a much more active role
+      | in the creation of the piece, and how their decisions become a part of the artwork, if only for a little while.
+    p
+      | The Autolume model we trained is limited to a resolution of 512x512 pixels, which didn't turn out to be as much
+      | of an issue as I initially thought. It's significantly more noticeable the closer you are to a panel, but from a
+      | distance it's negligible.
+
+  section#conclusion
+    +h(2, "Conclusion & Future Work")
+    p
+      | I am very happy and proud of the current state of the project, and I look forward to being able to share the
+      | actual experience, not just a demo video. I plan to continue training the model and looking at other directions
+      | to take the dataset once the semester is over.
+    p
+      | There were some additional approaches to visualizing latent spaces that I found during my preliminary research
+      | phase, but unfortunately did not get to implement due to scope creep and a lack of time
+      | \cite{despois_latent_2017, maaten_visualizing_2008}. I'd love to explore the visualization possibilities of
+      | latent spaces more in the future, especially under the guidance of the Metacreation Lab.
+    p
+      | Brought up as feedback during the class presentation, I struggled to find clear information on the concept of
+      | "intermediate latent fields", which was a potential way of smoothing the harsh panel boundaries when textures
+      | no longer line up. I want to give this a shot, but need some help.
+
+  section#ethical-statement
+    +h(2, "Ethical Statement")
+    p
+      | At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
+      | as their own human art; the original authors/artists deserve credit and compensation.
+    p
+      | That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
+      | where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
+      | my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
+      | and can give it the proper credit and respect it deserves.
+
+  section#acknowledgements
+    +h(2, "Acknowledgements")
+    p
+      | With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
+      | assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
+      | what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
+    p
+      | I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
+      | process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
+      | strong enough, and he saved the day.
+    p
+      | Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
+      | of what I've got so far. Love and miss you, Opa.
+
+  section#references
+    +h(2, "References")
