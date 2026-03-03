@@ -153,11 +153,17 @@ h3 {
 }
 
 /* -- Other -- */
+/* Base section, H2 */
 section {
-  margin-top: 1.5rem;
-}
-section > h2 {
   margin-top: 2.5rem;
+  /* Sub-section, H3 */
+}
+section section {
+  margin-top: 1.5rem;
+  /* Sub-sub-section, H4 */
+}
+section section section {
+  margin-top: 1rem;
 }
 
 p {
