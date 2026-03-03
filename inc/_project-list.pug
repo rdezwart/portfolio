@@ -1,0 +1,22 @@
+-
+  function Project(category = "", title = "Portfolio", slug = "home", description = "Hi, I'm Robin;") {
+    this.category = category;
+    this.title = title;
+    this.slug = slug;
+    this.description = description;
+  }
+
+  const projects = {
+    "AutolumeGallery": new Project(
+            "AI + VR",
+            "AutolumeGallery",
+            "autolume-gallery",
+            "An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D."
+    ),
+    "Food Identifier": new Project(
+            "AI",
+            "Food Identifier",
+            "food-identifier",
+            "Object detection and image captioning for food inside fridges."
+    ),
+  }

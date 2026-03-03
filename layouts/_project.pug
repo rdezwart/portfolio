@@ -1,5 +1,15 @@
 extends _default
 
+append vars
+  -
+    let project = new Project()
+
+prepend page-title
+  -
+    title = project.title
+    slug = project.slug
+    description = project.description
+
 block url
   meta(property="og:url" content=`https://rdezwart.ca/projects/${slug}.html`)
 

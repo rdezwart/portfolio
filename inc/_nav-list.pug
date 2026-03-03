@@ -1,13 +1,3 @@
 ul.nav-list
-  +nav-item(
-    "AI + VR",
-    "AutolumeGallery",
-    "/projects/autolume-gallery.html",
-    "An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D."
-  )
-  +nav-item(
-    "AI",
-    "Food Identifier",
-    "/projects/food-identifier.html",
-    "Object detection and image captioning for food inside fridges."
-  )
+  each val in projects
+    +nav-item(val.category, val.title, `/projects/${val.slug}.html`, val.description)
