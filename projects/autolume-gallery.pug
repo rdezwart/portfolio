@@ -294,7 +294,9 @@ append article
     +h(2, "Results")
 
     figure.figure
-      //- image
+      a.img-link(href=`/img/${project.slug}/canvas-3.webp` target="_blank")
+        img.img(src=`/img/${project.slug}/canvas-3.webp` loading="lazy" width="1024" height="1024"
+          alt="A composition saved from AutolumeGallery, primarily blues and greens.")
       figcaption
         | Figure 2: The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
         | showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
