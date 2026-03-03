@@ -298,6 +298,18 @@ p + .figure {
   border: none;
 }
 
+a.skip {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: -9999rem;
+  right: auto;
+  padding: 0.2rem;
+}
+a.skip:focus {
+  left: 0;
+}
+
 /* ---- ---- Navigation ---- ---- */
 .side-nav {
   position: sticky;

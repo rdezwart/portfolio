@@ -42,10 +42,11 @@ html(lang="en")
       include ../inc/head/_scripts
 
   body
+    a(href="#main-content").link.skip Skip to main content
     div.content
       nav.side-nav(aria-label="Main")
         div.name-wrapper
           include ../inc/_name
         include ../inc/_nav-list
-      main.main
+      main.main#main-content
         block main

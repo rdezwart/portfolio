@@ -205,3 +205,16 @@ b, strong {
   height: 100%;
   border: none;
 }
+
+a.skip {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: -9999rem;
+  right: auto;
+  padding: 0.2rem;
+
+  &:focus {
+    left: 0;
+  }
+}
