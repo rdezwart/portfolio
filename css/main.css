@@ -149,7 +149,12 @@ h2 {
 }
 
 h3 {
+  font-size: 1.25rem;
   margin-bottom: 0.25rem;
+}
+
+h4 {
+  margin-bottom: 0.1rem;
 }
 
 /* -- Other -- */
