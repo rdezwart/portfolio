@@ -79,10 +79,13 @@ b, strong {
 }
 
 .img {
+  width: auto;
   max-width: 100%;
   height: auto;
 
   margin: 1.25rem 0 1.25rem;
+
+  transition: box-shadow 0.1s, outline-width 0.1s;
 
   // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
   display: block;
@@ -93,19 +96,13 @@ b, strong {
   margin: 1.25rem 0 1.25rem;
 
   .img {
-    // Referenced: https://stackoverflow.com/a/78748625
-    // Solves blurry image on scale up
-    will-change: transform;
-
-    transition: box-shadow 0.1s, transform 0.1s;
-
     margin: 0;
   }
 
   &:hover, &:focus {
     .img {
       box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
-      transform: scale(1.01);
+      outline: 0.2rem solid var(--orange)
     }
   }
 }
@@ -120,6 +117,10 @@ b, strong {
 
   .img-link {
     margin: 0;
+  }
+
+  .img {
+    max-height: 70vh;
   }
 
   figcaption {

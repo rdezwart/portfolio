@@ -181,9 +181,14 @@ b, strong {
 }
 
 .img {
+  width: auto;
   max-width: 100%;
   height: auto;
   margin: 1.25rem 0 1.25rem;
+  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
   display: block;
 }
 
@@ -192,18 +197,12 @@ b, strong {
   margin: 1.25rem 0 1.25rem;
 }
 .img-link .img {
-  will-change: transform;
-  -webkit-transition: -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
-  transition: -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
-  transition: box-shadow 0.1s, transform 0.1s;
-  transition: box-shadow 0.1s, transform 0.1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
   margin: 0;
 }
 .img-link:hover .img, .img-link:focus .img {
   -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
           box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
+  outline: 0.2rem solid var(--orange);
 }
 
 .figure {
@@ -224,6 +223,9 @@ b, strong {
 }
 .figure .img-link {
   margin: 0;
+}
+.figure .img {
+  max-height: 70vh;
 }
 .figure figcaption {
   font-family: "JetBrains Mono", monospace;
