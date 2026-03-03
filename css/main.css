@@ -170,7 +170,7 @@ b, strong {
 }
 
 .img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   margin: 1.25rem 0 1.25rem;
   display: block;
@@ -193,6 +193,35 @@ b, strong {
           box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
+}
+
+.figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.25rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 0 1.25rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.figure .img-link {
+  margin: 0;
+}
+.figure figcaption {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 0.9rem;
+  max-width: 90%;
+  color: var(--grey);
 }
 
 .list {

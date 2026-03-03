@@ -70,7 +70,7 @@ b, strong {
 }
 
 .img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 
   margin: 1.25rem 0 1.25rem;
@@ -98,6 +98,30 @@ b, strong {
       box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
       transform: scale(1.01);
     }
+  }
+}
+
+.figure {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-direction: column;
+  margin: 0 0 1.25rem;
+  flex-wrap: wrap;
+
+  .img-link {
+    margin: 0;
+  }
+
+  figcaption {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 0.9rem;
+    max-width: 90%;
+
+    color: var(--grey);
   }
 }
 
