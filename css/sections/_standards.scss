@@ -113,7 +113,7 @@ b, strong {
 .figure {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   flex-direction: column;
   margin: 0 0 1.25rem;
   flex-wrap: wrap;
@@ -131,6 +131,10 @@ b, strong {
     max-width: 90%;
 
     color: var(--grey);
+  }
+
+  p + & {
+    margin-top: 1.25rem;
   }
 }
 
