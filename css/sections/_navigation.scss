@@ -7,14 +7,14 @@
   top: 2rem;
 
   align-self: flex-start;
-  max-width: variables.$nav-width;
+  max-width: variables.$main-width;
+  flex: 1 1 variables.$nav-width;
 
   display: flex;
   flex-direction: column;
   row-gap: 0.15rem;
 
   @media (max-width: variables.$nav-query) {
-    max-width: variables.$main-width;
     position: static;
   }
 

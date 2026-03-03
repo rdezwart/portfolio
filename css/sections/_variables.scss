@@ -13,4 +13,5 @@ $main-width: 45rem;
 $content-gap: 3rem;
 $nav-width: 20rem;
 $page-padding: 1rem;
+$total-width: calc($main-width + $content-gap + $nav-width);
 $nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);

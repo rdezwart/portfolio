@@ -7,18 +7,8 @@ html {
 }
 
 body {
-  display: flex;
-
-  min-height: 100vh;
-
   background-color: var(--dark);
   padding: 2rem variables.$page-padding;
-
-  // Referenced: https://stackoverflow.com/a/75241679
-  @supports (min-height: 100dvh) {
-    // Referenced: https://stackoverflow.com/a/72245072
-    min-height: 100dvh;
-  }
 }
 
 .content {
@@ -28,6 +18,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem variables.$content-gap;
+
+  max-width: variables.$total-width;
 }
 
 .wrapper {
@@ -53,7 +45,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
+  flex: 1 1 variables.$main-width;
   max-width: variables.$main-width;
 
   background-color: var(--dark);
@@ -96,7 +88,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-  
+
   @media (width < variables.$main-width - 10rem) {
     grid-template-columns: 1fr;
   }
