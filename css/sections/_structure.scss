@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  background-color: var(--dark);
   padding: 2rem variables.$page-padding;
+  background-color: var(--background);
 }
 
 .content {
@@ -48,7 +48,7 @@ main {
   flex: 1 1 variables.$main-width;
   max-width: variables.$main-width;
 
-  background-color: var(--dark);
+  //background-color: var(--background);
 
   & > * {
     margin: 0;

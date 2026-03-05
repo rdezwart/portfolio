@@ -11,7 +11,7 @@
   overflow-wrap: anywhere;
 
   &:not(.gradio-container *) {
-    color: white;
+    color: var(--text);
   }
 }
 
@@ -100,7 +100,7 @@ b, strong {
   &:hover, &:focus {
     & {
       box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
-      outline: medium solid var(--orange);
+      outline: 0.2rem solid var(--link);
     }
   }
 }
@@ -129,7 +129,7 @@ b, strong {
     font-size: 0.8rem;
     max-width: 90%;
 
-    color: var(--silver);
+    color: var(--secondary);
   }
 
   p + & {
@@ -153,12 +153,12 @@ b, strong {
 /* ---- Classes ---- */
 
 .link {
-  color: var(--orange);
+  color: var(--link);
   font-weight: 400;
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
-    color: var(--blue);
+    color: var(--highlight);
     transition: color var(--duration);
   }
 }
@@ -172,7 +172,7 @@ b, strong {
 }
 
 .highlight {
-  color: var(--blue) !important;
+  color: var(--highlight) !important;
 
   // Triple arrows didn't look the same as the rest. Realized it's a bitwise operator, figured it was a font issue.
   // Did some digging and discovered font ligatures! And promptly turned them off.

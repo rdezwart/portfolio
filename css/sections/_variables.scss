@@ -1,23 +1,35 @@
 /* ---- ---- Variables ---- ---- */
 
-:root {
-  /* Dark mode */
-  --dark: #1e1e22;
-  --grey: #3f3f3f;
-  --blue: #00eeff;
-  --orange: #ff9933;
-  --silver: #cccccc;
-  /* Light mode */
-  --teal: #00818a;
-  --pale: #f2f2f2;
-  --white: #ffffff;
-
-  --duration: 0.15s;
-}
-
+// ---- Structure ---- //
 $main-width: 45rem;
 $content-gap: 3rem;
 $nav-width: 20rem;
 $page-padding: 1rem;
 $total-width: calc($main-width + $content-gap + $nav-width);
 $nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);
+
+/* ---- Light/Dark Mode ---- */
+// Need to declare the colours as Sass variables since light-dark() doesn't like CSS ones for some reason
+// From darkest to lightest
+$black: #000000;
+$dark: #1e1e22;
+$dark-banner: #2a2a2f;
+$grey: #3f3f3f;
+$teal: #00818a;
+$blue: #00eeff;
+$orange: #ff9933;
+$silver: #cccccc;
+$pale: #f2f2f2;
+$white: #ffffff;
+
+:root {
+  color-scheme: dark light; /* Dark is preferred, also reflected in meta tags */
+  --background: light-dark(#{$white}, #{$dark});
+  --banner: light-dark(#{$pale}, #{$dark-banner});
+  --highlight: light-dark(#{$orange}, #{$blue});
+  --link: light-dark(#{$teal}, #{$orange});
+  --secondary: light-dark(#{$grey}, #{$silver});
+  --text: light-dark(#{$dark}, #{$pale});
+
+  --duration: 0.15s;
+}

@@ -1,15 +1,13 @@
 /* ---- ---- Variables ---- ---- */
+/* ---- Light/Dark Mode ---- */
 :root {
-  /* Dark mode */
-  --dark: #1e1e22;
-  --grey: #3f3f3f;
-  --blue: #00eeff;
-  --orange: #ff9933;
-  --silver: #cccccc;
-  /* Light mode */
-  --teal: #00818a;
-  --pale: #f2f2f2;
-  --white: #ffffff;
+  color-scheme: dark light; /* Dark is preferred, also reflected in meta tags */
+  --background: light-dark(#ffffff, #1e1e22);
+  --banner: light-dark(#f2f2f2, #2a2a2f);
+  --highlight: light-dark(#ff9933, #00eeff);
+  --link: light-dark(#00818a, #ff9933);
+  --secondary: light-dark(#3f3f3f, #cccccc);
+  --text: light-dark(#1e1e22, #f2f2f2);
   --duration: 0.15s;
 }
 
@@ -19,7 +17,7 @@ html {
 }
 
 body {
-  background-color: var(--dark);
+  background-color: var(--background);
   padding: 2rem 1rem;
 }
 
@@ -68,7 +66,6 @@ main {
       -ms-flex: 1 1 45rem;
           flex: 1 1 45rem;
   max-width: 45rem;
-  background-color: var(--dark);
 }
 main > * {
   margin: 0;
@@ -125,7 +122,7 @@ main > * {
   overflow-wrap: anywhere;
 }
 *:not(.gradio-container *) {
-  color: white;
+  color: var(--text);
 }
 
 /* -- Headings -- */
@@ -200,7 +197,7 @@ b, strong {
 .img-link:hover, .img-link:focus {
   -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
           box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
-  outline: medium solid var(--orange);
+  outline: 0.2rem solid var(--link);
 }
 
 .figure {
@@ -232,7 +229,7 @@ b, strong {
   font-style: italic;
   font-size: 0.8rem;
   max-width: 90%;
-  color: var(--silver);
+  color: var(--secondary);
 }
 p + .figure {
   margin-top: 1.25rem;
@@ -250,11 +247,11 @@ p + .figure {
 
 /* ---- Classes ---- */
 .link {
-  color: var(--orange);
+  color: var(--link);
   font-weight: 400;
 }
 .link:hover, .link:focus {
-  color: var(--blue);
+  color: var(--highlight);
   -webkit-transition: color var(--duration);
   transition: color var(--duration);
 }
@@ -268,7 +265,7 @@ p + .figure {
 }
 
 .highlight {
-  color: var(--blue) !important;
+  color: var(--highlight) !important;
   -webkit-font-variant-ligatures: none;
           font-variant-ligatures: none;
 }
@@ -340,7 +337,7 @@ a.skip:focus {
 }
 
 .name {
-  color: var(--orange);
+  color: var(--link);
 }
 .name * {
   text-decoration: none;
@@ -369,7 +366,7 @@ a.skip:focus {
 }
 
 .social-link:hover i, .social-link:focus i {
-  color: var(--blue);
+  color: var(--highlight);
   -webkit-transition: color var(--duration);
   transition: color var(--duration);
 }
@@ -394,7 +391,7 @@ a.skip:focus {
   font-weight: 800;
   font-style: normal;
   font-size: 1.25rem;
-  color: var(--orange);
+  color: var(--link);
   text-decoration: none;
 }
 .nav-item * {
@@ -418,7 +415,7 @@ a.skip:focus {
   list-style: none;
 }
 .nav-item a:hover, .nav-item a:focus {
-  color: var(--blue);
+  color: var(--highlight);
   -webkit-transition: color var(--duration);
   transition: color var(--duration);
 }
@@ -428,5 +425,5 @@ a.skip:focus {
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: italic;
-  color: var(--silver);
+  color: var(--secondary);
 }

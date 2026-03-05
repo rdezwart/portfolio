@@ -28,7 +28,7 @@
 }
 
 .name {
-  color: var(--orange);
+  color: var(--link);
 
   * {
     text-decoration: none;
@@ -60,7 +60,7 @@
 .social-link {
   &:hover, &:focus {
     i {
-      color: var(--blue);
+      color: var(--highlight);
       transition: color var(--duration);
     }
   }
@@ -83,7 +83,7 @@
   font-style: normal;
   font-size: 1.25rem;
 
-  color: var(--orange);
+  color: var(--link);
   text-decoration: none;
 
   * {
@@ -112,7 +112,7 @@
   }
 
   & a:hover, & a:focus {
-    color: var(--blue);
+    color: var(--highlight);
     transition: color var(--duration);
   }
 }
@@ -123,5 +123,5 @@
   font-weight: 200;
   font-style: italic;
 
-  color: var(--silver);
+  color: var(--secondary);
 }
