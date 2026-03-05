@@ -2,17 +2,15 @@
 
 /* ---- Elements ---- */
 
-* {
+:root {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 200;
+  font-weight: 300;
   font-style: normal;
 
   overflow-wrap: anywhere;
 
-  &:not(.gradio-container *) {
-    color: var(--text);
-  }
+  color: var(--text);
 }
 
 /* -- Headings -- */
