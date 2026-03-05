@@ -67,15 +67,17 @@
               piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
               of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
             </p>
-            <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
-            <ul class="list">
-              <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
-              <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
-              <li>Dataset: <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
-            </ul>
-            <div class="youtube-container">
-              <iframe src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&amp;rel=0&amp;hl=en-ca" title="AutolumeGallery - Demo Video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+            <section id="links">
+              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
+              <ul class="list">
+                <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
+                <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
+                <li>Dataset: <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
+              </ul>
+              <div class="youtube-container">
+                <iframe src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&amp;rel=0&amp;hl=en-ca" title="AutolumeGallery - Demo Video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </section>
           </section>
           <section>
             <h2><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
@@ -182,7 +184,7 @@
               <section id="directional-light">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Directional Light</h4>
                 <p>Standard Unity asset providing sunlight to the scene.</p>
-                <div class="libraries">Libraries: None.</div>
+                <p class="libraries">Libraries: None.</p>
               </section>
               <section id="xr-interaction-manager">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Interaction Manager</h4>
@@ -190,7 +192,7 @@
                   Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
                   the XR Origin.
                 </p>
-                <div class="libraries">Libraries: XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
               </section>
               <section id="osc-manager">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>OSC Manager</h4>
@@ -199,7 +201,7 @@
                   \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
                   not trigger any of the transmissions itself, but will diligently send off any messages it's given.
                 </p>
-                <div class="libraries">Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.</div>
+                <p class="libraries">Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.</p>
               </section>
               <section id="xr-origin">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Origin (XR Rig) Affordance Variant</h4>
@@ -223,7 +225,7 @@
                   button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
                   affordances are lifted from one of Unity's template VR starter projects.
                 </p>
-                <div class="libraries">Libraries: XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
               </section>
               <section id="painting">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Painting</h4>
@@ -233,7 +235,7 @@
                   Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
                   Live" on the local machine.
                 </p>
-                <div class="libraries">Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.</p>
               </section>
               <section id="vector-controllers">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Vector Controller Left/Right</h4>
@@ -242,7 +244,7 @@
                   but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
                   affordances labelling each podium.
                 </p>
-                <div class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
               </section>
               <section id="layer-controller">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Layer Controller</h4>
@@ -251,7 +253,7 @@
                   the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
                   Autolume via the OSC Manager. There is an affordance labelling this podium.
                 </p>
-                <div class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
               </section>
               <section id="seed-controller">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Seed Controller</h4>
@@ -260,7 +262,7 @@
                   the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
                   the OSC Manager. There is an affordance labelling this podium.
                 </p>
-                <div class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
               </section>
               <section id="panel-resetter">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Panel Resetter</h4>
@@ -268,7 +270,7 @@
                   A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
                   positions and orientations. There is an affordance labelling this podium.
                 </p>
-                <div class="libraries">Libraries: Custom, XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: Custom, XR Interaction Toolkit.</p>
               </section>
               <section id="environment">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Environment</h4>
@@ -276,7 +278,7 @@
                   Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
                   the experience launches.
                 </p>
-                <div class="libraries">Libraries: XR Interaction Toolkit.</div>
+                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
               </section>
               <section id="camera">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Camera</h4>
@@ -285,12 +287,12 @@
                   can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
                   application's data folder.
                 </p>
-                <div class="libraries">Libraries: Custom.</div>
+                <p class="libraries">Libraries: Custom.</p>
               </section>
               <section id="quit-listener">
                 <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>QuitListener</h4>
                 <p>Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.</p>
-                <div class="libraries">Libraries: Custom.</div>
+                <p class="libraries">Libraries: Custom.</p>
               </section>
             </section>
             <section id="autolume-live">

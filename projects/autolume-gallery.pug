@@ -15,20 +15,21 @@ append article
       | piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
       | of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
 
-    +h(3, "Links")
-    ul.list
-      li Code: #[a.link(href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer") GitHub]
-      li Paper: #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") View PDF]
-      li Dataset: #[a.link(href="https://voormeij.ca/" target="_blank" rel="noreferrer") Peter John Voormeij]
+    section#links
+      +h(3, "Links")
+      ul.list
+        li Code: #[a.link(href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer") GitHub]
+        li Paper: #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") View PDF]
+        li Dataset: #[a.link(href="https://voormeij.ca/" target="_blank" rel="noreferrer") Peter John Voormeij]
 
-    div.youtube-container
-      iframe(
-        src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&rel=0&hl=en-ca"
-        title="AutolumeGallery - Demo Video"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      )
+      div.youtube-container
+        iframe(
+          src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&rel=0&hl=en-ca"
+          title="AutolumeGallery - Demo Video"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        )
 
   section
     +h(2, "Examples")
@@ -152,7 +153,7 @@ append article
         +h(4, "Directional Light")
         p
           | Standard Unity asset providing sunlight to the scene.
-        div.libraries
+        p.libraries
           | Libraries: None.
 
       section#xr-interaction-manager
@@ -160,7 +161,7 @@ append article
         p
           | Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
           | the XR Origin.
-        div.libraries
+        p.libraries
           | Libraries: XR Interaction Toolkit.
 
       section#osc-manager
@@ -169,7 +170,7 @@ append article
           | Responsible for transmitting and receiving information over OSC. The transmitter connects to
           | \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
           | not trigger any of the transmissions itself, but will diligently send off any messages it's given.
-        div.libraries
+        p.libraries
           | Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.
 
       section#xr-origin
@@ -190,7 +191,7 @@ append article
           | There are also "Affordance Callouts" attached to the controller, which are in charge of displaying the
           | button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
           | affordances are lifted from one of Unity's template VR starter projects.
-        div.libraries
+        p.libraries
           | Libraries: XR Interaction Toolkit.
 
       section#painting
@@ -200,7 +201,7 @@ append article
           | each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
           | Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
           | Live" on the local machine.
-        div.libraries
+        p.libraries
           | Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.
 
       section#vector-controllers
@@ -209,7 +210,7 @@ append article
           | Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
           | but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
           | affordances labelling each podium.
-        div.libraries
+        p.libraries
           | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
 
       section#layer-controller
@@ -218,7 +219,7 @@ append article
           | A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
           | the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
           | Autolume via the OSC Manager. There is an affordance labelling this podium.
-        div.libraries
+        p.libraries
           | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
 
       section#seed-controller
@@ -227,7 +228,7 @@ append article
           | A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
           | the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
           | the OSC Manager. There is an affordance labelling this podium.
-        div.libraries
+        p.libraries
           | Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
 
       section#panel-resetter
@@ -235,7 +236,7 @@ append article
         p
           | A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
           | positions and orientations. There is an affordance labelling this podium.
-        div.libraries
+        p.libraries
           | Libraries: Custom, XR Interaction Toolkit.
 
       section#environment
@@ -243,7 +244,7 @@ append article
         p
           | Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
           | the experience launches.
-        div.libraries
+        p.libraries
           | Libraries: XR Interaction Toolkit.
 
       section#camera
@@ -252,14 +253,14 @@ append article
           | A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
           | can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
           | application's data folder.
-        div.libraries
+        p.libraries
           | Libraries: Custom.
 
       section#quit-listener
         +h(4, "QuitListener")
         p
           | Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.
-        div.libraries
+        p.libraries
           | Libraries: Custom.
 
     section#autolume-live
