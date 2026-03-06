@@ -1,5 +1,7 @@
 /* ---- ---- Standards ---- ---- */
 
+@use "variables";
+
 /* ---- Elements ---- */
 
 :root {
@@ -15,31 +17,136 @@
 
 /* -- Headings -- */
 
-h1, h2, h3, h4, h5, h6 {
+#{variables.$headings-all} {
   font-family: "JetBrains Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 
-  margin: 0;
+  margin: 0 0 #{variables.$max-075rem-05rlh};
+}
+
+#{variables.$headings-with-banner} {
+  background-color: var(--banner);
+  padding: 1rem 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+
+  line-height: 1.0;
+}
+
+#{variables.$headings-all} {
+  & + {
+    #{variables.$text-elements} {
+      //border: thick solid magenta;
+    }
+  }
+}
+
+// if you are not a text-element or section (that has line height messing with spacing)
+:not(#{variables.$text-elements}, section) {
+
+  // and you are the last-child in your container
+  &:last-child {
+
+    // and you are inside of a section
+    section > & {
+      // Adds extra spacing to any last non-p element in a section to compensate for visual gap from line height 
+      //border: thick solid yellow;
+      //margin-bottom: 1.35rem;
+      //margin-bottom: 0.8rlh;
+    }
+
+    // if you are the section that has a non-text last child
+    section:has(> &) {
+      //border: thick solid mediumpurple;
+      margin-bottom: #{variables.$max-1rem-075rlh};
+      //margin-bottom: 1rem;
+
+      // ...that has a section next to (below) you
+      &:has( + section) {
+        //border: thick solid gold;
+
+        // ...and the next section contains an h4
+        &:has(> #{variables.$headings-no-banner}) {
+          //border-style: dotted;
+          //margin-bottom: 0.5rlh;
+          margin-bottom: #{variables.$max-075rem-05rlh};
+        }
+
+        & > {
+          // a content heading
+          #{h4} {
+            //border: thick solid magenta;
+          }
+        }
+      }
+    }
+  }
+}
+
+#{variables.$headings-with-banner} {
+  // Beneath all content headings
+
+  & + {
+    #{variables.$text-elements} {
+      //border: thick solid lime;
+    }
+  }
+
+  &:has(+ :not(#{variables.$text-elements})) {
+    // heading that has a non-text element beneath it
+    //border: thick solid red;
+    // At 1.5 lh, this is equal to 1.25rem
+    //margin-bottom: 0.75rlh;
+    margin-bottom: #{variables.$max-1rem-075rlh};
+    //margin-bottom: 1.25rem;
+  }
+
+  & + {
+    p, ul {
+      // First paragraph under a heading
+      //margin-top: 0rem;
+      //margin-top: 1rem;
+
+      //border: thick solid cyan;
+    }
+
+    :not(p, ul) {
+      // First non-text element under a heading
+      //margin-top: 1.35rem !important;
+      //border: thick solid lime;
+    }
+  }
+}
+
+h2, h3 {
+  & + :not(#{variables.$text-elements}) {
+    //border-color: maroon;
+    //border-width: thick;
+    //border-style: dotted;
+    //margin-bottom: 3rem;
+  }
 }
 
 h1 {
+  line-height: 1;
   font-size: 2.5rem;
+  //margin-bottom: 0;
 }
 
 h2 {
   font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  //margin-bottom: 1.5rem;
 }
 
 h3 {
   font-size: 1.25rem;
-  margin-bottom: 0.25rem;
+  //margin-bottom: 0.25rem;
 }
 
 h4 {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0;
 }
 
 h5 {
@@ -50,24 +157,42 @@ h6 {
 
 /* -- Other -- */
 
+section > h2 {
+  //margin-top: 2rem;
+}
+
 /* Base section, H2 */
 section {
-  margin-top: 2.5rem;
+  //margin-top: #{$text-padding};
+  //margin-top: 0.5rlh;
+  margin-top: #{variables.$max-075rem-05rlh};
+
+  //margin-top: 2.5rem;
+  //margin-bottom: 2.5rem;
 
   /* Sub-section, H3 */
   section {
-    margin-top: 1.5rem;
+    //margin-top: 1.5rem;
+    //margin-bottom: 1.5rem;
 
     /* Sub-sub-section, H4 */
     section {
-      margin-top: 1rem;
+      //margin-top: 1rem;
+      //margin-bottom: 1rem;
     }
   }
 }
 
+hgroup {
+  //margin-bottom: variables.$page-padding * 2;
+}
+
 p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  //margin-block: 0 #{$text-padding};
+  //margin-block: 0 0.5rlh;
+  margin-block: 0 #{variables.$max-075rem-05rlh};
+  //vertical-align: text-top;
+  //max-width: 80ch;
 }
 
 b, strong {
@@ -79,6 +204,13 @@ b, strong {
   max-width: 100%;
   height: auto;
 
+  max-height: 60vh;
+  // Referenced: https://stackoverflow.com/a/75241679
+  @supports (max-height: 60dvh) {
+    // Referenced: https://stackoverflow.com/a/72245072
+    max-height: 60dvh;
+  }
+
   margin: 1.25rem 0 1.25rem;
 
   // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
@@ -87,9 +219,12 @@ b, strong {
 
 .img-link {
   display: block;
-  margin: 1.25rem 0 1.25rem;
+  margin: 0 auto #{variables.$max-1rem-075rlh};
 
   transition: box-shadow 0.1s, outline-width 0.1s;
+
+  height: fit-content;
+  width: fit-content;
 
   .img {
     margin: 0;
@@ -106,17 +241,29 @@ b, strong {
 .figure {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: #{variables.$max-1rem-075rlh};
   flex-direction: column;
-  margin: 0 0 1.25rem;
+  margin: #{variables.$max-1rem-075rlh} 0 #{variables.$max-075rem-05rlh};
   flex-wrap: wrap;
+
+  h4 + & {
+    margin-top: max(0.5625rem, 0.375rlh);
+  }
+
+  & + {
+    #{variables.$text-elements} {
+      //margin-top: 1rem;
+    }
+  }
+
+  &:has(+ #{variables.$text-elements}) {
+    //margin-bottom: #{$text-padding};
+    //margin-bottom: 0.5rlh;
+    margin-bottom: #{variables.$max-075rem-05rlh};
+  }
 
   .img-link {
     margin: 0;
-  }
-
-  .img {
-    max-height: 70vh;
   }
 
   figcaption {
@@ -129,14 +276,11 @@ b, strong {
 
     color: var(--secondary);
   }
-
-  p + & {
-    margin-top: 1.25rem;
-  }
 }
 
 .list {
-  padding-left: 2.5rem;
+  padding-left: 2rem;
+  margin-block: 0 #{variables.$max-075rem-05rlh};
 
   li::marker {
     font-weight: 500;
@@ -144,7 +288,7 @@ b, strong {
 
   li + li {
     // Referenced: https://stackoverflow.com/a/63890844
-    margin-top: 0.5rem;
+    //margin-top: 0.25rem;
   }
 }
 
@@ -179,7 +323,7 @@ b, strong {
 
 .introduction {
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.1rlh;
   font-weight: 400;
 }
 

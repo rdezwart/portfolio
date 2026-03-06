@@ -8,6 +8,18 @@ $page-padding: 1rem;
 $total-width: calc($main-width + $content-gap + $nav-width);
 $nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);
 
+// ---- Standards ---- //
+$headings-with-banner: h2, h3;
+$headings-no-banner: h4, h5, h6;
+$headings-content: $headings-with-banner, $headings-no-banner;
+$headings-all: h1, $headings-content;
+$text-elements: p, ul;
+
+$text-padding: 0.75rem; // equal to 0.5rlh
+
+$max-075rem-05rlh: max(0.75rem, 0.5rlh);
+$max-1rem-075rlh: max(1rem, 0.75rlh);
+
 /* ---- Light/Dark Mode ---- */
 // Need to declare the colours as Sass variables since light-dark() doesn't like CSS ones for some reason
 // From darkest to lightest

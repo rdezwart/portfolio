@@ -13,7 +13,7 @@
 
 /* ---- ---- Structure ---- ---- */
 html {
-  line-height: 1.3;
+  line-height: 1.5;
 }
 
 body {
@@ -98,9 +98,13 @@ main > * {
 .img-list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1.25rem 1fr;
+  -ms-grid-columns: 1fr 1rem 1fr;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: max(1rem, 0.75rlh) 1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-items: center;
 }
 @media (width < 35rem) {
   .img-list {
@@ -129,44 +133,54 @@ h1, h2, h3, h4, h5, h6 {
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
-  margin: 0;
+  margin: 0 0 max(0.75rem, 0.5rlh);
 }
 
+h2, h3 {
+  background-color: var(--banner);
+  padding: 1rem 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  line-height: 1;
+}
+
+section:has(> :not(p, ul, section):last-child) {
+  margin-bottom: max(1rem, 0.75rlh);
+}
+section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
+  margin-bottom: max(0.75rem, 0.5rlh);
+}
+h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
+  margin-bottom: max(1rem, 0.75rlh);
+}
 h1 {
+  line-height: 1;
   font-size: 2.5rem;
 }
 
 h2 {
   font-size: 1.75rem;
-  margin-bottom: 0.5rem;
 }
 
 h3 {
   font-size: 1.25rem;
-  margin-bottom: 0.25rem;
 }
 
 h4 {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0;
 }
 
 /* -- Other -- */
 /* Base section, H2 */
 section {
-  margin-top: 2.5rem;
+  margin-top: max(0.75rem, 0.5rlh);
   /* Sub-section, H3 */
 }
 section section {
-  margin-top: 1.5rem;
   /* Sub-sub-section, H4 */
 }
-section section section {
-  margin-top: 1rem;
-}
-
 p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin-block: 0 max(0.75rem, 0.5rlh);
 }
 
 b, strong {
@@ -177,17 +191,31 @@ b, strong {
   width: auto;
   max-width: 100%;
   height: auto;
+  max-height: 60vh;
+}
+@supports (max-height: 60dvh) {
+  .img {
+    max-height: 60dvh;
+  }
+}
+.img {
   margin: 1.25rem 0 1.25rem;
   display: block;
 }
 
 .img-link {
   display: block;
-  margin: 1.25rem 0 1.25rem;
+  margin: 0 auto max(1rem, 0.75rlh);
   -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: box-shadow 0.1s, outline-width 0.1s;
   transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .img-link .img {
   margin: 0;
@@ -205,20 +233,23 @@ b, strong {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1rem;
+  gap: max(1rem, 0.75rlh);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 0 0 1.25rem;
+  margin: max(1rem, 0.75rlh) 0 max(0.75rem, 0.5rlh);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+h4 + .figure {
+  margin-top: max(0.5625rem, 0.375rlh);
+}
+.figure:has(+ p, ul) {
+  margin-bottom: max(0.75rem, 0.5rlh);
+}
 .figure .img-link {
   margin: 0;
-}
-.figure .img {
-  max-height: 70vh;
 }
 .figure figcaption {
   font-family: "JetBrains Mono", monospace;
@@ -229,20 +260,14 @@ b, strong {
   max-width: 90%;
   color: var(--secondary);
 }
-p + .figure {
-  margin-top: 1.25rem;
-}
 
 .list {
-  padding-left: 2.5rem;
+  padding-left: 2rem;
+  margin-block: 0 max(0.75rem, 0.5rlh);
 }
 .list li::marker {
   font-weight: 500;
 }
-.list li + li {
-  margin-top: 0.5rem;
-}
-
 /* ---- Classes ---- */
 .link {
   color: var(--link);
@@ -270,7 +295,7 @@ p + .figure {
 
 .introduction {
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.1rlh;
   font-weight: 400;
 }
 
