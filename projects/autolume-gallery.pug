@@ -134,12 +134,6 @@ append article
     section#unity
       +h(3, "Unity")
 
-      figure.figure
-        a.img-link(href=`/img/${project.slug}/hierarchy.png` target="_blank")
-          img.img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
-            alt="Unity hierarchy for this project.")
-        figcaption Figure 1: Root hierarchy of the Gallery scene.
-
       p
         | The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
         | \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
@@ -148,6 +142,12 @@ append article
       p
         | The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
         | to show. I will run through each object and any relevant children.
+
+      figure.figure
+        a.img-link(href=`/img/${project.slug}/hierarchy.png` target="_blank")
+          img.img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
+            alt="Unity hierarchy for this project.")
+        figcaption Figure 1: Root hierarchy of the Gallery scene.
 
       section#directional-light
         +h(4, "Directional Light")
