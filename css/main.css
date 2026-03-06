@@ -8,7 +8,7 @@
   --link: light-dark(#00818a, #ff9933);
   --secondary: light-dark(#3f3f3f, #cccccc);
   --text: light-dark(#1e1e22, #f2f2f2);
-  --duration: 0.15s;
+  --duration: 0.2s;
 }
 
 /* ---- ---- Structure ---- ---- */
@@ -277,12 +277,14 @@ h6 + .figure {
 /* ---- Classes ---- */
 .link {
   color: var(--link);
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
   font-weight: 400;
 }
 .link:hover, .link:focus {
   color: var(--highlight);
-  -webkit-transition: color var(--duration);
-  transition: color var(--duration);
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
 }
 
 .highlight, .name {
@@ -394,10 +396,15 @@ a.skip:focus {
   padding: 0;
 }
 
+.social-link i {
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
+  color: var(--text);
+}
 .social-link:hover i, .social-link:focus i {
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
   color: var(--highlight);
-  -webkit-transition: color var(--duration);
-  transition: color var(--duration);
 }
 
 .nav-list {

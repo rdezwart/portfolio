@@ -58,10 +58,16 @@
 }
 
 .social-link {
+
+  i {
+    transition: color var(--duration) ease;
+    color: var(--text);
+  }
+
   &:hover, &:focus {
     i {
+      transition: color var(--duration) ease;
       color: var(--highlight);
-      transition: color var(--duration);
     }
   }
 }

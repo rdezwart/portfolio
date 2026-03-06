@@ -194,12 +194,13 @@ b, strong {
 
 .link {
   color: var(--link);
+  transition: color var(--duration) ease;
   font-weight: 400;
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
     color: var(--highlight);
-    transition: color var(--duration);
+    transition: color var(--duration) ease;
   }
 }
 
