@@ -88,9 +88,9 @@ main {
 .img-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: #{variables.$max-1rem-075rlh} 1rem;
+  gap: 1rem;
   width: fit-content;
-  margin: #{variables.$max-1rem-075rlh} auto #{variables.$max-1rem-075rlh};
+  margin: 1rem auto;
   justify-items: center;
 
   @media (width < variables.$main-width - 10rem) {

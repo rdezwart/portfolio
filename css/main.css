@@ -100,11 +100,11 @@ main > * {
   display: grid;
   -ms-grid-columns: 1fr 1rem 1fr;
   grid-template-columns: repeat(2, 1fr);
-  gap: max(1rem, 0.75rlh) 1rem;
+  gap: 1rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin: max(1rem, 0.75rlh) auto max(1rem, 0.75rlh);
+  margin: 1rem auto;
   justify-items: center;
 }
 @media (width < 35rem) {
