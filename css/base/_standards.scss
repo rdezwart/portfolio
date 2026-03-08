@@ -1,8 +1,8 @@
-/* ---- ---- Standards ---- ---- */
+// ---- ---- Standards ---- ---- //
 
 @use "../abstracts/variables" as *;
 
-/* ---- Elements ---- */
+// ---- Elements ---- //
 
 :root {
   font-family: "Inter", sans-serif;
@@ -15,7 +15,7 @@
   color: var(--text);
 }
 
-/* -- Headings -- */
+// -- Headings -- //
 
 #{$headings-all} {
   font-family: "JetBrains Mono", monospace;
@@ -97,7 +97,7 @@ h5 {
 h6 {
 }
 
-/* -- Other -- */
+// -- Other -- //
 
 section {
   margin-top: #{$max-075rem-05rlh};
@@ -190,7 +190,7 @@ b, strong {
   }
 }
 
-/* ---- Classes ---- */
+// ---- Classes ---- //
 
 .link {
   color: var(--link);
