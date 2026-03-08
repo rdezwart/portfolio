@@ -1,15 +1,9 @@
+/**
+ * 1. Dark scheme is preferred, reflected in meta tags.
+ */
 :root {
-  color-scheme: light dark;
+  color-scheme: light dark; /* 1 */
   --duration: 0.2s;
-}
-
-:root {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  overflow-wrap: anywhere;
-  color: var(--text);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -215,6 +209,15 @@ a.skip {
 }
 a.skip:focus {
   left: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  overflow-wrap: anywhere;
+  color: var(--text);
 }
 
 html {

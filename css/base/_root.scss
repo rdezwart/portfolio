@@ -1,6 +1,8 @@
+/**
+ * 1. Dark scheme is preferred, reflected in meta tags.
+ */
 :root {
-  // Dark is preferred, reflected in meta tags
-  color-scheme: light dark;
+  color-scheme: light dark; /* 1 */
 
   --duration: 0.2s;
 }

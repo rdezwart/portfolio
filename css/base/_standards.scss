@@ -2,19 +2,6 @@
 
 @use "../abstracts/variables" as *;
 
-// ---- Elements ---- //
-
-:root {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-
-  overflow-wrap: anywhere;
-
-  color: var(--text);
-}
-
 // -- Headings -- //
 
 #{$headings-all} {
