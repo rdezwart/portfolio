@@ -1,6 +1,6 @@
 /* ---- ---- Standards ---- ---- */
 
-@use "../abstracts";
+@use "../abstracts/variables" as *;
 
 /* ---- Elements ---- */
 
@@ -17,16 +17,16 @@
 
 /* -- Headings -- */
 
-#{abstracts.$headings-all} {
+#{$headings-all} {
   font-family: "JetBrains Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 
-  margin: 0 0 #{abstracts.$max-075rem-05rlh};
+  margin: 0 0 #{$max-075rem-05rlh};
 }
 
-#{abstracts.$headings-with-banner} {
+#{$headings-with-banner} {
   background-color: var(--banner);
   padding: 1rem 1rem;
   margin-left: -1rem;
@@ -36,7 +36,7 @@
 }
 
 // If you are not a text-element or section...
-:not(#{abstracts.$text-elements}, section) {
+:not(#{$text-elements}, section) {
 
   // ...and you are the last child in your container...
   &:last-child {
@@ -46,17 +46,17 @@
 
       // ...and add some extra margin-bottom.
       /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-      margin-bottom: #{abstracts.$max-1rem-075rlh};
+      margin-bottom: #{$max-1rem-075rlh};
 
       // If that section has another section below it...
       &:has( + section) {
 
         // ...and that next section contains a heading without a banner
-        &:has(> #{abstracts.$headings-no-banner}) {
+        &:has(> #{$headings-no-banner}) {
 
           // ...add a little less space instead!
           /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-          margin-bottom: #{abstracts.$max-075rem-05rlh};
+          margin-bottom: #{$max-075rem-05rlh};
         }
       }
     }
@@ -64,13 +64,13 @@
 }
 
 // If you are a heading with a banner...
-#{abstracts.$headings-with-banner} {
+#{$headings-with-banner} {
 
   // ...and if you have a non-text element beneath...
-  &:has(+ :not(#{abstracts.$text-elements})) {
+  &:has(+ :not(#{$text-elements})) {
 
     /* Add some extra space below bordered headings touching a non-text element */
-    margin-bottom: #{abstracts.$max-1rem-075rlh};
+    margin-bottom: #{$max-1rem-075rlh};
   }
 }
 
@@ -100,11 +100,11 @@ h6 {
 /* -- Other -- */
 
 section {
-  margin-top: #{abstracts.$max-075rem-05rlh};
+  margin-top: #{$max-075rem-05rlh};
 }
 
 p {
-  margin-block: 0 #{abstracts.$max-075rem-05rlh};
+  margin-block: 0 #{$max-075rem-05rlh};
 }
 
 b, strong {
@@ -131,7 +131,7 @@ b, strong {
 
 .img-link {
   display: block;
-  margin: #{abstracts.$max-1rem-075rlh} auto #{abstracts.$max-075rem-05rlh};
+  margin: #{$max-1rem-075rlh} auto #{$max-075rem-05rlh};
 
   transition: box-shadow 0.1s, outline-width 0.1s;
 
@@ -153,13 +153,13 @@ b, strong {
 .figure {
   display: flex;
   align-items: center;
-  gap: #{abstracts.$max-1rem-075rlh};
+  gap: #{$max-1rem-075rlh};
   flex-direction: column;
-  margin: #{abstracts.$max-1rem-075rlh} 0 #{abstracts.$max-075rem-05rlh};
+  margin: #{$max-1rem-075rlh} 0 #{$max-075rem-05rlh};
   flex-wrap: wrap;
 
   // Reduce top margin if figure is touching non-banner heading
-  @each $heading in abstracts.$headings-no-banner {
+  @each $heading in $headings-no-banner {
     #{$heading} + & {
       margin-top: max(0.5625rem, 0.375rlh);
     }
@@ -183,7 +183,7 @@ b, strong {
 
 .list {
   padding-left: 2rem;
-  margin-block: 0 #{abstracts.$max-075rem-05rlh};
+  margin-block: 0 #{$max-075rem-05rlh};
 
   li::marker {
     font-weight: 500;
