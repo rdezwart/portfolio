@@ -1,20 +1,20 @@
 /* ---- ---- Navigation ---- ---- */
 
-@use "variables";
+@use "../abstracts";
 
 .side-nav {
   position: sticky;
   top: 2rem;
 
   align-self: flex-start;
-  max-width: variables.$main-width;
-  flex: 1 1 variables.$nav-width;
+  max-width: abstracts.$main-width;
+  flex: 1 1 abstracts.$nav-width;
 
   display: flex;
   flex-direction: column;
   row-gap: 0.15rem;
 
-  @media (max-width: variables.$nav-query) {
+  @media (max-width: abstracts.$nav-query) {
     position: static;
   }
 
