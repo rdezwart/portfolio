@@ -1,7 +1,6 @@
 /* ---- ---- Variables ---- ---- */
 /* ---- Light/Dark Mode ---- */
 :root {
-  color-scheme: light dark; /* Dark is preferred, reflected in meta tags */
   --background: #1e1e22;
   --banner: #2a2a2f;
   --highlight: #00eeff;
@@ -19,7 +18,9 @@
     --text: #1e1e22;
   }
 }
+
 :root {
+  color-scheme: light dark;
   --duration: 0.2s;
 }
 

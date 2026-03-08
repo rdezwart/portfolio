@@ -36,8 +36,6 @@ $pale: #f2f2f2;
 $white: #ffffff;
 
 :root {
-  color-scheme: light dark; /* Dark is preferred, reflected in meta tags */
-
   --background: #{$dark};
   --banner: #{$dark-banner};
   --highlight: #{$blue};
@@ -53,6 +51,4 @@ $white: #ffffff;
     --secondary: #{$grey};
     --text: #{$dark};
   }
-
-  --duration: 0.2s;
 }
