@@ -101,3 +101,22 @@ main {
     margin: 0;
   }
 }
+
+.project-card {
+  flex: 15rem;
+
+  padding: 1rem;
+  border: thin solid #{variables.$grey};
+
+  .img-link {
+    margin-top: 0;
+  }
+}
+
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  //grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  flex: 45rem;
+}

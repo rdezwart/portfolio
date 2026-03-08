@@ -54,3 +54,36 @@ block main
       li: a.social-link(href!="https://www.instagram.com/robindezwart/" target="_blank" rel="noreferrer")
         i.fa-brands.fa-instagram(aria-hidden="true")
         span.fa-sr-only Robin's Instagram account
+
+  section#projects
+    +h(2, "Featured Projects")
+
+    div.project-grid
+      div.project-card
+        a.img-link(href="/img/autolume-gallery/canvas-2.webp" target="_blank")
+          img.img(src="/img/autolume-gallery/canvas-1.webp" loading="lazy" width="1024" height="1024"
+            alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+        ul.nav-list
+          +nav-item("AI + VR", "AutolumeGallery", "/projects/autolume-gallery.html", projects.AutolumeGallery.description)
+
+      div.project-card
+        a.img-link(href="/img/autolume-gallery/canvas-3.webp" target="_blank")
+          img.img(src="/img/autolume-gallery/canvas-1.webp" loading="lazy" width="1024" height="1024"
+            alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+        ul.nav-list
+          +nav-item("AI + VR", "AutolumeGallery", "/projects/autolume-gallery.html", projects["Food Identifier"].description)
+
+      div.project-card
+        a.img-link(href="/img/autolume-gallery/canvas-1.webp" target="_blank")
+          img.img(src="/img/autolume-gallery/canvas-1.webp" loading="lazy" width="1024" height="1024"
+            alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+        ul.nav-list
+          +nav-item("AI + VR", "AutolumeGallery", "/projects/autolume-gallery.html", projects["A Sight Never Seen"].description)
+
+
+      div.project-card
+        a.img-link(href="/img/autolume-gallery/canvas-1.webp" target="_blank")
+          img.img(src="/img/autolume-gallery/canvas-1.webp" loading="lazy" width="1024" height="1024"
+            alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+        ul.nav-list
+          +nav-item("AI + VR", "AutolumeGallery", "/projects/autolume-gallery.html", projects.AutolumeGallery.description)

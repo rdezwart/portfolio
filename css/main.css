@@ -117,6 +117,29 @@ main > * {
   margin: 0;
 }
 
+.project-card {
+  -webkit-box-flex: 15rem;
+      -ms-flex: 15rem;
+          flex: 15rem;
+  padding: 1rem;
+  border: thin solid #3f3f3f;
+}
+.project-card .img-link {
+  margin-top: 0;
+}
+
+.project-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  -webkit-box-flex: 45rem;
+      -ms-flex: 45rem;
+          flex: 45rem;
+}
+
 /* ---- ---- Standards ---- ---- */
 /* ---- Elements ---- */
 :root {
