@@ -224,6 +224,135 @@ a.skip:focus {
   left: 0;
 }
 
+/* ---- ---- Structure ---- ---- */
+html {
+  line-height: 1.5;
+}
+
+body {
+  background-color: var(--background);
+  padding: 2rem 1rem;
+}
+
+.content {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2rem 3rem;
+  max-width: 68rem;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: auto;
+}
+.wrapper nav {
+  position: sticky;
+  top: 0;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 20rem;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 45rem;
+          flex: 1 1 45rem;
+  max-width: 45rem;
+}
+main > * {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* These are to simplify the Gradio app on the Food Identifier page. */
+.gradio-container .prose {
+  display: none;
+}
+.gradio-container #component-0 {
+  gap: 0;
+}
+
+.bio {
+  margin-bottom: -1rem;
+}
+
+.img-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem auto;
+  justify-items: center;
+}
+@media (width < 35rem) {
+  .img-list {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+.img-list .img-link {
+  margin: 0;
+}
+
+.project-card {
+  -webkit-box-flex: 15rem;
+      -ms-flex: 15rem;
+          flex: 15rem;
+  padding: 1rem;
+  border: thin solid #3f3f3f;
+}
+.project-card .img-link {
+  margin-top: 0;
+}
+
+.project-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  -webkit-box-flex: 45rem;
+      -ms-flex: 45rem;
+          flex: 45rem;
+}
+
 /* ---- ---- Navigation ---- ---- */
 .side-nav {
   position: sticky;
@@ -370,134 +499,5 @@ a.skip:focus {
     --secondary: #3f3f3f;
     --text: #1e1e22;
   }
-}
-
-/* ---- ---- Structure ---- ---- */
-html {
-  line-height: 1.5;
-}
-
-body {
-  background-color: var(--background);
-  padding: 2rem 1rem;
-}
-
-.content {
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 2rem 3rem;
-  max-width: 68rem;
-}
-
-.wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: auto;
-}
-.wrapper nav {
-  position: sticky;
-  top: 0;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  padding: 1rem;
-  margin: 0 auto;
-  max-width: 20rem;
-}
-
-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 45rem;
-          flex: 1 1 45rem;
-  max-width: 45rem;
-}
-main > * {
-  margin: 0;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* These are to simplify the Gradio app on the Food Identifier page. */
-.gradio-container .prose {
-  display: none;
-}
-.gradio-container #component-0 {
-  gap: 0;
-}
-
-.bio {
-  margin-bottom: -1rem;
-}
-
-.img-list {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1rem 1fr;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 1rem auto;
-  justify-items: center;
-}
-@media (width < 35rem) {
-  .img-list {
-    -ms-grid-columns: 1fr;
-    grid-template-columns: 1fr;
-  }
-}
-.img-list .img-link {
-  margin: 0;
-}
-
-.project-card {
-  -webkit-box-flex: 15rem;
-      -ms-flex: 15rem;
-          flex: 15rem;
-  padding: 1rem;
-  border: thin solid #3f3f3f;
-}
-.project-card .img-link {
-  margin-top: 0;
-}
-
-.project-grid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 1rem;
-  -webkit-box-flex: 45rem;
-      -ms-flex: 45rem;
-          flex: 45rem;
 }
 /*# sourceMappingURL=main.css.map */

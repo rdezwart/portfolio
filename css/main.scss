@@ -4,7 +4,6 @@
 // Referenced: https://sass-lang.com/documentation/at-rules/use/
 @use "abstracts";
 @use "base";
+@use "layout";
 @use "components";
 @use "themes";
-
-@use "sections/structure";
