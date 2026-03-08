@@ -1,4 +1,7 @@
-// ---- ---- Functions ---- ---- //
+////
+/// @group Functions
+/// @author Robin de Zwart
+////
 
 // NOTE: Turns out, validator doesn't like it when we try to insert content via CSS.
 // Worked hard on this, but have to scrap/shelve it. I turned it into a Pug mixin for now.
@@ -8,6 +11,7 @@
 
 /// Constructs a string of several arrows. For use with the `content` property.
 ///
+/// @see {mixin} prepend-arrows
 /// @param {positive integer} $arrows - The number of arrows to generate.
 /// @param {boolean} $space [true] - Whether to append a space at the end.
 /// @return {quoted string} - The constructed string, in quotes.
@@ -31,6 +35,7 @@
 
 /// Constructs a string of several arrows, plus alt text. For use with the `content` property.
 ///
+/// @see {mixin} prepend-arrows
 /// @param {positive integer} $arrows - The number of arrows to generate.
 /// @param {quoted string} $alt [""] - The alt text to be inserted.
 /// @param {boolean} $space [true] - Whether to append a space at the end.
