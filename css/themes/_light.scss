@@ -1,0 +1,12 @@
+@use "../abstracts";
+
+:root {
+  @media (prefers-color-scheme: light) {
+    --background: #{abstracts.$white};
+    --banner: #{abstracts.$pale};
+    --highlight: #{abstracts.$dutch};
+    --link: #{abstracts.$teal};
+    --secondary: #{abstracts.$grey};
+    --text: #{abstracts.$dark};
+  }
+}

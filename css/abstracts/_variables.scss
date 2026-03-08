@@ -34,21 +34,3 @@ $dutch: #ed4900;
 $silver: #cccccc;
 $pale: #f2f2f2;
 $white: #ffffff;
-
-:root {
-  --background: #{$dark};
-  --banner: #{$dark-banner};
-  --highlight: #{$blue};
-  --link: #{$orange};
-  --secondary: #{$silver};
-  --text: #{$pale};
-
-  @media (prefers-color-scheme: light) {
-    --background: #{$white};
-    --banner: #{$pale};
-    --highlight: #{$dutch};
-    --link: #{$teal};
-    --secondary: #{$grey};
-    --text: #{$dark};
-  }
-}

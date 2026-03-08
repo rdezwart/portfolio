@@ -1,0 +1,11 @@
+@use "../abstracts";
+
+// TODO: Move main color styling for elements to these theme files
+:root {
+  --background: #{abstracts.$dark};
+  --banner: #{abstracts.$dark-banner};
+  --highlight: #{abstracts.$blue};
+  --link: #{abstracts.$orange};
+  --secondary: #{abstracts.$silver};
+  --text: #{abstracts.$pale};
+}
