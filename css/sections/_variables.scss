@@ -30,18 +30,29 @@ $grey: #3f3f3f;
 $teal: #00818a;
 $blue: #00eeff;
 $orange: #ff9933;
+$dutch: #ed4900;
 $silver: #cccccc;
 $pale: #f2f2f2;
 $white: #ffffff;
 
 :root {
-  color-scheme: dark light; /* Dark is preferred, also reflected in meta tags */
-  --background: light-dark(#{$white}, #{$dark});
-  --banner: light-dark(#{$pale}, #{$dark-banner});
-  --highlight: light-dark(#{$orange}, #{$blue});
-  --link: light-dark(#{$teal}, #{$orange});
-  --secondary: light-dark(#{$grey}, #{$silver});
-  --text: light-dark(#{$dark}, #{$pale});
+  color-scheme: light dark; /* Dark is preferred, reflected in meta tags */
+
+  --background: #{$dark};
+  --banner: #{$dark-banner};
+  --highlight: #{$blue};
+  --link: #{$orange};
+  --secondary: #{$silver};
+  --text: #{$pale};
+
+  @media (prefers-color-scheme: light) {
+    --background: #{$white};
+    --banner: #{$pale};
+    --highlight: #{$dutch};
+    --link: #{$teal};
+    --secondary: #{$grey};
+    --text: #{$dark};
+  }
 
   --duration: 0.2s;
 }

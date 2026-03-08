@@ -1,13 +1,25 @@
 /* ---- ---- Variables ---- ---- */
 /* ---- Light/Dark Mode ---- */
 :root {
-  color-scheme: dark light; /* Dark is preferred, also reflected in meta tags */
-  --background: light-dark(#ffffff, #1e1e22);
-  --banner: light-dark(#f2f2f2, #2a2a2f);
-  --highlight: light-dark(#ff9933, #00eeff);
-  --link: light-dark(#00818a, #ff9933);
-  --secondary: light-dark(#3f3f3f, #cccccc);
-  --text: light-dark(#1e1e22, #f2f2f2);
+  color-scheme: light dark; /* Dark is preferred, reflected in meta tags */
+  --background: #1e1e22;
+  --banner: #2a2a2f;
+  --highlight: #00eeff;
+  --link: #ff9933;
+  --secondary: #cccccc;
+  --text: #f2f2f2;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --banner: #f2f2f2;
+    --highlight: #ed4900;
+    --link: #00818a;
+    --secondary: #3f3f3f;
+    --text: #1e1e22;
+  }
+}
+:root {
   --duration: 0.2s;
 }
 
