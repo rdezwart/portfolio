@@ -1,0 +1,10 @@
+/**
+ * Contains a number of project cards.
+ */
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  //grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  flex: 45rem;
+}
