@@ -348,23 +348,6 @@ h6 + .figure {
   color: var(--secondary);
 }
 
-.youtube-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-}
-
-.youtube-container iframe, .youtube-container object, .youtube-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
 /**
  * Default styling for all text.
  */
@@ -751,6 +734,30 @@ main > * {
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);
+}
+
+/**
+ * Style YouTube embed in a responsive manner.
+ * Referenced: https://embedresponsively.com/
+ */
+.youtube-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/**
+ * Place the iframe and other components within container.
+ */
+.youtube-container iframe, .youtube-container object, .youtube-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 :root {
