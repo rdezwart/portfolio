@@ -2,50 +2,6 @@
 
 @use "../abstracts/variables" as *;
 
-.content {
-  margin: auto;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem $content-gap;
-
-  max-width: $total-width;
-}
-
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-
-  margin: auto;
-
-  nav {
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-
-    padding: 1rem;
-
-    margin: 0 auto;
-    max-width: 20rem;
-  }
-}
-
-main {
-  // Referenced: https://stackoverflow.com/a/33455342 to avoid y-axis clipping
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1 1 $main-width;
-  max-width: $main-width;
-
-  //background-color: var(--background);
-
-  & > * {
-    margin: 0;
-  }
-}
-
 .project-card {
   flex: 15rem;
 

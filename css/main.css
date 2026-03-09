@@ -411,6 +411,9 @@ b, strong {
   border-width: 0;
 }
 
+/**
+ * Main wrapper for body of site.
+ */
 .content {
   margin: auto;
   display: -webkit-box;
@@ -425,6 +428,10 @@ b, strong {
   max-width: 68rem;
 }
 
+/**
+ * Wrapper class, but I must have swapped to using something else? This isn't
+ * used anywhere...
+ */
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -443,6 +450,9 @@ b, strong {
   max-width: 20rem;
 }
 
+/**
+ * Represents the actual content of a page, excluding navigation.
+ */
 main {
   display: -webkit-box;
   display: -ms-flexbox;
