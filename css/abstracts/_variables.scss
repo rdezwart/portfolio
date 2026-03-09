@@ -21,7 +21,8 @@ $max-075rem-05rlh: max(0.75rem, 0.5rlh);
 $max-1rem-075rlh: max(1rem, 0.75rlh);
 
 // ---- Light/Dark Mode ---- //
-// Need to declare the colours as Sass variables since light-dark() doesn't like CSS ones for some reason
+// Need to declare the colours as Sass variables since light-dark() doesn't like
+//   CSS ones for some reason.
 // From darkest to lightest
 $black: #000000;
 $dark: #1e1e22;

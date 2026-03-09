@@ -3,8 +3,10 @@
 /// @author Robin de Zwart
 ////
 
-// NOTE: Turns out, validator doesn't like it when we try to insert content via CSS.
-// Worked hard on this, but have to scrap/shelve it. I turned it into a Pug mixin for now.
+// NOTE: Turns out, validator doesn't like it when we try to insert content via
+//   CSS.
+// Worked hard on this, but have to scrap/shelve it. I turned it into a Pug
+//   mixin for now.
 
 @use "sass:math";
 @use "sass:string";
@@ -33,7 +35,8 @@
   @return string.quote($content);
 }
 
-/// Constructs a string of several arrows, plus alt text. For use with the `content` property.
+/// Constructs a string of several arrows, plus alt text. For use with the
+///   `content` property.
 ///
 /// @see {mixin} prepend-arrows
 /// @param {positive integer} $arrows - The number of arrows to generate.

@@ -5,8 +5,10 @@
 
 @use "functions" as *;
 
-// NOTE: Turns out, validator doesn't like it when we try to insert content via CSS.
-// Worked hard on this, but have to scrap/shelve it. I turned it into a Pug mixin for now.
+// NOTE: Turns out, validator doesn't like it when we try to insert content via
+//   CSS.
+// Worked hard on this, but have to scrap/shelve it. I turned it into a Pug
+//   mixin for now.
 
 /// Places a number of `>` before an element.
 ///
@@ -16,12 +18,15 @@
 @mixin prepend-arrows($arrows) {
   &::before {
     // Referenced: https://developer.mozilla.org/en-US/docs/Web/CSS/::before
-    // Referenced: https://stackoverflow.com/a/73215844 https://developer.mozilla.org/en-US/docs/Web/CSS/content
+    // Referenced: https://stackoverflow.com/a/73215844
+    //   https://developer.mozilla.org/en-US/docs/Web/CSS/content
     content: arrows($arrows);
     color: var(--highlight);
 
-    // Triple arrows didn't look the same as the rest. Realized it's a bitwise operator, figured it was a font issue.
-    // Did some digging and discovered font ligatures! And promptly turned them off.
+    // Triple arrows didn't look the same as the rest. Realized it's a bitwise
+    //   operator, figured it was a font issue.
+    // Did some digging and discovered font ligatures! And promptly turned them
+    //   off.
     // Referenced: https://blog.fontawesome.com/icon-unicodes-and-ligatures/
     font-variant-ligatures: none;
 

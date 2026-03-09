@@ -22,6 +22,7 @@
   line-height: 1.0;
 }
 
+// TODO: Clean up both the code and comments for this section
 // If you are not a text-element or section...
 :not(#{$text-elements}, section) {
 
@@ -202,8 +203,10 @@ b, strong {
 .highlight {
   color: var(--highlight) !important;
 
-  // Triple arrows didn't look the same as the rest. Realized it's a bitwise operator, figured it was a font issue.
-  // Did some digging and discovered font ligatures! And promptly turned them off.
+  // Triple arrows didn't look the same as the rest. Realized it's a bitwise
+  //   operator, figured it was a font issue.
+  // Did some digging and discovered font ligatures! And promptly turned them
+  //   off.
   font-variant-ligatures: none;
 }
 
