@@ -1,0 +1,81 @@
+@use "../abstracts";
+
+/**
+ * Basic styles for default responsive image.
+ */
+.img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+
+  max-height: 60vh;
+  // Referenced: https://stackoverflow.com/a/75241679
+  @supports (max-height: 60dvh) {
+    // Referenced: https://stackoverflow.com/a/72245072
+    max-height: 60dvh;
+  }
+
+  margin: 1.25rem 0 1.25rem;
+
+  // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
+  display: block;
+}
+
+/**
+ * When an image has a link attached to it, add additional styles.
+ * 1. The anchor surrounding the image has the margins instead of the image.
+ */
+.img-link {
+  display: block;
+  margin: #{abstracts.$max-1rem-075rlh} auto #{abstracts.$max-075rem-05rlh}; /* 1 */
+
+  transition: box-shadow 0.1s, outline-width 0.1s;
+
+  height: fit-content;
+  width: fit-content;
+
+  .img {
+    margin: 0; /* 1 */
+  }
+
+  &:hover, &:focus {
+    & {
+      box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
+      outline: 0.2rem solid var(--link);
+    }
+  }
+}
+
+/**
+ * Images contained within a figure and included caption.
+ */
+.figure {
+  display: flex;
+  align-items: center;
+  gap: #{abstracts.$max-1rem-075rlh};
+  flex-direction: column;
+  margin: #{abstracts.$max-1rem-075rlh} 0 #{abstracts.$max-075rem-05rlh};
+  flex-wrap: wrap;
+
+  // Reduce top margin if figure is touching non-banner heading
+  @each $heading in abstracts.$headings-no-banner {
+    #{$heading} + & {
+      margin-top: max(0.5625rem, 0.375rlh);
+    }
+  }
+
+  .img-link {
+    margin: 0;
+  }
+
+  figcaption {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 0.8rem;
+    max-width: 90%;
+
+    color: var(--secondary);
+  }
+}
