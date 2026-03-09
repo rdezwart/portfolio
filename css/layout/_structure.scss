@@ -46,21 +46,6 @@ main {
   }
 }
 
-.sr-only {
-  // Referenced: https://guides.18f.gov/accessibility/hidden-content/
-  // FontAwesome also has this same class built in, but I need a backup for
-  //   pages without FA sheets.
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 .bio {
   margin-bottom: -1rem;
 }

@@ -391,6 +391,26 @@ b, strong {
   font-weight: 400;
 }
 
+/**
+ * Utility class to hide text visually, but leave it accessible to screen
+ * readers.
+ * FontAwesome also has this same class built in, but I need a backup for pages
+ * without FA sheets.
+ *
+ * Referenced: https://guides.18f.gov/accessibility/hidden-content/
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .content {
   margin: auto;
   display: -webkit-box;
@@ -439,18 +459,6 @@ main {
 }
 main > * {
   margin: 0;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
 
 .bio {
