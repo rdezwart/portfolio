@@ -77,22 +77,6 @@ main {
   margin-bottom: -1rem;
 }
 
-.img-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: fit-content;
-  margin: 1rem auto;
-  justify-items: center;
-
-  @media (width < $main-width - 10rem) {
-    grid-template-columns: 1fr;
-  }
-
-  .img-link {
-    margin: 0;
-  }
-}
 
 .project-card {
   flex: 15rem;
