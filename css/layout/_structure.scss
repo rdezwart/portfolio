@@ -2,14 +2,3 @@
 
 @use "../abstracts/variables" as *;
 
-.project-card {
-  flex: 15rem;
-
-  padding: 1rem;
-  border: thin solid #{$grey};
-
-  .img-link {
-    margin-top: 0;
-  }
-}
-

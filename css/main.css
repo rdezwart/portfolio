@@ -486,17 +486,6 @@ main > * {
           flex: 45rem;
 }
 
-.project-card {
-  -webkit-box-flex: 15rem;
-      -ms-flex: 15rem;
-          flex: 15rem;
-  padding: 1rem;
-  border: thin solid #3f3f3f;
-}
-.project-card .img-link {
-  margin-top: 0;
-}
-
 .side-nav {
   position: sticky;
   top: 2rem;
@@ -765,6 +754,17 @@ h6 + .figure {
 }
 .gradio-container #component-0 {
   gap: 0;
+}
+
+.project-card {
+  -webkit-box-flex: 15rem;
+      -ms-flex: 15rem;
+          flex: 15rem;
+  padding: 1rem;
+  border: thin solid #3f3f3f;
+}
+.project-card .img-link {
+  margin-top: 0;
 }
 
 /**

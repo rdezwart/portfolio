@@ -1,0 +1,12 @@
+@use "../abstracts";
+
+.project-card {
+  flex: 15rem;
+
+  padding: 1rem;
+  border: thin solid #{abstracts.$grey};
+
+  .img-link {
+    margin-top: 0;
+  }
+}
