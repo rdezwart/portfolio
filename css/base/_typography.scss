@@ -69,56 +69,6 @@ h4, h5, h6 {
 
 
 /**
- * Adds extra bottom margin on the section with a non-text last child to account
- * for visual gap in vertical rhythm.
- * Adds less space if the adjacent sibling of current section has a banner-less
- * heading.
- */
-// TODO: Clean up both the code and comments for this section
-// If you are not a text-element or section...
-:not(#{abstracts.$text-elements}, section) {
-
-  // ...and you are the last child in your container...
-  &:last-child {
-
-    // ...find the section that has you as a direct child...
-    section:has(> &) {
-
-      // ...and add some extra margin-bottom.
-      /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-      margin-bottom: #{abstracts.$max-1rem-075rlh};
-
-      // If that section has another section below it...
-      &:has( + section) {
-
-        // ...and that next section contains a heading without a banner
-        &:has(> #{abstracts.$headings-no-banner}) {
-
-          // ...add a little less space instead!
-          /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-          margin-bottom: #{abstracts.$max-075rem-05rlh};
-        }
-      }
-    }
-  }
-}
-
-/**
- * Add extra bottom margin below banner headings touching a non-text element.
- */
-// If you are a heading with a banner...
-#{abstracts.$headings-with-banner} {
-
-  // ...and if you have a non-text element beneath...
-  &:has(+ :not(#{abstracts.$text-elements})) {
-
-    // Add some extra space below bordered headings touching a non-text element
-    margin-bottom: #{abstracts.$max-1rem-075rlh};
-  }
-}
-
-
-/**
  * No margin on top, small margin on bottom.
  */
 p {

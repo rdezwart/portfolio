@@ -336,28 +336,6 @@ h4, h5, h6 {
 }
 
 /**
- * Adds extra bottom margin on the section with a non-text last child to account
- * for visual gap in vertical rhythm.
- * Adds less space if the adjacent sibling of current section has a banner-less
- * heading.
- */
-section:has(> :not(p, ul, section):last-child) {
-  /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-  margin-bottom: max(1rem, 0.75rlh);
-}
-section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
-  /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-  margin-bottom: max(0.75rem, 0.5rlh);
-}
-
-/**
- * Add extra bottom margin below banner headings touching a non-text element.
- */
-h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
-  margin-bottom: max(1rem, 0.75rlh);
-}
-
-/**
  * No margin on top, small margin on bottom.
  */
 p {
@@ -701,5 +679,27 @@ main > * {
     --secondary: #3f3f3f;
     --text: #1e1e22;
   }
+}
+
+/**
+ * Adds extra bottom margin on the section with a non-text last child to account
+ * for visual gap in vertical rhythm.
+ * Adds less space if the adjacent sibling of current section has a banner-less
+ * heading.
+ */
+section:has(> :not(p, ul, section):last-child) {
+  /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
+  margin-bottom: max(1rem, 0.75rlh);
+}
+section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
+  /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
+  margin-bottom: max(0.75rem, 0.5rlh);
+}
+
+/**
+ * Add extra bottom margin below banner headings touching a non-text element.
+ */
+h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
+  margin-bottom: max(1rem, 0.75rlh);
 }
 /*# sourceMappingURL=main.css.map */
