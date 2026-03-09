@@ -1,8 +1,178 @@
+@use "../abstracts";
+
+/**
+ * Default styling for all text.
+ */
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif; // TODO: Should make into a variable.
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: anywhere; // TODO: don't remember why this is here
   color: var(--text);
+}
+
+
+/**
+ * Default styles for ALL headings
+ */
+#{abstracts.$headings-all} {
+  font-family: "JetBrains Mono", monospace; // TODO: Should make into a variable.
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+
+  margin: 0 0 #{abstracts.$max-075rem-05rlh};
+}
+
+/**
+ * Styling for headings that have a solid background (banner).
+ */
+#{abstracts.$headings-with-banner} {
+  background-color: var(--banner);
+  padding: 1rem 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+
+  line-height: 1.0;
+}
+
+/**
+ * Big title at top of pages.
+ */
+h1 {
+  line-height: 1;
+  font-size: 2.5rem;
+}
+
+/**
+ * Top level section heading, has 1 arrow.
+ */
+h2 {
+  font-size: 1.75rem;
+}
+
+/**
+ * Sub-section heading, has 2 arrows.
+ */
+h3 {
+  font-size: 1.25rem;
+}
+
+/**
+ * Further sub-sub-section headings, have 3, 4, 5 arrows.
+ * So far, h5 and h6 are unused.
+ */
+h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+
+/**
+ * Adds extra bottom margin on the section with a non-text last child to account
+ * for visual gap in vertical rhythm.
+ * Adds less space if the adjacent sibling of current section has a banner-less
+ * heading.
+ */
+// TODO: Clean up both the code and comments for this section
+// If you are not a text-element or section...
+:not(#{abstracts.$text-elements}, section) {
+
+  // ...and you are the last child in your container...
+  &:last-child {
+
+    // ...find the section that has you as a direct child...
+    section:has(> &) {
+
+      // ...and add some extra margin-bottom.
+      /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
+      margin-bottom: #{abstracts.$max-1rem-075rlh};
+
+      // If that section has another section below it...
+      &:has( + section) {
+
+        // ...and that next section contains a heading without a banner
+        &:has(> #{abstracts.$headings-no-banner}) {
+
+          // ...add a little less space instead!
+          /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
+          margin-bottom: #{abstracts.$max-075rem-05rlh};
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Add extra bottom margin below banner headings touching a non-text element.
+ */
+// If you are a heading with a banner...
+#{abstracts.$headings-with-banner} {
+
+  // ...and if you have a non-text element beneath...
+  &:has(+ :not(#{abstracts.$text-elements})) {
+
+    // Add some extra space below bordered headings touching a non-text element
+    margin-bottom: #{abstracts.$max-1rem-075rlh};
+  }
+}
+
+
+/**
+ * No margin on top, small margin on bottom.
+ */
+p {
+  margin-block: 0 #{abstracts.$max-075rem-05rlh};
+}
+
+/**
+ * Increase font weight for bolded items.
+ */
+b, strong {
+  font-weight: 600;
+}
+
+
+/**
+ * Default list styles.
+ * TODO: I should probably have this just apply to the base element
+ */
+.list {
+  padding-left: 2rem;
+  margin-block: 0 #{abstracts.$max-075rem-05rlh};
+
+  li::marker {
+    font-weight: 500;
+  }
+}
+
+
+/**
+ * Content marked as a highlight should match the surrounding text's styles.
+ */
+.highlight, .name {
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
+}
+
+/**
+ * Make sure highlights are, well, highlighted.
+ * 1. Font ligatures caused triple arrows to turn into bitwise operators.
+ */
+.highlight {
+  color: var(--highlight) !important;
+  font-variant-ligatures: none; /* 1 */
+}
+
+
+/**
+ * For project pages. Increases the visual hierarchy of the opening paragraph.
+ */
+.introduction {
+  font-style: italic;
+  line-height: 1.1rlh;
+  font-weight: 400;
 }

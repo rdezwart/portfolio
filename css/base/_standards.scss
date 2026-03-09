@@ -2,102 +2,10 @@
 
 @use "../abstracts/variables" as *;
 
-// -- Headings -- //
-
-#{$headings-all} {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-
-  margin: 0 0 #{$max-075rem-05rlh};
-}
-
-#{$headings-with-banner} {
-  background-color: var(--banner);
-  padding: 1rem 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-
-  line-height: 1.0;
-}
-
-// TODO: Clean up both the code and comments for this section
-// If you are not a text-element or section...
-:not(#{$text-elements}, section) {
-
-  // ...and you are the last child in your container...
-  &:last-child {
-
-    // ...find the section that has you as a direct child...
-    section:has(> &) {
-
-      // ...and add some extra margin-bottom.
-      /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-      margin-bottom: #{$max-1rem-075rlh};
-
-      // If that section has another section below it...
-      &:has( + section) {
-
-        // ...and that next section contains a heading without a banner
-        &:has(> #{$headings-no-banner}) {
-
-          // ...add a little less space instead!
-          /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-          margin-bottom: #{$max-075rem-05rlh};
-        }
-      }
-    }
-  }
-}
-
-// If you are a heading with a banner...
-#{$headings-with-banner} {
-
-  // ...and if you have a non-text element beneath...
-  &:has(+ :not(#{$text-elements})) {
-
-    /* Add some extra space below bordered headings touching a non-text element */
-    margin-bottom: #{$max-1rem-075rlh};
-  }
-}
-
-h1 {
-  line-height: 1;
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.25rem;
-}
-
-h4 {
-  margin-bottom: 0;
-}
-
-h5 {
-}
-
-h6 {
-}
-
-// -- Other -- //
-
 section {
   margin-top: #{$max-075rem-05rlh};
 }
 
-p {
-  margin-block: 0 #{$max-075rem-05rlh};
-}
-
-b, strong {
-  font-weight: 600;
-}
 
 .img {
   width: auto;
@@ -169,15 +77,6 @@ b, strong {
   }
 }
 
-.list {
-  padding-left: 2rem;
-  margin-block: 0 #{$max-075rem-05rlh};
-
-  li::marker {
-    font-weight: 500;
-  }
-}
-
 // ---- Classes ---- //
 
 .link {
@@ -192,29 +91,6 @@ b, strong {
   }
 }
 
-.highlight, .name {
-  font-family: inherit;
-  font-optical-sizing: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: inherit;
-}
-
-.highlight {
-  color: var(--highlight) !important;
-
-  // Triple arrows didn't look the same as the rest. Realized it's a bitwise
-  //   operator, figured it was a font issue.
-  // Did some digging and discovered font ligatures! And promptly turned them
-  //   off.
-  font-variant-ligatures: none;
-}
-
-.introduction {
-  font-style: italic;
-  line-height: 1.1rlh;
-  font-weight: 400;
-}
 
 .youtube-container {
   // Referenced: https://embedresponsively.com/

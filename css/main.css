@@ -234,63 +234,8 @@ img {
   --duration: 0.2s;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-  margin: 0 0 max(0.75rem, 0.5rlh);
-}
-
-h2, h3 {
-  background-color: var(--banner);
-  padding: 1rem 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  line-height: 1;
-}
-
-section:has(> :not(p, ul, section):last-child) {
-  /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-  margin-bottom: max(1rem, 0.75rlh);
-}
-section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
-  /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-  margin-bottom: max(0.75rem, 0.5rlh);
-}
-
-h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
-  /* Add some extra space below bordered headings touching a non-text element */
-  margin-bottom: max(1rem, 0.75rlh);
-}
-
-h1 {
-  line-height: 1;
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.25rem;
-}
-
-h4 {
-  margin-bottom: 0;
-}
-
 section {
   margin-top: max(0.75rem, 0.5rlh);
-}
-
-p {
-  margin-block: 0 max(0.75rem, 0.5rlh);
-}
-
-b, strong {
-  font-weight: 600;
 }
 
 .img {
@@ -370,14 +315,6 @@ h6 + .figure {
   color: var(--secondary);
 }
 
-.list {
-  padding-left: 2rem;
-  margin-block: 0 max(0.75rem, 0.5rlh);
-}
-.list li::marker {
-  font-weight: 500;
-}
-
 .link {
   color: var(--link);
   -webkit-transition: color var(--duration) ease;
@@ -388,26 +325,6 @@ h6 + .figure {
   color: var(--highlight);
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
-}
-
-.highlight, .name {
-  font-family: inherit;
-  font-optical-sizing: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: inherit;
-}
-
-.highlight {
-  color: var(--highlight) !important;
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none;
-}
-
-.introduction {
-  font-style: italic;
-  line-height: 1.1rlh;
-  font-weight: 400;
 }
 
 .youtube-container {
@@ -439,6 +356,9 @@ a.skip:focus {
   left: 0;
 }
 
+/**
+ * Default styling for all text.
+ */
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -446,6 +366,136 @@ body {
   font-style: normal;
   overflow-wrap: anywhere;
   color: var(--text);
+}
+
+/**
+ * Default styles for ALL headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  margin: 0 0 max(0.75rem, 0.5rlh);
+}
+
+/**
+ * Styling for headings that have a solid background (banner).
+ */
+h2, h3 {
+  background-color: var(--banner);
+  padding: 1rem 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  line-height: 1;
+}
+
+/**
+ * Big title at top of pages.
+ */
+h1 {
+  line-height: 1;
+  font-size: 2.5rem;
+}
+
+/**
+ * Top level section heading, has 1 arrow.
+ */
+h2 {
+  font-size: 1.75rem;
+}
+
+/**
+ * Sub-section heading, has 2 arrows.
+ */
+h3 {
+  font-size: 1.25rem;
+}
+
+/**
+ * Further sub-sub-section headings, have 3, 4, 5 arrows.
+ * So far, h5 and h6 are unused.
+ */
+h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+/**
+ * Adds extra bottom margin on the section with a non-text last child to account
+ * for visual gap in vertical rhythm.
+ * Adds less space if the adjacent sibling of current section has a banner-less
+ * heading.
+ */
+section:has(> :not(p, ul, section):last-child) {
+  /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
+  margin-bottom: max(1rem, 0.75rlh);
+}
+section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
+  /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
+  margin-bottom: max(0.75rem, 0.5rlh);
+}
+
+/**
+ * Add extra bottom margin below banner headings touching a non-text element.
+ */
+h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
+  margin-bottom: max(1rem, 0.75rlh);
+}
+
+/**
+ * No margin on top, small margin on bottom.
+ */
+p {
+  margin-block: 0 max(0.75rem, 0.5rlh);
+}
+
+/**
+ * Increase font weight for bolded items.
+ */
+b, strong {
+  font-weight: 600;
+}
+
+/**
+ * Default list styles.
+ * TODO: I should probably have this just apply to the base element
+ */
+.list {
+  padding-left: 2rem;
+  margin-block: 0 max(0.75rem, 0.5rlh);
+}
+.list li::marker {
+  font-weight: 500;
+}
+
+/**
+ * Content marked as a highlight should match the surrounding text's styles.
+ */
+.highlight, .name {
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
+}
+
+/**
+ * Make sure highlights are, well, highlighted.
+ * 1. Font ligatures caused triple arrows to turn into bitwise operators.
+ */
+.highlight {
+  color: var(--highlight) !important;
+  -webkit-font-variant-ligatures: none;
+          font-variant-ligatures: none; /* 1 */
+}
+
+/**
+ * For project pages. Increases the visual hierarchy of the opening paragraph.
+ */
+.introduction {
+  font-style: italic;
+  line-height: 1.1rlh;
+  font-weight: 400;
 }
 
 html {
