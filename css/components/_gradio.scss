@@ -1,0 +1,13 @@
+/**
+ * These are to simplify the Gradio app embed.
+ */
+.gradio-container {
+  .prose {
+
+    display: none;
+  }
+
+  #component-0 {
+    gap: 0;
+  }
+}

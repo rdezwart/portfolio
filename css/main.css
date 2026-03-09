@@ -453,14 +453,6 @@ main > * {
   border-width: 0;
 }
 
-/* These are to simplify the Gradio app on the Food Identifier page. */
-.gradio-container .prose {
-  display: none;
-}
-.gradio-container #component-0 {
-  gap: 0;
-}
-
 .bio {
   margin-bottom: -1rem;
 }
@@ -746,6 +738,16 @@ h6 + .figure {
 }
 .img-list .img-link {
   margin: 0;
+}
+
+/**
+ * These are to simplify the Gradio app embed.
+ */
+.gradio-container .prose {
+  display: none;
+}
+.gradio-container #component-0 {
+  gap: 0;
 }
 
 :root {

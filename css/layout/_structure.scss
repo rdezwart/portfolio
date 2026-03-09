@@ -61,18 +61,6 @@ main {
   border-width: 0;
 }
 
-/* These are to simplify the Gradio app on the Food Identifier page. */
-.gradio-container {
-  .prose {
-
-    display: none;
-  }
-
-  #component-0 {
-    gap: 0;
-  }
-}
-
 .bio {
   margin-bottom: -1rem;
 }
