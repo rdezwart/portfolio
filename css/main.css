@@ -461,10 +461,6 @@ main > * {
   margin: 0;
 }
 
-.bio {
-  margin-bottom: -1rem;
-}
-
 .project-card {
   -webkit-box-flex: 15rem;
       -ms-flex: 15rem;
@@ -756,6 +752,13 @@ h6 + .figure {
 }
 .gradio-container #component-0 {
   gap: 0;
+}
+
+/**
+ * Reduces spacing below bio on home page.
+ */
+.bio {
+  margin-bottom: -1rem;
 }
 
 :root {
