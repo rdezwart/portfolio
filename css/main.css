@@ -188,6 +188,45 @@ summary {
 }
 
 /**
+ * Reset base line height according to WCAG criteria.
+ */
+:root {
+  line-height: 1.5;
+}
+
+/**
+ * Reset margins to selectively add them back later.
+ */
+h1, h2, h3, h4, h5, h6, figure, p, ol, ul {
+  margin: 0;
+}
+
+/**
+ * If an ol/ul has their list style removed, it tends to remove the implicit
+ * role used by screen readers.
+ */
+ol[role=list], ul[role=list] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+/**
+ * Reset typography for a blank slate.
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/**
+ * Limit max width/height (depending on writing mode) to container size.
+ */
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/**
  * 1. Dark scheme is preferred, reflected in meta tags.
  */
 :root {
