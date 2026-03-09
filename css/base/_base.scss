@@ -1,0 +1,41 @@
+@use "../abstracts";
+
+html {
+  line-height: 1.5;
+}
+
+body {
+  background-color: var(--background);
+  padding: abstracts.$page-padding*2 abstracts.$page-padding;
+}
+
+section {
+  margin-top: #{abstracts.$max-075rem-05rlh};
+}
+
+
+.link {
+  color: var(--link);
+  transition: color var(--duration) ease;
+  font-weight: 400;
+
+  // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
+  &:hover, &:focus {
+    color: var(--highlight);
+    transition: color var(--duration) ease;
+  }
+}
+
+
+a.skip {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: -9999rem;
+  right: auto;
+  padding: 0.2rem;
+
+  &:focus {
+    left: 0;
+  }
+}

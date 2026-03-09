@@ -2,11 +2,6 @@
 
 @use "../abstracts/variables" as *;
 
-section {
-  margin-top: #{$max-075rem-05rlh};
-}
-
-
 .img {
   width: auto;
   max-width: 100%;
@@ -79,19 +74,6 @@ section {
 
 // ---- Classes ---- //
 
-.link {
-  color: var(--link);
-  transition: color var(--duration) ease;
-  font-weight: 400;
-
-  // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
-  &:hover, &:focus {
-    color: var(--highlight);
-    transition: color var(--duration) ease;
-  }
-}
-
-
 .youtube-container {
   // Referenced: https://embedresponsively.com/
   position: relative;
@@ -109,17 +91,4 @@ section {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-a.skip {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: -9999rem;
-  right: auto;
-  padding: 0.2rem;
-
-  &:focus {
-    left: 0;
-  }
 }

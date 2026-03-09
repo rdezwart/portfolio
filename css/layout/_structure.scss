@@ -2,15 +2,6 @@
 
 @use "../abstracts/variables" as *;
 
-html {
-  line-height: 1.5;
-}
-
-body {
-  background-color: var(--background);
-  padding: $page-padding*2 $page-padding;
-}
-
 .content {
   margin: auto;
 

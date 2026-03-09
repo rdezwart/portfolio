@@ -234,8 +234,41 @@ img {
   --duration: 0.2s;
 }
 
+html {
+  line-height: 1.5;
+}
+
+body {
+  background-color: var(--background);
+  padding: 2rem 1rem;
+}
+
 section {
   margin-top: max(0.75rem, 0.5rlh);
+}
+
+.link {
+  color: var(--link);
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
+  font-weight: 400;
+}
+.link:hover, .link:focus {
+  color: var(--highlight);
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
+}
+
+a.skip {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: -9999rem;
+  right: auto;
+  padding: 0.2rem;
+}
+a.skip:focus {
+  left: 0;
 }
 
 .img {
@@ -315,18 +348,6 @@ h6 + .figure {
   color: var(--secondary);
 }
 
-.link {
-  color: var(--link);
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
-  font-weight: 400;
-}
-.link:hover, .link:focus {
-  color: var(--highlight);
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
-}
-
 .youtube-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -342,18 +363,6 @@ h6 + .figure {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-a.skip {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: -9999rem;
-  right: auto;
-  padding: 0.2rem;
-}
-a.skip:focus {
-  left: 0;
 }
 
 /**
@@ -496,15 +505,6 @@ b, strong {
   font-style: italic;
   line-height: 1.1rlh;
   font-weight: 400;
-}
-
-html {
-  line-height: 1.5;
-}
-
-body {
-  background-color: var(--background);
-  padding: 2rem 1rem;
 }
 
 .content {
