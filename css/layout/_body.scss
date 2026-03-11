@@ -1,5 +1,17 @@
 @use "../abstracts";
 
+/**
+ * Ensure body always fills the entire screen.
+ * 1. Use dynamic viewport height to account for browser UI on mobile devices.
+ *    See: https://stackoverflow.com/a/72245072
+ * 2. Units like dvh are baseline now, so the @supports check isn't strictly
+ *    necessary, but it doesn't hurt to have a fallback!
+ */
 body {
   padding: abstracts.$page-padding*2 abstracts.$page-padding;
+
+  height: 100vh;
+  @supports (height: 100dvh) { /* 2 */
+    height: 100dvh; /* 1 */
+  }
 }
