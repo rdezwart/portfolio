@@ -1,12 +1,13 @@
-// This script is for use with "inc/_name.pug", which has to be a child of a ".name-wrapper"
+// This script is for use with the "fancyName" PUG mixin, which has to be a child of a ".name-wrapper"
 
 "use strict";
 
 $(function () {
   // Grab our elements
-  let name = $(".name .link");
-  let nameWrapper = $(".name-wrapper");
-  let letters = $(".letters").children();
+  let name = $(".name[data-fancy]");
+  let link = name.find(".link");
+  let nameWrapper = name.parent(".name-wrapper")
+  let letters = link.find(".letters").children();
 
   // Letter array is left-to-right, we also want right-to-left for hiding animation
   // Referenced: https://www.sitepoint.com/jquery-each-reverse-it/
@@ -28,7 +29,7 @@ $(function () {
   // Events for listener, referenced: https://api.jquery.com/category/events/
 
   // When the name LINK is hovered/focused
-  name.on("mouseenter focusin", function () {
+  link.on("mouseenter focusin", function () {
     letters.each(function (index) {
       $(this).finish().delay(letterDelay * index).fadeIn(animDuration);
     });

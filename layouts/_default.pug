@@ -47,7 +47,7 @@ html(lang="en")
     div.wrapper
       nav.side-nav(aria-label="Main")
         div.name-wrapper
-          include ../inc/_name
+          +fancy-name(false)
         include ../inc/_nav-list
       main.main#main-content
         block main

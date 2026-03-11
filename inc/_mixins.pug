@@ -31,3 +31,24 @@ mixin h(level, heading)
 
   if block
     block
+
+
+//- IMPORTANT: Must be a child of a ".name-wrapper"
+mixin fancy-name(fancy = false)
+  span.name(data-fancy=fancy)
+    if fancy
+      a.link(href="/") Robin
+        span.sr-only  de Zwart;
+        span.letters(aria-hidden="true")
+          | #[span  ]
+          span d
+          span e
+          | #[span  ]
+          span Z
+          span w
+          span a
+          span r
+          span t
+    else
+      a.link(href="/") Robin de Zwart
+    | #[span.highlight(aria-hidden="true") ;]
