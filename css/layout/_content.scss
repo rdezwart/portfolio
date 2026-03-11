@@ -14,27 +14,6 @@
   max-width: abstracts.$total-width;
 }
 
-/**
- * Wrapper class, but I must have swapped to using something else? This isn't
- * used anywhere...
- */
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-
-  margin: auto;
-
-  nav {
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-
-    padding: 1rem;
-
-    margin: 0 auto;
-    max-width: 20rem;
-  }
-}
 
 /**
  * Represents the actual content of a page, excluding navigation.

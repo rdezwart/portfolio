@@ -449,28 +449,6 @@ body {
 }
 
 /**
- * Wrapper class, but I must have swapped to using something else? This isn't
- * used anywhere...
- */
-.wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: auto;
-}
-.wrapper nav {
-  position: sticky;
-  top: 0;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  padding: 1rem;
-  margin: 0 auto;
-  max-width: 20rem;
-}
-
-/**
  * Represents the actual content of a page, excluding navigation.
  */
 main {
