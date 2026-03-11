@@ -1,0 +1,5 @@
+@use "../abstracts";
+
+body {
+  padding: abstracts.$page-padding*2 abstracts.$page-padding;
+}
