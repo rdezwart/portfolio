@@ -434,7 +434,7 @@ body {
 /**
  * Main wrapper for body of site.
  */
-.content {
+.wrapper {
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
