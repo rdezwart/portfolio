@@ -1,5 +1,15 @@
-// ---- ---- Variables ---- ---- //
+/// Sans serif fonts (used by default)
+/// Custom fonts are double quoted since Sass removes one set on interpolation.
+/// @type List
+$fonts-sans-serif: '"Inter"', sans-serif;
 
+/// Monospace fonts (used in other text, such as headings, figcaptions, etc)
+/// Custom fonts are double quoted since Sass removes one set on interpolation.
+/// @type List
+$fonts-monospace: '"JetBrains Mono"', monospace;
+
+
+// TODO: Properly document each of these, some aren't necessary anymore either
 // ---- Structure ---- //
 $main-width: 45rem;
 $content-gap: 3rem;

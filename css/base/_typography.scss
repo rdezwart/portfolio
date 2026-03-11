@@ -12,7 +12,7 @@ html {
  * Default styling for all text.
  */
 body {
-  font-family: "Inter", sans-serif; // TODO: Should make into a variable.
+  font-family: #{abstracts.$fonts-sans-serif};
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
@@ -25,7 +25,7 @@ body {
  * Default styles for ALL headings
  */
 #{abstracts.$headings-all} {
-  font-family: "JetBrains Mono", monospace; // TODO: Should make into a variable.
+  font-family: #{abstracts.$fonts-monospace};
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;

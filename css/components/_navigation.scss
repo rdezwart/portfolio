@@ -33,7 +33,7 @@
   * {
     text-decoration: none;
 
-    font-family: "JetBrains Mono", monospace;
+    font-family: #{abstracts.$fonts-monospace};
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
@@ -83,7 +83,7 @@
 }
 
 .nav-item {
-  font-family: "JetBrains Mono", monospace;
+  font-family: #{abstracts.$fonts-monospace};
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
@@ -124,7 +124,7 @@
 }
 
 .description {
-  font-family: "JetBrains Mono", monospace;
+  font-family: #{abstracts.$fonts-monospace};
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: italic;
