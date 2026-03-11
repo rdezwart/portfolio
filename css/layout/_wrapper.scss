@@ -13,22 +13,3 @@
 
   max-width: abstracts.$total-width;
 }
-
-
-/**
- * Represents the actual content of a page, excluding navigation.
- */
-main {
-  // Referenced: https://stackoverflow.com/a/33455342 to avoid y-axis clipping
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1 1 abstracts.$main-width;
-  max-width: abstracts.$main-width;
-
-  //background-color: var(--background);
-
-  & > * {
-    margin: 0;
-  }
-}
