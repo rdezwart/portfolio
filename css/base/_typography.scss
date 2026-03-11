@@ -1,6 +1,14 @@
 @use "../abstracts";
 
 /**
+ * Set base font size and line height for entire document.
+ */
+html {
+  font-size: 100%; /* 16px */
+  line-height: 1.5; /* 24px */
+}
+
+/**
  * Default styling for all text.
  */
 body {

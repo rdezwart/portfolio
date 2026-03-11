@@ -234,10 +234,6 @@ img {
   --duration: 0.2s;
 }
 
-html {
-  line-height: 1.5;
-}
-
 body {
   background-color: var(--background);
 }
@@ -268,6 +264,14 @@ a.skip {
 }
 a.skip:focus {
   left: 0;
+}
+
+/**
+ * Set base font size and line height for entire document.
+ */
+html {
+  font-size: 100%; /* 16px */
+  line-height: 1.5; /* 24px */
 }
 
 /**
