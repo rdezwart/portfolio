@@ -502,11 +502,6 @@ main > * {
           flex-direction: column;
   row-gap: 0.15rem;
 }
-@media (max-width: 71rem) {
-  .side-nav {
-    position: static;
-  }
-}
 .side-nav .name {
   font-size: 1.75rem;
 }

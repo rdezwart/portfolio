@@ -19,7 +19,6 @@ $fonts-monospace: '"JetBrains Mono"', monospace;
 /// @type Number
 $line-height: 1.5; // 24px
 
-$nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);
 /// How much bigger each heading is than the last.
 /// Based on: Major Third
 /// @link https://www.modularscale.com/

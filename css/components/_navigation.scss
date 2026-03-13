@@ -14,10 +14,6 @@
   flex-direction: column;
   row-gap: 0.15rem;
 
-  @media (max-width: abstracts.$nav-query) {
-    position: static;
-  }
-
   .name {
     font-size: 1.75rem;
   }
