@@ -3,7 +3,7 @@
 /// @author Robin de Zwart
 ////
 
-@use "functions" as *;
+@use "functions";
 
 // NOTE: Turns out, validator doesn't like it when we try to insert content via
 //   CSS.
@@ -20,7 +20,7 @@
     // Referenced: https://developer.mozilla.org/en-US/docs/Web/CSS/::before
     // Referenced: https://stackoverflow.com/a/73215844
     //   https://developer.mozilla.org/en-US/docs/Web/CSS/content
-    content: arrows($arrows);
+    content: functions.arrows($arrows);
     color: var(--highlight);
 
     // Triple arrows didn't look the same as the rest. Realized it's a bitwise
@@ -30,8 +30,8 @@
     // Referenced: https://blog.fontawesome.com/icon-unicodes-and-ligatures/
     font-variant-ligatures: none;
 
-    @supports (content: arrows-with-alt($arrows)) {
-      content: arrows-with-alt($arrows);
+    @supports (content: functions.arrows-with-alt($arrows)) {
+      content: functions.arrows-with-alt($arrows);
     }
   }
 }
