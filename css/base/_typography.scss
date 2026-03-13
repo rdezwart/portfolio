@@ -1,11 +1,11 @@
 @use "../abstracts";
 
 /**
- * Set base font size and line height for entire document.
+ * Set base font size and line height according to WCAG criteria.
  */
-html {
-  font-size: 100%; /* 16px */
-  line-height: 1.5; /* 24px */
+:root {
+  font-size: 100%;
+  line-height: #{abstracts.$line-height};
 }
 
 /**

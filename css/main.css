@@ -188,13 +188,6 @@ summary {
 }
 
 /**
- * Reset base line height according to WCAG criteria.
- */
-:root {
-  line-height: 1.5;
-}
-
-/**
  * Reset margins to selectively add them back later.
  */
 h1, h2, h3, h4, h5, h6, figure, p, ol, ul {
@@ -267,11 +260,11 @@ a.skip:focus {
 }
 
 /**
- * Set base font size and line height for entire document.
+ * Set base font size and line height according to WCAG criteria.
  */
-html {
-  font-size: 100%; /* 16px */
-  line-height: 1.5; /* 24px */
+:root {
+  font-size: 100%;
+  line-height: 1.5;
 }
 
 /**

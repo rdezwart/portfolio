@@ -1,13 +1,6 @@
 // Referenced: https://mattbrictson.com/blog/css-normalize-and-reset
 
 /**
- * Reset base line height according to WCAG criteria.
- */
-:root {
-  line-height: 1.5;
-}
-
-/**
  * Reset margins to selectively add them back later.
  */
 h1, h2, h3, h4, h5, h6, figure, p, ol, ul {
