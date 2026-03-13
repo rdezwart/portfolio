@@ -1,4 +1,9 @@
-// ---- Typography ---- //
+////
+/// @group Variables
+/// @author Robin de Zwart
+////
+
+// ---- ---- Typography ---- ---- //
 
 /// Sans serif fonts (used by default)
 /// Custom fonts are double quoted since Sass removes one set on interpolation.
@@ -10,40 +15,107 @@ $fonts-sans-serif: '"Inter"', sans-serif;
 /// @type List
 $fonts-monospace: '"JetBrains Mono"', monospace;
 
+/// Line height.
+/// @type Number
+$line-height: 1.5; // 24px
 
-// TODO: Properly document each of these, some aren't necessary anymore either
-// ---- Structure ---- //
-$main-width: 45rem;
-$content-gap: 3rem;
-$nav-width: 20rem;
-$page-padding: 1rem;
-$total-width: calc($main-width + $content-gap + $nav-width);
 $nav-query: calc($main-width + $nav-width + $content-gap + calc($page-padding * 2) + 1rem);
+/// How much bigger each heading is than the last.
+/// Based on: Major Third
+/// @link https://www.modularscale.com/
+/// @see {function} font-size-scaled
+/// @type Number
+$type-scale: 1.25;
 
-// ---- Standards ---- //
+/// Heading levels that should have a banner.
+/// @type List
 $headings-with-banner: h2, h3;
+
+/// Heading levels without a banner.
+/// @type List
 $headings-no-banner: h4, h5, h6;
+
+/// Heading levels that relate directly to content (not h1).
+/// @type List;
 $headings-content: $headings-with-banner, $headings-no-banner;
+
+/// All heading levels.
+/// @type List
 $headings-all: h1, $headings-content;
+
+/// Elements to consider as text for spacing purposes.
+/// @type List
 $text-elements: p, ul;
 
-$text-padding: 0.75rem; // equal to 0.5rlh
 
-$max-075rem-05rlh: max(0.75rem, 0.5rlh);
-$max-1rem-075rlh: max(1rem, 0.75rlh);
+// ---- ---- Layout ---- ---- //
 
-// ---- Light/Dark Mode ---- //
+/// Space to place between items in content.
+/// @see $line-height
+/// @type Length
+$text-gap: 0.5rlh; // 12px
+
+/// Helps to make the margins around block elements visually match the gaps
+/// between text.
+/// @type Length
+$rlh-cap-diff: calc((1rlh - 1cap) / 2);
+
+/// Max width of main tag. 40rem ~= 80 characters
+/// @type Length
+$main-width: 40rem;
+
+/// Gap between content and sidebar.
+/// @type Length
+$content-gap: 2rlh;
+
+/// Max width of sidebar nav.
+/// @type Length
+$nav-width: 25rem;
+
+/// Padding around edges of viewport.
+/// @type Length
+$page-padding: 1rlh;
+
+/// Combined width of all elements and padding.
+/// @type Length
+$total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2));
+
+
+// ---- ---- Colors ---- ---- //
+
 // Need to declare the colours as Sass variables since light-dark() doesn't like
 //   CSS ones for some reason.
 // From darkest to lightest
+
+/// @type Color
 $black: #000000;
+
+/// @type Color
 $dark: #1e1e22;
+
+/// @type Color
 $dark-banner: #2a2a2f;
+
+/// @type Color
 $grey: #3f3f3f;
+
+/// @type Color
 $teal: #00818a;
+
+/// @type Color
 $blue: #00eeff;
+
+/// @type Color
 $orange: #ff9933;
+
+/// @type Color
 $dutch: #ed4900;
+
+/// @type Color
 $silver: #cccccc;
+
+/// @type Color
 $pale: #f2f2f2;
+
+/// @type Color
 $white: #ffffff;
