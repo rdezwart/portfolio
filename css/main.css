@@ -363,8 +363,7 @@ p {
  * 1. Add a small amount of space between sibling list items.
  */
 ul, ol {
-  padding-inline: 0;
-  margin-left: calc(1rem + 0.5rlh);
+  padding-left: calc(1rem + 0.5rlh);
 }
 ul li + li, ol li + li {
   margin-top: calc(0.5rlh / 2); /* 1 */
