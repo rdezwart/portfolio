@@ -12,11 +12,11 @@
   row-gap: 0.15rem;
 
   .name {
-    font-size: 1.75rem;
+    font-size: abstracts.font-size-scaled(3);
   }
 
   .nav-item {
-    font-size: 1.15rem;
+    font-size: abstracts.font-size-scaled(1);
   }
 }
 
@@ -68,8 +68,9 @@
 .nav-list {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: #{abstracts.$text-gap};
 
+  // TODO: add list role to nav-list due to screen reader issue
   list-style: none;
   padding: 0;
   margin: 0;
@@ -80,7 +81,8 @@
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
-  font-size: 1.25rem;
+  font-size: abstracts.font-size-scaled(1);
+  line-height: 1rlh;
 
   color: var(--link);
   text-decoration: none;
@@ -99,14 +101,14 @@
   .nav-link-wrapper {
     // Referenced: https://stackoverflow.com/a/17158366
     display: inline-block;
-    padding-left: 1.5rem;
-    text-indent: -1.5rem;
+    padding-left: 1rlh;
+    text-indent: -1rlh;
   }
 
   .description {
     margin: 0;
-    padding: 0.1rem 0 0 1.5rem;
-    font-size: 1rem;
+    padding: 0 0 0 1.5rem;
+    font-size: abstracts.font-size-scaled(0);
     list-style: none;
   }
 

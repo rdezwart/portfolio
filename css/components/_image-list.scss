@@ -3,14 +3,14 @@
 .img-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: calc(#{abstracts.$text-gap} * 1);
   width: fit-content;
-  margin: 1rem auto;
+  margin-inline: auto;
   justify-items: center;
 
-  @media (width < abstracts.$main-width - 10rem) {
-    grid-template-columns: 1fr;
-  }
+  //@media (width < abstracts.$main-width - 10rem) {
+  //  grid-template-columns: 1fr;
+  //}
 
   .img-link {
     margin: 0;

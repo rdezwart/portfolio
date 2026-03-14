@@ -24,7 +24,11 @@ a.skip {
   top: 0;
   left: -9999rem;
   right: auto;
-  padding: 0.2rem;
+
+  padding: 1rlh;
+  font-size: abstracts.font-size-scaled(1);
+  font-weight: 500;
+  background-color: var(--banner);
 
   &:focus {
     left: 0;

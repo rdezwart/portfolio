@@ -249,7 +249,10 @@ a.skip {
   top: 0;
   left: -9999rem;
   right: auto;
-  padding: 0.2rem;
+  padding: 1rlh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  background-color: var(--banner);
 }
 a.skip:focus {
   left: 0;
@@ -264,74 +267,119 @@ a.skip:focus {
 }
 
 /**
- * Default styling for all text.
+ * Default styling for all text. These values are inherited by children.
  */
 body {
   font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 300;
+  font-optical-sizing: auto;
   font-style: normal;
   overflow-wrap: anywhere;
   color: var(--text);
 }
 
 /**
- * Default styles for ALL headings
+ * Default styles for ALL headings.
  */
 h1, h2, h3, h4, h5, h6 {
   font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
   font-weight: 800;
-  font-style: normal;
-  margin: 0 0 max(0.75rem, 0.5rlh);
+  margin: 0;
 }
 
 /**
  * Styling for headings that have a solid background (banner).
+ * 1. Results in double the text gap above, due to flex gap
  */
 h2, h3 {
   background-color: var(--banner);
-  padding: 1rem 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
   line-height: 1;
+  padding: 1.5rem;
+  margin-inline: -1.5rem;
+  margin-top: 0.5rlh; /* 1 */
+}
+
+/**
+ * Styling for all headers that may touch content (banner + non-banner - h1).
+ * 1. Results in 2x $text-gap above each heading, thanks to the flex gap.
+ */
+h2, h3, h4, h5, h6 {
+  margin-top: 0.5rlh; /* 1 */
+}
+
+/**
+ * Styling for all text basic elements.
+ * 1. Ensures they play nice in the flex layout.
+ */
+p, ul {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto; /* 1 */
 }
 
 /**
  * Big title at top of pages.
+ * Proportionally larger than lower headings.
  */
 h1 {
-  line-height: 1;
-  font-size: 2.5rem;
+  font-size: 2.44140625rem;
 }
 
 /**
  * Top level section heading, has 1 arrow.
+ * Proportionally larger than lower headings.
  */
 h2 {
-  font-size: 1.75rem;
+  font-size: 1.5625rem;
 }
 
 /**
  * Sub-section heading, has 2 arrows.
+ * Proportionally larger than lower headings.
  */
 h3 {
   font-size: 1.25rem;
 }
 
 /**
- * Further sub-sub-section headings, have 3, 4, 5 arrows.
- * So far, h5 and h6 are unused.
+ * Further sub-sub-section headings, have 3, 4, 5 arrows respectively.
+ * Equal to body text size.
+ * 1. Cross the flow/grid gap to touch the following element.
  */
 h4, h5, h6 {
-  margin-bottom: 0;
+  font-size: 1rem;
+  margin-bottom: calc(0.5rlh * -1); /* 2 */
 }
 
 /**
  * No margin on top, small margin on bottom.
  */
 p {
-  margin-block: 0 max(0.75rem, 0.5rlh);
+  font-size: 1rem;
+}
+
+/**
+ * Default list styles.
+ * 1. Add a small amount of space between sibling list items.
+ */
+ul, ol {
+  padding-inline: 0;
+  margin-left: calc(1rem + 0.5rlh);
+}
+ul li + li, ol li + li {
+  margin-top: calc(0.5rlh / 2); /* 1 */
+}
+
+/**
+ * Figure captions.
+ */
+figcaption {
+  font-size: 0.8rem;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+  line-height: 1rlh;
 }
 
 /**
@@ -342,44 +390,20 @@ b, strong {
 }
 
 /**
- * Default list styles.
- * TODO: I should probably have this just apply to the base element
- */
-.list {
-  padding-left: 2rem;
-  margin-block: 0 max(0.75rem, 0.5rlh);
-}
-.list li::marker {
-  font-weight: 500;
-}
-
-/**
- * Content marked as a highlight should match the surrounding text's styles.
- */
-.highlight, .name {
-  font-family: inherit;
-  font-optical-sizing: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: inherit;
-}
-
-/**
  * Make sure highlights are, well, highlighted.
  * 1. Font ligatures caused triple arrows to turn into bitwise operators.
  */
-.highlight {
-  color: var(--highlight) !important;
+span.highlight {
+  color: var(--highlight);
   -webkit-font-variant-ligatures: none;
           font-variant-ligatures: none; /* 1 */
 }
 
 /**
- * For project pages. Increases the visual hierarchy of the opening paragraph.
+ * Increases the visual hierarchy of an opening paragraph.
  */
 .introduction {
   font-style: italic;
-  line-height: 1.1rlh;
   font-weight: 400;
 }
 
@@ -514,10 +538,10 @@ hgroup {
 .side-nav {
   -ms-flex-item-align: start;
       align-self: flex-start;
-  max-width: 45rem;
+  max-width: 40rem;
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 20rem;
-          flex: 1 1 20rem;
+      -ms-flex: 1 1 25rem;
+          flex: 1 1 25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -528,10 +552,10 @@ hgroup {
   row-gap: 0.15rem;
 }
 .side-nav .name {
-  font-size: 1.75rem;
+  font-size: 1.953125rem;
 }
 .side-nav .nav-item {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
 }
 
 .name {
@@ -582,7 +606,7 @@ hgroup {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 0.5rlh;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -594,6 +618,7 @@ hgroup {
   font-weight: 800;
   font-style: normal;
   font-size: 1.25rem;
+  line-height: 1rlh;
   color: var(--link);
   text-decoration: none;
 }
@@ -608,12 +633,12 @@ hgroup {
 }
 .nav-item .nav-link-wrapper {
   display: inline-block;
-  padding-left: 1.5rem;
-  text-indent: -1.5rem;
+  padding-left: 1rlh;
+  text-indent: -1rlh;
 }
 .nav-item .description {
   margin: 0;
-  padding: 0.1rem 0 0 1.5rem;
+  padding: 0 0 0 1.5rem;
   font-size: 1rem;
   list-style: none;
 }
@@ -637,8 +662,7 @@ hgroup {
  */
 .youtube-container {
   position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+  aspect-ratio: 16/9;
   overflow: hidden;
   max-width: 100%;
 }
@@ -670,7 +694,7 @@ hgroup {
   }
 }
 .img {
-  margin: 1.25rem 0 1.25rem;
+  margin: auto;
   display: block;
 }
 
@@ -680,7 +704,7 @@ hgroup {
  */
 .img-link {
   display: block;
-  margin: max(1rem, 0.75rlh) auto max(0.75rem, 0.5rlh); /* 1 */
+  margin: auto; /* 1 */
   -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: box-shadow 0.1s, outline-width 0.1s;
@@ -691,9 +715,6 @@ hgroup {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-}
-.img-link .img {
-  margin: 0; /* 1 */
 }
 .img-link:hover, .img-link:focus {
   -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
@@ -725,20 +746,14 @@ figure figcaption {
 .img-list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1rem 1fr;
+  -ms-grid-columns: 1fr calc(0.5rlh * 1) 1fr;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: calc(0.5rlh * 1);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin: 1rem auto;
+  margin-inline: auto;
   justify-items: center;
-}
-@media (width < 35rem) {
-  .img-list {
-    -ms-grid-columns: 1fr;
-    grid-template-columns: 1fr;
-  }
 }
 .img-list .img-link {
   margin: 0;

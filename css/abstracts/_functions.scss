@@ -8,6 +8,7 @@
 // Worked hard on this, but have to scrap/shelve it. I turned it into a Pug
 //   mixin for now.
 
+@use "variables";
 @use "sass:math";
 @use "sass:string";
 
@@ -49,4 +50,12 @@
   $content: string.unquote('"#{$content}" / "#{$alt}"');
 
   @return $content;
+}
+
+
+/// Returns a proportionally scaled font sized based on $type-scale.
+/// @link https://www.modularscale.com/
+/// @see $type-scale
+@function font-size-scaled($modifier) {
+  @return math.pow(variables.$type-scale, $modifier) * 1rem;
 }
