@@ -107,14 +107,9 @@ p {
 
 /**
  * Default list styles.
- * 1. Add a small amount of space between sibling list items.
  */
 ul, ol {
   padding-left: calc(1rem + 0.5rlh);
-
-  li + li {
-    margin-top: calc(#{abstracts.$text-gap} / 2); /* 1 */
-  }
 }
 
 /**
