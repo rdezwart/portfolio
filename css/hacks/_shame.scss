@@ -10,6 +10,7 @@
  * heading.
  */
 // TODO: Clean up both the code and comments for this section
+// TODO: Good news, this can all be deleted. 
 // If you are not a text-element or section...
 :not(#{abstracts.$text-elements}, section) {
 
@@ -21,7 +22,7 @@
 
       // ...and add some extra margin-bottom.
       /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-      margin-bottom: #{abstracts.$max-1rem-075rlh};
+      //margin-bottom: #{abstracts.$max-1rem-075rlh};
 
       // If that section has another section below it...
       &:has( + section) {
@@ -31,7 +32,7 @@
 
           // ...add a little less space instead!
           /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-          margin-bottom: #{abstracts.$max-075rem-05rlh};
+          //margin-bottom: #{abstracts.$max-075rem-05rlh};
         }
       }
     }
@@ -48,6 +49,6 @@
   &:has(+ :not(#{abstracts.$text-elements})) {
 
     // Add some extra space below bordered headings touching a non-text element
-    margin-bottom: #{abstracts.$max-1rem-075rlh};
+    //margin-bottom: #{abstracts.$max-1rem-075rlh};
   }
 }

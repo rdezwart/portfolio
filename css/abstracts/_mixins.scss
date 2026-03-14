@@ -4,6 +4,7 @@
 ////
 
 @use "functions";
+@use "variables";
 
 // NOTE: Turns out, validator doesn't like it when we try to insert content via
 //   CSS.
@@ -34,4 +35,12 @@
       content: functions.arrows-with-alt($arrows);
     }
   }
+}
+
+
+/// Helper mixin to apply standardized flex-column layout with a gap.
+@mixin flow-column {
+  display: flex;
+  flex-direction: column;
+  gap: #{variables.$text-gap};
 }

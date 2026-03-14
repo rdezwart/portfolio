@@ -231,10 +231,6 @@ body {
   background-color: var(--background);
 }
 
-section {
-  margin-top: max(0.75rem, 0.5rlh);
-}
-
 .link {
   color: var(--link);
   -webkit-transition: color var(--duration) ease;
@@ -415,20 +411,21 @@ b, strong {
  *    necessary, but it doesn't hurt to have a fallback!
  */
 body {
-  padding: 2rem 1rem;
-  height: 100vh;
+  min-height: 100vh;
 }
-@supports (height: 100dvh) {
+@supports (min-height: 100dvh) {
   body { /* 2 */
-    height: 100dvh; /* 1 */
+    min-height: 100dvh; /* 1 */
   }
 }
 
 /**
  * Main wrapper for body of site.
+ * 1. Need to set max-width for wrapper otherwise side-nav will stretch too
+ *    much. We cannot disable flex-grow on side-nav either, otherwise it won't
+ *    grow when it's wrapped above the main body.
  */
 .wrapper {
-  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -437,12 +434,15 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 2rem 3rem;
-  max-width: 68rem;
+  gap: 2rlh 2rlh;
+  margin: auto;
+  padding: 1rlh;
+  max-width: calc(40rem + 2rlh + 25rem + 2rlh); /* 1 */
 }
 
 /**
  * Represents the actual content of a page, excluding navigation.
+ * 1. Grow to fill as much space as possible, preventing side nav from growing.
  */
 main {
   display: -webkit-box;
@@ -452,14 +452,48 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 1rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 45rem;
-          flex: 1 1 45rem;
-  max-width: 45rem;
+  gap: 0.5rlh;
+  -webkit-box-flex: 99999;
+      -ms-flex: 99999 1 25rem;
+          flex: 99999 1 25rem; /* 1 */
+  max-width: 40rem;
 }
-main > * {
-  margin: 0;
+
+/**
+ * Wrapper for entire projects, contains several sections and an hgroup.
+ */
+article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+}
+
+/**
+ * Saves having to manage exact margins and gaps on each item I might add to a
+ * page, project or otherwise.
+ */
+section, hgroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+}
+
+/**
+ * Used at the top of project pages to group title and subtitle. Semantically
+ * different from a section, but functions the same layout-wise in this case.
+ */
+hgroup {
+  gap: calc(0.5rlh * 0.5);
 }
 
 /**
@@ -478,8 +512,6 @@ main > * {
 }
 
 .side-nav {
-  position: sticky;
-  top: 2rem;
   -ms-flex-item-align: start;
       align-self: flex-start;
   max-width: 45rem;
@@ -672,42 +704,22 @@ main > * {
 /**
  * Images contained within a figure and included caption.
  */
-.figure {
+figure {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: max(1rem, 0.75rlh);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: max(1rem, 0.75rlh) 0 max(0.75rem, 0.5rlh);
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rlh;
+  margin-inline: auto;
 }
-h4 + .figure {
-  margin-top: max(0.5625rem, 0.375rlh);
-}
-h5 + .figure {
-  margin-top: max(0.5625rem, 0.375rlh);
-}
-h6 + .figure {
-  margin-top: max(0.5625rem, 0.375rlh);
-}
-.figure .img-link {
-  margin: 0;
-}
-.figure figcaption {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: italic;
-  font-size: 0.8rem;
-  max-width: 90%;
-  color: var(--secondary);
+figure figcaption {
+  margin-inline: 1rlh;
 }
 
 .img-list {
@@ -753,13 +765,6 @@ h6 + .figure {
   margin-top: 0;
 }
 
-/**
- * Reduces spacing below bio on home page.
- */
-.bio {
-  margin-bottom: -1rem;
-}
-
 :root {
   --background: #1e1e22;
   --banner: #2a2a2f;
@@ -788,17 +793,12 @@ h6 + .figure {
  */
 section:has(> :not(p, ul, section):last-child) {
   /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-  margin-bottom: max(1rem, 0.75rlh);
 }
 section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
   /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-  margin-bottom: max(0.75rem, 0.5rlh);
 }
 
 /**
  * Add extra bottom margin below banner headings touching a non-text element.
  */
-h2:has(+ :not(p, ul)), h3:has(+ :not(p, ul)) {
-  margin-bottom: max(1rem, 0.75rlh);
-}
 /*# sourceMappingURL=main.css.map */

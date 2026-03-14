@@ -4,10 +4,6 @@ body {
   background-color: var(--background);
 }
 
-section {
-  margin-top: #{abstracts.$max-075rem-05rlh};
-}
-
 
 .link {
   color: var(--link);
@@ -34,3 +30,4 @@ a.skip {
     left: 0;
   }
 }
+

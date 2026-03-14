@@ -8,10 +8,8 @@
  *    necessary, but it doesn't hurt to have a fallback!
  */
 body {
-  padding: abstracts.$page-padding*2 abstracts.$page-padding;
-
-  height: 100vh;
-  @supports (height: 100dvh) { /* 2 */
-    height: 100dvh; /* 1 */
+  min-height: 100vh;
+  @supports (min-height: 100dvh) { /* 2 */
+    min-height: 100dvh; /* 1 */
   }
 }

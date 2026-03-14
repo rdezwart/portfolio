@@ -3,9 +3,6 @@
 @use "../abstracts";
 
 .side-nav {
-  position: sticky;
-  top: 2rem;
-
   align-self: flex-start;
   max-width: abstracts.$main-width;
   flex: 1 1 abstracts.$nav-width;

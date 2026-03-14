@@ -143,11 +143,11 @@ append article
         | The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
         | to show. I will run through each object and any relevant children.
 
-      figure.figure
+      figure
         a.img-link(href=`/img/${project.slug}/hierarchy.png` target="_blank")
           img.img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
             alt="Unity hierarchy for this project.")
-        figcaption Figure 1: Root hierarchy of the Gallery scene.
+        figcaption #[strong Figure 1:] Root hierarchy of the Gallery scene.
 
       section#directional-light
         +h(4, "Directional Light")
@@ -294,12 +294,14 @@ append article
   section#results
     +h(2, "Results")
 
-    figure.figure
+    //- TODO: Turn into mixin, auto bold Figure Number, can maybe use content
+          blocks to easily insert image info?
+    figure
       a.img-link(href=`/img/${project.slug}/canvas-3.webp` target="_blank")
         img.img(src=`/img/${project.slug}/canvas-3.webp` loading="lazy" width="1024" height="1024"
           alt="A composition saved from AutolumeGallery, primarily blues and greens.")
       figcaption
-        | Figure 2: The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
+        | #[strong Figure 2:] The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
         | showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
         | this combination.
 

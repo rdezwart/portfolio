@@ -1,0 +1,35 @@
+@use "../abstracts";
+
+/**
+ * Represents the actual content of a page, excluding navigation.
+ * 1. Grow to fill as much space as possible, preventing side nav from growing.
+ */
+main {
+  @include abstracts.flow-column();
+  flex: 99999 1 25rem; /* 1 */
+  max-width: abstracts.$main-width;
+}
+
+/**
+ * Wrapper for entire projects, contains several sections and an hgroup.
+ */
+article {
+  @include abstracts.flow-column();
+}
+
+/**
+ * Saves having to manage exact margins and gaps on each item I might add to a
+ * page, project or otherwise.
+ */
+section {
+  @include abstracts.flow-column();
+}
+
+/**
+ * Used at the top of project pages to group title and subtitle. Semantically
+ * different from a section, but functions the same layout-wise in this case.
+ */
+hgroup {
+  @extend section;
+  gap: calc(#{abstracts.$text-gap} * 0.5);
+}

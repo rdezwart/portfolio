@@ -2,14 +2,17 @@
 
 /**
  * Main wrapper for body of site.
+ * 1. Need to set max-width for wrapper otherwise side-nav will stretch too
+ *    much. We cannot disable flex-grow on side-nav either, otherwise it won't
+ *    grow when it's wrapped above the main body.
  */
 .wrapper {
-  margin: auto;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem abstracts.$content-gap;
+  gap: 2rlh #{abstracts.$content-gap};
 
-  max-width: abstracts.$total-width;
+  margin: auto;
+  padding: #{abstracts.$page-padding};
+  max-width: #{abstracts.$total-width}; /* 1 */
 }
