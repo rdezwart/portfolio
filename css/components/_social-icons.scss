@@ -1,0 +1,28 @@
+@use "../abstracts";
+
+/**
+ * Styling for FontAwesome based social icons.
+ * See PUG include of the same name.
+ */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: calc(#{abstracts.$text-gap} * 2);
+  font-size: abstracts.font-size-scaled(2);
+}
+
+/**
+ * Links and icons inside the social list.
+ */
+.social-link {
+  i {
+    transition: color var(--duration) ease;
+    color: var(--text);
+  }
+
+  &:hover, &:focus {
+    i {
+      color: var(--highlight);
+    }
+  }
+}

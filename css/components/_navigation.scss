@@ -42,31 +42,6 @@
   text-wrap: balance;
 }
 
-.socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.1rem 1rem;
-  font-size: 1.5rem;
-
-  list-style: none;
-  padding: 0;
-}
-
-.social-link {
-
-  i {
-    transition: color var(--duration) ease;
-    color: var(--text);
-  }
-
-  &:hover, &:focus {
-    i {
-      transition: color var(--duration) ease;
-      color: var(--highlight);
-    }
-  }
-}
-
 .nav-list {
   display: flex;
   flex-direction: column;

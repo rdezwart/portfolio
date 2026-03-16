@@ -628,29 +628,6 @@ hgroup {
   text-wrap: balance;
 }
 
-.socials {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 0.1rem 1rem;
-  font-size: 1.5rem;
-  list-style: none;
-  padding: 0;
-}
-
-.social-link i {
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
-  color: var(--text);
-}
-.social-link:hover i, .social-link:focus i {
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
-  color: var(--highlight);
-}
-
 .nav-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -769,6 +746,34 @@ hgroup {
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);
+}
+
+/**
+ * Styling for FontAwesome based social icons.
+ * See PUG include of the same name.
+ */
+.socials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: calc(0.5rlh * 2);
+     -moz-column-gap: calc(0.5rlh * 2);
+          column-gap: calc(0.5rlh * 2);
+  font-size: 1.5625rem;
+}
+
+/**
+ * Links and icons inside the social list.
+ */
+.social-link i {
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
+  color: var(--text);
+}
+.social-link:hover i, .social-link:focus i {
+  color: var(--highlight);
 }
 
 /**
