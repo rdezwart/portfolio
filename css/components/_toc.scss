@@ -25,7 +25,7 @@
     overflow-y: auto;
   }
 
-  ul {
+  ol {
     padding-left: calc(1.5rem);
     list-style-type: "> ";
 
@@ -50,7 +50,7 @@
     }
   }
 
-  ul ul {
+  ol ol {
     /* Sub-items */
     padding-left: calc(1rem + 0.5rlh);
     list-style-type: ">> ";

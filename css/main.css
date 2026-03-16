@@ -716,16 +716,16 @@ hgroup {
 .toc nav {
   overflow-y: auto;
 }
-.toc ul {
+.toc ol {
   padding-left: 1.5rem;
   list-style-type: "> ";
 }
-.toc ul a {
+.toc ol a {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
   text-decoration: none;
 }
-.toc ul li::marker {
+.toc ol li::marker {
   font-family: "JetBrains Mono", monospace;
   font-weight: 800;
   -webkit-font-variant-ligatures: none;
@@ -734,15 +734,15 @@ hgroup {
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
 }
-.toc ul li.current::marker {
+.toc ol li.current::marker {
   color: color-mix(in srgb, var(--highlight), transparent 0%);
 }
-.toc ul ul {
+.toc ol ol {
   /* Sub-items */
   padding-left: calc(1rem + 0.5rlh);
   list-style-type: ">> ";
 }
-.toc ul ul a {
+.toc ol ol a {
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);

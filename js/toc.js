@@ -44,7 +44,7 @@ class NavItem {
 
 document.addEventListener("DOMContentLoaded", () => {
   const model = {};
-  const tocRootItems = [...document.querySelectorAll(".toc nav > ul > li")];
+  const tocRootItems = [...document.querySelectorAll(".toc nav > ol > li")];
 
   // Populate model with each of the level 1 items in the TOC list
   tocRootItems.forEach((item) => {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add any children to the model with a reference back to the parent item so
     // the children can deactivate their parents on intersection.
-    let children = item.querySelectorAll(":scope > ul li");
+    let children = item.querySelectorAll(":scope > ol li");
     children.forEach((child) => {
       let c = new NavItem(child, navItem);
       model[c.href] = c;
