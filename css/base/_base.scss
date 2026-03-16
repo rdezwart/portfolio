@@ -5,14 +5,14 @@ body {
 }
 
 
-.link {
+a {
   color: var(--link);
   transition: color var(--duration) ease;
   font-weight: 400;
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
-    color: var(--highlight);
+    color: var(--highlight) !important;
     transition: color var(--duration) ease;
   }
 }

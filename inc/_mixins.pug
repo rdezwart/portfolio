@@ -52,3 +52,12 @@ mixin fancy-name(fancy = false)
     else
       a.link(href="/") Robin de Zwart
     | #[span.highlight(aria-hidden="true") ;]
+
+
+mixin toc()
+  div.toc
+    h4#toc-heading Table of Contents
+    nav(aria-labelledby="toc-heading")
+      if block
+        block
+    a(href="#top") Back to Top

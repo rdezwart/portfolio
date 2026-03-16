@@ -231,14 +231,14 @@ body {
   background-color: var(--background);
 }
 
-.link {
+a {
   color: var(--link);
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
   font-weight: 400;
 }
-.link:hover, .link:focus {
-  color: var(--highlight);
+a:hover, a:focus {
+  color: var(--highlight) !important;
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
 }
@@ -646,6 +646,68 @@ hgroup {
 .description {
   font-family: "JetBrains Mono", monospace;
   font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/**
+ * 1. Referenced: https://stackoverflow.com/a/65573073/27162946
+ * 2. Increase the number of arrows used to match heading levels.
+ * 3. Indent the bullets so that the left-most marker is always in-line
+ */
+.toc {
+  position: sticky;
+  top: 1rlh;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start; /* 1 */
+  height: calc(100dvh - 1rlh * 2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+}
+.toc h1, .toc h2, .toc h3, .toc h4, .toc h5, .toc h6 {
+  margin: 0;
+}
+.toc #toc-heading {
+  font-size: 1.25rem;
+}
+.toc nav {
+  overflow-y: auto;
+}
+.toc ul {
+  padding-left: 1.5rem;
+  list-style-type: "> ";
+}
+.toc ul a {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  text-decoration: none;
+}
+.toc ul li::marker {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  -webkit-font-variant-ligatures: none;
+          font-variant-ligatures: none;
+  color: color-mix(in srgb, var(--highlight), transparent 100%);
+  -webkit-transition: color var(--duration) ease;
+  transition: color var(--duration) ease;
+}
+.toc ul li.current::marker {
+  color: color-mix(in srgb, var(--highlight), transparent 0%);
+}
+.toc ul ul {
+  /* Sub-items */
+  padding-left: calc(1rem + 0.5rlh);
+  list-style-type: ">> ";
+}
+.toc ul ul a {
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);

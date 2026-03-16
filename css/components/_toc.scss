@@ -1,0 +1,64 @@
+@use "../abstracts";
+
+/**
+ * 1. Referenced: https://stackoverflow.com/a/65573073/27162946
+ * 2. Increase the number of arrows used to match heading levels.
+ * 3. Indent the bullets so that the left-most marker is always in-line
+ */
+.toc {
+  position: sticky;
+  top: #{abstracts.$page-padding};
+  align-self: start; /* 1 */
+  height: calc(100dvh - (#{abstracts.$page-padding} * 2));
+
+  @include abstracts.flow-column();
+
+  #{abstracts.$headings-all} {
+    margin: 0;
+  }
+
+  #toc-heading {
+    font-size: abstracts.font-size-scaled(1);
+  }
+
+  nav {
+    overflow-y: auto;
+  }
+
+  ul {
+    padding-left: calc(1.5rem);
+    list-style-type: "> ";
+
+    a {
+      font-family: #{abstracts.$fonts-monospace};
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    li {
+      &::marker {
+        font-family: #{abstracts.$fonts-monospace};
+        font-weight: 800;
+        font-variant-ligatures: none;
+        color: color-mix(in srgb, var(--highlight), transparent 100%);
+        transition: color var(--duration) ease;
+      }
+
+      &.current::marker {
+        color: color-mix(in srgb, var(--highlight), transparent 0%);
+      }
+    }
+  }
+
+  ul ul {
+    /* Sub-items */
+    padding-left: calc(1rem + 0.5rlh);
+    list-style-type: ">> ";
+
+    a {
+      font-weight: 200;
+      font-style: italic;
+      color: var(--secondary);
+    }
+  }
+}
