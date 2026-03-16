@@ -18,6 +18,8 @@
   .nav-item {
     font-size: abstracts.font-size-scaled(1);
   }
+
+  margin-bottom: calc(#{abstracts.$text-gap} * 2);
 }
 
 .name {

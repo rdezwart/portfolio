@@ -274,7 +274,6 @@ body {
   font-weight: 300;
   font-optical-sizing: auto;
   font-style: normal;
-  overflow-wrap: anywhere;
   color: var(--text);
 }
 
@@ -294,8 +293,8 @@ h1, h2, h3, h4, h5, h6 {
 h2, h3 {
   background-color: var(--banner);
   line-height: 1;
-  padding: 1.5rem;
-  margin-inline: -1.5rem;
+  padding: 0.5rlh;
+  margin-inline: calc(0.5rlh * -1);
   margin-top: 0.5rlh; /* 1 */
 }
 
@@ -328,6 +327,7 @@ h1 {
 /**
  * Top level section heading, has 1 arrow.
  * Proportionally larger than lower headings.
+ * 1. Set line height so overall element height matches that of other banners
  */
 h2 {
   font-size: 1.5625rem;
@@ -364,7 +364,6 @@ p {
 ul, ol {
   padding-left: calc(1rem + 0.5rlh);
 }
-
 /**
  * Figure captions.
  */
@@ -459,29 +458,81 @@ body {
   max-width: calc(40rem + 2rlh + 25rem + 2rlh); /* 1 */
 }
 
+.big-wrapper {
+  display: -ms-grid;
+  display: grid;
+  -webkit-column-gap: 2rlh;
+     -moz-column-gap: 2rlh;
+          column-gap: 2rlh;
+  row-gap: 0.5rlh;
+  -ms-grid-columns: 1fr 2rlh minmax(auto, 40rem);
+  grid-template-columns: 1fr minmax(auto, 40rem);
+  -ms-grid-rows: -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content;
+  -ms-grid-rows: min-content 0.5rlh min-content 0.5rlh min-content 0.5rlh min-content 0.5rlh min-content;
+  grid-template-rows: repeat(5, -webkit-min-content);
+  grid-template-rows: repeat(5, min-content);
+      grid-template-areas: "nav  hd" "toc content" ".   content" ".   content" "ft  ft";
+  margin: auto;
+  padding: 1rlh;
+  max-width: calc(40rem + 2rlh + 25rem + 2rlh);
+}
+
+.sidebar, .main {
+  -ms-grid-row: 1;
+  grid-row: 1;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+.main, article, article > header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: subgrid;
+  grid-template-columns: subgrid;
+  -ms-grid-rows: subgrid;
+  grid-template-rows: subgrid;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+}
+
+.main > *:nth-child(1), article > *:nth-child(1), article > header > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+.sidebar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  z-index: 1;
+  grid-area: nav;
+  max-width: 40rem;
+}
+
+article header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: hd;
+}
+article .content {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 5;
+  -ms-grid-column: 3;
+  grid-area: content;
+}
+article .toc {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: toc;
+}
+
 /**
  * Represents the actual content of a page, excluding navigation.
  * 1. Grow to fill as much space as possible, preventing side nav from growing.
  */
-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 0.5rlh;
-  -webkit-box-flex: 99999;
-      -ms-flex: 99999 1 25rem;
-          flex: 99999 1 25rem; /* 1 */
-  max-width: 40rem;
-}
-
 /**
  * Wrapper for entire projects, contains several sections and an hgroup.
  */
-article {
+.content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -490,6 +541,10 @@ article {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rlh;
+  row-gap: 0;
+}
+.content > section, .content > hgroup {
+  padding-top: 0.5rlh;
 }
 
 /**
@@ -551,6 +606,9 @@ hgroup {
 }
 .side-nav .nav-item {
   font-size: 1.25rem;
+}
+.side-nav {
+  margin-bottom: calc(0.5rlh * 2);
 }
 
 .name {

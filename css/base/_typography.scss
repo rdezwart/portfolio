@@ -19,7 +19,6 @@ body {
     style: normal;
   }
 
-  overflow-wrap: anywhere; // TODO: don't remember why this is here
   color: var(--text);
 }
 
@@ -42,8 +41,8 @@ body {
 #{abstracts.$headings-with-banner} {
   background-color: var(--banner);
   line-height: 1;
-  padding: 1.5rem;
-  margin-inline: -1.5rem;
+  padding: #{abstracts.$text-gap};
+  margin-inline: calc(#{abstracts.$text-gap} * -1);
   margin-top: #{abstracts.$text-gap}; /* 1 */
 }
 
@@ -75,9 +74,11 @@ h1 {
 /**
  * Top level section heading, has 1 arrow.
  * Proportionally larger than lower headings.
+ * 1. Set line height so overall element height matches that of other banners
  */
 h2 {
   font-size: #{abstracts.font-size-scaled(2)};
+  //line-height: 0.8;
 }
 
 /**
@@ -110,6 +111,14 @@ p {
  */
 ul, ol {
   padding-left: calc(1rem + 0.5rlh);
+  //padding-inline: 0;
+
+  //list-style-position: inside;
+  //line-height: 1.25;
+
+  li + li, & {
+    //margin-top: calc(#{abstracts.$text-gap} / 3);
+  }
 }
 
 /**
