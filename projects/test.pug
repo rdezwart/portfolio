@@ -32,6 +32,7 @@ html(lang="en")
 
     block styles
       include ../inc/head/_styles
+      include ../inc/head/_fontawesome
 
     block fonts
       include ../inc/head/_fonts
@@ -54,6 +55,8 @@ html(lang="en")
           ul
             li: a(href="/projects/") Projects
             li: a(href="/#about") About
+
+        include ../inc/_social-icons
 
       main.main#main-content
         article
