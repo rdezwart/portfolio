@@ -30,19 +30,16 @@
  * 1. Display a scroll bar if the TOC is longer than the screen.
  * 2. Align TOC with main nav text, bit of a magic number but the math works
  *    out. Has to only apply to the root list, sublists are already fine.
- * 3. Reduce font weight to not compete with main nav as much.
+ * 3. Reduce font weight of root items to not compete with main nav as much.
  * 4. List markers are invisible by default
  * 5. Add transitions for when the markers should be shown
  */
 .toc .nav {
   overflow-y: auto; /* 1 */
+  margin-left: 0.5ch; /* 2 */
 
-  & > :is(ul, ol) { /* 2 */
-    margin-left: 0.5ch; /* 2 */
-
-    & > li > a {
-      font-weight: 700; /* 3 */
-    }
+  & > :is(ul, ol) > li > a {
+    font-weight: 700; /* 3 */
   }
 
   & :is(ul, ol) {
