@@ -564,6 +564,12 @@ article .toc {
 .content > section, .content > hgroup {
   padding-top: 0.5rlh;
 }
+.content > section:first-child, .content > hgroup:first-child {
+  padding-top: 0;
+}
+.content > section:first-child > h2:first-child, .content > hgroup:first-child > h2:first-child {
+  margin-top: 0;
+}
 
 /**
  * Saves having to manage exact margins and gaps on each item I might add to a
