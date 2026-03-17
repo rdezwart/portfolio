@@ -46,6 +46,13 @@ body {
   margin-top: #{abstracts.$text-gap}; /* 1 */
 }
 
+#{abstracts.$headings-no-banner} {
+  background-color: unset;
+  line-height: revert;
+  padding: 0;
+  margin: 0;
+}
+
 /**
  * Styling for all headers that may touch content (banner + non-banner - h1).
  * 1. Results in 2x $text-gap above each heading, thanks to the flex gap.
@@ -67,7 +74,7 @@ body {
  * Big title at top of pages.
  * Proportionally larger than lower headings.
  */
-h1 {
+h1, .h1 {
   font-size: #{abstracts.font-size-scaled(4)};
 }
 
@@ -76,7 +83,7 @@ h1 {
  * Proportionally larger than lower headings.
  * 1. Set line height so overall element height matches that of other banners
  */
-h2 {
+h2, .h2 {
   font-size: #{abstracts.font-size-scaled(2)};
   //line-height: 0.8;
 }
@@ -85,7 +92,7 @@ h2 {
  * Sub-section heading, has 2 arrows.
  * Proportionally larger than lower headings.
  */
-h3 {
+h3, .h3 {
   font-size: #{abstracts.font-size-scaled(1)};
 }
 
@@ -94,7 +101,7 @@ h3 {
  * Equal to body text size.
  * 1. Cross the flow/grid gap to touch the following element.
  */
-h4, h5, h6 {
+:is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: #{abstracts.font-size-scaled(0)};
   margin-bottom: calc(#{abstracts.$text-gap} * -1); /* 2 */
 }

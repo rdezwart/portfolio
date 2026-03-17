@@ -15,12 +15,8 @@
 
   @include abstracts.flow-column();
 
-  // TODO: Remove these two rules once header helper classes are sorted out
-  #{abstracts.$headings-all} {
-    margin: 0;
-  }
-
   #toc-heading {
+    margin: 0;
     font-size: abstracts.font-size-scaled(1);
   }
 }

@@ -28,19 +28,19 @@ $type-scale: 1.25;
 
 /// Heading levels that should have a banner.
 /// @type List
-$headings-with-banner: h2, h3;
+$headings-with-banner: ":is(h2, h3), :is(.h2, .h3)";
 
 /// Heading levels without a banner.
 /// @type List
-$headings-no-banner: h4, h5, h6;
+$headings-no-banner: ":is(h4, h5, h6), :is(.h4, .h5, .h6)";
 
 /// Heading levels that relate directly to content (not h1).
 /// @type List;
-$headings-content: $headings-with-banner, $headings-no-banner;
+$headings-content: ":is(h2, h3, h4, h5, h6), :is(.h2, .h3, .h4, .h5, .h6)";
 
 /// All heading levels.
 /// @type List
-$headings-all: h1, $headings-content;
+$headings-all: ":is(h1, h2, h3, h4, h5, h6), :is(.h1, .h2, .h3, .h4, .h5, .h6)";
 
 /// Elements to consider as text for spacing purposes.
 /// @type List

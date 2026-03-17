@@ -286,7 +286,7 @@ body {
 /**
  * Default styles for ALL headings.
  */
-h1, h2, h3, h4, h5, h6 {
+:is(h1, h2, h3, h4, h5, h6), :is(.h1, .h2, .h3, .h4, .h5, .h6) {
   font-family: "JetBrains Mono", monospace;
   font-weight: 800;
   margin: 0;
@@ -296,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
  * Styling for headings that have a solid background (banner).
  * 1. Results in double the text gap above, due to flex gap
  */
-h2, h3 {
+:is(h2, h3), :is(.h2, .h3) {
   background-color: var(--banner);
   line-height: 1;
   padding: 0.5rlh;
@@ -304,11 +304,18 @@ h2, h3 {
   margin-top: 0.5rlh; /* 1 */
 }
 
+:is(h4, h5, h6), :is(.h4, .h5, .h6) {
+  background-color: unset;
+  line-height: revert;
+  padding: 0;
+  margin: 0;
+}
+
 /**
  * Styling for all headers that may touch content (banner + non-banner - h1).
  * 1. Results in 2x $text-gap above each heading, thanks to the flex gap.
  */
-h2, h3, h4, h5, h6 {
+:is(h2, h3, h4, h5, h6), :is(.h2, .h3, .h4, .h5, .h6) {
   margin-top: 0.5rlh; /* 1 */
 }
 
@@ -326,7 +333,7 @@ p, ul {
  * Big title at top of pages.
  * Proportionally larger than lower headings.
  */
-h1 {
+h1, .h1 {
   font-size: 2.44140625rem;
 }
 
@@ -335,7 +342,7 @@ h1 {
  * Proportionally larger than lower headings.
  * 1. Set line height so overall element height matches that of other banners
  */
-h2 {
+h2, .h2 {
   font-size: 1.5625rem;
 }
 
@@ -343,7 +350,7 @@ h2 {
  * Sub-section heading, has 2 arrows.
  * Proportionally larger than lower headings.
  */
-h3 {
+h3, .h3 {
   font-size: 1.25rem;
 }
 
@@ -352,7 +359,7 @@ h3 {
  * Equal to body text size.
  * 1. Cross the flow/grid gap to touch the following element.
  */
-h4, h5, h6 {
+:is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: 1rem;
   margin-bottom: calc(0.5rlh * -1); /* 2 */
 }
@@ -703,10 +710,8 @@ hgroup {
           flex-direction: column;
   gap: 0.5rlh;
 }
-.toc h1, .toc h2, .toc h3, .toc h4, .toc h5, .toc h6 {
-  margin: 0;
-}
 .toc #toc-heading {
+  margin: 0;
   font-size: 1.25rem;
 }
 

@@ -56,8 +56,7 @@ mixin fancy-name(fancy = false)
 
 mixin toc()
   div.toc
-    h4#toc-heading Table of Contents
-    //- +h(4, "Table of Contents")(id="toc-heading")
+    h2.h4#toc-heading Table of Contents
     nav.nav(aria-labelledby="toc-heading")
       if block
         block
