@@ -625,6 +625,9 @@ hgroup {
           flex: 45rem;
 }
 
+/**
+ * A header element, contains the main navigation and social links
+ */
 .sidebar, .sidebar .nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -636,6 +639,10 @@ hgroup {
   gap: 0.5rlh;
 }
 
+/**
+ * Wrapper for name and tagline at the top of the sidebar
+ * 1. Aligning to start stops the anchor from being wider than its text.
+ */
 .name-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -646,8 +653,14 @@ hgroup {
           flex-direction: column;
   gap: 0.5rlh;
   row-gap: calc(0.5rlh * 0.5);
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start; /* 1 */
 }
 
+/**
+ * Large name linking to home page, acts as my logo
+ */
 .name {
   font-family: "JetBrains Mono", monospace;
   font-weight: 800;

@@ -1,14 +1,25 @@
 @use "../abstracts";
 
+/**
+ * A header element, contains the main navigation and social links
+ */
 .sidebar, .sidebar .nav {
   @include abstracts.flow-column();
 }
 
+/**
+ * Wrapper for name and tagline at the top of the sidebar
+ * 1. Aligning to start stops the anchor from being wider than its text.
+ */
 .name-wrapper {
   @include abstracts.flow-column();
   row-gap: calc(#{abstracts.$text-gap} * 0.5);
+  align-items: start; /* 1 */
 }
 
+/**
+ * Large name linking to home page, acts as my logo
+ */
 .name {
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(3);
