@@ -1,7 +1,12 @@
 @use "../abstracts";
 
-.sidebar {
+.sidebar, .sidebar .nav {
+  @include abstracts.flow-column();
+}
 
+.name-wrapper {
+  @include abstracts.flow-column();
+  row-gap: calc(#{abstracts.$text-gap} * 0.5);
 }
 
 .name {

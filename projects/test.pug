@@ -50,8 +50,9 @@ html(lang="en")
     div.big-wrapper#top
       header.sidebar
         nav.nav(aria-label="Main")
-          a.name(href="/") Robin de Zwart#[span.highlight(aria-hidden="true") ;]
-          p.description Lorem ipsum blah blah blah blah
+          div.name-wrapper
+            a.name(href="/") Robin de Zwart#[span.highlight(aria-hidden="true") ;]
+            p.description Lorem ipsum blah blah blah blah
           ul
             li: a(href="/projects/") Projects
             li: a(href="/#about") About
