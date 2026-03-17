@@ -384,16 +384,6 @@ b, strong {
 }
 
 /**
- * Make sure highlights are, well, highlighted.
- * 1. Font ligatures caused triple arrows to turn into bitwise operators.
- */
-span.highlight {
-  color: var(--highlight);
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none; /* 1 */
-}
-
-/**
  * Increases the visual hierarchy of an opening paragraph.
  */
 .introduction {
@@ -419,6 +409,28 @@ span.highlight {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/**
+ * Styles for secondary content, such as subtitles or descriptions.
+ */
+.description {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/**
+ * Make sure highlights are, well, highlighted.
+ */
+.highlight {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--highlight);
+  -webkit-font-variant-ligatures: none;
+          font-variant-ligatures: none;
 }
 
 /**
@@ -676,14 +688,6 @@ hgroup {
   color: var(--highlight);
   -webkit-transition: color var(--duration);
   transition: color var(--duration);
-}
-
-.description {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: italic;
-  color: var(--secondary);
 }
 
 /**

@@ -94,12 +94,3 @@
     transition: color var(--duration);
   }
 }
-
-.description {
-  font-family: #{abstracts.$fonts-monospace};
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: italic;
-
-  color: var(--secondary);
-}
