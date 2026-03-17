@@ -940,21 +940,4 @@ figure figcaption {
     --text: #1e1e22;
   }
 }
-
-/**
- * Adds extra bottom margin on the section with a non-text last child to account
- * for visual gap in vertical rhythm.
- * Adds less space if the adjacent sibling of current section has a banner-less
- * heading.
- */
-section:has(> :not(p, ul, section):last-child) {
-  /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
-}
-section:has(> :not(p, ul, section):last-child):has(+ section):has(> :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
-  /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
-}
-
-/**
- * Add extra bottom margin below banner headings touching a non-text element.
- */
 /*# sourceMappingURL=main.css.map */
