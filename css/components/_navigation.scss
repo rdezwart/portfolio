@@ -1,96 +1,38 @@
-// ---- ---- Navigation ---- ---- //
-
 @use "../abstracts";
 
-.side-nav {
-  align-self: flex-start;
-  max-width: abstracts.$main-width;
-  flex: 1 1 abstracts.$nav-width;
+/**
+ * Navigation lists, general
+ */
+.nav :is(ul, ol) {
+  list-style-type: "> ";
+  list-style-position: inside;
+  padding-inline: 0;
 
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.15rem;
-
-  .name {
-    font-size: abstracts.font-size-scaled(3);
-  }
-
-  .nav-item {
-    font-size: abstracts.font-size-scaled(1);
-  }
-
-  margin-bottom: calc(#{abstracts.$text-gap} * 2);
-}
-
-.name {
-  color: var(--link);
-
-  * {
-    text-decoration: none;
-
-    font-family: #{abstracts.$fonts-monospace};
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
-
-    color: inherit;
-  }
-}
-
-.name-wrapper {
-  display: block;
-  text-wrap: balance;
-}
-
-.nav-list {
-  display: flex;
-  flex-direction: column;
-  row-gap: #{abstracts.$text-gap};
-
-  // TODO: add list role to nav-list due to screen reader issue
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-item {
-  font-family: #{abstracts.$fonts-monospace};
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
+  @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(1);
-  line-height: 1rlh;
 
-  color: var(--link);
-  text-decoration: none;
+  li {
+    a {
+      font-weight: 800;
+      text-decoration: none;
+    }
 
-  * {
-    font-family: inherit;
-    font-optical-sizing: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: inherit;
-
-    color: inherit;
-    text-decoration: inherit;
+    &::marker {
+      @include abstracts.highlight();
+    }
   }
+}
 
-  .nav-link-wrapper {
-    // Referenced: https://stackoverflow.com/a/17158366
-    display: inline-block;
-    padding-left: 1rlh;
-    text-indent: -1rlh;
-  }
+/**
+ * Sub lists, mostly used in table of contents.
+ * 1. Line up left edge of bullets with text of parent. We can use `2ch` because
+ *    we're working in a monospace font.
+ */
+.nav :is(ul, ol) :is(ul, ol) {
+  list-style-type: ">> ";
+  padding-left: 2ch; /* 1 */
 
-  .description {
-    margin: 0;
-    padding: 0 0 0 1.5rem;
-    font-size: abstracts.font-size-scaled(0);
-    list-style: none;
-  }
-
-  & a:hover, & a:focus {
-    color: var(--highlight);
-    transition: color var(--duration);
+  li a {
+    @include abstracts.secondary();
   }
 }

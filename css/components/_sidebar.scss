@@ -1,0 +1,13 @@
+@use "../abstracts";
+
+.sidebar {
+
+}
+
+.name {
+  @include abstracts.heading-typeface();
+  font-size: abstracts.font-size-scaled(3);
+
+  color: var(--link);
+  text-decoration: none;
+}

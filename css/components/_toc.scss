@@ -1,9 +1,11 @@
 @use "../abstracts";
 
 /**
- * 1. Referenced: https://stackoverflow.com/a/65573073/27162946
+ * Table of Contents
+ * 1. Enable sticky behavior on grid item
+ *    Referenced: https://stackoverflow.com/a/65573073/27162946
  * 2. Increase the number of arrows used to match heading levels.
- * 3. Indent the bullets so that the left-most marker is always in-line
+ * 3.
  */
 .toc {
   position: sticky;
@@ -13,6 +15,7 @@
 
   @include abstracts.flow-column();
 
+  // TODO: Remove these two rules once header helper classes are sorted out
   #{abstracts.$headings-all} {
     margin: 0;
   }
@@ -20,45 +23,42 @@
   #toc-heading {
     font-size: abstracts.font-size-scaled(1);
   }
+}
 
-  nav {
-    overflow-y: auto;
-  }
+/**
+ * Nav list within a Table of Contents
+ * 1. Display a scroll bar if the TOC is longer than the screen.
+ * 2. Align TOC with main nav text, bit of a magic number but the math works
+ *    out. Has to only apply to the root list, sublists are already fine.
+ * 3. Reduce font weight to not compete with main nav as much.
+ * 4. List markers are invisible by default
+ * 5. Add transitions for when the markers should be shown
+ */
+.toc .nav {
+  overflow-y: auto; /* 1 */
 
-  ol {
-    padding-left: calc(1.5rem);
-    list-style-type: "> ";
+  & > :is(ul, ol) { /* 2 */
+    margin-left: 0.5ch; /* 2 */
 
-    a {
-      font-family: #{abstracts.$fonts-monospace};
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    li {
-      &::marker {
-        font-family: #{abstracts.$fonts-monospace};
-        font-weight: 800;
-        font-variant-ligatures: none;
-        color: color-mix(in srgb, var(--highlight), transparent 100%);
-        transition: color var(--duration) ease;
-      }
-
-      &.current::marker {
-        color: color-mix(in srgb, var(--highlight), transparent 0%);
-      }
+    & > li > a {
+      font-weight: 700; /* 3 */
     }
   }
 
-  ol ol {
-    /* Sub-items */
-    padding-left: calc(1rem + 0.5rlh);
-    list-style-type: ">> ";
+  & :is(ul, ol) {
+    font-size: abstracts.font-size-scaled(0);
 
-    a {
-      font-weight: 200;
-      font-style: italic;
-      color: var(--secondary);
+    li::marker { /* 4 */
+      color: color-mix(in srgb, var(--highlight), transparent 100%);
+      transition: color var(--duration) ease;
+    }
+
+    li.current::marker { /* 5 */
+      color: color-mix(in srgb, var(--highlight), transparent 0%);
+    }
+
+    li:has(> a:focus, > a:hover)::marker { /* 5 */
+      color: color-mix(in srgb, var(--highlight), transparent 0%);
     }
   }
 }

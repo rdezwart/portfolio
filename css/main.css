@@ -603,103 +603,60 @@ hgroup {
           flex: 45rem;
 }
 
-.side-nav {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  max-width: 40rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 25rem;
-          flex: 1 1 25rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  row-gap: 0.15rem;
-}
-.side-nav .name {
-  font-size: 1.953125rem;
-}
-.side-nav .nav-item {
-  font-size: 1.25rem;
-}
-.side-nav {
-  margin-bottom: calc(0.5rlh * 2);
-}
-
 .name {
-  color: var(--link);
-}
-.name * {
-  text-decoration: none;
   font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
   font-weight: 800;
-  font-style: normal;
-  color: inherit;
-}
-
-.name-wrapper {
-  display: block;
-  text-wrap: balance;
-}
-
-.nav-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  row-gap: 0.5rlh;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-item {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 1.25rem;
-  line-height: 1rlh;
+  font-size: 1.953125rem;
   color: var(--link);
   text-decoration: none;
-}
-.nav-item * {
-  font-family: inherit;
-  font-optical-sizing: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: inherit;
-  color: inherit;
-  text-decoration: inherit;
-}
-.nav-item .nav-link-wrapper {
-  display: inline-block;
-  padding-left: 1rlh;
-  text-indent: -1rlh;
-}
-.nav-item .description {
-  margin: 0;
-  padding: 0 0 0 1.5rem;
-  font-size: 1rem;
-  list-style: none;
-}
-.nav-item a:hover, .nav-item a:focus {
-  color: var(--highlight);
-  -webkit-transition: color var(--duration);
-  transition: color var(--duration);
 }
 
 /**
- * 1. Referenced: https://stackoverflow.com/a/65573073/27162946
+ * Navigation lists, general
+ */
+.nav :is(ul, ol) {
+  list-style-type: "> ";
+  list-style-position: inside;
+  padding-inline: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+.nav :is(ul, ol) li a {
+  font-weight: 800;
+  text-decoration: none;
+}
+.nav :is(ul, ol) li::marker {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--highlight);
+  -webkit-font-variant-ligatures: none;
+          font-variant-ligatures: none;
+}
+
+/**
+ * Sub lists, mostly used in table of contents.
+ * 1. Line up left edge of bullets with text of parent. We can use `2ch` because
+ *    we're working in a monospace font.
+ */
+.nav :is(ul, ol) :is(ul, ol) {
+  list-style-type: ">> ";
+  padding-left: 2ch; /* 1 */
+}
+.nav :is(ul, ol) :is(ul, ol) li a {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/**
+ * Table of Contents
+ * 1. Enable sticky behavior on grid item
+ *    Referenced: https://stackoverflow.com/a/65573073/27162946
  * 2. Increase the number of arrows used to match heading levels.
- * 3. Indent the bullets so that the left-most marker is always in-line
+ * 3.
  */
 .toc {
   position: sticky;
@@ -723,39 +680,38 @@ hgroup {
 .toc #toc-heading {
   font-size: 1.25rem;
 }
-.toc nav {
-  overflow-y: auto;
+
+/**
+ * Nav list within a Table of Contents
+ * 1. Display a scroll bar if the TOC is longer than the screen.
+ * 2. Align TOC with main nav text, bit of a magic number but the math works
+ *    out. Has to only apply to the root list, sublists are already fine.
+ * 3. Reduce font weight to not compete with main nav as much.
+ * 4. List markers are invisible by default
+ * 5. Add transitions for when the markers should be shown
+ */
+.toc .nav {
+  overflow-y: auto; /* 1 */
 }
-.toc ol {
-  padding-left: 1.5rem;
-  list-style-type: "> ";
+.toc .nav > :is(ul, ol) { /* 2 */
+  margin-left: 0.5ch; /* 2 */
 }
-.toc ol a {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 700;
-  text-decoration: none;
+.toc .nav > :is(ul, ol) > li > a {
+  font-weight: 700; /* 3 */
 }
-.toc ol li::marker {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none;
+.toc .nav :is(ul, ol) {
+  font-size: 1rem;
+}
+.toc .nav :is(ul, ol) li::marker { /* 4 */
   color: color-mix(in srgb, var(--highlight), transparent 100%);
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
 }
-.toc ol li.current::marker {
+.toc .nav :is(ul, ol) li.current::marker { /* 5 */
   color: color-mix(in srgb, var(--highlight), transparent 0%);
 }
-.toc ol ol {
-  /* Sub-items */
-  padding-left: calc(1rem + 0.5rlh);
-  list-style-type: ">> ";
-}
-.toc ol ol a {
-  font-weight: 200;
-  font-style: italic;
-  color: var(--secondary);
+.toc .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker { /* 5 */
+  color: color-mix(in srgb, var(--highlight), transparent 0%);
 }
 
 /**
