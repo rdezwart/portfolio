@@ -21,15 +21,15 @@
 .big-wrapper {
   display: grid;
   column-gap: #{abstracts.$content-gap};
-  row-gap: #{abstracts.$text-gap};
+  row-gap: #{abstracts.$text-gap * 2};
 
   grid-template-columns: 1fr minmax(auto, #{abstracts.$main-width});
   grid-template-rows: repeat(5, min-content);
   grid-template-areas:
-    "nav  hd"
+    "nav hd"
     "toc content"
-    ".   content"
-    ".   content"
+    "toc content"
+    "toc content"
     "ft  ft";
 
   margin: auto;
@@ -70,7 +70,12 @@ article {
     grid-area: content;
   }
 
-  .toc {
+  .toc-wrapper {
     grid-area: toc;
   }
+}
+
+footer {
+  grid-area: ft;
+  height: 10rem;
 }

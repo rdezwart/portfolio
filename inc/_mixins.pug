@@ -54,10 +54,12 @@ mixin fancy-name(fancy = false)
     | #[span.highlight(aria-hidden="true") ;]
 
 
+//- TOC needs to be wrapped for sticky to work properly
 mixin toc()
-  div.toc
-    h2.h4#toc-heading Table of Contents
-    nav.nav(aria-labelledby="toc-heading")
-      if block
-        block
-    a(href="#top") Back to Top
+  div.toc-wrapper
+    div.toc
+      h2.h4#toc-heading Table of Contents
+      nav.nav(aria-labelledby="toc-heading")
+        if block
+          block
+      a(href="#top") Back to Top

@@ -489,14 +489,14 @@ body {
   -webkit-column-gap: 2rlh;
      -moz-column-gap: 2rlh;
           column-gap: 2rlh;
-  row-gap: 0.5rlh;
+  row-gap: 1rlh;
   -ms-grid-columns: 1fr 2rlh minmax(auto, 40rem);
   grid-template-columns: 1fr minmax(auto, 40rem);
-  -ms-grid-rows: -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content 0.5rlh -webkit-min-content;
-  -ms-grid-rows: min-content 0.5rlh min-content 0.5rlh min-content 0.5rlh min-content 0.5rlh min-content;
+  -ms-grid-rows: -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content;
+  -ms-grid-rows: min-content 1rlh min-content 1rlh min-content 1rlh min-content 1rlh min-content;
   grid-template-rows: repeat(5, -webkit-min-content);
   grid-template-rows: repeat(5, min-content);
-      grid-template-areas: "nav  hd" "toc content" ".   content" ".   content" "ft  ft";
+      grid-template-areas: "nav hd" "toc content" "toc content" "toc content" "ft  ft";
   margin: auto;
   padding: 1rlh;
   max-width: calc(40rem + 2rlh + 25rem + 2rlh);
@@ -544,10 +544,19 @@ article .content {
   -ms-grid-column: 3;
   grid-area: content;
 }
-article .toc {
+article .toc-wrapper {
   -ms-grid-row: 3;
+  -ms-grid-row-span: 5;
   -ms-grid-column: 1;
   grid-area: toc;
+}
+
+footer {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: ft;
+  height: 10rem;
 }
 
 /**
@@ -689,18 +698,19 @@ hgroup {
 
 /**
  * Table of Contents
- * 1. Enable sticky behavior on grid item
- *    Referenced: https://stackoverflow.com/a/65573073/27162946
- * 2. Increase the number of arrows used to match heading levels.
- * 3.
+ * 1. Limit height so it always fits on screen.
  */
 .toc {
   position: sticky;
   top: 1rlh;
-  -ms-flex-item-align: start;
-      -ms-grid-row-align: start;
-      align-self: start; /* 1 */
-  height: calc(100dvh - 1rlh * 2);
+  max-height: calc(100vh - 1rlh * 2); /* 1 */
+}
+@supports (max-height: 100dvh) {
+  .toc {
+    max-height: calc(100dvh - 1rlh * 2); /* 1 */
+  }
+}
+.toc {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -721,8 +731,8 @@ hgroup {
  * 2. Align TOC with main nav text, bit of a magic number but the math works
  *    out. Has to only apply to the root list, sublists are already fine.
  * 3. Reduce font weight of root items to not compete with main nav as much.
- * 4. List markers are invisible by default
- * 5. Add transitions for when the markers should be shown
+ * 4. Make list markers invisible by default
+ * 5. Markers should be shown when they have .current or are focused/hovered
  */
 .toc .nav {
   overflow-y: auto; /* 1 */
@@ -927,7 +937,7 @@ figure figcaption {
 section:has(> :not(p, ul, section):last-child) {
   /* Add some extra bottom margin on the section with a non-text last child to account for visual gap */
 }
-section:has(> :not(p, ul, section):last-child):has(+ section):has(> h4, h5, h6) {
+section:has(> :not(p, ul, section):last-child):has(+ section):has(> :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   /* Go back to default bottom margin if the it's touching a section containing a borderless heading */
 }
 
