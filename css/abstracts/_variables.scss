@@ -69,7 +69,7 @@ $content-gap: 2rlh;
 
 /// Max width of sidebar nav.
 /// @type Length
-$nav-width: 25rem;
+$nav-width: 20rem;
 
 /// Padding around edges of viewport.
 /// @type Length
@@ -78,6 +78,13 @@ $page-padding: 1rlh;
 /// Combined width of all elements and padding.
 /// @type Length
 $total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2));
+
+/// List of media query breakpoints by name.
+/// @see {function} respond-to
+/// @type Map
+$breakpoints: (
+        "full": (max-width: $main-width)
+);
 
 
 // ---- ---- Colors ---- ---- //

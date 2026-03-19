@@ -1,11 +1,13 @@
 @use "../abstracts";
-@use "sass:color";
 
 /**
  * Main wrapper for body of site.
  * 1. Need to set max-width for wrapper otherwise side-nav will stretch too
  *    much. We cannot disable flex-grow on side-nav either, otherwise it won't
  *    grow when it's wrapped above the main body.
+ *
+ * NOTE: .big-wrapper will be renamed into this class once grid system is
+ * deployed across the site.
  */
 .wrapper {
   display: flex;
@@ -18,55 +20,86 @@
   max-width: #{abstracts.$total-width}; /* 1 */
 }
 
+/**
+ * Main wrapper for body of site.
+ * 1. Sidebar column is auto, main content has a limited width to preserve
+ *    reasonable line lengths.
+ * 2. Implicit rows of size auto, this makes it simpler when moving to smaller
+ *    breakpoints.
+ * 3. Ensure elements act block-like on smaller screens, otherwise
+ *    clicking/tapping sends focus to unexpected places.
+ */
 .big-wrapper {
-  display: grid;
-  column-gap: #{abstracts.$content-gap};
-  row-gap: #{abstracts.$text-gap * 2};
+  margin: auto;
+  padding: #{abstracts.$page-padding};
 
-  grid-template-columns: 1fr minmax(auto, #{abstracts.$main-width});
-  grid-template-rows: repeat(5, min-content);
+  display: grid;
+  justify-content: center;
+  justify-items: stretch; /* 3 */
+  column-gap: #{abstracts.$content-gap};
+  row-gap: #{abstracts.$content-gap / 2};
+
+  grid-template-columns: auto minmax(auto, #{abstracts.$main-width}); /* 1 */
+  grid-template-rows: none; /* 2 */
+  grid-auto-rows: auto; /* 2 */
   grid-template-areas:
     "nav hd"
     "toc content"
-    "toc content"
-    "toc content"
     "ft  ft";
 
-  margin: auto;
-  padding: #{abstracts.$page-padding};
-  max-width: #{abstracts.$total-width};
+  @include abstracts.respond-to("full") {
+    grid-template-columns: minmax(auto, #{abstracts.$main-width});
+    grid-template-areas:
+    "nav"
+    "hd"
+    "toc"
+    "content"
+    "ft";
+  }
 }
 
-%overlapping-grids {
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.sidebar, .main {
-  @extend %overlapping-grids;
-}
-
-.main, article, article > header {
+/**
+ * Due to semantic HTML, the content of the page is wrapped in some additional
+ * tags. They are subgrids of the main wrapper, and inherit all grid template
+ * areas. This allows me to position elements anywhere in any of these wrapping
+ * elements, can think of them as layers.
+ * 1. They're positioned to fill the entire outermost grid, otherwise they
+ *    wouldn't be able to place in any grid areas outside of their box models.
+ * 2. Ensure elements act block-like on smaller screens, otherwise
+ *    clicking/tapping sends focus to unexpected places.
+ */
+.main, .article {
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: subgrid;
+  justify-items: stretch; /* 2 */
 
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
+  grid-column: 1 / -1; /* 1 */
+  grid-row: 1 / -1; /* 1 */
 }
 
+
+/**
+ * The sidebar is in the outermost wrapper for semantic reasons (it relates to
+ * the site as a whole, not the article on the page, such as a project). This
+ * also acts as the header for the site.
+ * 1. Needs to come to the foreground since the wrapper is behind the semantic
+ *    elements.
+ */
 .sidebar {
-  z-index: 1;
   grid-area: nav;
-  max-width: abstracts.$main-width;
+  z-index: 1; /* 1 */
 }
 
-article {
-  header {
+/**
+ * Defining grid areas for article header, content, and TOC.
+ */
+.article {
+  &-header {
     grid-area: hd;
   }
 
-  .content {
+  &-content {
     grid-area: content;
   }
 
@@ -75,7 +108,9 @@ article {
   }
 }
 
-footer {
+/**
+ * Defining grid area for site footer.
+ */
+.footer {
   grid-area: ft;
-  height: 10rem;
 }

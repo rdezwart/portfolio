@@ -30,6 +30,7 @@ a.skip {
   top: 0;
   left: -9999rem;
   right: auto;
+  z-index: 10;
 
   padding: 1rlh;
   font-size: abstracts.font-size-scaled(1);

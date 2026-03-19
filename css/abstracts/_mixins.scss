@@ -5,6 +5,7 @@
 
 @use "functions";
 @use "variables";
+@use "sass:meta";
 
 // NOTE: Turns out, validator doesn't like it when we try to insert content via
 //   CSS.
@@ -68,4 +69,24 @@
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);
+}
+
+
+/// Responsive breakpoint manager, modified from Sass Guidelines
+/// @link https://sass-guidelin.es/#responsive-web-design-and-breakpoints
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get(variables.$breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: meta.inspect($raw-query);
+
+    @media screen and #{$query} {
+      @content;
+    }
+  } @else {
+    @error "No value found for `#{$breakpoint}`. " +
+      "Please make sure it is defined in `$breakpoints` map.";
+  }
 }

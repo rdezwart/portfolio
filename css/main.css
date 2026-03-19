@@ -255,6 +255,7 @@ a.skip {
   top: 0;
   left: -9999rem;
   right: auto;
+  z-index: 10;
   padding: 1rlh;
   font-size: 1.25rem;
   font-weight: 500;
@@ -467,6 +468,9 @@ body {
  * 1. Need to set max-width for wrapper otherwise side-nav will stretch too
  *    much. We cannot disable flex-grow on side-nav either, otherwise it won't
  *    grow when it's wrapped above the main body.
+ *
+ * NOTE: .big-wrapper will be renamed into this class once grid system is
+ * deployed across the site.
  */
 .wrapper {
   display: -webkit-box;
@@ -480,93 +484,146 @@ body {
   gap: 2rlh 2rlh;
   margin: auto;
   padding: 1rlh;
-  max-width: calc(40rem + 2rlh + 25rem + 2rlh); /* 1 */
+  max-width: calc(40rem + 2rlh + 20rem + 2rlh); /* 1 */
 }
 
+/**
+ * Main wrapper for body of site.
+ * 1. Sidebar column is auto, main content has a limited width to preserve
+ *    reasonable line lengths.
+ * 2. Implicit rows of size auto, this makes it simpler when moving to smaller
+ *    breakpoints.
+ * 3. Ensure elements act block-like on smaller screens, otherwise
+ *    clicking/tapping sends focus to unexpected places.
+ */
 .big-wrapper {
+  margin: auto;
+  padding: 1rlh;
   display: -ms-grid;
   display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: stretch; /* 3 */
   -webkit-column-gap: 2rlh;
      -moz-column-gap: 2rlh;
           column-gap: 2rlh;
   row-gap: 1rlh;
-  -ms-grid-columns: 1fr 2rlh minmax(auto, 40rem);
-  grid-template-columns: 1fr minmax(auto, 40rem);
-  -ms-grid-rows: -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content 1rlh -webkit-min-content;
-  -ms-grid-rows: min-content 1rlh min-content 1rlh min-content 1rlh min-content 1rlh min-content;
-  grid-template-rows: repeat(5, -webkit-min-content);
-  grid-template-rows: repeat(5, min-content);
-      grid-template-areas: "nav hd" "toc content" "toc content" "toc content" "ft  ft";
-  margin: auto;
-  padding: 1rlh;
-  max-width: calc(40rem + 2rlh + 25rem + 2rlh);
+  -ms-grid-columns: auto 2rlh minmax(auto, 40rem);
+  grid-template-columns: auto minmax(auto, 40rem); /* 1 */
+  -ms-grid-rows: none;
+  grid-template-rows: none; /* 2 */
+  grid-auto-rows: auto; /* 2 */
+      grid-template-areas: "nav hd" "toc content" "ft  ft";
+}
+@media screen and (max-width: 40rem) {
+  .big-wrapper {
+    -ms-grid-columns: minmax(auto, 40rem);
+    grid-template-columns: minmax(auto, 40rem);
+        grid-template-areas: "nav" "hd" "toc" "content" "ft";
+  }
 }
 
-.sidebar, .main {
-  -ms-grid-row: 1;
-  grid-row: 1;
-  -ms-grid-column: 1;
-  grid-column: 1;
-}
-
-.main, article, article > header {
+/**
+ * Due to semantic HTML, the content of the page is wrapped in some additional
+ * tags. They are subgrids of the main wrapper, and inherit all grid template
+ * areas. This allows me to position elements anywhere in any of these wrapping
+ * elements, can think of them as layers.
+ * 1. They're positioned to fill the entire outermost grid, otherwise they
+ *    wouldn't be able to place in any grid areas outside of their box models.
+ * 2. Ensure elements act block-like on smaller screens, otherwise
+ *    clicking/tapping sends focus to unexpected places.
+ */
+.main, .article {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: subgrid;
   grid-template-columns: subgrid;
   -ms-grid-rows: subgrid;
   grid-template-rows: subgrid;
-  grid-column: 1/-1;
-  grid-row: 1/-1;
+  justify-items: stretch; /* 2 */
+  grid-column: 1/-1; /* 1 */
+  grid-row: 1/-1; /* 1 */
 }
-
-.main > *:nth-child(1), article > *:nth-child(1), article > header > *:nth-child(1) {
+.main > *:nth-child(1), .article > *:nth-child(1) {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
 
+/**
+ * The sidebar is in the outermost wrapper for semantic reasons (it relates to
+ * the site as a whole, not the article on the page, such as a project). This
+ * also acts as the header for the site.
+ * 1. Needs to come to the foreground since the wrapper is behind the semantic
+ *    elements.
+ */
 .sidebar {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  z-index: 1;
   grid-area: nav;
-  max-width: 40rem;
+  z-index: 1; /* 1 */
 }
 
-article header {
+/**
+ * Defining grid areas for article header, content, and TOC.
+ */
+.article-header {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: hd;
 }
-article .content {
+.article-content {
   -ms-grid-row: 3;
-  -ms-grid-row-span: 5;
   -ms-grid-column: 3;
   grid-area: content;
 }
-article .toc-wrapper {
+.article .toc-wrapper {
   -ms-grid-row: 3;
-  -ms-grid-row-span: 5;
   -ms-grid-column: 1;
   grid-area: toc;
 }
 
-footer {
-  -ms-grid-row: 9;
+/**
+ * Defining grid area for site footer.
+ */
+.footer {
+  -ms-grid-row: 5;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: ft;
-  height: 10rem;
+}
+@media screen and (max-width: 40rem) {
+  .sidebar {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .article-header {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  .article-content {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+  }
+  .article .toc-wrapper {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .footer {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+  }
 }
 
 /**
- * Represents the actual content of a page, excluding navigation.
- * 1. Grow to fill as much space as possible, preventing side nav from growing.
+ * Represents the body of an article. This comes after the header and TOC.
+ * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
+ *    TOC scroll tracking.
+ * 2. Remove extra padding from very top heading of very first section.
+ *    This brings it properly inline with the top of the grid row.
  */
-/**
- * Wrapper for entire projects, contains several sections and an hgroup.
- */
-.content {
+.article-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -575,16 +632,16 @@ footer {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rlh;
-  row-gap: 0;
+  row-gap: 0; /* 1 */
 }
-.content > section, .content > hgroup {
-  padding-top: 0.5rlh;
+.article-content > section, .article-content > hgroup {
+  padding-top: 0.5rlh; /* 1 */
 }
-.content > section:first-child, .content > hgroup:first-child {
-  padding-top: 0;
+.article-content > section:first-child, .article-content > hgroup:first-child {
+  padding-top: 0; /* 2 */
 }
-.content > section:first-child > h2:first-child, .content > hgroup:first-child > h2:first-child {
-  margin-top: 0;
+.article-content > section:first-child > h2:first-child, .article-content > hgroup:first-child > h2:first-child {
+  margin-top: 0; /* 2 */
 }
 
 /**

@@ -51,8 +51,8 @@ html(lang="en")
       header.sidebar
         nav.nav(aria-label="Main")
           div.name-wrapper
-            a.name(href="/") Robin de Zwart#[span.highlight(aria-hidden="true") ;]
-            p.description Lorem ipsum blah blah blah blah
+            a.name(href="/") Robin de&nbsp;Zwart#[span.highlight(aria-hidden="true") ;]
+            p.description Interactive Systems Developer
           ul
             li: a(href="/projects/") Projects
             li: a(href="/#about") About
@@ -60,8 +60,8 @@ html(lang="en")
         include ../inc/_social-icons
 
       main.main#main-content
-        article
-          header
+        article.article
+          header.article-header
             hgroup
               +h(1, title)
               p.description #{description}
@@ -102,7 +102,7 @@ html(lang="en")
                 li: a(href="#acknowledgements") Acknowledgements
                 li: a(href="#references") References
 
-          div.content
+          div.article-content
             section#abstract
               +h(2, "Abstract")
 
@@ -173,5 +173,5 @@ html(lang="en")
                 | Both networks learn from their mistakes and try to improve at their assigned tasks over time. If everything goes
                 | perfectly, the discriminator ends up with a 50\% chance of making the correct prediction, meaning the
                 | generator's images are impossible for it to tell apart from the real images.
-      footer
-        p hi!
+      footer.footer
+        a(href="#top") Back to Top
