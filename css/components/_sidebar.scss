@@ -11,7 +11,7 @@
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
-.name-wrapper {
+.sidebar .name-wrapper {
   @include abstracts.flow-column();
   row-gap: calc(#{abstracts.$text-gap} * 0.5);
   align-items: start; /* 1 */
@@ -20,10 +20,6 @@
 /**
  * Large name linking to home page, acts as my logo
  */
-.name {
-  @include abstracts.heading-typeface();
+.sidebar .name {
   font-size: abstracts.font-size-scaled(3);
-
-  color: var(--link);
-  text-decoration: none;
 }

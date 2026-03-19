@@ -54,6 +54,11 @@ mixin fancy-name(fancy = false)
     | #[span.highlight(aria-hidden="true") ;]
 
 
+//- Shortcut for name, also prevents breaking between my last name
+mixin name()
+  a.name(href="/") Robin de&nbsp;Zwart#[span.highlight ;]
+
+
 //- TOC needs to be wrapped for sticky to work properly
 mixin toc(heading="Table of Contents")
   div.toc-wrapper

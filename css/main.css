@@ -775,6 +775,16 @@ hgroup {
 }
 
 /**
+ * Large name, acts as my logo
+ */
+.name {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--link);
+  text-decoration: none;
+}
+
+/**
  * A header element, contains the main navigation and social links
  */
 .sidebar, .sidebar .nav {
@@ -792,7 +802,7 @@ hgroup {
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
-.name-wrapper {
+.sidebar .name-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -810,12 +820,8 @@ hgroup {
 /**
  * Large name linking to home page, acts as my logo
  */
-.name {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+.sidebar .name {
   font-size: 1.953125rem;
-  color: var(--link);
-  text-decoration: none;
 }
 
 /**

@@ -1,0 +1,10 @@
+@use "../abstracts";
+
+/**
+ * Large name, acts as my logo
+ */
+.name {
+  @include abstracts.heading-typeface();
+  color: var(--link);
+  text-decoration: none;
+}
