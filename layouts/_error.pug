@@ -19,17 +19,17 @@ block image
 block image-alt
   meta(property="og:image:alt" content="Hi, I'm Robin; This is an error page.")
 
-append header
-  h1 Error #{errorCode}#[span.highlight &colon; ] #{errorName}
-
 append content
-  block error-message
-    p I'm a little teapot
-    p Short and stout
-    p Here is my handle
-    p Here is my spout
-    p When I get all steamed up
-    p Hear me shout
-    p Tip me over and pour me out!
+  section
+    h1 Error #{errorCode}#[span.highlight &colon; ] #{errorName}
 
-  p: a(href="/") Return Home
+    block error-message
+      p I'm a little teapot
+      p Short and stout
+      p Here is my handle
+      p Here is my spout
+      p When I get all steamed up
+      p Hear me shout
+      p Tip me over and pour me out!
+
+    p: a(href="/") Return Home

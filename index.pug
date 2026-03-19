@@ -6,7 +6,7 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
-    layout = "mixed"
+    layout = "default"
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
@@ -14,17 +14,15 @@ block url
 append scripts
   script(src="/js/toc.js" defer)
 
-append header
-  h1
-    | Hi, I'm
-    |
-    +name()
-
 prepend main
   +toc("Categories")
 
 append content
-  div.bio
+  section
+    h1
+      | Hi, I'm
+      |
+      +name()
     p
       | I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my
       | skills and knowledge over the past few years. :]
