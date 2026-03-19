@@ -7,7 +7,7 @@
 .socials {
   display: flex;
   flex-wrap: wrap;
-  column-gap: calc(#{abstracts.$text-gap} * 2);
+  gap: 0.6em;
   font-size: abstracts.font-size-scaled(2);
 }
 
@@ -15,14 +15,23 @@
  * Links and icons inside the social list.
  */
 .social-link {
-  i {
-    transition: color var(--duration) ease;
-    color: var(--text);
+  color: var(--text);
+}
+
+
+/**
+ * 1. Manually adjust padding on social icons so they're properly within bounds.
+ *    Definitely a magic number, this is just what worked.
+ * 2. Negative margins on HuggingFace icon as the gap should visually be based
+ *    on the face, not the hands.
+ */
+.fa {
+  &-face-smiling-hands {
+    padding-inline: 0.01em; /* 1 */
+    margin-inline: -0.1em; /* 2 */
   }
 
-  &:hover, &:focus {
-    i {
-      color: var(--highlight);
-    }
+  &-github {
+    padding-inline: 0.01em; /* 1 */
   }
 }
