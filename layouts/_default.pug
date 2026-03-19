@@ -6,6 +6,7 @@ block vars
     let title = "Portfolio"
     let slug = "home"
     let description = "Hi, I'm Robin;"
+    let layout = "default"
 
 block page-title
   - let pageTitle = `${title} - Robin de Zwart`
@@ -46,14 +47,14 @@ html(lang="en")
   body
     a(href="#main-content").skip Skip to main content
 
-    div.wrapper#top
+    div(class=`wrapper grid-${layout}`)#top
       include ../inc/_sidebar
 
       main.main#main-content
         block main
-          header.header
-            block header
           div.content
+            header.header
+              block header
             block content
 
       footer.footer

@@ -6,18 +6,22 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
+    layout = "mixed"
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
 
-append styles
-  include inc/head/_fontawesome
+append scripts
+  script(src="/js/toc.js" defer)
 
 append header
-  h1.name-wrapper
+  h1
     | Hi, I'm
     |
-    +fancy-name(true)
+    span.name Robin de Zwart
+
+prepend main
+  +toc("Categories")
 
 append content
   div.bio

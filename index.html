@@ -23,9 +23,6 @@
     <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
     <link href="/fa/css/brands.min.css" rel="stylesheet">
     <link href="/fa/css/solid.min.css" rel="stylesheet">
-    <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/fa/css/brands.min.css" rel="stylesheet">
-    <link href="/fa/css/solid.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -35,9 +32,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
+    <script src="/js/toc.js" defer></script>
   </head>
   <body><a class="skip" href="#main-content">Skip to main content</a>
-    <div class="wrapper" id="top">
+    <div class="wrapper grid-mixed" id="top">
       <header class="sidebar">
         <nav class="nav" aria-label="Main">
           <div class="name-wrapper"><a class="name" href="/">Robin de&nbsp;Zwart<span class="highlight" aria-hidden="true">;</span></a>
@@ -57,13 +55,20 @@
         </address>
       </header>
       <main class="main" id="main-content">
-        <header class="header">
-          <h1 class="name-wrapper">
-            Hi, I'm
-            <span class="name" data-fancy="data-fancy"><a class="link" href="/">Robin<span class="sr-only"> de Zwart;</span><span class="letters" aria-hidden="true"><span> </span><span>d</span><span>e</span><span> </span><span>Z</span><span>w</span><span>a</span><span>r</span><span>t</span></span></a><span class="highlight" aria-hidden="true">;</span></span>
-          </h1>
-        </header>
+        <div class="toc-wrapper">
+          <div class="toc">
+            <h2 class="h4" id="toc-heading">Categories</h2>
+            <nav class="nav" aria-labelledby="toc-heading">
+            </nav>
+          </div>
+        </div>
         <div class="content">
+          <header class="header">
+            <h1>
+              Hi, I'm
+              <span class="name">Robin de Zwart</span>
+            </h1>
+          </header>
           <div class="bio">
             <p>
               I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my

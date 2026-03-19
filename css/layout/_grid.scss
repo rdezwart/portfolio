@@ -22,21 +22,70 @@
   grid-template-columns: auto minmax(auto, #{abstracts.$main-width}); /* 1 */
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
+
+  @include abstracts.respond-to("full") {
+    grid-template-columns: minmax(auto, #{abstracts.$main-width});
+  }
+}
+
+/**
+ * Default layout for pages.
+ */
+.grid-default {
+  grid-template-areas:
+    "nav content"
+    "ft  ft";
+
+  @include abstracts.respond-to("full") {
+    grid-template-areas:
+      "nav"
+      "content"
+      "ft";
+  }
+}
+
+/**
+ * Layout for project pages, has a Table of Contents below the nav.
+ */
+.grid-project {
   grid-template-areas:
     "nav hd"
     "toc content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
-    grid-template-columns: minmax(auto, #{abstracts.$main-width});
+    grid-template-areas:
+      "nav"
+      "hd"
+      "toc"
+      "content"
+      "ft";
+  }
+}
+
+
+/**
+ * Layout that mixes the project and default layouts together.
+ * 1. Because the content begins at the top and spans multiple rows, we can tell
+ *    the nav row to be as small as possible, allowing the TOC to be placed
+ *    directly beneath it.
+ */
+.grid-mixed {
+  grid-template-rows: min-content 1fr; /* 1 */
+  grid-template-areas:
+    "nav content"
+    "toc content"
+    "ft  ft";
+
+  @include abstracts.respond-to("full") {
     grid-template-areas:
     "nav"
-    "hd"
     "toc"
     "content"
     "ft";
   }
 }
+
 
 /**
  * Due to semantic HTML, the content of the page is wrapped in some additional

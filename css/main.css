@@ -490,13 +490,62 @@ body {
   -ms-grid-rows: none;
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
-      grid-template-areas: "nav hd" "toc content" "ft  ft";
+}
+.wrapper > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+.wrapper > *:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
 }
 @media screen and (max-width: 40rem) {
   .wrapper {
     -ms-grid-columns: minmax(auto, 40rem);
     grid-template-columns: minmax(auto, 40rem);
+  }
+}
+
+/**
+ * Default layout for pages.
+ */
+.grid-default {
+      grid-template-areas: "nav content" "ft  ft";
+}
+@media screen and (max-width: 40rem) {
+  .grid-default {
+        grid-template-areas: "nav" "content" "ft";
+  }
+}
+
+/**
+ * Layout for project pages, has a Table of Contents below the nav.
+ */
+.grid-project {
+      grid-template-areas: "nav hd" "toc content" "ft  ft";
+}
+@media screen and (max-width: 40rem) {
+  .grid-project {
         grid-template-areas: "nav" "hd" "toc" "content" "ft";
+  }
+}
+
+/**
+ * Layout that mixes the project and default layouts together.
+ * 1. Because the content begins at the top and spans multiple rows, we can tell
+ *    the nav row to be as small as possible, allowing the TOC to be placed
+ *    directly beneath it.
+ */
+.grid-mixed {
+  -ms-grid-rows: -webkit-min-content 1fr;
+  -ms-grid-rows: min-content 1fr;
+  grid-template-rows: -webkit-min-content 1fr;
+  grid-template-rows: min-content 1fr; /* 1 */
+      grid-template-areas: "nav content" "toc content" "ft  ft";
+}
+@media screen and (max-width: 40rem) {
+  .grid-mixed {
+        grid-template-areas: "nav" "toc" "content" "ft";
   }
 }
 
@@ -539,39 +588,81 @@ body {
   grid-area: nav;
   z-index: 1; /* 1 */
 }
+.grid-project > .sidebar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+.grid-mixed > .sidebar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
 
 /**
  * Defining grid areas for article header, content, and TOC.
  */
 .header {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 2;
   grid-area: hd;
 }
 
 .content {
-  -ms-grid-row: 3;
-  -ms-grid-column: 3;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: content;
 }
 
+.grid-project > .content {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+}
+
+.grid-mixed > .content {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+}
+
 .toc-wrapper {
-  -ms-grid-row: 3;
+  -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: toc;
+}
+
+.grid-mixed > .toc-wrapper {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
 }
 
 /**
  * Defining grid area for site footer.
  */
 .footer {
-  -ms-grid-row: 5;
+  -ms-grid-row: 2;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  -ms-grid-column-span: 2;
   grid-area: ft;
+}
+.grid-project > .footer {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+}
+.grid-mixed > .footer {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
 }
 @media screen and (max-width: 40rem) {
   .sidebar {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .grid-project > .sidebar {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .grid-mixed > .sidebar {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
@@ -580,15 +671,38 @@ body {
     -ms-grid-column: 1;
   }
   .content {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  .grid-project > .content {
     -ms-grid-row: 4;
+    -ms-grid-column: 1;
+  }
+  .grid-mixed > .content {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
     -ms-grid-column: 1;
   }
   .toc-wrapper {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
   }
+  .grid-mixed > .toc-wrapper {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
   .footer {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+  }
+  .grid-project > .footer {
     -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+  }
+  .grid-mixed > .footer {
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
   }

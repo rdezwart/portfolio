@@ -55,10 +55,10 @@ mixin fancy-name(fancy = false)
 
 
 //- TOC needs to be wrapped for sticky to work properly
-mixin toc()
+mixin toc(heading="Table of Contents")
   div.toc-wrapper
     div.toc
-      h2.h4#toc-heading Table of Contents
+      h2.h4#toc-heading #{heading}
       nav.nav(aria-labelledby="toc-heading")
         if block
           block
