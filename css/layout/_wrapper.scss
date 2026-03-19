@@ -2,26 +2,6 @@
 
 /**
  * Main wrapper for body of site.
- * 1. Need to set max-width for wrapper otherwise side-nav will stretch too
- *    much. We cannot disable flex-grow on side-nav either, otherwise it won't
- *    grow when it's wrapped above the main body.
- *
- * NOTE: .big-wrapper will be renamed into this class once grid system is
- * deployed across the site.
- */
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rlh #{abstracts.$content-gap};
-
-  margin: auto;
-  padding: #{abstracts.$page-padding};
-  max-width: #{abstracts.$total-width}; /* 1 */
-}
-
-/**
- * Main wrapper for body of site.
  * 1. Sidebar column is auto, main content has a limited width to preserve
  *    reasonable line lengths.
  * 2. Implicit rows of size auto, this makes it simpler when moving to smaller
@@ -29,7 +9,7 @@
  * 3. Ensure elements act block-like on smaller screens, otherwise
  *    clicking/tapping sends focus to unexpected places.
  */
-.big-wrapper {
+.wrapper {
   margin: auto;
   padding: #{abstracts.$page-padding};
 
