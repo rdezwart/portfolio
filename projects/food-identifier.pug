@@ -7,7 +7,20 @@ append vars
 append scripts
   script(type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js" defer)
 
-append article
+append toc
+  li
+    a(href="#introduction") Introduction
+    ol(role="list")
+      li: a(href="#use-case") Use Case
+  li
+    a(href="#the-app") The App
+    ol(role="list")
+      li: a(href="#models") Models
+      li: a(href="#implementation") Implementation
+      li: a(href="#testing") Testing
+  li: a(href="#conclusion") Conclusion
+
+append content
   section#introduction
     +h(2, "Introduction")
 
@@ -20,15 +33,16 @@ append article
       | with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
       | of a friend of mine!
 
-    +h(3, "Use Case")
-      p
-        | This application revolves around people with visual impairments, especially the elderly, having difficulties
-        | reading labels on food items or even identifying them in the first place.
-      p
-        | An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of
-        | a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
-        | interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
-        | properly caption.
+    section#use-case
+      +h(3, "Use Case")
+        p
+          | This application revolves around people with visual impairments, especially the elderly, having difficulties
+          | reading labels on food items or even identifying them in the first place.
+        p
+          | An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of
+          | a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
+          | interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
+          | properly caption.
 
   section#the-app
     +h(2, "The App")
@@ -133,24 +147,24 @@ append article
         img.img(src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009"
           alt="The results of object detection on my friend's fridge")
 
-    section#conclusion
-      +h(2, "Conclusion")
-      p
-        | The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
-        | text, as I discovered through this fun bug:
-      a.img-link(href="/img/food-identifier/motrin-bug.webp" target="_blank")
-        img.img(src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847"
-          alt="Image captioning result on a bottle of Motrin" )
-      p
-        | The models themselves are not trained on data from a wide range of sources, providing some ethical concerns
-        | when it comes to recognizing foods from other cultures. This is something that could be alleviated with
-        | extensive fine-tuning, but it would still be nearly impossible to accommodate for everything. This is
-        | partially why I split the application into two halves instead of making it a single pipeline, as it allows
-        | users some additional manual control to caption individual items should the object detection not work
-        | correctly.
-      p
-        | Additional challenges present themselves when it comes to the accuracy of Moondream, as it is not free from
-        | biases in their training data.
-      p
-        | Looking forward, if I were to develop a mobile app based on this concept, I'd probably need to take
-        | another look at what models are available, given how frequently the field changes these days.
+  section#conclusion
+    +h(2, "Conclusion")
+    p
+      | The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
+      | text, as I discovered through this fun bug:
+    a.img-link(href="/img/food-identifier/motrin-bug.webp" target="_blank")
+      img.img(src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847"
+        alt="Image captioning result on a bottle of Motrin" )
+    p
+      | The models themselves are not trained on data from a wide range of sources, providing some ethical concerns
+      | when it comes to recognizing foods from other cultures. This is something that could be alleviated with
+      | extensive fine-tuning, but it would still be nearly impossible to accommodate for everything. This is
+      | partially why I split the application into two halves instead of making it a single pipeline, as it allows
+      | users some additional manual control to caption individual items should the object detection not work
+      | correctly.
+    p
+      | Additional challenges present themselves when it comes to the accuracy of Moondream, as it is not free from
+      | biases in their training data.
+    p
+      | Looking forward, if I were to develop a mobile app based on this concept, I'd probably need to take
+      | another look at what models are available, given how frequently the field changes these days.

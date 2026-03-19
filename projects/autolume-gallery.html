@@ -20,6 +20,9 @@
     <meta name="twitter:site" content="@Robin_de_Zwart">
     <meta name="author" content="Robin de Zwart">
     <link href="/css/main.css" rel="stylesheet">
+    <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/fa/css/brands.min.css" rel="stylesheet">
+    <link href="/fa/css/solid.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -29,390 +32,425 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
-    <script src="/js/name.js" defer></script>
+    <script src="/js/toc.js" defer></script>
   </head>
-  <body><a class="link skip" href="#main-content">Skip to main content</a>
-    <div class="wrapper">
-      <nav class="side-nav" aria-label="Main">
-        <div class="name-wrapper"><span class="name"><a class="link" href="/">Robin de Zwart</a><span class="highlight" aria-hidden="true">;</span></span>
-        </div>
-        <ul class="nav-list" role="list">
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/autolume-gallery.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI + VR<span class="highlight">&rbrack;</span> AutolumeGallery</a></div>
-            <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/food-identifier.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI<span class="highlight">&rbrack;</span> Food Identifier</a></div>
-            <p class="description">Object detection and image captioning for food inside fridges.</p>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/a-sight-never-seen.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>Game<span class="highlight">&rbrack;</span> A Sight Never Seen</a></div>
-            <p class="description">Short visual novel with branching paths, set in a world of magic and secrets.</p>
-          </li>
-        </ul>
-      </nav>
+  <body><a class="skip" href="#main-content">Skip to main content</a>
+    <div class="wrapper" id="top">
+      <header class="sidebar">
+        <nav class="nav" aria-label="Main">
+          <div class="name-wrapper"><a class="name" href="/">Robin de&nbsp;Zwart<span class="highlight" aria-hidden="true">;</span></a>
+            <p class="description">Interactive Systems Developer</p>
+          </div>
+          <ul>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/#about">About</a></li>
+          </ul>
+        </nav>
+        <address>
+          <ul class="socials" role="list">
+            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="fa-sr-only">Robin's LinkedIn</span></a></li>
+            <li><a class="social-link" href="https://github.com/rdezwart" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="fa-sr-only">Robin's GitHub</span></a></li>
+            <li><a class="social-link" href="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="fa-sr-only">Robin's Hugging Face</span></a></li>
+          </ul>
+        </address>
+      </header>
       <main class="main" id="main-content">
-        <article>
-          <hgroup>
-            <h1>AutolumeGallery</h1>
-            <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
-          </hgroup>
-          <section id="abstract">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Abstract</h2>
-            <p class="introduction">
-              AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
-              of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
-              and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
-              piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
-              of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
-            </p>
-            <section id="links">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
+        <article class="article">
+          <header class="header">
+            <hgroup>
+              <h1>AutolumeGallery</h1>
+              <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
+            </hgroup>
+          </header>
+          <div class="toc-wrapper">
+            <div class="toc">
+              <h2 class="h4" id="toc-heading">Table of Contents</h2>
+              <nav class="nav" aria-labelledby="toc-heading">
+                <ol role="list">
+                  <li><a href="#abstract">Abstract</a>
+                    <ol role="list">
+                      <li><a href="#links">Links</a></li>
+                    </ol>
+                  </li>
+                  <li><a href="#examples">Examples</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
+                  <li><a href="#literature-review">Literature Review</a></li>
+                  <li><a href="#system-design">System Design</a></li>
+                  <li><a href="#implementation-details">Implementation Details</a>
+                    <ol role="list">
+                      <li><a href="#vr-hardware">VR Hardware</a></li>
+                      <li><a href="#unity">Unity</a></li>
+                      <li><a href="#autolume-live">Autolume-Live</a></li>
+                    </ol>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#ethical-statement">Ethical Statement</a></li>
+                    <li><a href="#acknowledgements">Acknowledgements</a></li>
+                    <li><a href="#references">References</a></li>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="content">
+            <section id="abstract">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Abstract</h2>
+              <p class="introduction">
+                AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
+                of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
+                and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
+                piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
+                of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+              </p>
+              <section id="links">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
+                <ul class="list">
+                  <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
+                  <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
+                  <li>Dataset: <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
+                </ul>
+                <div class="youtube-container">
+                  <iframe src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&amp;rel=0&amp;hl=en-ca" title="AutolumeGallery - Demo Video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </section>
+            </section>
+            <section id="examples">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
+              <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
+            </section>
+            <section id="introduction">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
+              <p>
+                This project is dedicated to my grandfather, Peter John Voormeij, who passed away in early 2024. He was a Dutch
+                painter and printmaker, and with this "Generative AI and Computational Creativity" course I wanted to explore
+                and honour his abstract artwork in my own way. With the blessing of my family, I constructed a dataset of
+                ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
+                create an interactive experience that enables users to do the same.
+              </p>
+              <p>
+                Having recently completed a Unity-based virtual reality course, I found myself wanting to dive deeper and
+                further develop my skills in that area. With an improved understanding of what makes for an engaging experience,
+                I ended up settling on VR for the user interaction half of the project.
+              </p>
+              <p>
+                As the course progressed, it became clear that generative adversarial networks (GANs) would be a powerful
+                option, as they run faster than diffusion models (e.g., Midjourney) and don't require nearly as much data.
+                Essentially, GANs work by pitting two separate neural networks against each other in an arms race: a
+                \emph{generator} network and a \emph{discriminator} network. The generator's job is to create new images from
+                random noise, and the discriminator tries to tell apart the generator's fake output from the real training data.
+                Both networks learn from their mistakes and try to improve at their assigned tasks over time. If everything goes
+                perfectly, the discriminator ends up with a 50\% chance of making the correct prediction, meaning the
+                generator's images are impossible for it to tell apart from the real images.
+              </p>
+            </section>
+            <section id="literature-review">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
+              <p>
+                Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
+                locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
+                development, improvements, and usage \cite{sobhan_autolume_2024}.
+              </p>
+              <p>
+                An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
+                highlighting the real-time image generation with a wide array of options and vectors to explore, all
+                configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
+                devices \cite{wright_open_1997}. Given the abstract nature of my dataset, working with Autolume's unique visual
+                style felt like the right approach for the project.
+              </p>
+              <p>
+                Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
+                that streams video and audio to connected multimedia devices \cite{ndi_ndi_2025}.
+              </p>
+              <p>
+                During the proposal peer review process, I was introduced to a demo video \cite{hobby_technology_latent_2024} of
+                a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
+                featured a different type of model, the user interface served as an inspiration and a confirmation that my
+                initial idea was feasible.
+              </p>
+            </section>
+            <section id="system-design">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
+              <p>
+                I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
+                the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
+                extra effort!
+              </p>
+              <p>
+                On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
+                components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
+              </p>
               <ul class="list">
-                <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
-                <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
-                <li>Dataset: <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
+                <li>Unity receives user input from the VR hardware and in-world interactables.</li>
+                <li>Unity uses OSC to send decimals to Autolume-Live.</li>
+                <li>Autolume-Live receives OSC output and adjusts the corresponding GAN settings.</li>
+                <li>Autolume-Live uses NDI to broadcast generated images back to Unity.</li>
+                <li>Unity receives NDI output and updates the virtual canvas.</li>
               </ul>
-              <div class="youtube-container">
-                <iframe src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&amp;rel=0&amp;hl=en-ca" title="AutolumeGallery - Demo Video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
             </section>
-          </section>
-          <section>
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
-            <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
-          </section>
-          <section id="introduction">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
-            <p>
-              This project is dedicated to my grandfather, Peter John Voormeij, who passed away in early 2024. He was a Dutch
-              painter and printmaker, and with this "Generative AI and Computational Creativity" course I wanted to explore
-              and honour his abstract artwork in my own way. With the blessing of my family, I constructed a dataset of
-              ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
-              create an interactive experience that enables users to do the same.
-            </p>
-            <p>
-              Having recently completed a Unity-based virtual reality course, I found myself wanting to dive deeper and
-              further develop my skills in that area. With an improved understanding of what makes for an engaging experience,
-              I ended up settling on VR for the user interaction half of the project.
-            </p>
-            <p>
-              As the course progressed, it became clear that generative adversarial networks (GANs) would be a powerful
-              option, as they run faster than diffusion models (e.g., Midjourney) and don't require nearly as much data.
-              Essentially, GANs work by pitting two separate neural networks against each other in an arms race: a
-              \emph{generator} network and a \emph{discriminator} network. The generator's job is to create new images from
-              random noise, and the discriminator tries to tell apart the generator's fake output from the real training data.
-              Both networks learn from their mistakes and try to improve at their assigned tasks over time. If everything goes
-              perfectly, the discriminator ends up with a 50\% chance of making the correct prediction, meaning the
-              generator's images are impossible for it to tell apart from the real images.
-            </p>
-          </section>
-          <section id="literature-review">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
-            <p>
-              Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
-              locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
-              development, improvements, and usage \cite{sobhan_autolume_2024}.
-            </p>
-            <p>
-              An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
-              highlighting the real-time image generation with a wide array of options and vectors to explore, all
-              configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
-              devices \cite{wright_open_1997}. Given the abstract nature of my dataset, working with Autolume's unique visual
-              style felt like the right approach for the project.
-            </p>
-            <p>
-              Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
-              that streams video and audio to connected multimedia devices \cite{ndi_ndi_2025}.
-            </p>
-            <p>
-              During the proposal peer review process, I was introduced to a demo video \cite{hobby_technology_latent_2024} of
-              a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
-              featured a different type of model, the user interface served as an inspiration and a confirmation that my
-              initial idea was feasible.
-            </p>
-          </section>
-          <section id="system-design">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
-            <p>
-              I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
-              the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
-              extra effort!
-            </p>
-            <p>
-              On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
-              components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
-            </p>
-            <ul class="list">
-              <li>Unity receives user input from the VR hardware and in-world interactables.</li>
-              <li>Unity uses OSC to send decimals to Autolume-Live.</li>
-              <li>Autolume-Live receives OSC output and adjusts the corresponding GAN settings.</li>
-              <li>Autolume-Live uses NDI to broadcast generated images back to Unity.</li>
-              <li>Unity receives NDI output and updates the virtual canvas.</li>
-            </ul>
-          </section>
-          <section id="implementation-details">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Implementation Details</h2>
-            <p>
-              The current implementation requires Unity and Autolume-Live to be running on the same machine, as they both look
-              to different ports on the local IP address. Detailed installation instructions can be found on the GitHub
-              repository for this project, linked below the Abstract.
-            </p>
-            <section id="vr-hardware">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>VR Hardware</h3>
+            <section id="implementation-details">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Implementation Details</h2>
               <p>
-                The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
-                over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
-                headset.
+                The current implementation requires Unity and Autolume-Live to be running on the same machine, as they both look
+                to different ports on the local IP address. Detailed installation instructions can be found on the GitHub
+                repository for this project, linked below the Abstract.
               </p>
+              <section id="vr-hardware">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>VR Hardware</h3>
+                <p>
+                  The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
+                  over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
+                  headset.
+                </p>
+              </section>
+              <section id="unity">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Unity</h3>
+                <p>
+                  The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
+                  \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
+                </p>
+                <p>There are comments in every script I wrote linking to any external resources I drew from.</p>
+                <p>
+                  The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
+                  to show. I will run through each object and any relevant children.
+                </p>
+                <figure><a class="img-link" href="/img/autolume-gallery/hierarchy.png" target="_blank"><img class="img" src="/img/autolume-gallery/hierarchy.png" loading="lazy" width="286" height="239" alt="Unity hierarchy for this project."></a>
+                  <figcaption><strong>Figure 1:</strong> Root hierarchy of the Gallery scene.</figcaption>
+                </figure>
+                <section id="directional-light">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Directional Light</h4>
+                  <p>Standard Unity asset providing sunlight to the scene.</p>
+                  <p class="libraries">Libraries: None.</p>
+                </section>
+                <section id="xr-interaction-manager">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Interaction Manager</h4>
+                  <p>
+                    Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
+                    the XR Origin.
+                  </p>
+                  <p class="libraries">Libraries: XR Interaction Toolkit.</p>
+                </section>
+                <section id="osc-manager">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>OSC Manager</h4>
+                  <p>
+                    Responsible for transmitting and receiving information over OSC. The transmitter connects to
+                    \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
+                    not trigger any of the transmissions itself, but will diligently send off any messages it's given.
+                  </p>
+                  <p class="libraries">Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.</p>
+                </section>
+                <section id="xr-origin">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Origin (XR Rig) Affordance Variant</h4>
+                  <p>
+                    Contains the VR controller models, the player camera, locomotion controllers, and interactors of various
+                    types. This object is the user's gateway into the scene, being the digital equivalent of the user's physical
+                    hardware.
+                  </p>
+                  <p>
+                    The locomotion controllers are how the player can move around the scene. Types include "Turn" (rotating the
+                    camera a fixed amount with the joystick), "Move" (walking around with the joystick), and "Teleportation"
+                    (blinking the user to the target location).
+                  </p>
+                  <p>
+                    The interactor children also have various specifications, such as "Gaze" (where the user is looking), "Poke"
+                    (what the user is touching), "Near-Far" (what the user is pointing at), and "Teleport" (where the user wants
+                    to go).
+                  </p>
+                  <p>
+                    There are also "Affordance Callouts" attached to the controller, which are in charge of displaying the
+                    button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
+                    affordances are lifted from one of Unity's template VR starter projects.
+                  </p>
+                  <p class="libraries">Libraries: XR Interaction Toolkit.</p>
+                </section>
+                <section id="painting">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Painting</h4>
+                  <p>
+                    The digital canvas Autolume is sending artwork to. There are four "Painting Panel" manipulator children,
+                    each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
+                    Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
+                    Live" on the local machine.
+                  </p>
+                  <p class="libraries">Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.</p>
+                </section>
+                <section id="vector-controllers">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Vector Controller Left/Right</h4>
+                  <p>
+                    Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
+                    but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
+                    affordances labelling each podium.
+                  </p>
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
+                </section>
+                <section id="layer-controller">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Layer Controller</h4>
+                  <p>
+                    A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
+                    the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
+                    Autolume via the OSC Manager. There is an affordance labelling this podium.
+                  </p>
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
+                </section>
+                <section id="seed-controller">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Seed Controller</h4>
+                  <p>
+                    A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
+                    the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
+                    the OSC Manager. There is an affordance labelling this podium.
+                  </p>
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
+                </section>
+                <section id="panel-resetter">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Panel Resetter</h4>
+                  <p>
+                    A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
+                    positions and orientations. There is an affordance labelling this podium.
+                  </p>
+                  <p class="libraries">Libraries: Custom, XR Interaction Toolkit.</p>
+                </section>
+                <section id="environment">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Environment</h4>
+                  <p>
+                    Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
+                    the experience launches.
+                  </p>
+                  <p class="libraries">Libraries: XR Interaction Toolkit.</p>
+                </section>
+                <section id="camera">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Camera</h4>
+                  <p>
+                    A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
+                    can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
+                    application's data folder.
+                  </p>
+                  <p class="libraries">Libraries: Custom.</p>
+                </section>
+                <section id="quit-listener">
+                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>QuitListener</h4>
+                  <p>Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.</p>
+                  <p class="libraries">Libraries: Custom.</p>
+                </section>
+              </section>
+              <section id="autolume-live">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Autolume-Live</h3>
+                <p>
+                  With the guidance of Arshia Sobhan, he and I used one of the Metacreation Lab's computers to train a model on
+                  my grandfather's artwork over the course of several days. He kept an eye on the training process while he was
+                  on campus, and eventually a suitable model emerged.
+                </p>
+                <p>
+                  Once transferred to my home computer, I used Autolume's "Feature Extractor" to find six meaningful latent
+                  space vectors. I chose vectors that created interesting changes in the artwork and was excited for users to
+                  explore.
+                </p>
+                <p>
+                  I created a preset containing the trained model, my chosen vectors, and several parameters listening to
+                  different OSC channels:
+                </p>
+                <ul class="list">
+                  <li>Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position</li>
+                  <li>Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation</li>
+                  <li>Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position</li>
+                  <li>Vector 2: \texttt{left/y}: Vector Controller Left's $y$ position</li>
+                  <li>Vector 3: \texttt{left/z}: Vector Controller Left's $z$ position</li>
+                  <li>Vector 4: \texttt{right/x}: Vector Controller Right's $x$ position</li>
+                  <li>Vector 5: \texttt{right/y}: Vector Controller Right's $y$ position</li>
+                  <li>Vector 6: \texttt{right/z}: Vector Controller Right's $z$ position</li>
+                  <li>Layer 3, Translation: \texttt{layer/x}: Layer Controller's $x$ position</li>
+                  <li>Layer 3, Translation: \texttt{layer/y}: Layer Controller's $y$ position</li>
+                  <li>Layer 3, Rotation: \texttt{layer/r}: Layer Controller's $z$ rotation</li>
+                  <li>Layer 3, Scale: \texttt{layer/s}: Layer Controller's $x$ scale</li>
+                </ul>
+              </section>
             </section>
-            <section id="unity">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Unity</h3>
-              <p>
-                The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
-                \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
-              </p>
-              <p>There are comments in every script I wrote linking to any external resources I drew from.</p>
-              <p>
-                The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
-                to show. I will run through each object and any relevant children.
-              </p>
-              <figure><a class="img-link" href="/img/autolume-gallery/hierarchy.png" target="_blank"><img class="img" src="/img/autolume-gallery/hierarchy.png" loading="lazy" width="286" height="239" alt="Unity hierarchy for this project."></a>
-                <figcaption><strong>Figure 1:</strong> Root hierarchy of the Gallery scene.</figcaption>
+            <section id="results">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Results</h2>
+              <figure><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a>
+                <figcaption><strong>Figure 2:</strong> The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
+                  showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
+                  this combination.
+                </figcaption>
               </figure>
-              <section id="directional-light">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Directional Light</h4>
-                <p>Standard Unity asset providing sunlight to the scene.</p>
-                <p class="libraries">Libraries: None.</p>
-              </section>
-              <section id="xr-interaction-manager">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Interaction Manager</h4>
-                <p>
-                  Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
-                  the XR Origin.
-                </p>
-                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
-              </section>
-              <section id="osc-manager">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>OSC Manager</h4>
-                <p>
-                  Responsible for transmitting and receiving information over OSC. The transmitter connects to
-                  \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
-                  not trigger any of the transmissions itself, but will diligently send off any messages it's given.
-                </p>
-                <p class="libraries">Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.</p>
-              </section>
-              <section id="xr-origin">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Origin (XR Rig) Affordance Variant</h4>
-                <p>
-                  Contains the VR controller models, the player camera, locomotion controllers, and interactors of various
-                  types. This object is the user's gateway into the scene, being the digital equivalent of the user's physical
-                  hardware.
-                </p>
-                <p>
-                  The locomotion controllers are how the player can move around the scene. Types include "Turn" (rotating the
-                  camera a fixed amount with the joystick), "Move" (walking around with the joystick), and "Teleportation"
-                  (blinking the user to the target location).
-                </p>
-                <p>
-                  The interactor children also have various specifications, such as "Gaze" (where the user is looking), "Poke"
-                  (what the user is touching), "Near-Far" (what the user is pointing at), and "Teleport" (where the user wants
-                  to go).
-                </p>
-                <p>
-                  There are also "Affordance Callouts" attached to the controller, which are in charge of displaying the
-                  button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
-                  affordances are lifted from one of Unity's template VR starter projects.
-                </p>
-                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
-              </section>
-              <section id="painting">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Painting</h4>
-                <p>
-                  The digital canvas Autolume is sending artwork to. There are four "Painting Panel" manipulator children,
-                  each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
-                  Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
-                  Live" on the local machine.
-                </p>
-                <p class="libraries">Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.</p>
-              </section>
-              <section id="vector-controllers">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Vector Controller Left/Right</h4>
-                <p>
-                  Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
-                  but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
-                  affordances labelling each podium.
-                </p>
-                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
-              </section>
-              <section id="layer-controller">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Layer Controller</h4>
-                <p>
-                  A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
-                  the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
-                  Autolume via the OSC Manager. There is an affordance labelling this podium.
-                </p>
-                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
-              </section>
-              <section id="seed-controller">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Seed Controller</h4>
-                <p>
-                  A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
-                  the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
-                  the OSC Manager. There is an affordance labelling this podium.
-                </p>
-                <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
-              </section>
-              <section id="panel-resetter">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Panel Resetter</h4>
-                <p>
-                  A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
-                  positions and orientations. There is an affordance labelling this podium.
-                </p>
-                <p class="libraries">Libraries: Custom, XR Interaction Toolkit.</p>
-              </section>
-              <section id="environment">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Environment</h4>
-                <p>
-                  Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
-                  the experience launches.
-                </p>
-                <p class="libraries">Libraries: XR Interaction Toolkit.</p>
-              </section>
-              <section id="camera">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Camera</h4>
-                <p>
-                  A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
-                  can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
-                  application's data folder.
-                </p>
-                <p class="libraries">Libraries: Custom.</p>
-              </section>
-              <section id="quit-listener">
-                <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>QuitListener</h4>
-                <p>Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.</p>
-                <p class="libraries">Libraries: Custom.</p>
-              </section>
+              <p>
+                During the early stages of development, I only had a single "Painting Panel". It directly matched the output
+                from Autolume-Live and was great for prototyping and developing the code base! However, it didn't quite have the
+                visual interest or interactivity I was looking for.
+              </p>
+              <p>
+                See Figure \ref{fig:2}. If you like, use your hands to cover three-quarters of the image, leaving just the
+                bottom left corner clear. You're now seeing what essentially was the original single-panel setup. I found it
+                still interesting, but felt it was missing\ldots something. Now, uncover the rest of the image and notice how
+                different the piece feels. To me, there's more complexity, feels unified, and is overall more aesthetically
+                pleasing.
+              </p>
+              <p>
+                Increasing the panel count and allowing users to change the structure of the piece itself was a huge realization
+                and breakthrough for the project. It significantly increased the creative possibilities and opened many new
+                doors for interactions and development directions. I love how the user is able to take a much more active role
+                in the creation of the piece, and how their decisions become a part of the artwork, if only for a little while.
+              </p>
+              <p>
+                The Autolume model we trained is limited to a resolution of 512x512 pixels, which didn't turn out to be as much
+                of an issue as I initially thought. It's significantly more noticeable the closer you are to a panel, but from a
+                distance it's negligible.
+              </p>
             </section>
-            <section id="autolume-live">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Autolume-Live</h3>
+            <section id="conclusion">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Conclusion &amp; Future Work</h2>
               <p>
-                With the guidance of Arshia Sobhan, he and I used one of the Metacreation Lab's computers to train a model on
-                my grandfather's artwork over the course of several days. He kept an eye on the training process while he was
-                on campus, and eventually a suitable model emerged.
+                I am very happy and proud of the current state of the project, and I look forward to being able to share the
+                actual experience, not just a demo video. I plan to continue training the model and looking at other directions
+                to take the dataset once the semester is over.
               </p>
               <p>
-                Once transferred to my home computer, I used Autolume's "Feature Extractor" to find six meaningful latent
-                space vectors. I chose vectors that created interesting changes in the artwork and was excited for users to
-                explore.
+                There were some additional approaches to visualizing latent spaces that I found during my preliminary research
+                phase, but unfortunately did not get to implement due to scope creep and a lack of time
+                \cite{despois_latent_2017, maaten_visualizing_2008}. I'd love to explore the visualization possibilities of
+                latent spaces more in the future, especially under the guidance of the Metacreation Lab.
               </p>
               <p>
-                I created a preset containing the trained model, my chosen vectors, and several parameters listening to
-                different OSC channels:
+                Brought up as feedback during the class presentation, I struggled to find clear information on the concept of
+                "intermediate latent fields", which was a potential way of smoothing the harsh panel boundaries when textures
+                no longer line up. I want to give this a shot, but need some help.
               </p>
-              <ul class="list">
-                <li>Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position</li>
-                <li>Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation</li>
-                <li>Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position</li>
-                <li>Vector 2: \texttt{left/y}: Vector Controller Left's $y$ position</li>
-                <li>Vector 3: \texttt{left/z}: Vector Controller Left's $z$ position</li>
-                <li>Vector 4: \texttt{right/x}: Vector Controller Right's $x$ position</li>
-                <li>Vector 5: \texttt{right/y}: Vector Controller Right's $y$ position</li>
-                <li>Vector 6: \texttt{right/z}: Vector Controller Right's $z$ position</li>
-                <li>Layer 3, Translation: \texttt{layer/x}: Layer Controller's $x$ position</li>
-                <li>Layer 3, Translation: \texttt{layer/y}: Layer Controller's $y$ position</li>
-                <li>Layer 3, Rotation: \texttt{layer/r}: Layer Controller's $z$ rotation</li>
-                <li>Layer 3, Scale: \texttt{layer/s}: Layer Controller's $x$ scale</li>
-              </ul>
             </section>
-          </section>
-          <section id="results">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Results</h2>
-            <figure><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a>
-              <figcaption><strong>Figure 2:</strong> The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
-                showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
-                this combination.
-              </figcaption>
-            </figure>
-            <p>
-              During the early stages of development, I only had a single "Painting Panel". It directly matched the output
-              from Autolume-Live and was great for prototyping and developing the code base! However, it didn't quite have the
-              visual interest or interactivity I was looking for.
-            </p>
-            <p>
-              See Figure \ref{fig:2}. If you like, use your hands to cover three-quarters of the image, leaving just the
-              bottom left corner clear. You're now seeing what essentially was the original single-panel setup. I found it
-              still interesting, but felt it was missing\ldots something. Now, uncover the rest of the image and notice how
-              different the piece feels. To me, there's more complexity, feels unified, and is overall more aesthetically
-              pleasing.
-            </p>
-            <p>
-              Increasing the panel count and allowing users to change the structure of the piece itself was a huge realization
-              and breakthrough for the project. It significantly increased the creative possibilities and opened many new
-              doors for interactions and development directions. I love how the user is able to take a much more active role
-              in the creation of the piece, and how their decisions become a part of the artwork, if only for a little while.
-            </p>
-            <p>
-              The Autolume model we trained is limited to a resolution of 512x512 pixels, which didn't turn out to be as much
-              of an issue as I initially thought. It's significantly more noticeable the closer you are to a panel, but from a
-              distance it's negligible.
-            </p>
-          </section>
-          <section id="conclusion">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Conclusion &amp; Future Work</h2>
-            <p>
-              I am very happy and proud of the current state of the project, and I look forward to being able to share the
-              actual experience, not just a demo video. I plan to continue training the model and looking at other directions
-              to take the dataset once the semester is over.
-            </p>
-            <p>
-              There were some additional approaches to visualizing latent spaces that I found during my preliminary research
-              phase, but unfortunately did not get to implement due to scope creep and a lack of time
-              \cite{despois_latent_2017, maaten_visualizing_2008}. I'd love to explore the visualization possibilities of
-              latent spaces more in the future, especially under the guidance of the Metacreation Lab.
-            </p>
-            <p>
-              Brought up as feedback during the class presentation, I struggled to find clear information on the concept of
-              "intermediate latent fields", which was a potential way of smoothing the harsh panel boundaries when textures
-              no longer line up. I want to give this a shot, but need some help.
-            </p>
-          </section>
-          <section id="ethical-statement">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Ethical Statement</h2>
-            <p>
-              At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
-              as their own human art; the original authors/artists deserve credit and compensation.
-            </p>
-            <p>
-              That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
-              where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
-              my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
-              and can give it the proper credit and respect it deserves.
-            </p>
-          </section>
-          <section id="acknowledgements">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Acknowledgements</h2>
-            <p>
-              With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
-              assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
-              what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
-            </p>
-            <p>
-              I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
-              process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
-              strong enough, and he saved the day.
-            </p>
-            <p>
-              Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
-              of what I've got so far. Love and miss you, Opa.
-            </p>
-          </section>
-          <section id="references">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>References</h2>
-          </section>
+            <section id="ethical-statement">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Ethical Statement</h2>
+              <p>
+                At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
+                as their own human art; the original authors/artists deserve credit and compensation.
+              </p>
+              <p>
+                That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
+                where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
+                my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
+                and can give it the proper credit and respect it deserves.
+              </p>
+            </section>
+            <section id="acknowledgements">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Acknowledgements</h2>
+              <p>
+                With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
+                assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
+                what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
+              </p>
+              <p>
+                I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
+                process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
+                strong enough, and he saved the day.
+              </p>
+              <p>
+                Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
+                of what I've got so far. Love and miss you, Opa.
+              </p>
+            </section>
+            <section id="references">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>References</h2>
+            </section>
+          </div>
         </article>
       </main>
+      <footer class="footer"><a href="#top">Back to Top</a>
+      </footer>
     </div>
   </body>
 </html>

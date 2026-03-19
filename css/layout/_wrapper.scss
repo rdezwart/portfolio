@@ -74,19 +74,18 @@
 /**
  * Defining grid areas for article header, content, and TOC.
  */
-.article {
-  &-header {
-    grid-area: hd;
-  }
-
-  &-content {
-    grid-area: content;
-  }
-
-  .toc-wrapper {
-    grid-area: toc;
-  }
+.header {
+  grid-area: hd;
 }
+
+.content {
+  grid-area: content;
+}
+
+.toc-wrapper {
+  grid-area: toc;
+}
+
 
 /**
  * Defining grid area for site footer.

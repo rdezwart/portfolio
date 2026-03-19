@@ -4,7 +4,29 @@ append vars
   -
     project = projects["AutolumeGallery"]
 
-append article
+append toc
+  li
+    a(href="#abstract") Abstract
+    ol(role="list")
+      li: a(href="#links") Links
+  li: a(href="#examples") Examples
+  li: a(href="#introduction") Introduction
+  li: a(href="#literature-review") Literature Review
+  li: a(href="#system-design") System Design
+  li
+    a(href="#implementation-details") Implementation Details
+    ol(role="list")
+      li: a(href="#vr-hardware") VR Hardware
+      li: a(href="#unity") Unity
+      li: a(href="#autolume-live") Autolume-Live
+    li: a(href="#results") Results
+    li: a(href="#conclusion") Conclusion
+    li: a(href="#ethical-statement") Ethical Statement
+    li: a(href="#acknowledgements") Acknowledgements
+    li: a(href="#references") References
+
+
+append content
   section#abstract
     +h(2, "Abstract")
 
@@ -31,7 +53,7 @@ append article
           allowfullscreen
         )
 
-  section
+  section#examples
     +h(2, "Examples")
 
     a.img-link(href="/img/autolume-gallery/canvas-1.webp" target="_blank")

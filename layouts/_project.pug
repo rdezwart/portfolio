@@ -16,9 +16,23 @@ block url
 block image-alt
   meta(property="og:image:alt" content=`Hi, I'm Robin; This is my project, ${title}.`)
 
+append scripts
+  script(src="/js/toc.js" defer)
+
 block main
-  article
-    block article
-      hgroup
-        +h(1, title)
-        p.description #{description}
+  article.article
+    header.header
+      block header
+        hgroup
+          +h(1, title)
+          p.description #{description}
+
+    +toc()
+      ol(role="list")
+        block toc
+
+    div.content
+      block content
+
+append footer
+  a(href="#top") Back to Top

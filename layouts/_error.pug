@@ -19,21 +19,17 @@ block image
 block image-alt
   meta(property="og:image:alt" content="Hi, I'm Robin; This is an error page.")
 
-block main
+append header
   h1 Error #{errorCode}#[span.highlight &colon; ] #{errorName}
 
-  div
-    block error-message
-      p I'm a little teapot
-      p Short and stout
-      p Here is my handle
-      p Here is my spout
-      p When I get all steamed up
-      p Hear me shout
-      p Tip me over and pour me out!
+append content
+  block error-message
+    p I'm a little teapot
+    p Short and stout
+    p Here is my handle
+    p Here is my spout
+    p When I get all steamed up
+    p Hear me shout
+    p Tip me over and pour me out!
 
-  nav(aria-label="Main")
-    ul.nav-list
-      li.nav-item
-        div.nav-link-wrapper: a(href="/") #[span.highlight(aria-hidden="true") &gt; ]
-          |  Return Home
+  p: a(href="/") Return Home

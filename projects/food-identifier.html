@@ -20,6 +20,9 @@
     <meta name="twitter:site" content="@Robin_de_Zwart">
     <meta name="author" content="Robin de Zwart">
     <link href="/css/main.css" rel="stylesheet">
+    <link href="/fa/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/fa/css/brands.min.css" rel="stylesheet">
+    <link href="/fa/css/solid.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -29,149 +32,176 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
-    <script src="/js/name.js" defer></script>
+    <script src="/js/toc.js" defer></script>
     <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.26.0/gradio.js" defer></script>
   </head>
-  <body><a class="link skip" href="#main-content">Skip to main content</a>
-    <div class="wrapper">
-      <nav class="side-nav" aria-label="Main">
-        <div class="name-wrapper"><span class="name"><a class="link" href="/">Robin de Zwart</a><span class="highlight" aria-hidden="true">;</span></span>
-        </div>
-        <ul class="nav-list" role="list">
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/autolume-gallery.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI + VR<span class="highlight">&rbrack;</span> AutolumeGallery</a></div>
-            <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/food-identifier.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>AI<span class="highlight">&rbrack;</span> Food Identifier</a></div>
-            <p class="description">Object detection and image captioning for food inside fridges.</p>
-          </li>
-          <li class="nav-item">
-            <div class="nav-link-wrapper"><a href="/projects/a-sight-never-seen.html"><span class="highlight" aria-hidden="true">&gt; </span><span class="highlight">&lbrack;</span>Game<span class="highlight">&rbrack;</span> A Sight Never Seen</a></div>
-            <p class="description">Short visual novel with branching paths, set in a world of magic and secrets.</p>
-          </li>
-        </ul>
-      </nav>
+  <body><a class="skip" href="#main-content">Skip to main content</a>
+    <div class="wrapper" id="top">
+      <header class="sidebar">
+        <nav class="nav" aria-label="Main">
+          <div class="name-wrapper"><a class="name" href="/">Robin de&nbsp;Zwart<span class="highlight" aria-hidden="true">;</span></a>
+            <p class="description">Interactive Systems Developer</p>
+          </div>
+          <ul>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/#about">About</a></li>
+          </ul>
+        </nav>
+        <address>
+          <ul class="socials" role="list">
+            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="fa-sr-only">Robin's LinkedIn</span></a></li>
+            <li><a class="social-link" href="https://github.com/rdezwart" target="_blank" rel="noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="fa-sr-only">Robin's GitHub</span></a></li>
+            <li><a class="social-link" href="https://huggingface.co/rdezwart" target="_blank" rel="noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="fa-sr-only">Robin's Hugging Face</span></a></li>
+          </ul>
+        </address>
+      </header>
       <main class="main" id="main-content">
-        <article>
-          <hgroup>
-            <h1>Food Identifier</h1>
-            <p class="description">Object detection and image captioning for food inside fridges.</p>
-          </hgroup>
-          <section id="introduction">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
-            <p class="introduction">
-              The goal of this project is to create the foundation for an application that allows visually impaired people to
-              identify food objects, such as those in refrigerators, by taking a photo of them and having the item described.
-              According to this
-              <a class="link" href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noreferrer">2018 article from the Canadian Journal of Ophthalmology</a>,
-              5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
-              with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
-              of a friend of mine!
-            </p>
-            <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Use Case</h3>
-            <p>
-              This application revolves around people with visual impairments, especially the elderly, having difficulties
-              reading labels on food items or even identifying them in the first place.
-            </p>
-            <p>
-              An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of
-              a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
-              interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
-              properly caption.
-            </p>
-          </section>
-          <section id="the-app">
-            <h2><span class="highlight" aria-hidden="true">&gt; </span>The App</h2>
-            <p>
-              Here's a direct link to
-              <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a>
-            </p>
-            <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
-            <noscript>
-              <p>The embedded version of this project <strong>requires JavaScript to run.</strong></p>
-            </noscript>
-            <section id="models">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Models</h3>
-              <p>This project uses two models, one for initial object detection and another captioning the detected objects.</p>
-              <p><b>YOLOS:</b> <a class="link" href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noreferrer">hustvl/yolos-small-300</a></p>
-              <ul class="list">
-                <li>
-                  YOLOS' job is to find regions of the image that should have things worth captioning (such as bottles,
-                  produce, containers, etc.), then feed them to Moondream.
-                </li>
-              </ul>
-              <p><b>Moondream:</b> <a class="link" href="https://huggingface.co/vikhyatk/moondream2" target="_blank" rel="noreferrer">vikhyatk/moondream2</a></p>
-              <ul class="list">
-                <li>
-                  Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The
-                  default question for this app is 
-                  <q>What is this food item? Include any text on labels.</q>
-                </li>
-              </ul>
-              <p>
-                I landed on these models after quite some searching to find options that were both lightweight and accurate,
-                allowing for the possibility of mobile device implementations.
+        <article class="article">
+          <header class="header">
+            <hgroup>
+              <h1>Food Identifier</h1>
+              <p class="description">Object detection and image captioning for food inside fridges.</p>
+            </hgroup>
+          </header>
+          <div class="toc-wrapper">
+            <div class="toc">
+              <h2 class="h4" id="toc-heading">Table of Contents</h2>
+              <nav class="nav" aria-labelledby="toc-heading">
+                <ol role="list">
+                  <li><a href="#introduction">Introduction</a>
+                    <ol role="list">
+                      <li><a href="#use-case">Use Case</a></li>
+                    </ol>
+                  </li>
+                  <li><a href="#the-app">The App</a>
+                    <ol role="list">
+                      <li><a href="#models">Models</a></li>
+                      <li><a href="#implementation">Implementation</a></li>
+                      <li><a href="#testing">Testing</a></li>
+                    </ol>
+                  </li>
+                  <li><a href="#conclusion">Conclusion</a></li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="content">
+            <section id="introduction">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
+              <p class="introduction">
+                The goal of this project is to create the foundation for an application that allows visually impaired people to
+                identify food objects, such as those in refrigerators, by taking a photo of them and having the item described.
+                According to this
+                <a class="link" href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noreferrer">2018 article from the Canadian Journal of Ophthalmology</a>,
+                5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
+                with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
+                of a friend of mine!
               </p>
-              <p>
-                I found Moondream first, and while smaller than other Image-Text-to-Text models like
-                <a class="link" href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noreferrer">LLaVa-Next</a>,
-                I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
-                and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
-                following not far behind.
-              </p>
+              <section id="use-case">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Use Case</h3>
+                <p>
+                  This application revolves around people with visual impairments, especially the elderly, having difficulties
+                  reading labels on food items or even identifying them in the first place.
+                </p>
+                <p>
+                  An ideal deployment would be through a mobile app in which the user uses their phone camera to snap a photo of
+                  a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
+                  interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
+                  properly caption.
+                </p>
+              </section>
             </section>
-            <section id="implementation">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Implementation</h3>
+            <section id="the-app">
+              <h2><span class="highlight" aria-hidden="true">&gt; </span>The App</h2>
               <p>
-                You can follow the exact process of development through my commits to the
-                <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer">Hugging Face repository</a>
-                for this project.
+                Here's a direct link to
+                <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a>
               </p>
-              <p>To summarize things:</p>
-              <ol class="list">
-                <li>
-                  I started by looking into different frameworks to build the app with, settling on
-                  <a class="link" href="https://www.gradio.app/" target="_blank" rel="noreferrer">Gradio</a>.
-                </li>
-                <li>
-                  After setting up the repository, I began implementing an initial version of Moondream, referencing parts of
-                  their example code.
-                </li>
-                <li>I changed that implementation to utilize threading, for better performance.</li>
-                <li>With Moondream up and running, I started to implement YOLOS.</li>
-                <li>I hooked YOLOS into Gradio's file upload system, which required some reconfiguration.</li>
-                <li>
-                  I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio
-                  image gallery.
-                </li>
-                <li>Finally, I linked the two systems together using a tab-based UI and tidied things up.</li>
-              </ol>
-            </section>
-            <section id="testing">
-              <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Testing</h3>
-              <p>
-                The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed
-                during my development. <strong>However, the application would heavily benefit from fine-tuning, which I was unable to provide.</strong>
-                I used the below image of a fridge
-                (<a class="link" href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer">source</a>)
-                for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
-              </p><a class="img-link" href="/img/food-identifier/base-example.webp" target="_blank"><img class="img" src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge."></a>
-              <p>
-                I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
-                my test image with a threshold of 0.7:
-              </p><a class="img-link" href="/img/food-identifier/base-yolos.webp" target="_blank"><img class="img" src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732" alt="The inside of a fridge, with coloured boxes labeling identified objects."></a>
-              <p>
-                While it does a good job, it clearly does not capture everything, and this is where I would have loved to
-                fine-tune the model with more specialized training data if I had more time and computational resources. For
-                the purposes of this proof-of-concept, however, I think it does well enough.
-              </p>
-              <p>
-                For another example, here's a photo of my friend's fridge and how it was parsed. It handles bottles
-                extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
-                things like cartons.
-              </p><a class="img-link" href="/img/food-identifier/friend-fridge.webp" target="_blank"><img class="img" src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009" alt="The results of object detection on my friend's fridge"></a>
+              <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
+              <noscript>
+                <p>The embedded version of this project <strong>requires JavaScript to run.</strong></p>
+              </noscript>
+              <section id="models">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Models</h3>
+                <p>This project uses two models, one for initial object detection and another captioning the detected objects.</p>
+                <p><b>YOLOS:</b> <a class="link" href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noreferrer">hustvl/yolos-small-300</a></p>
+                <ul class="list">
+                  <li>
+                    YOLOS' job is to find regions of the image that should have things worth captioning (such as bottles,
+                    produce, containers, etc.), then feed them to Moondream.
+                  </li>
+                </ul>
+                <p><b>Moondream:</b> <a class="link" href="https://huggingface.co/vikhyatk/moondream2" target="_blank" rel="noreferrer">vikhyatk/moondream2</a></p>
+                <ul class="list">
+                  <li>
+                    Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The
+                    default question for this app is 
+                    <q>What is this food item? Include any text on labels.</q>
+                  </li>
+                </ul>
+                <p>
+                  I landed on these models after quite some searching to find options that were both lightweight and accurate,
+                  allowing for the possibility of mobile device implementations.
+                </p>
+                <p>
+                  I found Moondream first, and while smaller than other Image-Text-to-Text models like
+                  <a class="link" href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noreferrer">LLaVa-Next</a>,
+                  I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
+                  and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
+                  following not far behind.
+                </p>
+              </section>
+              <section id="implementation">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Implementation</h3>
+                <p>
+                  You can follow the exact process of development through my commits to the
+                  <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer">Hugging Face repository</a>
+                  for this project.
+                </p>
+                <p>To summarize things:</p>
+                <ol class="list">
+                  <li>
+                    I started by looking into different frameworks to build the app with, settling on
+                    <a class="link" href="https://www.gradio.app/" target="_blank" rel="noreferrer">Gradio</a>.
+                  </li>
+                  <li>
+                    After setting up the repository, I began implementing an initial version of Moondream, referencing parts of
+                    their example code.
+                  </li>
+                  <li>I changed that implementation to utilize threading, for better performance.</li>
+                  <li>With Moondream up and running, I started to implement YOLOS.</li>
+                  <li>I hooked YOLOS into Gradio's file upload system, which required some reconfiguration.</li>
+                  <li>
+                    I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio
+                    image gallery.
+                  </li>
+                  <li>Finally, I linked the two systems together using a tab-based UI and tidied things up.</li>
+                </ol>
+              </section>
+              <section id="testing">
+                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Testing</h3>
+                <p>
+                  The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed
+                  during my development. <strong>However, the application would heavily benefit from fine-tuning, which I was unable to provide.</strong>
+                  I used the below image of a fridge
+                  (<a class="link" href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer">source</a>)
+                  for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
+                </p><a class="img-link" href="/img/food-identifier/base-example.webp" target="_blank"><img class="img" src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge."></a>
+                <p>
+                  I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
+                  my test image with a threshold of 0.7:
+                </p><a class="img-link" href="/img/food-identifier/base-yolos.webp" target="_blank"><img class="img" src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732" alt="The inside of a fridge, with coloured boxes labeling identified objects."></a>
+                <p>
+                  While it does a good job, it clearly does not capture everything, and this is where I would have loved to
+                  fine-tune the model with more specialized training data if I had more time and computational resources. For
+                  the purposes of this proof-of-concept, however, I think it does well enough.
+                </p>
+                <p>
+                  For another example, here's a photo of my friend's fridge and how it was parsed. It handles bottles
+                  extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
+                  things like cartons.
+                </p><a class="img-link" href="/img/food-identifier/friend-fridge.webp" target="_blank"><img class="img" src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009" alt="The results of object detection on my friend's fridge"></a>
+              </section>
             </section>
             <section id="conclusion">
               <h2><span class="highlight" aria-hidden="true">&gt; </span>Conclusion</h2>
@@ -196,9 +226,11 @@
                 another look at what models are available, given how frequently the field changes these days.
               </p>
             </section>
-          </section>
+          </div>
         </article>
       </main>
+      <footer class="footer"><a href="#top">Back to Top</a>
+      </footer>
     </div>
   </body>
 </html>

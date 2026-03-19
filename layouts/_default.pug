@@ -32,6 +32,7 @@ html(lang="en")
 
     block styles
       include ../inc/head/_styles
+      include ../inc/head/_fontawesome
 
     block fonts
       include ../inc/head/_fonts
@@ -43,11 +44,17 @@ html(lang="en")
       include ../inc/head/_scripts
 
   body
-    a(href="#main-content").link.skip Skip to main content
-    div.wrapper
-      nav.side-nav(aria-label="Main")
-        div.name-wrapper
-          +fancy-name(false)
-        include ../inc/_nav-list
+    a(href="#main-content").skip Skip to main content
+
+    div.wrapper#top
+      include ../inc/_sidebar
+
       main.main#main-content
         block main
+          header.header
+            block header
+          div.content
+            block content
+
+      footer.footer
+        block footer

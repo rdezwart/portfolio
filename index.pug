@@ -13,12 +13,13 @@ block url
 append styles
   include inc/head/_fontawesome
 
-block main
+append header
   h1.name-wrapper
     | Hi, I'm
     |
     +fancy-name(true)
 
+append content
   div.bio
     p
       | I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my
@@ -32,8 +33,6 @@ block main
       | I will graduate later this year and am eager to gain hands-on experience diving deeper into the training,
       | fine-tuning, implementation, and ethical considerations of LLMs, generative models, and artificial intelligence as
       | a whole.
-
-  include inc/_social-icons
 
   section#projects
     +h(2, "Featured Projects")

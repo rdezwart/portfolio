@@ -7,7 +7,7 @@
  * 2. Remove extra padding from very top heading of very first section.
  *    This brings it properly inline with the top of the grid row.
  */
-.article-content {
+.content {
   @include abstracts.flow-column();
   row-gap: 0; /* 1 */
 

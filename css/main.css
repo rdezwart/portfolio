@@ -543,17 +543,19 @@ body {
 /**
  * Defining grid areas for article header, content, and TOC.
  */
-.article-header {
+.header {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: hd;
 }
-.article-content {
+
+.content {
   -ms-grid-row: 3;
   -ms-grid-column: 3;
   grid-area: content;
 }
-.article .toc-wrapper {
+
+.toc-wrapper {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: toc;
@@ -573,15 +575,15 @@ body {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .article-header {
+  .header {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
-  .article-content {
+  .content {
     -ms-grid-row: 4;
     -ms-grid-column: 1;
   }
-  .article .toc-wrapper {
+  .toc-wrapper {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
   }
@@ -599,7 +601,7 @@ body {
  * 2. Remove extra padding from very top heading of very first section.
  *    This brings it properly inline with the top of the grid row.
  */
-.article-content {
+.content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -610,13 +612,13 @@ body {
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
 }
-.article-content > section, .article-content > hgroup {
+.content > section, .content > hgroup {
   padding-top: 0.5rlh; /* 1 */
 }
-.article-content > section:first-child, .article-content > hgroup:first-child {
+.content > section:first-child, .content > hgroup:first-child {
   padding-top: 0; /* 2 */
 }
-.article-content > section:first-child > h2:first-child, .article-content > hgroup:first-child > h2:first-child {
+.content > section:first-child > h2:first-child, .content > hgroup:first-child > h2:first-child {
   margin-top: 0; /* 2 */
 }
 
