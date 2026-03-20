@@ -14,19 +14,27 @@ mixin nav-item(category, text, link, desc)
       p.description #{desc}
 
 
-//- Referenced: https://stackoverflow.com/a/56565423
-mixin h(level, heading)
+//-
+  Referenced: https://stackoverflow.com/a/56565423
+  Inline JS comments are weird with the Pug formatter, so I have to document it this way:
+  1. Calculate how many arrows to generate
+  2. `attributes` is an implicit argument passed to the mixin
+  3. If an explicit class is specified, overwrite the default assignment
+mixin h(level, heading, doArrows = true)
   -
-    level = Math.max(1, Math.min(6, level));
+    level = Math.max(1, Math.min(6, level)); /* 1 */
     let arrows = ">".repeat(level - 1);
     if (arrows !== "") arrows += " ";
 
+    let _attributes = attributes; /* 2 */
+    _attributes.class = Object.hasOwn(attributes, "class") ? attributes.class : `h${level}`; /* 3 */
+
   //- There's a cleaner way of doing this conditional, but this avoids weird extra newlines
-  if arrows !== ""
-    #{"h" + level}&attributes(attributes)
+  if doArrows && arrows !== ""
+    #{"h" + level}&attributes(_attributes)
       | #[span.highlight(aria-hidden="true") #{arrows}]#{heading}
   else
-    #{"h" + level}&attributes(attributes)
+    #{"h" + level}&attributes(_attributes)
       | #{heading}
 
   if block
@@ -63,7 +71,7 @@ mixin name()
 mixin toc(heading="Table of Contents")
   div.toc-wrapper
     div.toc
-      h2.h4#toc-heading #{heading}
+      +h(2, heading, false)(class="h4" id="toc-heading")
       nav.nav(aria-labelledby="toc-heading")
         if block
           block

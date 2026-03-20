@@ -58,7 +58,7 @@
         <article class="article">
           <header class="header">
             <hgroup>
-              <h1>AutolumeGallery</h1>
+              <h1 class="h1">AutolumeGallery</h1>
               <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
             </hgroup>
           </header>
@@ -94,7 +94,7 @@
           </div>
           <div class="content">
             <section id="abstract">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Abstract</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Abstract</h2>
               <p class="introduction">
                 AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
                 of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
@@ -103,7 +103,7 @@
                 of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
               </p>
               <section id="links">
-                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
                 <ul class="list">
                   <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
                   <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
@@ -115,11 +115,11 @@
               </section>
             </section>
             <section id="examples">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
               <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
             </section>
             <section id="introduction">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
               <p>
                 This project is dedicated to my grandfather, Peter John Voormeij, who passed away in early 2024. He was a Dutch
                 painter and printmaker, and with this "Generative AI and Computational Creativity" course I wanted to explore
@@ -144,7 +144,7 @@
               </p>
             </section>
             <section id="literature-review">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
               <p>
                 Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
                 locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
@@ -169,7 +169,7 @@
               </p>
             </section>
             <section id="system-design">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
               <p>
                 I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
                 the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
@@ -188,14 +188,14 @@
               </ul>
             </section>
             <section id="implementation-details">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Implementation Details</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Implementation Details</h2>
               <p>
                 The current implementation requires Unity and Autolume-Live to be running on the same machine, as they both look
                 to different ports on the local IP address. Detailed installation instructions can be found on the GitHub
                 repository for this project, linked below the Abstract.
               </p>
               <section id="vr-hardware">
-                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>VR Hardware</h3>
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>VR Hardware</h3>
                 <p>
                   The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
                   over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
@@ -203,7 +203,7 @@
                 </p>
               </section>
               <section id="unity">
-                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Unity</h3>
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Unity</h3>
                 <p>
                   The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
                   \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
@@ -217,12 +217,12 @@
                   <figcaption><strong>Figure 1:</strong> Root hierarchy of the Gallery scene.</figcaption>
                 </figure>
                 <section id="directional-light">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Directional Light</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Directional Light</h4>
                   <p>Standard Unity asset providing sunlight to the scene.</p>
                   <p class="libraries">Libraries: None.</p>
                 </section>
                 <section id="xr-interaction-manager">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Interaction Manager</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Interaction Manager</h4>
                   <p>
                     Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
                     the XR Origin.
@@ -230,7 +230,7 @@
                   <p class="libraries">Libraries: XR Interaction Toolkit.</p>
                 </section>
                 <section id="osc-manager">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>OSC Manager</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>OSC Manager</h4>
                   <p>
                     Responsible for transmitting and receiving information over OSC. The transmitter connects to
                     \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
@@ -239,7 +239,7 @@
                   <p class="libraries">Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.</p>
                 </section>
                 <section id="xr-origin">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Origin (XR Rig) Affordance Variant</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>XR Origin (XR Rig) Affordance Variant</h4>
                   <p>
                     Contains the VR controller models, the player camera, locomotion controllers, and interactors of various
                     types. This object is the user's gateway into the scene, being the digital equivalent of the user's physical
@@ -263,7 +263,7 @@
                   <p class="libraries">Libraries: XR Interaction Toolkit.</p>
                 </section>
                 <section id="painting">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Painting</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Painting</h4>
                   <p>
                     The digital canvas Autolume is sending artwork to. There are four "Painting Panel" manipulator children,
                     each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
@@ -273,7 +273,7 @@
                   <p class="libraries">Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.</p>
                 </section>
                 <section id="vector-controllers">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Vector Controller Left/Right</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Vector Controller Left/Right</h4>
                   <p>
                     Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
                     but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
@@ -282,7 +282,7 @@
                   <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
                 </section>
                 <section id="layer-controller">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Layer Controller</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Layer Controller</h4>
                   <p>
                     A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
                     the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
@@ -291,7 +291,7 @@
                   <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
                 </section>
                 <section id="seed-controller">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Seed Controller</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Seed Controller</h4>
                   <p>
                     A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
                     the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
@@ -300,7 +300,7 @@
                   <p class="libraries">Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.</p>
                 </section>
                 <section id="panel-resetter">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Panel Resetter</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Panel Resetter</h4>
                   <p>
                     A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
                     positions and orientations. There is an affordance labelling this podium.
@@ -308,7 +308,7 @@
                   <p class="libraries">Libraries: Custom, XR Interaction Toolkit.</p>
                 </section>
                 <section id="environment">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Environment</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Environment</h4>
                   <p>
                     Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
                     the experience launches.
@@ -316,7 +316,7 @@
                   <p class="libraries">Libraries: XR Interaction Toolkit.</p>
                 </section>
                 <section id="camera">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Camera</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>Camera</h4>
                   <p>
                     A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
                     can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
@@ -325,13 +325,13 @@
                   <p class="libraries">Libraries: Custom.</p>
                 </section>
                 <section id="quit-listener">
-                  <h4><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>QuitListener</h4>
+                  <h4 class="h4"><span class="highlight" aria-hidden="true">&gt;&gt;&gt; </span>QuitListener</h4>
                   <p>Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.</p>
                   <p class="libraries">Libraries: Custom.</p>
                 </section>
               </section>
               <section id="autolume-live">
-                <h3><span class="highlight" aria-hidden="true">&gt;&gt; </span>Autolume-Live</h3>
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Autolume-Live</h3>
                 <p>
                   With the guidance of Arshia Sobhan, he and I used one of the Metacreation Lab's computers to train a model on
                   my grandfather's artwork over the course of several days. He kept an eye on the training process while he was
@@ -363,7 +363,7 @@
               </section>
             </section>
             <section id="results">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Results</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Results</h2>
               <figure><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a>
                 <figcaption><strong>Figure 2:</strong> The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
                   showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
@@ -395,7 +395,7 @@
               </p>
             </section>
             <section id="conclusion">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Conclusion &amp; Future Work</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Conclusion &amp; Future Work</h2>
               <p>
                 I am very happy and proud of the current state of the project, and I look forward to being able to share the
                 actual experience, not just a demo video. I plan to continue training the model and looking at other directions
@@ -414,7 +414,7 @@
               </p>
             </section>
             <section id="ethical-statement">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Ethical Statement</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Ethical Statement</h2>
               <p>
                 At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
                 as their own human art; the original authors/artists deserve credit and compensation.
@@ -427,7 +427,7 @@
               </p>
             </section>
             <section id="acknowledgements">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>Acknowledgements</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Acknowledgements</h2>
               <p>
                 With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
                 assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
@@ -444,7 +444,7 @@
               </p>
             </section>
             <section id="references">
-              <h2><span class="highlight" aria-hidden="true">&gt; </span>References</h2>
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>References</h2>
             </section>
           </div>
         </article>
