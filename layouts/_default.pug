@@ -47,7 +47,7 @@ html(lang="en")
   body
     a(href="#main-content").skip Skip to main content
 
-    div(class=`wrapper grid-${layout}`)#top
+    div(class=`wrapper grid-${layout}`)
       include ../inc/_sidebar
 
       main.main#main-content
@@ -57,3 +57,6 @@ html(lang="en")
 
       footer.footer
         block footer
+          a.button(href="#") Back to Top
+          p Made by hand with love.
+          include ../inc/_social-icons

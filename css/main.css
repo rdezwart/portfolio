@@ -781,6 +781,47 @@ hgroup {
 }
 
 /**
+ * Footer for entire site.
+ * 1. Become full width when banners become full width.
+ * 2. Rearrange footer contents when screen becomes too small.
+ */
+.footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 0.5rlh 1fr 0.5rlh auto;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rlh;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--banner);
+  font-size: 0.8rem;
+  padding: 1rlh 1rlh;
+  margin-inline: -0.5rlh;
+  margin-bottom: -1rlh;
+}
+@media screen and (max-width: 40rem) {
+  .footer {
+    margin-inline: -1rlh; /* 1 */
+  }
+}
+@media screen and (max-width: 32rem) {
+  .footer {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr; /* 2 */
+  }
+}
+.footer p {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+  font-size: inherit;
+}
+
+/**
  * Large name, acts as my logo
  */
 .name {

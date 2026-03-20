@@ -83,7 +83,8 @@ $total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2)
 /// @see {function} respond-to
 /// @type Map
 $breakpoints: (
-        "full": (max-width: $main-width)
+        "full": (max-width: $main-width),
+        "medium": (max-width: 32rem)
 );
 
 
