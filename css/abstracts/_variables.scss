@@ -61,7 +61,7 @@ $rlh-cap-diff: calc((1rlh - 1cap) / 2);
 
 /// Max width of main tag. 40rem ~= 80 characters
 /// @type Length
-$main-width: 40rem;
+$main-width: calc(40rem + 1rlh);
 
 /// Gap between content and sidebar.
 /// @type Length

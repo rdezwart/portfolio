@@ -30,6 +30,10 @@
  */
 section {
   @include abstracts.flow-column();
+
+  #{abstracts.$text-elements} {
+    margin-inline: #{abstracts.$text-gap};
+  }
 }
 
 /**

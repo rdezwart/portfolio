@@ -15,8 +15,7 @@
   background-color: var(--banner);
   font-size: abstracts.font-size-scaled(-1);
 
-  padding: 1rlh #{abstracts.$page-padding};
-  margin-inline: #{abstracts.$text-gap * -1};
+  padding: #{abstracts.$page-padding};
   margin-bottom: #{abstracts.$page-padding * -1};
 
   @include abstracts.respond-to("full") {

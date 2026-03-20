@@ -301,10 +301,9 @@ body {
   background-color: var(--banner);
   line-height: 1;
   padding: 0.5rlh;
-  margin-inline: calc(0.5rlh * -1);
   margin-top: 0.5rlh; /* 1 */
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   :is(h2, h3), :is(.h2, .h3) {
     padding-inline: 1rlh;
     margin-inline: -1rlh;
@@ -487,8 +486,8 @@ body {
      -moz-column-gap: 2rlh;
           column-gap: 2rlh;
   row-gap: 1rlh;
-  -ms-grid-columns: auto 2rlh minmax(auto, 40rem);
-  grid-template-columns: auto minmax(auto, 40rem); /* 1 */
+  -ms-grid-columns: auto 2rlh minmax(auto, calc(40rem + 1rlh));
+  grid-template-columns: auto minmax(auto, calc(40rem + 1rlh)); /* 1 */
   -ms-grid-rows: none;
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
@@ -501,10 +500,10 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .wrapper {
-    -ms-grid-columns: minmax(auto, 40rem);
-    grid-template-columns: minmax(auto, 40rem);
+    -ms-grid-columns: minmax(auto, calc(40rem + 1rlh));
+    grid-template-columns: minmax(auto, calc(40rem + 1rlh));
   }
 }
 
@@ -514,7 +513,7 @@ body {
 .grid-default {
       grid-template-areas: "nav content" "ft  ft";
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-default {
         grid-template-areas: "nav" "content" "ft";
   }
@@ -526,7 +525,7 @@ body {
 .grid-project {
       grid-template-areas: "nav hd" "toc content" "ft  ft";
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-project {
         grid-template-areas: "nav" "hd" "toc" "content" "ft";
   }
@@ -545,7 +544,7 @@ body {
   grid-template-rows: min-content 1fr; /* 1 */
       grid-template-areas: "nav content" "toc content" "ft  ft";
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-mixed {
         grid-template-areas: "nav" "toc" "content" "ft";
   }
@@ -655,7 +654,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .sidebar {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -832,6 +831,9 @@ section, hgroup {
           flex-direction: column;
   gap: 0.5rlh;
 }
+section p, hgroup p, section ul, hgroup ul {
+  margin-inline: 0.5rlh;
+}
 
 /**
  * Used at the top of project pages to group title and subtitle. Semantically
@@ -873,11 +875,10 @@ hgroup {
           align-items: center;
   background-color: var(--banner);
   font-size: 0.8rem;
-  padding: 1rlh 1rlh;
-  margin-inline: -0.5rlh;
+  padding: 1rlh;
   margin-bottom: -1rlh;
 }
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: calc(40rem + 1rlh)) {
   .footer {
     margin-inline: -1rlh; /* 1 */
   }
