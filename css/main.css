@@ -1083,6 +1083,30 @@ figure figcaption {
   margin-top: 0;
 }
 
+/**
+ * Button styling class.
+ * 1. Since this is usually applied to anchors, they need to act like proper
+ *    block elements.
+ */
+.button {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block; /* 1 */
+  padding: 0.75em 1.5em; /* 0.5rlh 1rlh */
+  border: 0.1rem solid var(--link);
+  -webkit-transition-property: border-color, color;
+  transition-property: border-color, color;
+  -webkit-transition-duration: var(--duration);
+          transition-duration: var(--duration);
+}
+.button:focus, .button:hover {
+  border-color: var(--highlight);
+  -webkit-transition-property: border-color, color;
+  transition-property: border-color, color;
+}
+
 :root {
   --background: #1e1e22;
   --banner: #2a2a2f;
