@@ -715,6 +715,46 @@ body {
 }
 
 /**
+ * Navigation lists, general
+ */
+.nav :is(ul, ol) {
+  list-style-type: "> ";
+  list-style-position: inside;
+  padding-inline: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+.nav :is(ul, ol) li a {
+  font-weight: 800;
+  text-decoration: none;
+}
+.nav :is(ul, ol) li::marker {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--highlight);
+  -webkit-font-variant-ligatures: none;
+          font-variant-ligatures: none;
+}
+
+/**
+ * Sub lists, mostly used in table of contents.
+ * 1. Line up left edge of bullets with text of parent. We can use `2ch` because
+ *    we're working in a monospace font.
+ */
+.nav :is(ul, ol) :is(ul, ol) {
+  list-style-type: ">> ";
+  padding-left: 2ch; /* 1 */
+}
+.nav :is(ul, ol) :is(ul, ol) li a {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-weight: 200;
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/**
  * Represents the body of an article. This comes after the header and TOC.
  * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
  *    TOC scroll tracking.
@@ -869,46 +909,6 @@ hgroup {
  */
 .sidebar .name {
   font-size: 1.953125rem;
-}
-
-/**
- * Navigation lists, general
- */
-.nav :is(ul, ol) {
-  list-style-type: "> ";
-  list-style-position: inside;
-  padding-inline: 0;
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  font-size: 1.25rem;
-}
-.nav :is(ul, ol) li a {
-  font-weight: 800;
-  text-decoration: none;
-}
-.nav :is(ul, ol) li::marker {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  color: var(--highlight);
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none;
-}
-
-/**
- * Sub lists, mostly used in table of contents.
- * 1. Line up left edge of bullets with text of parent. We can use `2ch` because
- *    we're working in a monospace font.
- */
-.nav :is(ul, ol) :is(ul, ol) {
-  list-style-type: ">> ";
-  padding-left: 2ch; /* 1 */
-}
-.nav :is(ul, ol) :is(ul, ol) li a {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  font-weight: 200;
-  font-style: italic;
-  color: var(--secondary);
 }
 
 /**
