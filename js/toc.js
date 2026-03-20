@@ -83,7 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
     rootMargin: "-10% 0% -90% 0%"
   });
   /** @type {Element[]} */
-  const sections = [...document.querySelectorAll("section")];
+  const sections = [...document.querySelectorAll(
+    ".content > section, .content > section > section")
+  ];
 
   sections.forEach((section) => observer.observe(section));
 });
