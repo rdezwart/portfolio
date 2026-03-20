@@ -304,6 +304,12 @@ body {
   margin-inline: calc(0.5rlh * -1);
   margin-top: 0.5rlh; /* 1 */
 }
+@media screen and (max-width: 40rem) {
+  :is(h2, h3), :is(.h2, .h3) {
+    padding-inline: 1rlh;
+    margin-inline: -1rlh;
+  }
+}
 
 :is(h4, h5, h6), :is(.h4, .h5, .h6) {
   background-color: unset;

@@ -44,6 +44,11 @@ body {
   padding: #{abstracts.$text-gap};
   margin-inline: calc(#{abstracts.$text-gap} * -1);
   margin-top: #{abstracts.$text-gap}; /* 1 */
+
+  @include abstracts.respond-to("full") {
+    padding-inline: #{abstracts.$page-padding};
+    margin-inline: #{abstracts.$page-padding * -1};
+  }
 }
 
 #{abstracts.$headings-no-banner} {
