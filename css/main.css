@@ -374,10 +374,6 @@ h3, .h3 {
 /**
  * No margin on top, small margin on bottom.
  */
-p {
-  font-size: 1rem;
-}
-
 /**
  * Default list styles.
  */
@@ -434,7 +430,7 @@ b, strong {
 /**
  * Styles for secondary content, such as subtitles or descriptions.
  */
-.description {
+.description, .secondary {
   font-family: "JetBrains Mono", monospace;
   font-weight: 800;
   font-weight: 200;
@@ -891,14 +887,6 @@ hgroup {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr; /* 2 */
   }
-}
-.footer p {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  font-weight: 200;
-  font-style: italic;
-  color: var(--secondary);
-  font-size: inherit;
 }
 
 /**

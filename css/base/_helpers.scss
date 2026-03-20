@@ -24,7 +24,7 @@
 /**
  * Styles for secondary content, such as subtitles or descriptions.
  */
-.description {
+.description, .secondary {
   @include abstracts.secondary();
 }
 
