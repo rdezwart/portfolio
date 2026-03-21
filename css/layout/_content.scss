@@ -11,28 +11,36 @@
   @include abstracts.flow-column();
   row-gap: 0; /* 1 */
 
-  & > section {
-    padding-top: #{abstracts.$text-gap}; /* 1 */
-
-    &:first-child {
-      padding-top: 0; /* 2 */
-
-      & > h2:first-child {
-        margin-top: 0; /* 2 */
-      }
-    }
+  section:first-child {
+    padding-top: 0; /* 2 */
   }
 }
 
 /**
  * Saves having to manage exact margins and gaps on each item I might add to a
  * page, project or otherwise.
+ * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
+ *    TOC scroll tracking.
+ * 2. With no row-gap, elements need their bottom margins back.
+ * 3. Inset text a small amount from the edges of the container.
  */
 section {
   @include abstracts.flow-column();
+  row-gap: 0; /* 1 */
+  padding-top: #{abstracts.$text-gap}; /* 1 */
 
-  #{abstracts.$text-elements} {
-    margin-inline: #{abstracts.$text-gap};
+  overflow-wrap: normal;
+
+  > :not(section) {
+    margin-bottom: #{abstracts.$text-gap}; /* 2 */
+  }
+
+  > :is(#{abstracts.$text-elements}, #{abstracts.$headings-no-banner}) {
+    margin-inline: #{abstracts.$text-gap}; /* 3 */
+
+    @include abstracts.respond-to("full") {
+      margin-inline: 0;
+    }
   }
 }
 
@@ -41,6 +49,6 @@ section {
  * different from a section, but functions the same layout-wise in this case.
  */
 hgroup {
-  @extend section;
+  //@extend section;
   gap: calc(#{abstracts.$text-gap} * 0.5);
 }

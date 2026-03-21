@@ -36,13 +36,12 @@ body {
 
 /**
  * Styling for headings that have a solid background (banner).
- * 1. Results in double the text gap above, due to flex gap
  */
 #{abstracts.$headings-with-banner} {
   background-color: var(--banner);
   line-height: 1;
   padding: #{abstracts.$text-gap};
-  margin-top: #{abstracts.$text-gap}; /* 1 */
+  margin-bottom: #{abstracts.$text-gap};
 
   @include abstracts.respond-to("full") {
     padding-inline: #{abstracts.$page-padding};
@@ -59,10 +58,8 @@ body {
 
 /**
  * Styling for all headers that may touch content (banner + non-banner - h1).
- * 1. Results in 2x $text-gap above each heading, thanks to the flex gap.
  */
 #{abstracts.$headings-content} {
-  margin-top: #{abstracts.$text-gap}; /* 1 */
 }
 
 /**
@@ -107,7 +104,6 @@ h3, .h3 {
  */
 :is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: #{abstracts.font-size-scaled(0)};
-  margin-bottom: calc(#{abstracts.$text-gap} * -1); /* 2 */
 }
 
 /**
@@ -119,16 +115,14 @@ p {
 
 /**
  * Default list styles.
+ * 1. Use a variant of lobotomized owl notation to add margins between list
+ *    items and sub-lists.
  */
-ul, ol {
+:is(ul, ol) {
   padding-left: calc(1rem + 0.5rlh);
-  //padding-inline: 0;
 
-  //list-style-position: inside;
-  //line-height: 1.25;
-
-  li + li, & {
-    //margin-top: calc(#{abstracts.$text-gap} / 3);
+  & &, li + li {
+    margin-top: calc(#{abstracts.$text-gap} / 3); /* 1 */
   }
 }
 

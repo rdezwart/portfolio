@@ -2,14 +2,19 @@
 
 /**
  * Navigation lists, general
+ * 1. Add reduced margin above list items for clearer breaks when wrapping
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
-  list-style-position: inside;
-  padding-inline: 0;
+  padding-left: 2ch;
 
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(1);
+
+  line-height: 1.2;
+  li + li {
+    margin-top: calc(#{abstracts.$text-gap} / 2); /* 1 */
+  }
 
   li {
     a {
@@ -30,7 +35,7 @@
  */
 .nav :is(ul, ol) :is(ul, ol) {
   list-style-type: ">> ";
-  padding-left: 2ch; /* 1 */
+  padding-left: 3ch; /* 1 */
 
   li a {
     @include abstracts.secondary();

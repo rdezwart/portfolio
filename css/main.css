@@ -197,10 +197,14 @@ h1, h2, h3, h4, h5, h6, figure, p, ol, ul {
 /**
  * If an ol/ul has their list style removed, it tends to remove the implicit
  * role used by screen readers.
+ * 1. Reset margins applied to regular list items.
  */
 ol[role=list], ul[role=list] {
   list-style: none;
   padding-inline: 0;
+}
+ol[role=list] li, ul[role=list] li {
+  margin: 0; /* 1 */
 }
 
 /**
@@ -295,13 +299,12 @@ body {
 
 /**
  * Styling for headings that have a solid background (banner).
- * 1. Results in double the text gap above, due to flex gap
  */
 :is(h2, h3), :is(.h2, .h3) {
   background-color: var(--banner);
   line-height: 1;
   padding: 0.5rlh;
-  margin-top: 0.5rlh; /* 1 */
+  margin-bottom: 0.5rlh;
 }
 @media screen and (max-width: calc(40rem + 1rlh)) {
   :is(h2, h3), :is(.h2, .h3) {
@@ -319,12 +322,7 @@ body {
 
 /**
  * Styling for all headers that may touch content (banner + non-banner - h1).
- * 1. Results in 2x $text-gap above each heading, thanks to the flex gap.
  */
-:is(h2, h3, h4, h5, h6), :is(.h2, .h3, .h4, .h5, .h6) {
-  margin-top: 0.5rlh; /* 1 */
-}
-
 /**
  * Styling for all text basic elements.
  * 1. Ensures they play nice in the flex layout.
@@ -367,7 +365,6 @@ h3, .h3 {
  */
 :is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: 1rem;
-  margin-bottom: calc(0.5rlh * -1); /* 2 */
 }
 
 /**
@@ -375,10 +372,16 @@ h3, .h3 {
  */
 /**
  * Default list styles.
+ * 1. Use a variant of lobotomized owl notation to add margins between list
+ *    items and sub-lists.
  */
-ul, ol {
+:is(ul, ol) {
   padding-left: calc(1rem + 0.5rlh);
 }
+:is(ul, ol) :is(ul, ol), :is(ul, ol) li + li {
+  margin-top: calc(0.5rlh / 3); /* 1 */
+}
+
 /**
  * Figure captions.
  */
@@ -711,14 +714,18 @@ body {
 
 /**
  * Navigation lists, general
+ * 1. Add reduced margin above list items for clearer breaks when wrapping
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
-  list-style-position: inside;
-  padding-inline: 0;
+  padding-left: 2ch;
   font-family: "JetBrains Mono", monospace;
   font-weight: 800;
   font-size: 1.25rem;
+  line-height: 1.2;
+}
+.nav :is(ul, ol) li + li {
+  margin-top: calc(0.5rlh / 2); /* 1 */
 }
 .nav :is(ul, ol) li a {
   font-weight: 800;
@@ -739,7 +746,7 @@ body {
  */
 .nav :is(ul, ol) :is(ul, ol) {
   list-style-type: ">> ";
-  padding-left: 2ch; /* 1 */
+  padding-left: 3ch; /* 1 */
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
   font-family: "JetBrains Mono", monospace;
@@ -807,21 +814,19 @@ body {
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
 }
-.content > section, .content > hgroup {
-  padding-top: 0.5rlh; /* 1 */
-}
-.content > section:first-child, .content > hgroup:first-child {
+.content section:first-child {
   padding-top: 0; /* 2 */
-}
-.content > section:first-child > h2:first-child, .content > hgroup:first-child > h2:first-child {
-  margin-top: 0; /* 2 */
 }
 
 /**
  * Saves having to manage exact margins and gaps on each item I might add to a
  * page, project or otherwise.
+ * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
+ *    TOC scroll tracking.
+ * 2. With no row-gap, elements need their bottom margins back.
+ * 3. Inset text a small amount from the edges of the container.
  */
-section, hgroup {
+section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -830,9 +835,20 @@ section, hgroup {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rlh;
+  row-gap: 0; /* 1 */
+  padding-top: 0.5rlh; /* 1 */
+  overflow-wrap: normal;
 }
-section p, hgroup p, section ul, hgroup ul {
-  margin-inline: 0.5rlh;
+section > :not(section) {
+  margin-bottom: 0.5rlh; /* 2 */
+}
+section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
+  margin-inline: 0.5rlh; /* 3 */
+}
+@media screen and (max-width: calc(40rem + 1rlh)) {
+  section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
+    margin-inline: 0;
+  }
 }
 
 /**
@@ -907,6 +923,7 @@ hgroup {
 .toc {
   position: sticky;
   top: 1rlh;
+  height: 100%;
   max-height: calc(100vh - 1rlh * 2); /* 1 */
 }
 @supports (max-height: 100dvh) {
@@ -937,10 +954,14 @@ hgroup {
  * 3. Reduce font weight of root items to not compete with main nav as much.
  * 4. Make list markers invisible by default
  * 5. Markers should be shown when they have .current or are focused/hovered
+ * 6. Fixes an issue where nav would show scrollbar despite enough room to grow.
  */
 .toc .nav {
   overflow-y: auto; /* 1 */
   margin-left: 0.5ch; /* 2 */
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto; /* 6 */
 }
 .toc .nav > :is(ul, ol) > li > a {
   font-weight: 700; /* 3 */
@@ -1025,14 +1046,6 @@ hgroup {
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 60vh;
-}
-@supports (max-height: 60dvh) {
-  .img {
-    max-height: 60dvh;
-  }
-}
-.img {
   margin: auto;
   display: block;
 }
@@ -1043,7 +1056,7 @@ hgroup {
  */
 .img-link {
   display: block;
-  margin: auto; /* 1 */
+  margin-inline: auto;
   -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
   transition: box-shadow 0.1s, outline-width 0.1s;
@@ -1077,6 +1090,14 @@ figure {
           align-items: center;
   gap: 0.5rlh;
   margin-inline: auto;
+}
+figure img {
+  max-height: 60vh;
+}
+@supports (max-height: 60dvh) {
+  figure img {
+    max-height: 60dvh;
+  }
 }
 figure figcaption {
   margin-inline: 1rlh;

@@ -10,10 +10,15 @@ h1, h2, h3, h4, h5, h6, figure, p, ol, ul {
 /**
  * If an ol/ul has their list style removed, it tends to remove the implicit
  * role used by screen readers.
+ * 1. Reset margins applied to regular list items.
  */
 ol[role="list"], ul[role="list"] {
   list-style: none;
   padding-inline: 0;
+
+  li {
+    margin: 0; /* 1 */
+  }
 }
 
 /**

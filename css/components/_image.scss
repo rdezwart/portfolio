@@ -8,13 +8,6 @@
   max-width: 100%;
   height: auto;
 
-  max-height: 60vh;
-  // Referenced: https://stackoverflow.com/a/75241679
-  @supports (max-height: 60dvh) {
-    // Referenced: https://stackoverflow.com/a/72245072
-    max-height: 60dvh;
-  }
-
   margin: auto;
 
   // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
@@ -27,8 +20,7 @@
  */
 .img-link {
   display: block;
-  margin: auto; /* 1 */
-  // TODO: Keep in-line with edges of banner headings
+  margin-inline: auto;
 
   transition: box-shadow 0.1s, outline-width 0.1s;
 
@@ -53,6 +45,15 @@ figure {
   gap: #{abstracts.$text-gap};
 
   margin-inline: auto;
+
+  img {
+    max-height: 60vh;
+    // Referenced: https://stackoverflow.com/a/75241679
+    @supports (max-height: 60dvh) {
+      // Referenced: https://stackoverflow.com/a/72245072
+      max-height: 60dvh;
+    }
+  }
 
   figcaption {
     margin-inline: 1rlh;

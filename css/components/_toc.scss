@@ -8,6 +8,7 @@
   position: sticky;
   top: #{abstracts.$page-padding};
 
+  height: 100%;
   max-height: calc(100vh - (#{abstracts.$page-padding} * 2)); /* 1 */
   @supports (max-height: 100dvh) {
     max-height: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
@@ -29,10 +30,12 @@
  * 3. Reduce font weight of root items to not compete with main nav as much.
  * 4. Make list markers invisible by default
  * 5. Markers should be shown when they have .current or are focused/hovered
+ * 6. Fixes an issue where nav would show scrollbar despite enough room to grow.
  */
 .toc .nav {
   overflow-y: auto; /* 1 */
   margin-left: 0.5ch; /* 2 */
+  flex: auto; /* 6 */
 
   & > :is(ul, ol) > li > a {
     font-weight: 700; /* 3 */
