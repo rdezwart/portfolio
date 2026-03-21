@@ -32,10 +32,10 @@ mixin h(level, heading, doArrows = true)
   //- There's a cleaner way of doing this conditional, but this avoids weird extra newlines
   if doArrows && arrows !== ""
     #{"h" + level}&attributes(_attributes)
-      | #[span.highlight(aria-hidden="true") #{arrows}]#{heading}
+      | #[span.highlight(aria-hidden="true") #{arrows}]!{heading}
   else
     #{"h" + level}&attributes(_attributes)
-      | #{heading}
+      | !{heading}
 
   if block
     block

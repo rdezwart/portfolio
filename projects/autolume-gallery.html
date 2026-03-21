@@ -58,7 +58,7 @@
         <article class="article">
           <header class="header">
             <hgroup>
-              <h1 class="h1">AutolumeGallery</h1>
+              <h1 class="h1">Autolume<wbr>Gallery</h1>
               <p class="description">An interactive virtual gallery space where users can manipulate and explore the latent space of a GAN in 3D.</p>
             </hgroup>
           </header>
@@ -181,7 +181,15 @@
               </p>
               <ul class="list">
                 <li>Unity receives user input from the VR hardware and in-world interactables.</li>
-                <li>Unity uses OSC to send decimals to Autolume-Live.</li>
+                <li>Unity uses OSC to send decimals to Autolume-Live.
+                  <ul class="list">
+                    <li>Unity receives user input from the VR hardware and in-world interactables.</li>
+                    <li>Unity uses OSC to send decimals to Autolume-Live.</li>
+                    <li>Autolume-Live receives OSC output and adjusts the corresponding GAN settings.</li>
+                    <li>Autolume-Live uses NDI to broadcast generated images back to Unity.</li>
+                    <li>Unity receives NDI output and updates the virtual canvas.</li>
+                  </ul>
+                </li>
                 <li>Autolume-Live receives OSC output and adjusts the corresponding GAN settings.</li>
                 <li>Autolume-Live uses NDI to broadcast generated images back to Unity.</li>
                 <li>Unity receives NDI output and updates the virtual canvas.</li>

@@ -25,6 +25,10 @@ append toc
     li: a(href="#acknowledgements") Acknowledgements
     li: a(href="#references") References
 
+block header
+  hgroup
+    +h(1, "Autolume<wbr>Gallery")
+    p.description #{description}
 
 append content
   section#abstract
@@ -134,6 +138,12 @@ append content
     ul.list
       li Unity receives user input from the VR hardware and in-world interactables.
       li Unity uses OSC to send decimals to Autolume-Live.
+        ul.list
+          li Unity receives user input from the VR hardware and in-world interactables.
+          li Unity uses OSC to send decimals to Autolume-Live.
+          li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
+          li Autolume-Live uses NDI to broadcast generated images back to Unity.
+          li Unity receives NDI output and updates the virtual canvas.
       li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
       li Autolume-Live uses NDI to broadcast generated images back to Unity.
       li Unity receives NDI output and updates the virtual canvas.
@@ -348,7 +358,7 @@ append content
       | distance it's negligible.
 
   section#conclusion
-    +h(2, "Conclusion & Future Work")
+    +h(2, "Conclusion &amp; Future Work")
     p
       | I am very happy and proud of the current state of the project, and I look forward to being able to share the
       | actual experience, not just a demo video. I plan to continue training the model and looking at other directions
