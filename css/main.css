@@ -339,6 +339,7 @@ p, ul {
  */
 h1, .h1 {
   font-size: 2.44140625rem;
+  line-height: 1;
 }
 
 /**
@@ -783,7 +784,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rlh;
-  row-gap: calc(0.5rlh * 0.5);
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start; /* 1 */
@@ -852,14 +852,6 @@ section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
 }
 
 /**
- * Used at the top of project pages to group title and subtitle. Semantically
- * different from a section, but functions the same layout-wise in this case.
- */
-hgroup {
-  gap: calc(0.5rlh * 0.5);
-}
-
-/**
  * Contains a number of project cards.
  */
 .project-grid {
@@ -872,6 +864,41 @@ hgroup {
   -webkit-box-flex: 45rem;
       -ms-flex: 45rem;
           flex: 45rem;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+  background-color: var(--banner);
+  padding: 1rlh;
+  margin-top: -1rlh;
+}
+@media screen and (max-width: calc(40rem + 1rlh)) {
+  .header {
+    margin-top: 0;
+  }
+}
+
+/**
+ * Used at the top of project pages to group title and subtitle. Semantically
+ * different from a section, but functions the same layout-wise in this case.
+ */
+hgroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+  gap: calc(0.5rlh * 0.5);
 }
 
 /**
@@ -914,6 +941,7 @@ hgroup {
   font-weight: 800;
   color: var(--link);
   text-decoration: none;
+  line-height: 1;
 }
 
 /**

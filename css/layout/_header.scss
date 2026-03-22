@@ -1,0 +1,22 @@
+@use "../abstracts";
+
+.header {
+  @include abstracts.flow-column();
+  background-color: var(--banner);
+
+  padding: #{abstracts.$page-padding};
+  margin-top: #{abstracts.$page-padding * -1};
+
+  @include abstracts.respond-to("full") {
+    margin-top: 0;
+  }
+}
+
+/**
+ * Used at the top of project pages to group title and subtitle. Semantically
+ * different from a section, but functions the same layout-wise in this case.
+ */
+hgroup {
+  @include abstracts.flow-column();
+  gap: calc(#{abstracts.$text-gap} * 0.5);
+}

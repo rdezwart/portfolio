@@ -44,11 +44,3 @@ section {
   }
 }
 
-/**
- * Used at the top of project pages to group title and subtitle. Semantically
- * different from a section, but functions the same layout-wise in this case.
- */
-hgroup {
-  //@extend section;
-  gap: calc(#{abstracts.$text-gap} * 0.5);
-}
