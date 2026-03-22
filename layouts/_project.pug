@@ -24,9 +24,10 @@ block main
   article.article
     header.header
       block header
-        hgroup
-          +h(1, title)
-          p.description #{description}
+        block hgroup
+          hgroup
+            +h(1, title)
+            p.description #{description}
 
     +toc()
       ol(role="list")
