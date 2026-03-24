@@ -1,1 +1,9 @@
 @use "../abstracts";
+
+/**
+ * Since sidebar headings are styled as H4, we need to adjust a few things.
+ */
+.sidebar-heading {
+  margin: 0;
+  font-size: abstracts.font-size-scaled(1);
+}

@@ -1088,11 +1088,6 @@ p:has(+ :is(.tools, .concepts)) {
   }
 }
 
-.sidebar-heading {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
 /**
  * Nav list within a Table of Contents
  * 1. Display a scroll bar if the TOC is longer than the screen.
@@ -1124,6 +1119,14 @@ p:has(+ :is(.tools, .concepts)) {
 }
 .toc .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker { /* 5 */
   color: color-mix(in srgb, var(--highlight), transparent 0%);
+}
+
+/**
+ * Since sidebar headings are styled as H4, we need to adjust a few things.
+ */
+.sidebar-heading {
+  margin: 0;
+  font-size: 1.25rem;
 }
 
 /**
