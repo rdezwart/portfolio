@@ -48,6 +48,15 @@
   gap: #{$gap};
 }
 
+/// Helper mixin to apply standardized flex-row layout with a gap.
+/// @require {variable} $text-gap
+/// @param {length} $gap[$text-gap] - Flex gap to apply.
+@mixin flex-row($gap: variables.$text-gap) {
+  display: flex;
+  flex-direction: row;
+  gap: #{$gap};
+}
+
 
 /// Applies standard heading formatting.
 @mixin heading-typeface {
