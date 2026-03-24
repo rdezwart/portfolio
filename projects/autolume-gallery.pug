@@ -44,11 +44,7 @@ append content
     +h(2, "Overview")
 
     p: strong Tools:
-    ul(role="list").tools
-      li Unity
-      li C#
-      li Open Sound Control
-      li Network Device Interface
+    +list(project.tools)(class="tools" role="list")
 
     p: strong Concepts:
     ul(role="list").concepts

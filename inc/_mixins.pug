@@ -84,3 +84,10 @@ mixin sidebar(heading="Sidebar")
     +h(2, heading, false)(class="h4 sidebar-heading")
     if block
       block
+
+
+//- Renders a list of items
+mixin list(items = [], type="ul")
+  #{type}&attributes(attributes)
+    each item in items
+      li= item
