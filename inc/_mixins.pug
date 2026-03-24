@@ -71,7 +71,7 @@ mixin name()
 mixin toc(heading="Table of Contents")
   div.sidebar-wrapper
     div.toc
-      +h(2, heading, false)(class="h4" id="toc-heading")
+      +h(2, heading, false)(class="h4 sidebar-heading")
       nav.nav(aria-labelledby="toc-heading")
         if block
           block

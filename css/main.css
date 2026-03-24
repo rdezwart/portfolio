@@ -1088,7 +1088,7 @@ p:has(+ :is(.tools, .concepts)) {
   }
 }
 
-#toc-heading {
+.sidebar-heading {
   margin: 0;
   font-size: 1.25rem;
 }
