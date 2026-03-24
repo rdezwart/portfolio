@@ -1021,6 +1021,7 @@ hgroup {
       flex-wrap: wrap;
   gap: 0.6em;
   font-size: 1.5625rem;
+  line-height: 1;
 }
 
 /**
