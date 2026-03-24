@@ -286,6 +286,7 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   color: var(--text);
+  word-break: break-word;
 }
 
 /**
