@@ -1,9 +1,28 @@
 -
-  function Project(category = "", title = "Portfolio", slug = "home", description = "Hi, I'm Robin;") {
-    this.category = category;
-    this.title = title;
-    this.slug = slug;
-    this.description = description;
+  /**
+   * Contains information about my projects.
+   */
+  class Project {
+    /**
+     * @param {string} category
+     * @param {string} title
+     * @param {string} slug
+     * @param {string} description
+     * @param {string[]} tools
+     */
+    constructor(
+            category = "",
+            title = "Portfolio",
+            slug = "home",
+            description = "Hi, I'm Robin;",
+            tools = []
+    ) {
+      this.category = category;
+      this.title = title;
+      this.slug = slug;
+      this.description = description;
+      this.tools = tools;
+    }
   }
 
   const projects = {
@@ -11,7 +30,8 @@
             "AI + VR",
             "AutolumeGallery",
             "autolume-gallery",
-            "Interactive virtual reality system for real-time exploration of generative adversarial network latent space."
+            "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
+            ["Unity", "C#", "Open Sound Control", "Network Device Interface"]
     ),
     "Food Identifier": new Project(
             "AI",
