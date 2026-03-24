@@ -1211,6 +1211,7 @@ figure figcaption {
   --link: #ff9933;
   --secondary: #cccccc;
   --text: #f2f2f2;
+  --base-weight: 200;
 }
 
 @media (prefers-color-scheme: light) {
@@ -1221,6 +1222,7 @@ figure figcaption {
     --link: #00818a;
     --secondary: #3f3f3f;
     --text: #1e1e22;
+    --base-weight: 300;
   }
 }
 /*# sourceMappingURL=main.css.map */
