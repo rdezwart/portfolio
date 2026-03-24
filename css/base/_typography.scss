@@ -14,7 +14,7 @@
 body {
   font: {
     family: #{abstracts.$fonts-sans-serif};
-    weight: 300;
+    weight: var(--base-weight);
     optical-sizing: auto;
     style: normal;
   }

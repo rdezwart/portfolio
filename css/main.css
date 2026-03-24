@@ -282,7 +282,7 @@ a.skip:focus {
  */
 body {
   font-family: "Inter", sans-serif;
-  font-weight: 300;
+  font-weight: var(--base-weight);
   font-optical-sizing: auto;
   font-style: normal;
   color: var(--text);
