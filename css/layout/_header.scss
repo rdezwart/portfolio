@@ -1,10 +1,10 @@
 @use "../abstracts";
 
 .header {
-  @include abstracts.flow-column();
   background-color: var(--banner);
 
   padding: #{abstracts.$page-padding};
+  @include abstracts.flow-column(0);
   margin-top: #{abstracts.$page-padding * -1};
 
   @include abstracts.respond-to("full") {

@@ -779,6 +779,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  gap: 1rlh;
   gap: 0.5rlh;
 }
 
@@ -794,7 +795,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 0.5rlh;
+  gap: 0.125rlh;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start; /* 1 */
@@ -885,9 +886,9 @@ section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 0.5rlh;
   background-color: var(--banner);
   padding: 1rlh;
+  gap: 0;
   margin-top: -1rlh;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {

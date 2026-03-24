@@ -40,10 +40,12 @@
 
 
 /// Helper mixin to apply standardized flex-column layout with a gap.
-@mixin flow-column {
+/// @require {variable} $text-gap
+/// @param {length} $gap[$text-gap] - Flex gap to apply.
+@mixin flow-column($gap: variables.$text-gap) {
   display: flex;
   flex-direction: column;
-  gap: #{variables.$text-gap};
+  gap: #{$gap};
 }
 
 

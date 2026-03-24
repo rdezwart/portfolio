@@ -4,7 +4,7 @@
  * A header element, contains the main navigation and social links
  */
 .sidebar, .sidebar .nav {
-  @include abstracts.flow-column();
+  @include abstracts.flow-column(abstracts.$page-padding);
 }
 
 /**
@@ -12,7 +12,7 @@
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
 .sidebar .name-wrapper {
-  @include abstracts.flow-column();
+  @include abstracts.flow-column(abstracts.$text-gap * 0.25);
   align-items: start; /* 1 */
 }
 
