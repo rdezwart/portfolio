@@ -8,7 +8,7 @@
  *    This brings it properly inline with the top of the grid row.
  */
 .content {
-  @include abstracts.flow-column();
+  @include abstracts.flex-column();
   row-gap: 0; /* 1 */
 
   section:first-child {
@@ -25,7 +25,7 @@
  * 3. Inset text a small amount from the edges of the container.
  */
 section {
-  @include abstracts.flow-column();
+  @include abstracts.flex-column();
   row-gap: 0; /* 1 */
   padding-top: #{abstracts.$text-gap}; /* 1 */
 

@@ -4,7 +4,7 @@
   background-color: var(--banner);
 
   padding: #{abstracts.$page-padding};
-  @include abstracts.flow-column(0);
+  @include abstracts.flex-column(0);
   margin-top: #{abstracts.$page-padding * -1};
 
   @include abstracts.respond-to("full") {
@@ -17,6 +17,6 @@
  * different from a section, but functions the same layout-wise in this case.
  */
 hgroup {
-  @include abstracts.flow-column();
   gap: calc(#{abstracts.$text-gap} * 0.5);
+  @include abstracts.flex-column();
 }

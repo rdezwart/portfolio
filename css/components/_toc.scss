@@ -14,7 +14,7 @@
     max-height: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
   }
 
-  @include abstracts.flow-column();
+  @include abstracts.flex-column();
 
   #toc-heading {
     margin: 0;
