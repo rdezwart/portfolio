@@ -750,6 +750,7 @@ body {
 .nav :is(ul, ol) :is(ul, ol) {
   list-style-type: ">> ";
   padding-left: 3ch; /* 1 */
+  font-size: 1rem;
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
   font-family: "JetBrains Mono", monospace;
