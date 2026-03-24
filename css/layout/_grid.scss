@@ -19,7 +19,7 @@
   justify-content: center;
   justify-items: stretch; /* 3 */
   column-gap: #{abstracts.$content-gap};
-  row-gap: #{abstracts.$content-gap / 2};
+  row-gap: #{abstracts.$page-padding};
 
   grid-template-columns: auto minmax(auto, #{abstracts.$main-width}); /* 1 */
   grid-template-rows: none; /* 2 */
