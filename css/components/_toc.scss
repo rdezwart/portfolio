@@ -8,7 +8,6 @@
   position: sticky;
   top: #{abstracts.$page-padding};
 
-  height: 100%;
   max-height: calc(100vh - (#{abstracts.$page-padding} * 2)); /* 1 */
   @supports (max-height: 100dvh) {
     max-height: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
@@ -16,10 +15,14 @@
 
   @include abstracts.flex-column();
 
-  #toc-heading {
-    margin: 0;
-    font-size: abstracts.font-size-scaled(1);
+  @include abstracts.respond-to("full") {
+    max-height: none;
   }
+}
+
+#toc-heading {
+  margin: 0;
+  font-size: abstracts.font-size-scaled(1);
 }
 
 /**
@@ -35,7 +38,6 @@
 .toc .nav {
   overflow-y: auto; /* 1 */
   margin-left: 0.5ch; /* 2 */
-  flex: auto; /* 6 */
 
   & > :is(ul, ol) > li > a {
     font-weight: 700; /* 3 */
@@ -43,6 +45,7 @@
 
   & :is(ul, ol) {
     font-size: abstracts.font-size-scaled(0);
+    overflow-y: hidden; /* 6 */
 
     li::marker { /* 4 */
       color: color-mix(in srgb, var(--highlight), transparent 100%);
