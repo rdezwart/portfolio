@@ -2,9 +2,14 @@ header.sidebar
   nav.nav(aria-label="Main")
     div.name-wrapper
       +name()
-      p.description Interactive Systems Developer
+      p.description AI &amp; Interactive Systems Developer
     ul
-      li: a(href="/projects/") Projects
+      li
+        a(href="/projects/") Projects
+        ul
+          li: a(href="#") Game Development
+          li: a(href="#") Machine Learning
+          li: a(href="#") Web Development
       li: a(href="/#about") About
 
   include _social-icons
