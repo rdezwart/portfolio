@@ -63,8 +63,11 @@ mixin fancy-name(fancy = false)
 
 
 //- Shortcut for name, also prevents breaking between my last name
-mixin name()
-  a.name(href="/") Robin de&nbsp;Zwart#[span.highlight ;]
+mixin name(full=true)
+  if full
+    a.name(href="/") Robin de&nbsp;Zwart#[span.highlight ;]
+  else
+    a.name(href="/") Robin#[span.highlight ;]
 
 
 //- TOC needs to be wrapped for sticky to work properly
