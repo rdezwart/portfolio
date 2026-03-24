@@ -5,7 +5,6 @@
  */
 .nav-wrapper, .nav-wrapper .nav {
   @include abstracts.flex-column(abstracts.$text-gap);
-  width: fit-content;
 }
 
 /**
