@@ -517,10 +517,14 @@ body {
  * Default layout for pages.
  */
 .grid-default {
+  -ms-grid-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
       grid-template-areas: "nav content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-default {
+    -ms-grid-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
         grid-template-areas: "nav" "content" "ft";
   }
 }
@@ -529,10 +533,14 @@ body {
  * Layout for project pages, has a Table of Contents below the nav.
  */
 .grid-project {
+  -ms-grid-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
       grid-template-areas: "nav hd" "toc content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-project {
+    -ms-grid-rows: auto auto 1fr auto auto;
+    grid-template-rows: auto auto 1fr auto auto;
         grid-template-areas: "nav" "hd" "toc" "content" "ft";
   }
 }
@@ -544,14 +552,14 @@ body {
  *    directly beneath it.
  */
 .grid-mixed {
-  -ms-grid-rows: -webkit-min-content 1fr;
-  -ms-grid-rows: min-content 1fr;
-  grid-template-rows: -webkit-min-content 1fr;
-  grid-template-rows: min-content 1fr; /* 1 */
+  -ms-grid-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto; /* 1 */
       grid-template-areas: "nav content" "toc content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 1rlh)) {
   .grid-mixed {
+    -ms-grid-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
         grid-template-areas: "nav" "toc" "content" "ft";
   }
 }

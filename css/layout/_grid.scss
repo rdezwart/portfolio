@@ -34,11 +34,13 @@
  * Default layout for pages.
  */
 .grid-default {
+  grid-template-rows: 1fr auto;
   grid-template-areas:
     "nav content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
       "nav"
       "content"
@@ -50,12 +52,14 @@
  * Layout for project pages, has a Table of Contents below the nav.
  */
 .grid-project {
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "nav hd"
     "toc content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
+    grid-template-rows: auto auto 1fr auto auto;
     grid-template-areas:
       "nav"
       "hd"
@@ -73,13 +77,14 @@
  *    directly beneath it.
  */
 .grid-mixed {
-  grid-template-rows: min-content 1fr; /* 1 */
+  grid-template-rows: auto 1fr auto; /* 1 */
   grid-template-areas:
     "nav content"
     "toc content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
     "nav"
     "toc"
