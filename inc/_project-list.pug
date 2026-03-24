@@ -4,7 +4,6 @@
    */
   class Project {
     /**
-     * @param {string} category
      * @param {string} title
      * @param {string} slug
      * @param {string} description
@@ -12,14 +11,12 @@
      * @param {string[]} concepts
      */
     constructor(
-            category = "",
             title = "Portfolio",
             slug = "home",
             description = "Hi, I'm Robin;",
             tools = [],
             concepts = []
     ) {
-      this.category = category;
       this.title = title;
       this.slug = slug;
       this.description = description;
@@ -30,7 +27,6 @@
 
   const projects = {
     "AutolumeGallery": new Project(
-            "AI + VR",
             "AutolumeGallery",
             "autolume-gallery",
             "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
@@ -38,13 +34,11 @@
             ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space", "Artificial Intelligence"]
     ),
     "Food Identifier": new Project(
-            "AI",
             "Food Identifier",
             "food-identifier",
             "Object detection and image captioning for food inside fridges."
     ),
     "A Sight Never Seen": new Project(
-            "Game",
             "A Sight Never Seen",
             "a-sight-never-seen",
             "Short visual novel with branching paths, set in a world of magic and secrets."
