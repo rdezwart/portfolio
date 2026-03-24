@@ -9,19 +9,22 @@
      * @param {string} slug
      * @param {string} description
      * @param {string[]} tools
+     * @param {string[]} concepts
      */
     constructor(
             category = "",
             title = "Portfolio",
             slug = "home",
             description = "Hi, I'm Robin;",
-            tools = []
+            tools = [],
+            concepts = []
     ) {
       this.category = category;
       this.title = title;
       this.slug = slug;
       this.description = description;
       this.tools = tools;
+      this.concepts = concepts;
     }
   }
 
@@ -31,7 +34,8 @@
             "AutolumeGallery",
             "autolume-gallery",
             "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
-            ["Unity", "C#", "Open Sound Control", "Network Device Interface"]
+            ["Unity", "C#", "Open Sound Control", "Network Device Interface"],
+            ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space", "Artificial Intelligence"]
     ),
     "Food Identifier": new Project(
             "AI",
