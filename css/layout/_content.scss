@@ -36,7 +36,7 @@ section {
   }
 
   > :is(#{abstracts.$text-elements}, #{abstracts.$headings-no-banner}) {
-    margin-inline: #{abstracts.$text-gap}; /* 3 */
+    margin-inline: #{abstracts.$content-margin}; /* 3 */
 
     @include abstracts.respond-to("full") {
       margin-inline: 0;

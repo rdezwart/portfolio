@@ -40,7 +40,7 @@ body {
 #{abstracts.$headings-with-banner} {
   background-color: var(--banner);
   line-height: 1;
-  padding: #{abstracts.$text-gap};
+  padding: #{abstracts.$text-gap} #{abstracts.$content-margin};
   margin-bottom: #{abstracts.$text-gap};
 
   @include abstracts.respond-to("full") {

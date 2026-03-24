@@ -54,6 +54,10 @@ $text-elements: p, ul;
 /// @type Length
 $text-gap: 0.5rlh; // 12px
 
+/// Inline margin on text-based content.
+/// @type Length
+$content-margin: 1rlh;
+
 /// Helps to make the margins around block elements visually match the gaps
 /// between text.
 /// @type Length
@@ -61,7 +65,7 @@ $rlh-cap-diff: calc((1rlh - 1cap) / 2);
 
 /// Max width of main tag. 40rem ~= 80 characters
 /// @type Length
-$main-width: calc(40rem + #{$text-gap * 2});
+$main-width: calc(40rem + #{$content-margin * 2});
 
 /// Gap between content and sidebar.
 /// @type Length

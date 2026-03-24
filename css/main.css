@@ -303,10 +303,10 @@ body {
 :is(h2, h3), :is(.h2, .h3) {
   background-color: var(--banner);
   line-height: 1;
-  padding: 0.5rlh;
+  padding: 0.5rlh 1rlh;
   margin-bottom: 0.5rlh;
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   :is(h2, h3), :is(.h2, .h3) {
     padding-inline: 1rlh;
     margin-inline: -1rlh;
@@ -492,8 +492,8 @@ body {
      -moz-column-gap: 2rlh;
           column-gap: 2rlh;
   row-gap: 1rlh;
-  -ms-grid-columns: auto 2rlh minmax(auto, calc(40rem + 1rlh));
-  grid-template-columns: auto minmax(auto, calc(40rem + 1rlh)); /* 1 */
+  -ms-grid-columns: auto 2rlh minmax(auto, calc(40rem + 2rlh));
+  grid-template-columns: auto minmax(auto, calc(40rem + 2rlh)); /* 1 */
   -ms-grid-rows: none;
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
@@ -506,10 +506,10 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .wrapper {
-    -ms-grid-columns: minmax(auto, calc(40rem + 1rlh));
-    grid-template-columns: minmax(auto, calc(40rem + 1rlh));
+    -ms-grid-columns: minmax(auto, calc(40rem + 2rlh));
+    grid-template-columns: minmax(auto, calc(40rem + 2rlh));
   }
 }
 
@@ -521,7 +521,7 @@ body {
   grid-template-rows: 1fr auto;
       grid-template-areas: "nav content" "ft  ft";
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-default {
     -ms-grid-rows: auto 1fr auto;
     grid-template-rows: auto 1fr auto;
@@ -537,7 +537,7 @@ body {
   grid-template-rows: auto 1fr auto;
       grid-template-areas: "nav hd" "toc content" "ft  ft";
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-project {
     -ms-grid-rows: auto auto 1fr auto auto;
     grid-template-rows: auto auto 1fr auto auto;
@@ -556,7 +556,7 @@ body {
   grid-template-rows: auto 1fr auto; /* 1 */
       grid-template-areas: "nav content" "toc content" "ft  ft";
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-mixed {
     -ms-grid-rows: auto auto 1fr auto;
     grid-template-rows: auto auto 1fr auto;
@@ -668,7 +668,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .sidebar {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
@@ -854,9 +854,9 @@ section > :not(section) {
   margin-bottom: 0.5rlh; /* 2 */
 }
 section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
-  margin-inline: 0.5rlh; /* 3 */
+  margin-inline: 1rlh; /* 3 */
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
     margin-inline: 0;
   }
@@ -890,7 +890,7 @@ section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   padding: 1rlh;
   margin-top: -1rlh;
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .header {
     margin-top: 0;
   }
@@ -932,7 +932,7 @@ hgroup {
   padding: 1rlh;
   margin-bottom: -1rlh;
 }
-@media screen and (max-width: calc(40rem + 1rlh)) {
+@media screen and (max-width: calc(40rem + 2rlh)) {
   .footer {
     margin-inline: -1rlh; /* 1 */
   }
