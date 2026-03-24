@@ -68,18 +68,24 @@
               <p class="description">Interactive virtual reality system for real-time exploration of generative adversarial network latent space.</p>
             </hgroup>
             <div class="gradient"></div>
+            <ul class="links" role="list">
+              <li><strong>Code:</strong> <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
+              <li><strong>Dataset:</strong> <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
+              <li><strong>Original Paper:</strong> <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
+            </ul>
           </header>
           <div class="toc-wrapper">
             <div class="toc">
               <h2 class="h4" id="toc-heading">Table of Contents</h2>
               <nav class="nav" aria-labelledby="toc-heading">
                 <ol role="list">
-                  <li><a href="#abstract">Abstract</a>
+                  <li><a href="#overview">Overview</a>
                     <ol role="list">
-                      <li><a href="#links">Links</a></li>
+                      <li><a href="#abstract">Abstract</a></li>
+                      <li><a href="#demo">Demo</a></li>
+                      <li><a href="#examples">Examples</a></li>
                     </ol>
                   </li>
-                  <li><a href="#examples">Examples</a></li>
                   <li><a href="#introduction">Introduction</a></li>
                   <li><a href="#literature-review">Literature Review</a></li>
                   <li><a href="#system-design">System Design</a></li>
@@ -89,41 +95,54 @@
                       <li><a href="#unity">Unity</a></li>
                       <li><a href="#autolume-live">Autolume-Live</a></li>
                     </ol>
-                    <li><a href="#results">Results</a></li>
-                    <li><a href="#conclusion">Conclusion</a></li>
-                    <li><a href="#ethical-statement">Ethical Statement</a></li>
-                    <li><a href="#acknowledgements">Acknowledgements</a></li>
-                    <li><a href="#references">References</a></li>
                   </li>
+                  <li><a href="#results">Results</a></li>
+                  <li><a href="#conclusion">Conclusion</a></li>
+                  <li><a href="#ethical-statement">Ethical Statement</a></li>
+                  <li><a href="#acknowledgements">Acknowledgements</a></li>
+                  <li><a href="#references">References</a></li>
                 </ol>
               </nav>
             </div>
           </div>
           <div class="content">
-            <section id="abstract">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Abstract</h2>
-              <p class="introduction">
-                AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
-                of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
-                and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
-                piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
-                of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
-              </p>
-              <section id="links">
-                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Links</h3>
-                <ul class="list">
-                  <li>Code: <a class="link" href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer">GitHub</a></li>
-                  <li>Paper: <a class="link" href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer">View PDF</a></li>
-                  <li>Dataset: <a class="link" href="https://voormeij.ca/" target="_blank" rel="noreferrer">Peter John Voormeij</a></li>
-                </ul>
+            <section id="overview">
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Overview</h2>
+              <p><strong>Tools:</strong></p>
+              <ul class="tools" role="list">
+                <li>Unity</li>
+                <li>C#</li>
+                <li>Open Sound Control</li>
+                <li>Network Device Interface</li>
+              </ul>
+              <p><strong>Concepts:</strong></p>
+              <ul class="concepts" role="list">
+                <li>Virtual Reality</li>
+                <li>Creative AI</li>
+                <li>Image Generation</li>
+                <li>Latent Space</li>
+                <li>Artificial Intelligence</li>
+              </ul>
+              <section id="abstract">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Abstract</h3>
+                <p class="introduction">
+                  AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
+                  of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
+                  and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
+                  piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
+                  of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+                </p>
+              </section>
+              <section id="demo">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Demo</h3>
                 <div class="youtube-container">
                   <iframe src="https://www.youtube-nocookie.com/embed/Brn7nG2WOXA?si=ApqnHnHsTaW3ukRk&amp;rel=0&amp;hl=en-ca" title="AutolumeGallery - Demo Video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
               </section>
-            </section>
-            <section id="examples">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Examples</h2><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
-              <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
+              <section id="examples">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Examples</h3><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
+                <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
+              </section>
             </section>
             <section id="introduction">
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>

@@ -1,11 +1,21 @@
 @use "../abstracts";
+@use "sass:color";
 
+/**
+ * Header at the top of project pages.
+ * 1. Background image, to be covered by gradient from children.
+ */
 .header {
-  background-color: var(--banner);
-
-  padding: #{abstracts.$page-padding};
   @include abstracts.flex-column(0);
   margin-top: #{abstracts.$page-padding * -1};
+
+  background-image: url("/img/autolume-gallery/canvas-2.webp"); /* 1 */
+  background-size: cover;
+  background-position: top center;
+
+  .description {
+    color: #DDDDDD; // TODO: Add variable
+  }
 
   @include abstracts.respond-to("full") {
     margin-top: 0;
@@ -13,10 +23,86 @@
 }
 
 /**
- * Used at the top of project pages to group title and subtitle. Semantically
- * different from a section, but functions the same layout-wise in this case.
+ * Semi-transparent background color in front of `.header` background image,
+ * but only where the text is.
+ * 1. Set transparency using relative color syntax (Baseline 2024).
  */
-hgroup {
-  gap: calc(#{abstracts.$text-gap} * 0.5);
+.header hgroup {
   @include abstracts.flex-column();
+  padding: #{abstracts.$page-padding} #{abstracts.$page-padding} 0;
+  background: linear-gradient(
+                  rgb(from var(--banner) r g b / 0.90) 0%,
+                  rgb(from var(--banner) r g b / 0.70) 100%); /* 1 */
+}
+
+/**
+ * Semi-transparent background gradient in front of `.header` background image,
+ * filling rest of row space below the `hgroup`.
+ * 1. Set transparency using relative color syntax (Baseline 2024).
+ */
+.header .gradient {
+  flex: auto;
+  min-height: 4rlh;
+  background: linear-gradient(
+                  rgb(from var(--banner) r g b / 0.70) 0%,
+                  rgb(from var(--banner) r g b / 0) 80%); /* 1 */
+}
+
+
+/**
+ * List of links at the bottom of header.
+ * 1. Had to increase specificity a bit for padding/margins.
+ */
+ul.links { /* 1 */
+  flex: auto;
+
+  @include abstracts.flex-row(0 #{abstracts.$page-padding});
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: #{abstracts.$page-padding * 0.5} #{abstracts.$page-padding};
+
+  background-color: rgb(from var(--banner) r g b / 0.9); /* 1 */
+
+  @include abstracts.heading-typeface();
+  font-size: abstracts.font-size-scaled(-1);
+}
+
+
+/**
+ * List of tools in Overview section.
+ */
+.tools {
+  @include abstracts.flex-row();
+  flex-wrap: wrap;
+  align-items: start;
+  justify-items: center;
+
+  li {
+    @include abstracts.heading-typeface();
+    font-size: abstracts.font-size-scaled(-1);
+    font-weight: 400;
+    background-color: #{lighten(abstracts.$dark, 20%)};
+    border: 0.1rem solid #{abstracts.$teal};
+
+    padding: 0.25rlh 0.5rlh;
+  }
+}
+
+/**
+ * List of concepts in Overview section. Extends `.tools`.
+ */
+.concepts {
+  @extend .tools;
+
+  li {
+    background-color: #{abstracts.$dark-banner};
+  }
+}
+
+
+/**
+ * Reduce bottom margin on paragraph directly above Tools and Concepts lists.
+ */
+p:has(+ :is(.tools, .concepts)) {
+  margin-bottom: #{abstracts.$text-gap * 0.5};
 }
