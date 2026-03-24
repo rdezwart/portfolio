@@ -598,17 +598,17 @@ body {
  * 1. Needs to come to the foreground since the wrapper is behind the semantic
  *    elements.
  */
-.sidebar {
+.nav-wrapper {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: nav;
   z-index: 1; /* 1 */
 }
-.grid-project > .sidebar {
+.grid-project > .nav-wrapper {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
-.grid-mixed > .sidebar {
+.grid-mixed > .nav-wrapper {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
@@ -670,15 +670,15 @@ body {
   -ms-grid-column-span: 2;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  .sidebar {
+  .nav-wrapper {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .grid-project > .sidebar {
+  .grid-project > .nav-wrapper {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .grid-mixed > .sidebar {
+  .grid-mixed > .nav-wrapper {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
@@ -772,7 +772,7 @@ body {
 /**
  * A header element, contains the main navigation and social links
  */
-.sidebar, .sidebar .nav {
+.nav-wrapper, .nav-wrapper .nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -790,7 +790,7 @@ body {
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
-.sidebar .name-wrapper {
+.nav-wrapper .name-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -803,7 +803,7 @@ body {
       -ms-flex-align: start;
           align-items: start; /* 1 */
 }
-.sidebar .name-wrapper p {
+.nav-wrapper .name-wrapper p {
   color: #ffffff;
   font-size: 1rem;
   font-weight: 400;
@@ -813,7 +813,7 @@ body {
 /**
  * Large name linking to home page, acts as my logo
  */
-.sidebar .name {
+.nav-wrapper .name {
   font-size: 1.953125rem;
 }
 

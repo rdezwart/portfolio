@@ -122,7 +122,7 @@
  * 1. Needs to come to the foreground since the wrapper is behind the semantic
  *    elements.
  */
-.sidebar {
+.nav-wrapper {
   grid-area: nav;
   z-index: 1; /* 1 */
 }
