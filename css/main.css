@@ -1221,6 +1221,10 @@ p:has(+ :is(.tools, .concepts)) {
   -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
           box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
   outline: 0.2rem solid var(--link);
+  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s;
+  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
 }
 
 /**
