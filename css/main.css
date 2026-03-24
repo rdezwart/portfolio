@@ -516,17 +516,20 @@ body {
 
 /**
  * Default layout for pages.
+ * 1. Because the content begins at the top and spans multiple rows, we can tell
+ *    the nav row to be as small as possible, allowing the sidebar to be placed
+ *    directly beneath it.
  */
 .grid-default {
-  -ms-grid-rows: 1fr auto;
-  grid-template-rows: 1fr auto;
-      grid-template-areas: "nav content" "ft  ft";
+  -ms-grid-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto; /* 1 */
+      grid-template-areas: "nav content" "side content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-default {
-    -ms-grid-rows: auto 1fr auto;
-    grid-template-rows: auto 1fr auto;
-        grid-template-areas: "nav" "content" "ft";
+    -ms-grid-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "nav" "side" "content" "ft";
   }
 }
 
@@ -543,25 +546,6 @@ body {
     -ms-grid-rows: auto auto 1fr auto auto;
     grid-template-rows: auto auto 1fr auto auto;
         grid-template-areas: "nav" "hd" "side" "content" "ft";
-  }
-}
-
-/**
- * Layout that mixes the project and default layouts together.
- * 1. Because the content begins at the top and spans multiple rows, we can tell
- *    the nav row to be as small as possible, allowing the sidebar to be placed
- *    directly beneath it.
- */
-.grid-mixed {
-  -ms-grid-rows: auto 1fr auto;
-  grid-template-rows: auto 1fr auto; /* 1 */
-      grid-template-areas: "nav content" "side content" "ft  ft";
-}
-@media screen and (max-width: calc(40rem + 2rlh)) {
-  .grid-mixed {
-    -ms-grid-rows: auto auto 1fr auto;
-    grid-template-rows: auto auto 1fr auto;
-        grid-template-areas: "nav" "side" "content" "ft";
   }
 }
 
@@ -608,10 +592,6 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
-.grid-mixed > .nav-wrapper {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
 
 /**
  * Defining grid areas for article header, content, and sidebar (TOC).
@@ -624,18 +604,14 @@ body {
 
 .content {
   -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: content;
 }
 
 .grid-project > .content {
   -ms-grid-row: 2;
-  -ms-grid-column: 2;
-}
-
-.grid-mixed > .content {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
+  -ms-grid-row-span: 1;
   -ms-grid-column: 2;
 }
 
@@ -645,7 +621,7 @@ body {
   grid-area: side;
 }
 
-.grid-mixed > .sidebar-wrapper {
+.grid-project > .sidebar-wrapper {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
 }
@@ -654,17 +630,12 @@ body {
  * Defining grid area for site footer.
  */
 .footer {
-  -ms-grid-row: 2;
+  -ms-grid-row: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: ft;
 }
 .grid-project > .footer {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-}
-.grid-mixed > .footer {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -678,47 +649,35 @@ body {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .grid-mixed > .nav-wrapper {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
   .header {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
   .content {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-  }
-  .grid-project > .content {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-  }
-  .grid-mixed > .content {
     -ms-grid-row: 3;
     -ms-grid-row-span: 1;
     -ms-grid-column: 1;
   }
-  .sidebar-wrapper {
-    -ms-grid-row: 3;
+  .grid-project > .content {
+    -ms-grid-row: 4;
+    -ms-grid-row-span: 1;
     -ms-grid-column: 1;
   }
-  .grid-mixed > .sidebar-wrapper {
+  .sidebar-wrapper {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
-  .footer {
+  .grid-project > .sidebar-wrapper {
     -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .footer {
+    -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
   }
   .grid-project > .footer {
     -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-  }
-  .grid-mixed > .footer {
-    -ms-grid-row: 4;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
   }
@@ -1127,6 +1086,17 @@ p:has(+ :is(.tools, .concepts)) {
 .sidebar-heading {
   margin: 0;
   font-size: 1.25rem;
+}
+
+.sidebar-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
 }
 
 /**

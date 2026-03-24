@@ -69,17 +69,15 @@ mixin name()
 
 //- TOC needs to be wrapped for sticky to work properly
 mixin toc(heading="Table of Contents")
-  div.sidebar-wrapper
-    div.toc
-      +h(2, heading, false)(class="h4 sidebar-heading")
-      nav.nav(aria-labelledby="toc-heading")
-        if block
-          block
+  div.toc
+    +h(2, heading, false)(class="h4 sidebar-heading")
+    nav.nav(aria-labelledby="toc-heading")
+      if block
+        block
 
 //- Generic sidebar mixin
 mixin sidebar(heading="Sidebar")
-  div.sidebar-wrapper
-    div.sidebar
-      +h(2, heading, false)(class="h4 sidebar-heading")
-      if block
-        block
+  div.sidebar
+    +h(2, heading, false)(class="h4 sidebar-heading")
+    if block
+      block

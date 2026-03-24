@@ -30,9 +30,11 @@ block main
             p.description #{description}
         div.gradient
 
-    +toc()
-      ol(role="list")
-        block toc
+    div.sidebar-wrapper
+      block sidebar
+        +toc()
+          ol(role="list")
+            block toc
 
     div.content
       block content
