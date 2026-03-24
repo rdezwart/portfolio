@@ -69,7 +69,7 @@ mixin name()
 
 //- TOC needs to be wrapped for sticky to work properly
 mixin toc(heading="Table of Contents")
-  div.toc-wrapper
+  div.sidebar-wrapper
     div.toc
       +h(2, heading, false)(class="h4" id="toc-heading")
       nav.nav(aria-labelledby="toc-heading")

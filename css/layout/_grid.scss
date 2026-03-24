@@ -55,7 +55,7 @@
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "nav hd"
-    "toc content"
+    "side content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
@@ -63,7 +63,7 @@
     grid-template-areas:
       "nav"
       "hd"
-      "toc"
+      "side"
       "content"
       "ft";
   }
@@ -73,21 +73,21 @@
 /**
  * Layout that mixes the project and default layouts together.
  * 1. Because the content begins at the top and spans multiple rows, we can tell
- *    the nav row to be as small as possible, allowing the TOC to be placed
+ *    the nav row to be as small as possible, allowing the sidebar to be placed
  *    directly beneath it.
  */
 .grid-mixed {
   grid-template-rows: auto 1fr auto; /* 1 */
   grid-template-areas:
     "nav content"
-    "toc content"
+    "side content"
     "ft  ft";
 
   @include abstracts.respond-to("full") {
     grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
     "nav"
-    "toc"
+    "side"
     "content"
     "ft";
   }
@@ -128,7 +128,7 @@
 }
 
 /**
- * Defining grid areas for article header, content, and TOC.
+ * Defining grid areas for article header, content, and sidebar (TOC).
  */
 .header {
   grid-area: hd;
@@ -138,8 +138,8 @@
   grid-area: content;
 }
 
-.toc-wrapper {
-  grid-area: toc;
+.sidebar-wrapper {
+  grid-area: side;
 }
 
 
