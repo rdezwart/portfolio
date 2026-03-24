@@ -6,13 +6,16 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
-    layout = "default"
+    layout = "mixed"
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
 
 append scripts
   script(src="/js/toc.js" defer)
+
+prepend main
+  +toc()
 
 append content
   section
