@@ -770,54 +770,6 @@ body {
 }
 
 /**
- * A header element, contains the main navigation and social links
- */
-.nav-wrapper, .nav-wrapper .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 0.5rlh;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-/**
- * Wrapper for name and tagline at the top of the sidebar
- * 1. Aligning to start stops the anchor from being wider than its text.
- */
-.nav-wrapper .name-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 0.125rlh;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start; /* 1 */
-}
-.nav-wrapper .name-wrapper p {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: normal;
-}
-
-/**
- * Large name linking to home page, acts as my logo
- */
-.nav-wrapper .name {
-  font-size: 1.953125rem;
-}
-
-/**
  * Represents the body of an article. This comes after the header and TOC.
  * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
  *    TOC scroll tracking.
@@ -1059,6 +1011,54 @@ p:has(+ :is(.tools, .concepts)) {
   color: var(--link);
   text-decoration: none;
   line-height: 1;
+}
+
+/**
+ * A header element, contains the main navigation and social links
+ */
+.nav-wrapper, .nav-wrapper .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+/**
+ * Wrapper for name and tagline at the top of the sidebar
+ * 1. Aligning to start stops the anchor from being wider than its text.
+ */
+.nav-wrapper .name-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.125rlh;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start; /* 1 */
+}
+.nav-wrapper .name-wrapper p {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/**
+ * Large name linking to home page, acts as my logo
+ */
+.nav-wrapper .name {
+  font-size: 1.953125rem;
 }
 
 /**
