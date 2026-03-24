@@ -8,10 +8,12 @@
  *    breakpoints.
  * 3. Ensure elements act block-like on smaller screens, otherwise
  *    clicking/tapping sends focus to unexpected places.
+ * 4. Push footer to bottom of page regardless of content size.
  */
 .wrapper {
   margin: auto;
   padding: #{abstracts.$page-padding};
+  min-height: 100dvh; /* 4 */
 
   display: grid;
   justify-content: center;
