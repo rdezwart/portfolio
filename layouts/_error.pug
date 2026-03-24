@@ -21,7 +21,7 @@ block image-alt
 
 append content
   section
-    h1 Error #{errorCode}#[span.highlight &colon; ] #{errorName}
+    +h(1, `Error ${errorCode}<span class="highlight">&colon;</span> ${errorName}`)
 
     block error-message
       p I'm a little teapot
