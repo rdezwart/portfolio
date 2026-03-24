@@ -4,7 +4,8 @@
  * A header element, contains the main navigation and social links
  */
 .sidebar, .sidebar .nav {
-  @include abstracts.flow-column(abstracts.$page-padding);
+  @include abstracts.flow-column(abstracts.$text-gap);
+  width: fit-content;
 }
 
 /**
@@ -14,6 +15,13 @@
 .sidebar .name-wrapper {
   @include abstracts.flow-column(abstracts.$text-gap * 0.25);
   align-items: start; /* 1 */
+
+  p {
+    color: #{abstracts.$white};
+    font-size: abstracts.font-size-scaled(0);
+    font-weight: 400;
+    font-style: normal;
+  }
 }
 
 /**

@@ -780,8 +780,10 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 1rlh;
   gap: 0.5rlh;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 /**
@@ -800,6 +802,12 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start; /* 1 */
+}
+.sidebar .name-wrapper p {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /**
