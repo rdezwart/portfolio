@@ -863,9 +863,9 @@ section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
  * 1. Had to increase specificity a bit for padding/margins.
  */
 ul.links { /* 1 */
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 auto;
+          flex: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

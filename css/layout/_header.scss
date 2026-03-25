@@ -54,7 +54,7 @@
  * 1. Had to increase specificity a bit for padding/margins.
  */
 ul.links { /* 1 */
-  flex: auto;
+  flex: 0 auto;
 
   @include abstracts.flex-row(0 #{abstracts.$page-padding});
   flex-wrap: wrap;
