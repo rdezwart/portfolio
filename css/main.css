@@ -1397,6 +1397,22 @@ figure figcaption {
   transition-property: border-color, color;
 }
 
+/**
+ * Lists of skills displayed in sidebar.
+ */
+.skills {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
 :root {
   --background: #1e1e22;
   --banner: #2a2a2f;

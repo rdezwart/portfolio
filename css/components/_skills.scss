@@ -1,0 +1,10 @@
+@use "../abstracts";
+
+/**
+ * Lists of skills displayed in sidebar.
+ */
+.skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
