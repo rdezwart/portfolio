@@ -1277,7 +1277,8 @@ figure figcaption {
   text-decoration: none;
   font-weight: 600;
   display: inline-block; /* 1 */
-  padding: 0.75em 1.5em; /* 0.5rlh 1rlh */
+  padding: 0.5rlh 1rlh;
+  line-height: 1;
   border: 0.1rem solid var(--link);
   color: var(--link);
   -webkit-transition-property: border-color, color;
