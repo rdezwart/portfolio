@@ -29,6 +29,8 @@ block main
             +h(1, title)
             p.description #{description}
         div.gradient
+        if project.links.length > 0
+          +list(project.links)(class="links" role="list")
 
     div.sidebar-wrapper
       block sidebar

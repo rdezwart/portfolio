@@ -32,11 +32,6 @@ block hgroup
     p.description #{description}
 
 
-append header
-  if project.links.length > 0
-    +list(project.links)(class="links" role="list")
-
-
 append content
   section#overview
     +h(2, "Overview")
