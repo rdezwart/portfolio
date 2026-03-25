@@ -33,10 +33,8 @@ block hgroup
 
 
 append header
-  ul(role="list").links
-    li #[strong Code:] #[a.link(href="https://github.com/rdezwart/AutolumeGallery" target="_blank" rel="noreferrer") GitHub]
-    li #[strong Dataset:] #[a.link(href="https://voormeij.ca/" target="_blank" rel="noreferrer") Peter John Voormeij]
-    li #[strong Original Paper:] #[a.link(href="/files/AutolumeGallery_RobinDeZwart.pdf" target="_blank" rel="noreferrer") View PDF]
+  if project.links.length > 0
+    +list(project.links)(class="links" role="list")
 
 
 append content
