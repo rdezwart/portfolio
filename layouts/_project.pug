@@ -40,3 +40,12 @@ block main
 
     div.content
       block content
+        section#overview
+          +h(2, "Overview")
+            block overview
+              if project.tools.length > 0
+                p: strong Tools:
+                +list(project.tools)(class="tools" role="list")
+              if project.concepts.length > 0
+                p: strong Concepts:
+                +list(project.concepts)(class="concepts" role="list")
