@@ -90,4 +90,4 @@ mixin sidebar(heading="Sidebar")
 mixin list(items = [], type="ul")
   #{type}&attributes(attributes)
     each item in items
-      li= item
+      li!= item.toString()

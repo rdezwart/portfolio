@@ -18,12 +18,12 @@
     }
 
     /**
-     * @returns {string} - Formatted title, URL, and text with Pug syntax.
+     * @returns {string} - Formatted title, URL, and text.
      */
     toString() {
-      let _title = this.title ? `#[strong ${this.title}:] ` : ``;
+      let _title = this.title ? `<strong>${this.title}:</strong> ` : ``;
 
-      return `${_title}#[a.link(href=${this.url} ${this.attrs}) ${this.text}]`;
+      return `${_title}<a href="${this.url}" ${this.attrs}>${this.text}</a>`;
     }
   }
 
