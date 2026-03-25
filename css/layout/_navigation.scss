@@ -40,5 +40,9 @@
 
   li a {
     @include abstracts.secondary();
+
+    &:hover, &:focus {
+      color: var(--highlight);
+    }
   }
 }

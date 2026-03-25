@@ -248,7 +248,7 @@ a {
   font-weight: 400;
 }
 a:hover, a:focus {
-  color: var(--highlight) !important;
+  color: var(--highlight);
   -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
 }
@@ -726,6 +726,9 @@ body {
   font-weight: 200;
   font-style: italic;
   color: var(--secondary);
+}
+.nav :is(ul, ol) :is(ul, ol) li a:hover, .nav :is(ul, ol) :is(ul, ol) li a:focus {
+  color: var(--highlight);
 }
 
 /**

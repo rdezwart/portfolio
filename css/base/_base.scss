@@ -18,7 +18,7 @@ a {
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
-    color: var(--highlight) !important;
+    color: var(--highlight);
     transition: color var(--duration) ease;
   }
 }
