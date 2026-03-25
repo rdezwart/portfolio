@@ -788,17 +788,14 @@ section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
 
 /**
  * Contains a number of project cards.
+ * 1. Wrap cards to one-per-row if they're smaller than the minimum value.
  */
-.project-grid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 1rem;
-  -webkit-box-flex: 45rem;
-      -ms-flex: 45rem;
-          flex: 45rem;
+ul.project-grid {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
+  gap: 1rlh;
+  margin: 0;
 }
 
 /**
@@ -1255,15 +1252,122 @@ figure figcaption {
   gap: 0;
 }
 
+/**
+ * Card containing details about each project.
+ * 1. One named grid area, easier to stack two elements together.
+ * 2. Accessible card design, pseudo-content trick to expand anchor hitbox to
+ *    cover entire card. See: https://inclusive-components.design/cards/
+ * 3. Progressive enhancement to show/hide text underline depending on if
+ *    :focus-within is supported.
+ */
 .project-card {
-  -webkit-box-flex: 15rem;
-      -ms-flex: 15rem;
-          flex: 15rem;
-  padding: 1rem;
-  border: thin solid #3f3f3f;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "banner"; /* 1 */
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: auto 1fr;
+  grid-template-rows: auto 1fr;
+  position: relative; /* 2 */
+  -webkit-box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
+          box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
+  outline: 0 solid var(--link);
+  -webkit-transition: outline-width calc(var(--duration) / 2);
+  transition: outline-width calc(var(--duration) / 2);
 }
-.project-card .img-link {
-  margin-top: 0;
+.project-card:hover, .project-card:focus-within {
+  outline-width: 0.2rem;
+}
+.project-card a:focus {
+  outline: none;
+  text-decoration: underline; /* 3 */
+}
+.project-card:focus-within a:focus {
+  text-decoration: none; /* 3 */
+}
+
+/**
+ * Heading for project cards. Overlaps with `.project-image`.
+ * 1. Push heading to bottom of banner row.
+ * 2. Add extra padding to match border thickness of `.project-details`.
+ */
+.project-heading {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: banner;
+  -ms-grid-row-align: end;
+      align-self: end; /* 1 */
+  margin: 0;
+  padding-block: 0.5rlh;
+  padding-inline: calc(1rlh + 0.2rem); /* 2 */
+  background-color: rgb(from var(--banner) r g b/0.9);
+}
+
+/**
+ * The card heading has an anchor nested within.
+ * 1. Use a pseudo-element trick to expand the hitbox of the anchor, filling the
+ *    entire card, making it all clickable.
+ * 2. Since we're setting the text color, we have to re-set the highlight as
+ *    well, due to specificity.
+ */
+.project-heading a {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--text); /* 2 */
+  text-decoration: none;
+}
+.project-heading a:hover, .project-heading a:focus {
+  color: var(--highlight); /* 2 */
+}
+.project-heading a::after { /* 1 */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/**
+ * Banner image for card.
+ * 1. Sits behind `.project-heading`.
+ * 2. Responsive image styles
+ */
+.project-img {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: banner;
+  z-index: -1; /* 1 */
+}
+.project-img img { /* 2 */
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
+}
+
+/**
+ * Container for project description and tools.
+ */
+.project-details {
+  border: 0.2rem solid var(--banner);
+  border-top-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  padding: 1rlh;
+  padding-top: 0.5rlh;
 }
 
 /**

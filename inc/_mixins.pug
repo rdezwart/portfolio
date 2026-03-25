@@ -91,3 +91,25 @@ mixin list(items = [], type="ul")
   #{type}&attributes(attributes)
     each item in items
       li!= item.toString()
+
+
+mixin project-card(project)
+  li.project-card
+    h3.project-heading
+      a(href=`/projects/${project.slug}.html`) #{project.title}
+
+    div.project-details
+      div.project-desc
+        p.description #{project.description}
+      div.project-tools
+        +list(project.tools)(class="tools" role="list")
+
+    picture.project-img
+      source(srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp")
+      img(
+        alt=""
+        src="/img/autolume-gallery/canvas-2.webp"
+        width="1024"
+        height="1024"
+        loading="lazy"
+      )

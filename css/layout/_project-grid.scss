@@ -1,10 +1,12 @@
+@use "../abstracts";
+
 /**
  * Contains a number of project cards.
+ * 1. Wrap cards to one-per-row if they're smaller than the minimum value.
  */
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  //grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  flex: 45rem;
+ul.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
+  gap: #{abstracts.$page-padding};
+  margin: 0;
 }

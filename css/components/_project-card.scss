@@ -1,12 +1,110 @@
 @use "../abstracts";
 
+/**
+ * Card containing details about each project.
+ * 1. One named grid area, easier to stack two elements together.
+ * 2. Accessible card design, pseudo-content trick to expand anchor hitbox to
+ *    cover entire card. See: https://inclusive-components.design/cards/
+ * 3. Progressive enhancement to show/hide text underline depending on if
+ *    :focus-within is supported.
+ */
 .project-card {
-  flex: 15rem;
+  display: grid;
+  grid-template-areas:
+    "banner"; /* 1 */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
 
-  padding: 1rem;
-  border: thin solid #{abstracts.$grey};
+  position: relative; /* 2 */
 
-  .img-link {
-    margin-top: 0;
+  box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 80%);
+  outline: 0 solid var(--link);
+  transition: outline-width calc(var(--duration) / 2);
+
+  &:hover, &:focus-within {
+    outline-width: 0.2rem;
   }
+
+  & a:focus {
+    outline: none;
+    text-decoration: underline; /* 3 */
+  }
+
+  &:focus-within a:focus {
+    text-decoration: none; /* 3 */
+  }
+}
+
+/**
+ * Heading for project cards. Overlaps with `.project-image`.
+ * 1. Push heading to bottom of banner row.
+ * 2. Add extra padding to match border thickness of `.project-details`.
+ */
+.project-heading {
+  grid-area: banner;
+  align-self: end; /* 1 */
+
+  margin: 0;
+  padding-block: #{abstracts.$text-gap};
+  padding-inline: calc(#{abstracts.$page-padding} + 0.2rem); /* 2 */
+  background-color: rgb(from var(--banner) r g b / 0.9);
+}
+
+/**
+ * The card heading has an anchor nested within.
+ * 1. Use a pseudo-element trick to expand the hitbox of the anchor, filling the
+ *    entire card, making it all clickable.
+ * 2. Since we're setting the text color, we have to re-set the highlight as
+ *    well, due to specificity.
+ */
+.project-heading a {
+  @include abstracts.heading-typeface();
+  color: var(--text); /* 2 */
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: var(--highlight); /* 2 */
+  }
+
+  &::after { /* 1 */
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/**
+ * Banner image for card.
+ * 1. Sits behind `.project-heading`.
+ * 2. Responsive image styles
+ */
+.project-img {
+  grid-area: banner;
+  z-index: -1; /* 1 */
+
+  img { /* 2 */
+    max-inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 16 / 9;
+    //aspect-ratio: 2 / 1; // TODO: Another possible value
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+/**
+ * Container for project description and tools.
+ */
+.project-details {
+  border: 0.2rem solid var(--banner);
+  border-top-style: none;
+
+  @include abstracts.flex-column();
+  align-items: start;
+
+  padding: #{abstracts.$page-padding};
+  padding-top: #{abstracts.$text-gap}; // TODO: See if you like this or not
 }
