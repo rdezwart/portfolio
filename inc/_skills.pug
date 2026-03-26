@@ -1,42 +1,54 @@
-p: strong Languages
-ul.skills(role="list")
-  li Python
-  li Java
-  li C#
-  li JavaScript
-  li CSS
-  li HTML
-  li Pug/Jade
-  li LaTeX
-  li C/C++
-  li PHP
-  li SQL
+-
+  let _languages = [
+    "Python",
+    "Java",
+    "C#",
+    "JavaScript",
+    "CSS",
+    "HTML",
+    "Pug/Jade",
+    "LaTeX",
+    "C/C++",
+    "PHP",
+    "SQL",
+  ];
+  let _frameworks = [
+    "scikit-learn",
+    "NumPy",
+    "pandas",
+    "OpenCV",
+    "Sass",
+    "jQuery",
+    "Bootstrap",
+    "Unity XRI",
+  ];
+  let _tools = [
+    "Git",
+    "Unity",
+    "Ren'Py",
+    "Prepros",
+    "Android Studio",
+    "Adobe CC",
+    "Office 365",
+  ];
+  let _platforms = [
+    "Jupyter",
+    "WordPress",
+    "Squarespace",
+    "Windows",
+    "Linux",
+  ];
 
-p: strong Frameworks
-ul.skills(role="list")
-  li scikit-learn
-  li NumPy
-  li pandas
-  li OpenCV
-  li Sass
-  li jQuery
-  li Bootstrap
-  li Unity XRI
 
-p: strong Tools
-ul.skills(role="list")
-  li Git
-  li Unity
-  li Ren'Py
-  li Prepros
-  li Android Studio
-  li Adobe CC
-  li Office 365
-
-p: strong Platforms
-ul.skills(role="list")
-  li Jupyter
-  li WordPress
-  li Squarespace
-  li Windows
-  li Linux
+div.skills-group
+  p.h4 Languages:
+  +list(_languages)(class="skills-list concepts" role="list")
+div.skills-group
+  p.h4 Frameworks:
+  +list(_frameworks)(class="skills-list concepts" role="list")
+div.skills-group
+  p.h4 Tools:
+  +list(_tools)(class="skills-list concepts" role="list")
+div.skills-group
+  p.h4 Platforms:
+  +list(_platforms)(class="skills-list concepts" role="list")

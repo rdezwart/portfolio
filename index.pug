@@ -6,6 +6,7 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
+    layout = "project";
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
@@ -17,28 +18,18 @@ append sidebar
   +sidebar("Skills")
     include inc/_skills
 
-  +sidebar("About")
-    p i'm moving this to its own page
+prepend main
+  //- Needs to be a div because we can't have two header sections on one page.
+  div.header
+    section
+      h1
+        | Hi, I'm
+        |
+        +name(false)
+    div.gradient
+
 
 append content
-  section
-    h1
-      | Hi, I'm
-      |
-      +name(false)
-    p
-      | I've grown a deep fascination with machine learning and artificial intelligence and have been steadily building my
-      | skills and knowledge over the past few years. :]
-    p
-      | I'm nearing completion of a B.Sc. with a primary concentration on #[strong AI and Data Science for Human-Centered Systems]
-      | at #[a.link(href="https://www.sfu.ca/siat.html" target="_blank" rel="noreferrer") SFU's School of Interactive Arts &amp; Technology].
-      | I have also gained experience in web/mobile development, various programming languages, and game design through
-      | completing additional concentrations.
-    p
-      | I will graduate later this year and am eager to gain hands-on experience diving deeper into the training,
-      | fine-tuning, implementation, and ethical considerations of LLMs, generative models, and artificial intelligence as
-      | a whole.
-
   section#projects
     +h(2, "Featured Projects")
 
