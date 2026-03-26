@@ -493,8 +493,8 @@ body {
      -moz-column-gap: 2rlh;
           column-gap: 2rlh;
   row-gap: 1rlh;
-  -ms-grid-columns: auto 2rlh minmax(auto, calc(40rem + 2rlh));
-  grid-template-columns: auto minmax(auto, calc(40rem + 2rlh)); /* 1 */
+  -ms-grid-columns: minmax(auto, 21rem) 2rlh minmax(auto, calc(40rem + 2rlh));
+  grid-template-columns: minmax(auto, 21rem) minmax(auto, calc(40rem + 2rlh)); /* 1 */
   -ms-grid-rows: none;
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */

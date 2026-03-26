@@ -21,7 +21,7 @@
   column-gap: #{abstracts.$content-gap};
   row-gap: #{abstracts.$page-padding};
 
-  grid-template-columns: auto minmax(auto, #{abstracts.$main-width}); /* 1 */
+  grid-template-columns: minmax(auto, #{abstracts.$nav-width}) minmax(auto, #{abstracts.$main-width}); /* 1 */
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
 
