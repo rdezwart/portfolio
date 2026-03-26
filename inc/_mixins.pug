@@ -14,27 +14,25 @@ mixin nav-item(category, text, link, desc)
       p.description #{desc}
 
 
-//-
+//- Mixin for generating styled headings.
   Referenced: https://stackoverflow.com/a/56565423
-  Inline JS comments are weird with the Pug formatter, so I have to document it this way:
-  1. Calculate how many arrows to generate
-  2. `attributes` is an implicit argument passed to the mixin
-  3. If an explicit class is specified, overwrite the default assignment
-mixin h(level, heading, doArrows = true)
+  Note: `attributes` is an implicit argument passed to the mixin, WebStorm
+  doesn't quite recognize it.
+mixin h(level, heading = "", doArrows = true, levelOverride = -1)
   -
-    level = Math.max(1, Math.min(6, level)); /* 1 */
-    let arrows = ">".repeat(level - 1);
+    let visualLevel = levelOverride !== -1 ? levelOverride : level;
+    visualLevel = Math.max(1, Math.min(6, visualLevel));
+
+    let arrows = ">".repeat(visualLevel - 1);
     if (arrows !== "") arrows += " ";
 
-    let _attributes = attributes; /* 2 */
-    _attributes.class = Object.hasOwn(attributes, "class") ? attributes.class : `h${level}`; /* 3 */
-
   //- There's a cleaner way of doing this conditional, but this avoids weird extra newlines
+  //- Add styling class based on visual level, can be different from actual level
   if doArrows && arrows !== ""
-    #{"h" + level}&attributes(_attributes)
+    #{"h" + level}(class=`${"h" + visualLevel}`)&attributes(attributes)
       | #[span.highlight(aria-hidden="true") #{arrows}]!{heading}
   else
-    #{"h" + level}&attributes(_attributes)
+    #{"h" + level}(class=`${"h" + visualLevel}`)&attributes(attributes)
       | !{heading}
 
   if block
@@ -73,15 +71,15 @@ mixin name(full=true)
 //- TOC needs to be wrapped for sticky to work properly
 mixin toc(heading="Table of Contents")
   div.toc
-    +h(2, heading, false)(class="h4 sidebar-heading")
+    +h(2, heading, false, 4)(class="sidebar-heading")
     nav.nav(aria-labelledby="toc-heading")
       if block
         block
 
 //- Generic sidebar mixin
 mixin sidebar(heading="Sidebar")
-  div.sidebar
-    +h(2, heading, false)(class="h4 sidebar-heading")
+  section.sidebar
+    +h(2, heading, true)
     if block
       block
 
