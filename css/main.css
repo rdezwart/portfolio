@@ -831,7 +831,7 @@ ul.project-grid {
  * but only where the text is.
  * 1. Set transparency using relative color syntax (Baseline 2024).
  */
-.header hgroup {
+.header .hgroup {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

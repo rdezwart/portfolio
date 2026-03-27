@@ -28,7 +28,7 @@
  * but only where the text is.
  * 1. Set transparency using relative color syntax (Baseline 2024).
  */
-.header hgroup {
+.header .hgroup {
   @include abstracts.flex-column();
   padding: #{abstracts.$page-padding} #{abstracts.$page-padding} 0;
   background: linear-gradient(
