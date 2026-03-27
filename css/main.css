@@ -801,8 +801,10 @@ ul.project-grid {
 /**
  * Header at the top of project pages.
  * 1. Background image, to be covered by gradient from children.
+ * 2. Position set to relative for absolute Automata canvas behind it.
  */
 .header {
+  position: relative; /* 2 */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -830,6 +832,8 @@ ul.project-grid {
  * Semi-transparent background color in front of `.header` background image,
  * but only where the text is.
  * 1. Set transparency using relative color syntax (Baseline 2024).
+ * 2. Set z index so it's above the background image of `.header`. Mainly for
+ *    with Automata wrapper.
  */
 .header .hgroup {
   display: -webkit-box;
@@ -843,6 +847,7 @@ ul.project-grid {
   padding: 1rlh 1rlh 0;
   background: -webkit-gradient(linear, left top, left bottom, from(rgb(from var(--banner) r g b/0.9)), to(rgb(from var(--banner) r g b/0.7)));
   background: linear-gradient(rgb(from var(--banner) r g b/0.9) 0%, rgb(from var(--banner) r g b/0.7) 100%); /* 1 */
+  z-index: 1; /* 2 */
 }
 
 /**
@@ -851,6 +856,7 @@ ul.project-grid {
  * 1. Set transparency using relative color syntax (Baseline 2024).
  */
 .header .gradient {
+  z-index: 2;
   -webkit-box-flex: 1;
       -ms-flex: auto;
           flex: auto;
@@ -1432,6 +1438,26 @@ figure figcaption {
 /**
  * Lists of skills displayed in sidebar.
  */
+/**
+ * Container for P5 automata canvas.
+ * 1. Do not change the size of the header, just fit inside it.
+ * 2. Behind hgroup text, but above the header background image.
+ */
+#automata-wrapper {
+  position: absolute; /* 1 */
+  width: 100%; /* 1 */
+  height: 100%; /* 1 */
+  z-index: 0; /* 2 */
+}
+
+/**
+ * Canvas used by P5js.
+ */
+#automata-canvas {
+  width: 100%;
+  height: 100%;
+}
+
 :root {
   --background: #1e1e22;
   --banner: #2a2a2f;

@@ -4,8 +4,11 @@
 /**
  * Header at the top of project pages.
  * 1. Background image, to be covered by gradient from children.
+ * 2. Position set to relative for absolute Automata canvas behind it.
  */
 .header {
+  position: relative; /* 2 */
+
   @include abstracts.flex-column(0);
   margin-top: #{abstracts.$page-padding * -1};
 
@@ -27,6 +30,8 @@
  * Semi-transparent background color in front of `.header` background image,
  * but only where the text is.
  * 1. Set transparency using relative color syntax (Baseline 2024).
+ * 2. Set z index so it's above the background image of `.header`. Mainly for
+ *    with Automata wrapper.
  */
 .header .hgroup {
   @include abstracts.flex-column();
@@ -34,6 +39,7 @@
   background: linear-gradient(
                   rgb(from var(--banner) r g b / 0.90) 0%,
                   rgb(from var(--banner) r g b / 0.70) 100%); /* 1 */
+  z-index: 1; /* 2 */
 }
 
 /**
@@ -42,6 +48,7 @@
  * 1. Set transparency using relative color syntax (Baseline 2024).
  */
 .header .gradient {
+  z-index: 2;
   flex: auto;
   min-height: 4rlh;
   background: linear-gradient(

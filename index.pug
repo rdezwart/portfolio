@@ -12,7 +12,6 @@ block url
   meta(property="og:url" content="https://rdezwart.ca/")
 
 append scripts
-  script(src="/js/toc.js" defer)
   script(src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer)
   script(src="/js/automata.js" defer)
 
@@ -24,6 +23,7 @@ append sidebar
 prepend main
   //- Needs to be a div because we can't have two header sections on one page.
   div.header
+    div#automata-wrapper
     section.hgroup
       h1
         | Hi, I'm
@@ -35,8 +35,6 @@ prepend main
 append content
   section#projects
     +h(2, "Featured Projects")
-
-    div#automata
 
     ul.project-grid(role="list")
       each p in projects
