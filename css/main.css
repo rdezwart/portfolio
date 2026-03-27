@@ -454,6 +454,17 @@ b, strong {
 }
 
 /**
+ * Style a UL/OL as a comma separated list.
+ * 1. Add a comma and space after all but the last list item.
+ */
+.comma-list li {
+  display: inline;
+}
+.comma-list li:not(:last-child)::after {
+  content: ", "; /* 1 */
+}
+
+/**
  * Ensure body always fills the entire screen.
  * 1. Use dynamic viewport height to account for browser UI on mobile devices.
  *    See: https://stackoverflow.com/a/72245072
