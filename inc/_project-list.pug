@@ -39,6 +39,7 @@
      * @param {ProjectLink[]} links
      * @param {string[]} tools
      * @param {string[]} concepts
+     * @param {string} imagePath
      */
     constructor(
             title = "Portfolio",
@@ -46,7 +47,8 @@
             description = "Hi, I'm Robin;",
             links = [],
             tools = [],
-            concepts = []
+            concepts = [],
+            imagePath = "/img/CellularAutomata.png"
     ) {
       this.title = title;
       this.slug = slug;
@@ -54,6 +56,7 @@
       this.links = links;
       this.tools = tools;
       this.concepts = concepts;
+      this.imagePath = imagePath;
     }
   }
 
