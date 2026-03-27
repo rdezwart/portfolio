@@ -1452,10 +1452,20 @@ figure figcaption {
 
 /**
  * Canvas used by P5js.
+ * 1. Add transition when canvas is added to DOM. Using @starting-style is
+ *    Baseline 2024.
  */
 #automata-canvas {
   width: 100%;
   height: 100%;
+  opacity: 1;
+  -webkit-transition: opacity calc(var(--duration) * 2);
+  transition: opacity calc(var(--duration) * 2);
+}
+@starting-style {
+  #automata-canvas {
+    opacity: 0; /* 1 */
+  }
 }
 
 :root {
