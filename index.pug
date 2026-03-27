@@ -13,6 +13,9 @@ block url
 
 append scripts
   script(src="/js/toc.js" defer)
+  script(src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer)
+  script(src="/js/automata.js" defer)
+
 
 append sidebar
   +sidebar("Skills")
@@ -32,6 +35,8 @@ prepend main
 append content
   section#projects
     +h(2, "Featured Projects")
+
+    div#automata
 
     ul.project-grid(role="list")
       each p in projects
