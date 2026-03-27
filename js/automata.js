@@ -1,45 +1,56 @@
-let wrapper, bounds;
-let divWidth, divHeight;
-
-/** @type HTMLCanvasElement */
-let canvas;
+"use strict";
 
 /**
- * P5 function. Run before the sketch starts.
+ * Wraps the sketch in an object, enabling "instance mode".
+ * @param {p5} sketch - The sketch loaded by p5.
  */
-function setup() {
-  wrapper = document.getElementById("automata-wrapper");
-  // canvas = document.getElementById("automata-canvas");
-  updateBounds();
+const s = (sketch) => {
 
-  // Tell which Canvas P5 to use.
-  let canvas = createCanvas(divWidth, divHeight);
-  canvas.parent(wrapper);
-  canvas.id("automata-canvas");
-}
+  /** @type HTMLElement */
+  let wrapper;
+  /** @type DOMRect */
+  let bounds;
+  /** @type number */
+  let divWidth, divHeight;
 
-/**
- * P5 function. Run every frame.
- */
-function draw() {
-  background(220);
-  textAlign(CENTER);
-  text("Hi, I'm Robin", width / 2, height / 2);
-}
+  /**
+   * P5 function. Runs before the sketch starts.
+   */
+  sketch.setup = () => {
+    wrapper = document.getElementById("automata-wrapper");
+    updateBounds();
 
-/**
- * P5 function. Run when window is resized.
- */
-function windowResized() {
-  updateBounds();
-  resizeCanvas(divWidth, divHeight);
-}
+    let canvas = sketch.createCanvas(divWidth, divHeight);
+    canvas.id("automata-canvas");
+    canvas.parent(wrapper);
+  };
 
-/**
- * Helper function to refresh parent div sizes.
- */
-function updateBounds() {
-  bounds = wrapper.getBoundingClientRect();
-  divWidth = bounds.width;
-  divHeight = bounds.height;
-}
+  /**
+   * P5 function. Runs every frame.
+   */
+  sketch.draw = () => {
+    sketch.background(220);
+    sketch.textAlign(sketch.CENTER);
+    sketch.text("Hi, I'm Robin", sketch.width / 2, sketch.height / 2);
+  };
+
+  /**
+   * P5 function. Runs when window is resized.
+   */
+  sketch.windowResized = () => {
+    updateBounds();
+    sketch.resizeCanvas(divWidth, divHeight);
+  };
+
+  /**
+   * Helper function to refresh parent div sizes.
+   */
+  function updateBounds() {
+    bounds = wrapper.getBoundingClientRect();
+    divWidth = bounds.width;
+    divHeight = bounds.height;
+  }
+};
+
+// Pass an undefined node, we're setting the parent in setup()
+let automata = new p5(s, undefined);
