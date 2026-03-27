@@ -1,10 +1,21 @@
 @use "../abstracts";
 
 /**
+ * Groups containing a heading and a list of skills.
+ */
+.skills-group {
+  @include abstracts.flex-column(0);
+
+  .h4 {
+    font-weight: 600;
+  }
+}
+
+/**
  * Lists of skills displayed in sidebar.
  */
-.skills {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.skills-list {
+  //display: flex;
+  //flex-direction: row;
+  //flex-wrap: wrap;
 }

@@ -9,5 +9,13 @@
 }
 
 .sidebar-wrapper {
-  @include abstracts.flex-column();
+  @include abstracts.flex-column(#{abstracts.$page-padding});
+
+  section:first-child {
+    padding-top: 0; /* 2 */
+  }
+}
+
+.sidebar {
+  @include abstracts.flex-column(0);
 }
