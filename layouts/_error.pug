@@ -10,6 +10,9 @@ append vars
 prepend page-title
   - title = `Error ${errorCode}: ${errorName}`
 
+append meta
+  meta(name="robots" content="noindex, follow")
+
 block url
   meta(property="og:url" content=`https://rdezwart.ca/errors/${slug}.html`)
 
