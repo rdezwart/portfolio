@@ -28,8 +28,9 @@ const s = (sketch) => {
     canvas.parent(wrapper);
 
     grid = new Grid(sketch);
-
     sketch.frameRate(60);
+
+    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
   };
 
   /**
