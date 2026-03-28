@@ -1,5 +1,8 @@
 "use strict";
 
+/** @type Grid */
+let grid;
+
 /**
  * Wraps the sketch in an object, enabling "instance mode".
  * @param {p5} sketch - The sketch loaded by p5.
@@ -23,15 +26,19 @@ const s = (sketch) => {
     let canvas = sketch.createCanvas(divWidth, divHeight);
     canvas.id("automata-canvas");
     canvas.parent(wrapper);
+
+    grid = new Grid(sketch);
+
+    sketch.frameRate(60);
   };
 
   /**
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    sketch.background(220);
-    sketch.textAlign(sketch.CENTER);
-    sketch.text("Hi, I'm Robin", sketch.width / 2, sketch.height / 2);
+    sketch.background(grid.deadColor);
+    sketch.scale(grid.scaleFactor);
+    grid.display();
   };
 
   /**
