@@ -84,11 +84,13 @@ mixin sidebar(heading="Sidebar")
       block
 
 
-//- Renders a list of items
+//- Renders a list of items, with extra cases for a comma separated list
 mixin list(items = [], type="ul")
+  - let addCommas = attributes.class?.includes("comma-list");
+
   #{type}&attributes(attributes)
-    each item in items
-      li!= item.toString()
+    each item, index in items
+      li!= addCommas && index < items.length - 1 ? `${item.toString()}, ` : item.toString()
 
 
 mixin project-card(project)
