@@ -53,4 +53,4 @@ const s = (sketch) => {
 };
 
 // Pass an undefined node, we're setting the parent in setup()
-let automata = new p5(s, undefined);
+let sketch = new p5(s, undefined);
