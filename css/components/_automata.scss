@@ -22,7 +22,7 @@
   height: 100%;
 
   opacity: 1;
-  transition: opacity calc(var(--duration) * 2);
+  transition: opacity calc(var(--duration) * 4);
   @starting-style {
     opacity: 0; /* 1 */
   }
