@@ -16,6 +16,11 @@ const s = (sketch) => {
   /** @type number */
   let divWidth, divHeight;
 
+  /** @type number */
+  let resizeTimeoutId;
+  /** @type number */
+  let resizeDelay = 1000;
+
   /**
    * P5 function. Runs before the sketch starts.
    */
@@ -31,14 +36,19 @@ const s = (sketch) => {
     sketch.frameRate(60);
 
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
+
+    resizeTimeoutId = window.setTimeout(function () {
+      grid.resize();
+    }, resizeDelay);
+    window.clearTimeout(resizeTimeoutId);
   };
 
   /**
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    sketch.background(222);
     sketch.scale(grid.scaleFactor);
+    sketch.background(grid.deadColor);
     grid.display();
   };
 
@@ -49,6 +59,10 @@ const s = (sketch) => {
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
     grid.resize();
+
+    // window.clearTimeout(resizeTimeoutId);
+    // resizeTimeoutId = window.setTimeout(function () {
+    // }, resizeDelay);
   };
 
   /**
