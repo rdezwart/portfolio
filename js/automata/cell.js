@@ -30,6 +30,8 @@ class Cell {
     this.x = x;
     this.y = y;
 
+    // TODO: just have this be a boolean, do the chance when calling constructor
+
     if (alive === undefined) {
       this.alive = Math.random() < chance;
     }
@@ -42,6 +44,7 @@ class Cell {
   }
 
   display() {
+    // TODO: Maybe handle this in the grid? dunno if it'd be faster
     this.cellColor = this.alive ? grid.aliveColor : grid.deadColor;
 
     // if (sketch.frameCount % 1 === 0 && Math.random() < 0.2) {

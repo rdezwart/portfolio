@@ -37,7 +37,7 @@ const s = (sketch) => {
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    sketch.background(grid.deadColor);
+    sketch.background(222);
     sketch.scale(grid.scaleFactor);
     grid.display();
   };
@@ -48,6 +48,7 @@ const s = (sketch) => {
   sketch.windowResized = () => {
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
+    grid.resize();
   };
 
   /**

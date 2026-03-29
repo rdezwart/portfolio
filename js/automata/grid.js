@@ -1,9 +1,9 @@
 "use strict";
 
 class Grid {
-  /** @type int */
+  /** @type number */
   cols;
-  /** @type int */
+  /** @type number */
   rows;
   /** @type Cell[][] */
   cells;
@@ -41,6 +41,8 @@ class Grid {
   /** @type number[] */
   animTriggers;
 
+  isResizing = false;
+
   /**
    *
    * @param {p5} sketch
@@ -77,8 +79,11 @@ class Grid {
   }
 
   display() {
-    for (let i = 0; i < this.cols; i++) {
-      for (let j = 0; j < this.rows; j++) {
+    if (this.isResizing)
+      return;
+
+    for (let i = 0; i < this.cells.length; i++) {
+      for (let j = 0; j < this.cells[i].length; j++) {
         this.cells[i][j].display();
       }
     }
@@ -91,11 +96,11 @@ class Grid {
   }
 
   updateCells() {
-    for (let i = 0; i < this.cols; i++) {
-      for (let j = 0; j < this.rows; j++) {
+    for (let i = 0; i < this.cells.length; i++) {
+      for (let j = 0; j < this.cells[i].length; j++) {
         let current = this.cells[i][j];
-
         let living = current.livingNeighbours();
+
         // Make a copy to avoid concurrent modification
         /** @type Cell */
         let replacement = this.cells[i][j].clone();
@@ -126,5 +131,47 @@ class Grid {
     let temp = this.apply;
     this.apply = this.cells;
     this.cells = temp;
+  }
+
+  /**
+   * Referenced: {@link https://stackoverflow.com/a/54726138/27162946 StackOverflow}
+   */
+  resize() {
+    let newCols = Math.floor(sketch.width / this.scaleFactor);
+    let newRows = Math.floor(sketch.height / this.scaleFactor);
+    this.isResizing = true;
+
+    console.log("New:", newCols, newRows);
+
+    // Add new columns to base array
+    while (newCols > this.cells.length) {
+      this.cells.push(new Array(newRows));
+      this.apply.push(new Array(newRows));
+    }
+    this.cells.length = newCols;
+
+
+    // loop through all columns
+    for (let i = 0; i < this.cells.length; i++) {
+      // fill new columns with enough cells
+      for (let j = 0; j < newRows; j++) {
+        if (this.cells[i][j] === undefined) {
+          this.cells[i][j] = new Cell(sketch, this, i, j, 0.5, false);
+          this.apply[i][j] = this.cells[i][j].clone();
+        }
+        if (j >= this.cells[i].length - 1) {
+          this.cells[i].push(new Cell(sketch, this, i, j, 0.5, false));
+          this.apply[i].push(this.cells[i][j].clone());
+        }
+      }
+      this.cells[i].length = newRows;
+    }
+    this.cols = newCols;
+    this.rows = newRows;
+
+    // this.apply = this.cells; // breaks things, but looks really cool
+    console.log("Cells:", this.cells.length, this.cells[0].length);
+    console.log("Apply:", this.apply.length, this.apply[0].length);
+    this.isResizing = false;
   }
 }
