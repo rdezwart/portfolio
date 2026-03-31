@@ -65,14 +65,9 @@
       </header>
       <main class="main" id="main-content">
         <div class="header">
-          <div id="automata-wrapper"></div>
-          <section class="hgroup">
-            <h1>
-              Hi, I'm
-              <a class="name" href="/">Robin<span class="highlight">;</span></a>
-            </h1>
-          </section>
-          <div class="gradient"></div>
+          <div id="automata-wrapper">
+            <canvas id="automata-buffer"></canvas>
+          </div>
         </div>
         <div class="sidebar-wrapper">
           <section class="sidebar">
@@ -131,6 +126,13 @@
           </section>
         </div>
         <div class="content">
+          <section class="hgroup">
+            <h1>
+              Hi, I'm
+              <a class="name" href="/">Robin<span class="highlight">;</span></a>
+            </h1>
+          </section>
+          <div class="gradient"></div>
           <section id="projects">
             <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Featured Projects</h2>
             <ul class="project-grid" role="list">

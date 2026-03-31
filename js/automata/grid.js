@@ -5,6 +5,12 @@
  * {@link https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life|Conway's Game of Life}.
  */
 class Grid {
+  /** @type p5 */
+  sketch;
+  /** @type p5.Graphics */
+  buffer;
+
+
   /** @type number */
   cols;
   /** @type number */
@@ -48,13 +54,17 @@ class Grid {
 
   /**
    * @param {p5} sketch - A p5 object passed from the main Processing sketch.
+   * @param {p5.Graphics} buffer - Graphics buffer to add draw calls to.
    */
-  constructor(sketch) {
-    this.deadColor = sketch.color(42, 42, 47, 255);
-    this.aliveColor = sketch.color(255, 153, 51, 255);
+  constructor(sketch, buffer) {
+    this.sketch = sketch;
+    this.buffer = buffer;
 
-    this.cols = Math.floor(sketch.width / this.scaleFactor) + 1;
-    this.rows = Math.floor(sketch.height / this.scaleFactor) + 1;
+    this.deadColor = this.sketch.color(42, 42, 47, 255);
+    this.aliveColor = this.sketch.color(255, 153, 51, 255);
+
+    this.cols = Math.floor(this.sketch.width / this.scaleFactor) + 1;
+    this.rows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
 
     // Create filled 2D arrays
     this.cells = new Array(this.cols);
@@ -78,8 +88,6 @@ class Grid {
     }
 
     this.animY = this.rows - 1;
-
-    sketch.noStroke();
   }
 
 
@@ -87,18 +95,20 @@ class Grid {
    * Draw the game grid to the canvas.
    */
   display() {
+    this.buffer.push();
+    this.buffer.scale(this.scaleFactor);
     for (let col = 0; col < this.cols; col++) {
       for (let row = 0; row < this.rows; row++) {
         // Only drawing living cells boosts performance significantly
         if (this.cells[col][row].alive) {
-          sketch.fill(this.aliveColor);
-          sketch.rect(col, row, 1, 1);
+          this.buffer.rect(col, row, 1, 1);
         }
       }
     }
+    this.buffer.pop();
 
     if (!this.paused) {
-      if (sketch.frameCount % this.updateRate === 0) {
+      if (this.sketch.frameCount % this.updateRate === 0) {
         this.updateCells(); // TODO: Consider making this a separate call in sketch
       }
     }
@@ -168,8 +178,8 @@ class Grid {
    * Referenced: https://stackoverflow.com/a/32055229/27162946
    */
   resize() {
-    let newCols = Math.floor(sketch.width / this.scaleFactor) + 1;
-    let newRows = Math.floor(sketch.height / this.scaleFactor) + 1;
+    let newCols = Math.floor(this.sketch.width / this.scaleFactor) + 1;
+    let newRows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
 
     // Add new columns to base array
     while (newCols > this.cells.length) {

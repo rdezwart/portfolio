@@ -23,15 +23,17 @@ prepend main
   //- Needs to be a div because we can't have two header sections on one page.
   div.header
     div#automata-wrapper
-    section.hgroup
-      h1
-        | Hi, I'm
-        |
-        +name(false)
-    div.gradient
+      canvas#automata-buffer
 
 
 append content
+  section.hgroup
+    h1
+      | Hi, I'm
+      |
+      +name(false)
+  div.gradient
+
   section#projects
     +h(2, "Featured Projects")
 

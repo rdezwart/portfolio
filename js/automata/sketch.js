@@ -21,10 +21,18 @@ const s = (sketch) => {
   /** @type number */
   let resizeDelay = 1000;
 
+  /** @type HTMLCanvasElement */
+  let bufferCanvas;
+  /** @type p5.Graphics */
+  let buffer;
+
   /**
    * P5 function. Runs before the sketch starts.
    */
   sketch.setup = () => {
+    sketch.frameRate(30);
+    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
+
     wrapper = document.getElementById("automata-wrapper");
     updateBounds();
 
@@ -32,37 +40,32 @@ const s = (sketch) => {
     canvas.id("automata-canvas");
     canvas.parent(wrapper);
 
-    grid = new Grid(sketch);
-    sketch.frameRate(60);
+    bufferCanvas = document.getElementById("automata-buffer");
+    buffer = sketch.createGraphics(divWidth, divHeight, sketch.P2D, bufferCanvas);
 
-    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
-
-    resizeTimeoutId = window.setTimeout(function () {
-      grid.resize();
-    }, resizeDelay);
-    window.clearTimeout(resizeTimeoutId);
+    grid = new Grid(sketch, buffer);
   };
 
   /**
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    sketch.scale(grid.scaleFactor);
-    sketch.background(grid.deadColor);
+    buffer.noStroke();
+    buffer.fill(grid.aliveColor);
+    buffer.background(grid.deadColor);
     grid.display();
+    sketch.image(buffer, 0, 0);
   };
 
   /**
    * P5 function. Runs when window is resized.
+   * 1. Resize graphics buffer to keep it in sync with the visible sketch.
    */
   sketch.windowResized = () => {
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
+    buffer.resizeCanvas(divWidth, divHeight); /* 1 */
     grid.resize();
-
-    // window.clearTimeout(resizeTimeoutId);
-    // resizeTimeoutId = window.setTimeout(function () {
-    // }, resizeDelay);
   };
 
   /**
@@ -76,4 +79,4 @@ const s = (sketch) => {
 };
 
 // Pass an undefined node, we're setting the parent in setup()
-let sketch = new p5(s, undefined);
+let automata = new p5(s, undefined);
