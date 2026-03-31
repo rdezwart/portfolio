@@ -16,9 +16,9 @@ const s = (sketch) => {
   /** @type number */
   let divWidth, divHeight;
 
-  /** @type number */
+  /** @const {number} */
   const FRAMES_PER_SECOND = 24;
-  /** @type number */
+  /** @const {number} */
   const UPDATES_PER_SECOND = 5;
   /** @type number */
   let logicIntervalId;
