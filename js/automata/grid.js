@@ -97,8 +97,8 @@ class Grid {
     this.livingPath = new Path2D();
     for (let col = 0; col < this.cells.length; col++) {
       for (let row = 0; row < this.cells[col].length; row++) {
-        this.displayCell(col, row);
-        this.updateCell(col, row);
+        this.#displayCell(col, row);
+        this.#updateCell(col, row);
       }
     }
 
@@ -113,7 +113,7 @@ class Grid {
    * @param {number} col
    * @param {number} row
    */
-  displayCell(col, row) {
+  #displayCell(col, row) {
     // Only drawing living cells boosts performance significantly
     if (this.cells[col][row].alive) {
       this.livingPath.rect(col, row, 1, 1);
@@ -126,7 +126,7 @@ class Grid {
    * @param {number} col
    * @param {number} row
    */
-  updateCell(col, row) {
+  #updateCell(col, row) {
     let current = this.cells[col][row];
     let livingNeighbours = 0;
 
