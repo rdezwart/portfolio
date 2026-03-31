@@ -7,9 +7,8 @@
 class Grid {
   /** @type p5 */
   sketch;
-  /** @type p5.Graphics */
-  buffer;
-
+  /** @type Path2D */
+  livingPath;
 
   /** @type number */
   cols;
@@ -44,8 +43,6 @@ class Grid {
   /** @type number */
   waveDelay = 800;
   /** @type number */
-  updateRate = 3;
-  /** @type number */
   rule3Threshold = 3;
 
   /** @type number[] */
@@ -54,11 +51,10 @@ class Grid {
 
   /**
    * @param {p5} sketch - A p5 object passed from the main Processing sketch.
-   * @param {p5.Graphics} buffer - Graphics buffer to add draw calls to.
    */
-  constructor(sketch, buffer) {
+  constructor(sketch) {
     this.sketch = sketch;
-    this.buffer = buffer;
+    this.livingPath = new Path2D();
 
     this.deadColor = this.sketch.color(42, 42, 47, 255);
     this.aliveColor = this.sketch.color(255, 153, 51, 255);
@@ -92,82 +88,85 @@ class Grid {
 
 
   /**
-   * Draw the game grid to the canvas.
+   * Main logic loop for grid. Handles drawing and update logic.
    */
-  display() {
-    this.buffer.push();
-    this.buffer.scale(this.scaleFactor);
-    for (let col = 0; col < this.cols; col++) {
-      for (let row = 0; row < this.rows; row++) {
-        // Only drawing living cells boosts performance significantly
-        if (this.cells[col][row].alive) {
-          this.buffer.rect(col, row, 1, 1);
-        }
-      }
-    }
-    this.buffer.pop();
+  loop() {
+    if (this.paused)
+      return;
 
-    if (!this.paused) {
-      if (this.sketch.frameCount % this.updateRate === 0) {
-        this.updateCells(); // TODO: Consider making this a separate call in sketch
-      }
-    }
-  }
-
-
-  /**
-   * Applies the rules of Conway's Game of Life to the grid and replaces the
-   * current generation.
-   */
-  updateCells() {
+    this.livingPath = new Path2D();
     for (let col = 0; col < this.cells.length; col++) {
       for (let row = 0; row < this.cells[col].length; row++) {
-        let current = this.cells[col][row];
-        let livingNeighbours = 0;
-
-        for (let i = -1; i <= 1; i++) {
-          for (let j = -1; j <= 1; j++) {
-            let colIndex = col + i;
-            let rowIndex = row + j;
-
-            // Make sure we're not counting ourselves
-            if (!(i === 0 && j === 0)) {
-              // Use modulo to wrap around to other edge of array
-              // Referenced: https://stackoverflow.com/a/45397704
-              let neighbour = this.cells[(colIndex % this.cols + this.cols) % this.cols]
-                [(rowIndex % this.rows + this.rows) % this.rows];
-              livingNeighbours += neighbour.alive;
-            }
-          }
-        }
-
-        // Make a copy to avoid concurrent modification
-        let replacement = new Cell(current.alive);
-
-        // Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-        if (current.alive && livingNeighbours < 2) {
-          replacement.alive = false;
-        }
-        // Rule 2: Any live cell with two or three live neighbours lives on to the next generation.
-        if (current.alive && (livingNeighbours === 2 || livingNeighbours === 3)) {
-          replacement.alive = true;
-        }
-        // Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation.
-        if (current.alive && livingNeighbours > this.rule3Threshold) {
-          replacement.alive = false;
-        }
-        // Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-        if (!current.alive && livingNeighbours === 3) {
-          replacement.alive = true;
-        }
-
-        this.apply[col][row] = replacement;
+        this.displayCell(col, row);
+        this.updateCell(col, row);
       }
     }
 
     let temp = this.apply;
     this.apply = this.cells;
     this.cells = temp;
+  }
+
+
+  /**
+   * Draw the game grid to the canvas.
+   * @param {number} col
+   * @param {number} row
+   */
+  displayCell(col, row) {
+    // Only drawing living cells boosts performance significantly
+    if (this.cells[col][row].alive) {
+      this.livingPath.rect(col, row, 1, 1);
+    }
+  }
+
+  /**
+   * Applies the rules of Conway's Game of Life to the grid and replaces the
+   * current generation.
+   * @param {number} col
+   * @param {number} row
+   */
+  updateCell(col, row) {
+    let current = this.cells[col][row];
+    let livingNeighbours = 0;
+
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        let colIndex = col + i;
+        let rowIndex = row + j;
+
+        // Make sure we're not counting ourselves
+        if (!(i === 0 && j === 0)) {
+          // Use modulo to wrap around to other edge of array
+          // Referenced: https://stackoverflow.com/a/45397704
+          let neighbour = this.cells[(colIndex % this.cols + this.cols) % this.cols]
+            [(rowIndex % this.rows + this.rows) % this.rows];
+          livingNeighbours += neighbour.alive;
+        }
+      }
+    }
+
+    // Make a copy to avoid concurrent modification
+    let replacement = new Cell(current.alive);
+
+    // Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+    if (current.alive && livingNeighbours < 2) {
+      replacement.alive = false;
+    }
+    // Rule 2: Any live cell with two or three live neighbours lives on to the next generation.
+    if (current.alive && (livingNeighbours === 2 || livingNeighbours === 3)) {
+      replacement.alive = true;
+    }
+    // Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation.
+    if (current.alive && livingNeighbours > this.rule3Threshold) {
+      replacement.alive = false;
+    }
+    // Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    if (!current.alive && livingNeighbours === 3) {
+      replacement.alive = true;
+    }
+
+    this.apply[col][row] = replacement;
   }
 
 

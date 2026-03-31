@@ -16,23 +16,11 @@ const s = (sketch) => {
   /** @type number */
   let divWidth, divHeight;
 
-  /** @type number */
-  let resizeTimeoutId;
-  /** @type number */
-  let resizeDelay = 1000;
-
-  /** @type HTMLCanvasElement */
-  let bufferCanvas;
-  /** @type p5.Graphics */
-  let buffer;
 
   /**
    * P5 function. Runs before the sketch starts.
    */
   sketch.setup = () => {
-    sketch.frameRate(30);
-    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
-
     wrapper = document.getElementById("automata-wrapper");
     updateBounds();
 
@@ -40,31 +28,30 @@ const s = (sketch) => {
     canvas.id("automata-canvas");
     canvas.parent(wrapper);
 
-    bufferCanvas = document.getElementById("automata-buffer");
-    buffer = sketch.createGraphics(divWidth, divHeight, sketch.P2D, bufferCanvas);
+    grid = new Grid(sketch);
 
-    grid = new Grid(sketch, buffer);
+    sketch.frameRate(5);
+    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
+    sketch.noStroke();
+    sketch.fill(grid.aliveColor);
   };
 
   /**
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    buffer.noStroke();
-    buffer.fill(grid.aliveColor);
-    buffer.background(grid.deadColor);
-    grid.display();
-    sketch.image(buffer, 0, 0);
+    sketch.background(grid.deadColor);
+    sketch.scale(grid.scaleFactor);
+    grid.loop();
+    sketch.drawingContext.fill(grid.livingPath);
   };
 
   /**
    * P5 function. Runs when window is resized.
-   * 1. Resize graphics buffer to keep it in sync with the visible sketch.
    */
   sketch.windowResized = () => {
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
-    buffer.resizeCanvas(divWidth, divHeight); /* 1 */
     grid.resize();
   };
 
