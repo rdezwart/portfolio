@@ -16,6 +16,13 @@ const s = (sketch) => {
   /** @type number */
   let divWidth, divHeight;
 
+  /** @type number */
+  const FRAMES_PER_SECOND = 24;
+  /** @type number */
+  const UPDATES_PER_SECOND = 5;
+  /** @type number */
+  let logicIntervalId;
+
 
   /**
    * P5 function. Runs before the sketch starts.
@@ -30,10 +37,14 @@ const s = (sketch) => {
 
     grid = new Grid(sketch);
 
-    sketch.frameRate(5);
+    sketch.frameRate(FRAMES_PER_SECOND);
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
     sketch.noStroke();
     sketch.fill(grid.aliveColor);
+
+    logicIntervalId = setInterval(function () {
+      grid.loop();
+    }, 1000 / UPDATES_PER_SECOND);
   };
 
   /**
@@ -42,7 +53,6 @@ const s = (sketch) => {
   sketch.draw = () => {
     sketch.background(grid.deadColor);
     sketch.scale(grid.scaleFactor);
-    grid.loop();
     sketch.drawingContext.fill(grid.livingPath);
   };
 
