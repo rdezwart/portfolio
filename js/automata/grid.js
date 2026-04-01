@@ -112,9 +112,11 @@ class Grid {
       }
     }
 
-    let temp = this.apply;
-    this.apply = this.cells;
-    this.cells = temp;
+    if (!this.paused) {
+      let temp = this.apply;
+      this.apply = this.cells;
+      this.cells = temp;
+    }
   }
 
   /**

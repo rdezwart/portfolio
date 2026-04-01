@@ -39,16 +39,13 @@ const s = (sketch) => {
 
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
+    sketch.cursor(sketch.HAND);
     sketch.noStroke();
     sketch.fill(grid.aliveColor);
 
     logicIntervalId = setInterval(function () {
       grid.loop();
     }, 1000 / UPDATES_PER_SECOND);
-
-    setTimeout(function () {
-      grid.paused = false;
-    }, 5000);
   };
 
   /**
@@ -69,6 +66,12 @@ const s = (sketch) => {
     grid.resize();
   };
 
+  sketch.mousePressed = () => {
+    if (coordIsInBounds(sketch.mouseX, sketch.mouseY)) {
+      grid.paused = !grid.paused;
+    }
+  }
+
   /**
    * Helper function to refresh parent div sizes.
    */
@@ -76,6 +79,19 @@ const s = (sketch) => {
     bounds = wrapper.getBoundingClientRect();
     divWidth = bounds.width;
     divHeight = bounds.height;
+  }
+
+
+  /**
+   * Checks if the given coordinates are within the bounding box of the canvas,
+   * relative to its top-left corner.
+   * @param {number} x - The position on the x-axis to check.
+   * @param {number} y - The position on the y-axis to check.
+   * @return {boolean} - `true` if the pair of coordinates falls within the canvas.
+   */
+  function coordIsInBounds(x, y) {
+    updateBounds();
+    return (x >= 0 && x <= divWidth) && (y >= 0 && y <= divHeight);
   }
 };
 
