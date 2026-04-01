@@ -84,8 +84,12 @@ const s = (sketch) => {
 
   sketch.mousePressed = () => {
     if (coordIsInBounds(sketch.mouseX, sketch.mouseY)) {
-      simulationStarted = true;
-      grid.paused = !grid.paused;
+      if (!simulationStarted) {
+        simulationStarted = true;
+        grid.paused = !grid.paused;
+      } else {
+        grid.startAnimations();
+      }
     }
   }
 

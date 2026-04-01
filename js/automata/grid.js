@@ -26,27 +26,19 @@ class Grid {
   /** @type p5.Color */
   aliveColor;
 
-  /** @type number */
-  animX = 0;
-  /** @type number */
-  animY = 0;
-
-  /** @type boolean */
-  anim = false;
   /** @type boolean */
   paused = true;
   /** @type number */
   scaleFactor = 8;
-
-  /** @type number */
-  leadIn = 30;
-  /** @type number */
-  waveDelay = 800;
   /** @type number */
   rule3Threshold = 3;
 
-  /** @type number[] */
-  animTriggers;
+  /** @type number */
+  animX = 0;
+  /** @type boolean */
+  #horiAnimLTR = false;
+  /** @type boolean */
+  #horiAnimRTL = false;
 
   /** @const {boolean} */
   static PLACE_HOWDY = true;
@@ -85,14 +77,6 @@ class Grid {
     if (Grid.PLACE_HOWDY) {
       this.placeHowdy();
     }
-
-    // TODO: Implement horizontal anim
-    this.animTriggers = [];
-    for (let i = 0; i < 4; i++) {
-      this.animTriggers.push(this.leadIn + (this.waveDelay * i));
-    }
-
-    this.animY = this.rows - 1;
   }
 
 
@@ -101,11 +85,15 @@ class Grid {
    */
   loop() {
     this.livingPath = new Path2D();
+    if (!this.paused)
+      this.#runAnimations();
+
     for (let col = 0; col < this.cells.length; col++) {
       for (let row = 0; row < this.cells[col].length; row++) {
         this.#displayCell(col, row);
-        if (!this.paused)
+        if (!this.paused) {
           this.#updateCell(col, row);
+        }
       }
     }
 
@@ -136,23 +124,7 @@ class Grid {
    */
   #updateCell(col, row) {
     let current = this.cells[col][row];
-    let livingNeighbours = 0;
-
-    for (let i = -1; i <= 1; i++) {
-      for (let j = -1; j <= 1; j++) {
-        let colIndex = col + i;
-        let rowIndex = row + j;
-
-        // Make sure we're not counting ourselves
-        if (!(i === 0 && j === 0)) {
-          // Use modulo to wrap around to other edge of array
-          // Referenced: https://stackoverflow.com/a/45397704
-          let neighbour = this.cells[(colIndex % this.cols + this.cols) % this.cols]
-            [(rowIndex % this.rows + this.rows) % this.rows];
-          livingNeighbours += neighbour.alive;
-        }
-      }
-    }
+    let livingNeighbours = this.getLivingNeighbours(col, row);
 
     // Make a copy to avoid concurrent modification
     let replacement = new Cell(current.alive);
@@ -175,6 +147,82 @@ class Grid {
     }
 
     this.apply[col][row] = replacement; // TODO: See if Maps might save on some work here
+  }
+
+
+  /**
+   * Triggers horizontal animation across the canvas, if one isn't already
+   * playing.
+   */
+  startAnimations() {
+    if (!this.#horiAnimLTR && !this.#horiAnimRTL) {
+      this.#horiAnimLTR = true;
+    }
+  }
+
+  /**
+   * If animation flags are active, run an iteration of the animation each time
+   * this method is called.
+   * @see Grid.startAnimations
+   */
+  #runAnimations() {
+    if (this.#horiAnimLTR) {
+      for (let r = 0; r < this.rows; r++) {
+        if (this.getLivingNeighbours(this.animX, r) < 5) {
+          this.cells[this.animX][r] = new Cell(Math.random() < 0.5);
+        }
+      }
+
+      this.animX += 2;
+      if (this.animX >= this.cols) {
+        this.#horiAnimLTR = false;
+        this.#horiAnimRTL = true;
+        this.animX = this.cols - 1;
+      }
+    }
+
+    if (this.#horiAnimRTL) {
+      for (let r = 0; r < this.rows; r++) {
+        if (this.getLivingNeighbours(this.animX, r) < 4) {
+          this.cells[this.animX][r] = new Cell(Math.random() < 0.25);
+        }
+      }
+
+      this.animX -= 2;
+      if (this.animX < 0) {
+        this.#horiAnimRTL = false;
+        this.animX = 0;
+      }
+    }
+  }
+
+
+  /**
+   * Returns a count of the living neighbours of target cell, excluding itself.
+   * Checking wraps around to the other edge of the array.
+   * @param {number} col - which column the target cell is in.
+   * @param {number} row - which row the target cell is in.
+   * @return {number} - how many living cells are adjacent to target cell.
+   */
+  getLivingNeighbours(col, row) {
+    let livingNeighbours = 0;
+
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        let colIndex = col + i;
+        let rowIndex = row + j;
+
+        // Make sure we're not counting ourselves
+        if (!(i === 0 && j === 0)) {
+          // Use modulo to wrap around to other edge of array
+          // Referenced: https://stackoverflow.com/a/45397704
+          let neighbour = this.cells[(colIndex % this.cols + this.cols) % this.cols]
+            [(rowIndex % this.rows + this.rows) % this.rows];
+          livingNeighbours += neighbour.alive;
+        }
+      }
+    }
+    return livingNeighbours;
   }
 
 
