@@ -28,10 +28,13 @@ const s = (sketch) => {
   /** @const {number} */
   const FRAMES_PER_SECOND = UPDATES_PER_SECOND * 4;
   /** @type number */
-  let logicIntervalId;
+  let logicIntervalId = undefined;
 
   /** @type boolean */
   let simulationStarted = false;
+
+  /** @type p5.Element */
+  let pauseButton;
 
 
   /**
@@ -50,12 +53,15 @@ const s = (sketch) => {
 
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
-    sketch.cursor(sketch.HAND);
     sketch.noStroke();
+    sketch.noLoop(); // start sketch paused
 
-    logicIntervalId = setInterval(function () {
-      grid.loop();
-    }, 1000 / UPDATES_PER_SECOND);
+    pauseButton = sketch.createButton("Pause");
+    pauseButton.position(0, 0);
+    pauseButton.mouseClicked(togglePaused);
+
+    // Manually update the cells ONCE so they display on load
+    grid.loop();
   };
 
   /**
@@ -91,17 +97,6 @@ const s = (sketch) => {
     }
   };
 
-  sketch.mousePressed = () => {
-    if (coordIsInBounds(sketch.mouseX, sketch.mouseY)) {
-      if (!simulationStarted) {
-        simulationStarted = true;
-        grid.paused = !grid.paused;
-      } else {
-        grid.startAnimations();
-      }
-    }
-  }
-
   /**
    * Helper function to refresh parent div sizes.
    */
@@ -111,17 +106,31 @@ const s = (sketch) => {
     divHeight = bounds.height;
   }
 
+  /**
+   * Toggles the logic interval as well as the draw loop of the sketch.
+   */
+  function togglePaused() {
+    if (sketch.isLooping()) {
+      sketch.noLoop();
+    } else {
+      sketch.loop();
+      if (!simulationStarted) simulationStarted = true;
+    }
+    toggleLogicInterval();
+  }
 
   /**
-   * Checks if the given coordinates are within the bounding box of the canvas,
-   * relative to its top-left corner.
-   * @param {number} x - The position on the x-axis to check.
-   * @param {number} y - The position on the y-axis to check.
-   * @return {boolean} - `true` if the pair of coordinates falls within the canvas.
+   * Toggles the logic interval responsible for running the simulation loop.
    */
-  function coordIsInBounds(x, y) {
-    updateBounds();
-    return (x >= 0 && x <= divWidth) && (y >= 0 && y <= divHeight);
+  function toggleLogicInterval() {
+    if (logicIntervalId !== undefined) {
+      clearInterval(logicIntervalId);
+      logicIntervalId = undefined;
+    } else {
+      logicIntervalId = setInterval(function () {
+        if (sketch.isLooping()) grid.loop();
+      }, 1000 / UPDATES_PER_SECOND);
+    }
   }
 };
 

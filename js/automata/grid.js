@@ -24,8 +24,6 @@ class Grid {
   /** @type number */
   opacity = 255;
 
-  /** @type boolean */
-  paused = true;
   /** @type number */
   scaleFactor = 8;
   /** @type number */
@@ -82,19 +80,19 @@ class Grid {
   loop() {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
-    if (!this.paused)
+    if (this.sketch.isLooping())
       this.#runAnimations();
 
     for (let col = 0; col < this.cells.length; col++) {
       for (let row = 0; row < this.cells[col].length; row++) {
-        this.#displayCell(col, row);
-        if (!this.paused) {
+        if (this.sketch.isLooping()) {
           this.#updateCell(col, row);
         }
+        this.#displayCell(col, row);
       }
     }
 
-    if (!this.paused) {
+    if (this.sketch.isLooping()) {
       let temp = this.apply;
       this.apply = this.cells;
       this.cells = temp;
