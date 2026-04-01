@@ -23,6 +23,9 @@ const s = (sketch) => {
   /** @type number */
   let logicIntervalId;
 
+  /** @type boolean */
+  let simulationStarted = false;
+
 
   /**
    * P5 function. Runs before the sketch starts.
@@ -62,13 +65,26 @@ const s = (sketch) => {
    * P5 function. Runs when window is resized.
    */
   sketch.windowResized = () => {
+    /** @type boolean */
+    let moveHowdy = !simulationStarted && Grid.PLACE_HOWDY;
+    if (moveHowdy) {
+      // Remove current howdy by inverting the same pixels
+      grid.placeHowdy();
+    }
+
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
     grid.resize();
+
+    if (moveHowdy) {
+      // Re-place howdy into the new centre
+      grid.placeHowdy();
+    }
   };
 
   sketch.mousePressed = () => {
     if (coordIsInBounds(sketch.mouseX, sketch.mouseY)) {
+      simulationStarted = true;
       grid.paused = !grid.paused;
     }
   }
