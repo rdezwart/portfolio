@@ -17,9 +17,9 @@ const s = (sketch) => {
   let divWidth, divHeight;
 
   /** @const {number} */
-  const FRAMES_PER_SECOND = 24;
+  const UPDATES_PER_SECOND = 10;
   /** @const {number} */
-  const UPDATES_PER_SECOND = 5;
+  const FRAMES_PER_SECOND = UPDATES_PER_SECOND * 4;
   /** @type number */
   let logicIntervalId;
 
@@ -46,7 +46,7 @@ const s = (sketch) => {
       grid.loop();
     }, 1000 / UPDATES_PER_SECOND);
 
-    setTimeout(function() {
+    setTimeout(function () {
       grid.paused = false;
     }, 5000);
   };
