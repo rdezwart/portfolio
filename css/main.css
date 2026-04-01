@@ -1449,12 +1449,19 @@ figure figcaption {
  * Container for P5 automata canvas.
  * 1. Do not change the size of the header, just fit inside it.
  * 2. Behind hgroup text, but above the header background image.
+ * 3. If Javascript is enabled, change background color to match simulation.
+ *    Baseline 2023.
  */
 #automata-wrapper {
   position: absolute; /* 1 */
   width: 100%; /* 1 */
   height: 100%; /* 1 */
   z-index: 0; /* 2 */
+}
+@media (scripting: enabled) {
+  #automata-wrapper {
+    background-color: var(--banner);
+  }
 }
 
 /**
