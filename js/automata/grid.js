@@ -83,10 +83,7 @@ class Grid {
     }
 
     if (Grid.PLACE_HOWDY) {
-      this.placeHowdy(
-        Math.ceil(this.cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2),
-        Math.ceil(this.rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2)
-      );
+      this.placeHowdy();
     }
 
     // TODO: Implement horizontal anim
@@ -229,10 +226,17 @@ class Grid {
    * Places an arrangement of living cells in the shape of "Howdy!".
    *
    * Bounding box of `31` by `9` cells, but a baseline height of only `7` cells.
-   * @param {number} [colOffset=0] - Number of grid cells to offset in the X axis.
-   * @param {number} [rowOffset=0] - Number of grid cells to offset in the Y axis.
+   * @param {number} [colOffset=undefined] - Number of grid cells to offset in the X axis.
+   *        If `undefined`, the centre of the canvas will be calculated and used.
+   * @param {number} [rowOffset=undefined] - Number of grid cells to offset in the Y axis.
+   *        If `undefined`, the centre of the canvas will be calculated and used.
    */
-  placeHowdy(colOffset = 0, rowOffset = 0) {
+  placeHowdy(colOffset = undefined, rowOffset = undefined) {
+    if (colOffset === undefined)
+      colOffset = Math.ceil(this.cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2);
+    if (rowOffset === undefined)
+      rowOffset = Math.ceil(this.rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2);
+
     /** @type Cell[] */
     let letterH = [];
     /** @type Cell[] */
@@ -339,6 +343,6 @@ class Grid {
     // Final activation
     for (let letter of word)
       for (let cell of letter)
-        cell.alive = true;
+        cell.alive = !cell.alive;
   }
 }
