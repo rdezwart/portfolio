@@ -9,6 +9,13 @@ let grid;
  */
 const s = (sketch) => {
 
+  /** @type p5.Color */
+  let deadColor = sketch.color(42, 42, 47, 255);
+  /** @type p5.Color */
+  let aliveColor = sketch.color(255, 153, 51, 255);
+  /** @type p5.Color */
+  let highlightColor = sketch.color(0, 238, 255, 255);
+
   /** @type HTMLElement */
   let wrapper;
   /** @type DOMRect */
@@ -45,7 +52,6 @@ const s = (sketch) => {
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
     sketch.cursor(sketch.HAND);
     sketch.noStroke();
-    sketch.fill(grid.aliveColor);
 
     logicIntervalId = setInterval(function () {
       grid.loop();
@@ -56,9 +62,12 @@ const s = (sketch) => {
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
-    sketch.background(grid.deadColor);
+    sketch.background(deadColor);
     sketch.scale(grid.scaleFactor);
+    sketch.fill(aliveColor);
     sketch.drawingContext.fill(grid.livingPath);
+    sketch.fill(highlightColor);
+    sketch.drawingContext.fill(grid.highlightPath);
   };
 
   /**

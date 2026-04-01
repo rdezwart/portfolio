@@ -9,6 +9,8 @@ class Grid {
   sketch;
   /** @type Path2D */
   livingPath;
+  /** @type Path2D */
+  highlightPath;
 
   /** @type number */
   cols;
@@ -21,10 +23,6 @@ class Grid {
 
   /** @type number */
   opacity = 255;
-  /** @type p5.Color */
-  deadColor;
-  /** @type p5.Color */
-  aliveColor;
 
   /** @type boolean */
   paused = true;
@@ -52,9 +50,7 @@ class Grid {
   constructor(sketch) {
     this.sketch = sketch;
     this.livingPath = new Path2D();
-
-    this.deadColor = this.sketch.color(42, 42, 47, 255);
-    this.aliveColor = this.sketch.color(255, 153, 51, 255);
+    this.highlightPath = new Path2D();
 
     this.cols = Math.floor(this.sketch.width / this.scaleFactor) + 1;
     this.rows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
@@ -85,6 +81,7 @@ class Grid {
    */
   loop() {
     this.livingPath = new Path2D();
+    this.highlightPath = new Path2D();
     if (!this.paused)
       this.#runAnimations();
 
@@ -114,6 +111,9 @@ class Grid {
     if (this.cells[col][row].alive) {
       this.livingPath.rect(col, row, 1, 1);
     }
+    if (this.cells[col][row].highlighted) {
+      this.highlightPath.rect(col, row, 1, 1);
+    }
   }
 
   /**
@@ -127,7 +127,7 @@ class Grid {
     let livingNeighbours = this.getLivingNeighbours(col, row);
 
     // Make a copy to avoid concurrent modification
-    let replacement = new Cell(current.alive);
+    let replacement = new Cell(current.alive, current.highlighted);
 
     // Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
     if (current.alive && livingNeighbours < 2) {
@@ -169,7 +169,7 @@ class Grid {
     if (this.#horiAnimLTR) {
       for (let r = 0; r < this.rows; r++) {
         if (this.getLivingNeighbours(this.animX, r) < 5) {
-          this.cells[this.animX][r] = new Cell(Math.random() < 0.5);
+          this.cells[this.animX][r] = new Cell(Math.random() < 0.5, true);
         }
       }
 
@@ -184,7 +184,7 @@ class Grid {
     if (this.#horiAnimRTL) {
       for (let r = 0; r < this.rows; r++) {
         if (this.getLivingNeighbours(this.animX, r) < 4) {
-          this.cells[this.animX][r] = new Cell(Math.random() < 0.25);
+          this.cells[this.animX][r] = new Cell(Math.random() < 0.25, true);
         }
       }
 
@@ -299,6 +299,8 @@ class Grid {
     let letterExclamation = [];
     /** @type Cell[][] */
     let word = [letterH, letterO, letterW, letterD, letterY, letterExclamation];
+    /** @type Cell[][] */
+    let highlighted = [letterExclamation];
 
     let col = colOffset;
     let row = rowOffset;
@@ -389,6 +391,10 @@ class Grid {
 
 
     // Final activation
+    for (let letter of highlighted)
+      for (let cell of letter)
+        cell.highlighted = !cell.highlighted;
+
     for (let letter of word)
       for (let cell of letter)
         cell.alive = !cell.alive;
