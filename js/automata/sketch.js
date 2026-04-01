@@ -33,6 +33,7 @@ const s = (sketch) => {
 
     let canvas = sketch.createCanvas(divWidth, divHeight);
     canvas.id("automata-canvas");
+    // Set parent a second time, this makes sure the CSS starting transition plays
     canvas.parent(wrapper);
 
     grid = new Grid(sketch);
@@ -95,5 +96,6 @@ const s = (sketch) => {
   }
 };
 
-// Pass an undefined node, we're setting the parent in setup()
-let automata = new p5(s, undefined);
+
+// Pass wrapper to constructor to make sure the initial sizing is correct.
+let automata = new p5(s, "automata-wrapper");
