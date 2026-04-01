@@ -202,7 +202,7 @@ class Grid {
       // Fill any empty rows
       for (let row = 0; row < this.cells[col].length; row++) {
         if (this.cells[col][row] === undefined) {
-          let c = new Cell(Math.random() < 0.5);
+          let c = new Cell();
           this.cells[col][row] = c;
           this.apply[col][row] = c;
         }
@@ -210,7 +210,7 @@ class Grid {
 
       // Append new cells if rows are too short
       while (newRows > this.cells[col].length) {
-        let c = new Cell(Math.random() < 0.5);
+        let c = new Cell();
         this.cells[col].push(c);
         this.apply[col].push(c);
       }
