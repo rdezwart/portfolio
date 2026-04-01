@@ -45,6 +45,10 @@ const s = (sketch) => {
     logicIntervalId = setInterval(function () {
       grid.loop();
     }, 1000 / UPDATES_PER_SECOND);
+
+    setTimeout(function() {
+      grid.paused = false;
+    }, 5000);
   };
 
   /**
