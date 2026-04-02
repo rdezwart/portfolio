@@ -30,7 +30,7 @@ class Grid {
   rule3Threshold = 3;
 
   /** @type number */
-  animX = 0;
+  animCol = 0;
   /** @type boolean */
   #horiAnimLTR = false;
   /** @type boolean */
@@ -166,30 +166,30 @@ class Grid {
   #runAnimations() {
     if (this.#horiAnimLTR) {
       for (let r = 0; r < this.rows; r++) {
-        if (this.getLivingNeighbours(this.animX, r) < 5) {
-          this.cells[this.animX][r] = new Cell(Math.random() < 0.5, true);
+        if (this.getLivingNeighbours(this.animCol, r) < 5) {
+          this.cells[this.animCol][r] = new Cell(Math.random() < 0.5, true);
         }
       }
 
-      this.animX += 2;
-      if (this.animX >= this.cols) {
+      this.animCol += 2;
+      if (this.animCol >= this.cols) {
         this.#horiAnimLTR = false;
         this.#horiAnimRTL = true;
-        this.animX = this.cols - 1;
+        this.animCol = this.cols - 1;
       }
     }
 
     if (this.#horiAnimRTL) {
       for (let r = 0; r < this.rows; r++) {
-        if (this.getLivingNeighbours(this.animX, r) < 4) {
-          this.cells[this.animX][r] = new Cell(Math.random() < 0.25, true);
+        if (this.getLivingNeighbours(this.animCol, r) < 4) {
+          this.cells[this.animCol][r] = new Cell(Math.random() < 0.25, true);
         }
       }
 
-      this.animX -= 2;
-      if (this.animX < 0) {
+      this.animCol -= 2;
+      if (this.animCol < 0) {
         this.#horiAnimRTL = false;
-        this.animX = 0;
+        this.animCol = 0;
       }
     }
   }
