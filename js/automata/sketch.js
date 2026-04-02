@@ -1,20 +1,19 @@
 "use strict";
 
-/** @type Grid */
-let grid;
-
 /**
  * Wraps the sketch in an object, enabling "instance mode".
  * @param {p5} sketch - The sketch loaded by p5.
  */
 const s = (sketch) => {
+  /** @type Grid */
+  let grid;
 
   /** @type p5.Color */
-  let deadColor = sketch.color(42, 42, 47, 255);
+  const deadColor = sketch.color(42, 42, 47, 255);
   /** @type p5.Color */
-  let aliveColor = sketch.color(255, 153, 51, 255);
+  const aliveColor = sketch.color(255, 153, 51, 255);
   /** @type p5.Color */
-  let highlightColor = sketch.color(0, 238, 255, 255);
+  const highlightColor = sketch.color(0, 238, 255, 255);
 
   /** @type HTMLElement */
   let wrapper;
@@ -29,12 +28,21 @@ const s = (sketch) => {
   const FRAMES_PER_SECOND = UPDATES_PER_SECOND * 4;
   /** @type number */
   let logicIntervalId = undefined;
-
   /** @type boolean */
-  let simulationStarted = false;
+  let simulationStarted;
+
+
+  /** @type p5.Element */
+  let menu;
+  /** @type p5.Element[] */
+  let menuItems;
 
   /** @type p5.Element */
   let pauseButton;
+  /** @type p5.Element */
+  let animButton;
+  /** @type p5.Element */
+  let resetButton;
 
 
   /**
@@ -49,20 +57,55 @@ const s = (sketch) => {
     // Set parent a second time, this makes sure the CSS starting transition plays
     canvas.parent(wrapper);
 
-    grid = new Grid(sketch);
-
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
     sketch.noStroke();
-    sketch.noLoop(); // start sketch paused
 
-    pauseButton = sketch.createButton("Pause");
-    pauseButton.position(0, 0);
-    pauseButton.mouseClicked(togglePaused);
-
-    // Manually update the cells ONCE so they display on load
-    grid.loop();
+    init();
   };
+
+  function init() {
+    sketch.noLoop(); // start sketch paused
+    simulationStarted = false;
+
+    grid = new Grid(sketch);
+
+    menuItems = [];
+    menu = sketch.createElement("menu");
+    menu.addClass("canvas-menu");
+
+    pauseButton = sketch.createButton("Play");
+    pauseButton.mouseClicked(togglePaused);
+    menuItems.push(pauseButton);
+
+    animButton = sketch.createButton("Animate");
+    animButton.mouseClicked(() => {
+      grid.startAnimations();
+      updateButtons();
+    });
+    menuItems.push(animButton);
+
+    resetButton = sketch.createButton("Reset");
+    resetButton.mouseClicked(() => {
+      if (logicIntervalId !== undefined) toggleLogicInterval();
+      sketch.removeElements();
+      init();
+      sketch.redraw();
+    });
+    menuItems.push(resetButton);
+
+    for (let item of menuItems) {
+      let li = sketch.createElement("li");
+      li.parent(menu);
+      item.parent(li);
+    }
+    updateButtons();
+
+    // Manually draw the cells ONCE so they display on load
+    // (this will not update the cells since sketch is not looping)
+    grid.loop();
+  }
+
 
   /**
    * P5 function. Runs every frame.
@@ -94,6 +137,7 @@ const s = (sketch) => {
     if (moveHowdy) {
       // Re-place howdy into the new centre
       grid.placeHowdy();
+      grid.loop();
     }
   };
 
@@ -117,6 +161,7 @@ const s = (sketch) => {
       if (!simulationStarted) simulationStarted = true;
     }
     toggleLogicInterval();
+    updateButtons();
   }
 
   /**
@@ -130,6 +175,25 @@ const s = (sketch) => {
       logicIntervalId = setInterval(function () {
         if (sketch.isLooping()) grid.loop();
       }, 1000 / UPDATES_PER_SECOND);
+    }
+  }
+
+  /**
+   * Refreshes the properties of canvas menu buttons.
+   */
+  function updateButtons() {
+    if (sketch.isLooping()) {
+      pauseButton.html("Pause");
+      animButton.removeAttribute("disabled");
+    } else {
+      pauseButton.html("Play");
+      animButton.attribute("disabled", "");
+    }
+
+    if (simulationStarted) {
+      resetButton.removeAttribute("disabled");
+    } else {
+      resetButton.attribute("disabled", "");
     }
   }
 };

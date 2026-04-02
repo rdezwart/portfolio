@@ -33,3 +33,13 @@
     opacity: 0; /* 1 */
   }
 }
+
+.canvas-menu {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding-inline: 0;
+  list-style: none;
+
+  @include abstracts.flex-row();
+}
