@@ -85,6 +85,7 @@ const s = (sketch) => {
     grid = new Grid(sketch);
 
     menu = sketch.createElement("menu");
+    menu.attribute("aria-live", "polite");
     menu.addClass("canvas-menu");
 
     pauseButton = createAndAddMenuButton("Play", "pause-button", false, "fa-solid fa-play");
