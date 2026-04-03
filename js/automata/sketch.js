@@ -238,10 +238,10 @@ const s = (sketch) => {
 
       if (sketch.isLooping()) {
         pauseIcon.classList.replace("fa-play", "fa-pause");
-        pauseSpan.innerHTML = "Pause";
+        pauseTooltip.textContent = "Pause";
       } else {
         pauseIcon.classList.replace("fa-pause", "fa-play");
-        pauseSpan.innerHTML = "Play";
+        pauseTooltip.textContent = "Play";
       }
     }
 
