@@ -286,7 +286,6 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   color: var(--text);
-  word-break: break-word;
 }
 
 /**
@@ -1409,20 +1408,71 @@ figure figcaption {
   text-decoration: none;
   font-weight: 600;
   display: inline-block; /* 1 */
-  padding: 0.5rlh 1rlh;
-  line-height: 1;
+  padding: 0.25rlh 0.5rlh;
+  line-height: 1.5;
+  background-color: var(--banner);
   border: 0.1rem solid var(--link);
   color: var(--link);
   -webkit-transition-property: border-color, color;
   transition-property: border-color, color;
   -webkit-transition-duration: var(--duration);
           transition-duration: var(--duration);
+  /**
+   * 1. When button is hovered, also activate tooltip
+   */
 }
-.button:focus, .button:hover {
+.button:is(:focus, :hover) {
   border-color: var(--highlight);
   color: var(--highlight);
-  -webkit-transition-property: border-color, color;
-  transition-property: border-color, color;
+}
+.button:is(:focus, :hover) + [role=tooltip] { /* 1 */
+  border-color: var(--highlight);
+  opacity: 1;
+  visibility: visible;
+}
+.button:disabled {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+.button:disabled + [role=tooltip] {
+  border-color: var(--secondary);
+}
+.button:is(:active):not(:disabled) {
+  border-color: #00818a;
+  color: #00818a;
+}
+.button:is(:active):not(:disabled) + [role=tooltip] {
+  border-color: #00818a;
+}
+
+/**
+ * Wraps around a paired button and tooltip.
+ */
+.button-tooltip-wrapper {
+  position: relative;
+}
+
+/**
+ * Tooltips for buttons with icons, to be wrapped in a .menu-button-wrapper
+ * class.
+ * 1. Center tooltip in relation to the button
+ */
+[role=tooltip] {
+  position: absolute;
+  left: 50%; /* 1 */
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0); /* 1 */
+  text-align: center;
+  background-color: var(--banner);
+  padding: 0.25rlh 0.5rlh;
+  margin-top: 0.25rlh;
+  -webkit-transition-property: border-color, opacity, visibility;
+  transition-property: border-color, opacity, visibility;
+  -webkit-transition-duration: var(--duration);
+          transition-duration: var(--duration);
+  border: 0.1rem solid var(--secondary);
+  visibility: hidden;
+  opacity: 0;
 }
 
 /**
@@ -1496,6 +1546,7 @@ figure figcaption {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 0.5rlh;
+  font-size: 1rem;
 }
 
 :root {

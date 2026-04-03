@@ -12,17 +12,73 @@
 
   display: inline-block; /* 1 */
 
-  padding: 0.5rlh 1rlh;
-  line-height: 1;
+  padding: 0.25rlh 0.5rlh;
+  line-height: 1.5;
+  background-color: var(--banner);
   border: 0.1rem solid var(--link);
   color: var(--link);
 
   transition-property: border-color, color;
   transition-duration: var(--duration);
 
-  &:focus, &:hover {
+  /**
+   * 1. When button is hovered, also activate tooltip
+   */
+  &:is(:focus, :hover) {
     border-color: var(--highlight);
     color: var(--highlight);
-    transition-property: border-color, color;
+
+    + [role="tooltip"] { /* 1 */
+      border-color: var(--highlight);
+      opacity: 1;
+      visibility: visible;
+    }
   }
+
+  &:disabled {
+    border-color: var(--secondary);
+    color: var(--secondary);
+
+    + [role="tooltip"] {
+      border-color: var(--secondary);
+    }
+  }
+
+  &:is(:active):not(:disabled) {
+    border-color: #{abstracts.$teal};
+    color: #{abstracts.$teal};
+
+    + [role="tooltip"] {
+      border-color: #{abstracts.$teal};
+    }
+  }
+}
+
+/**
+ * Wraps around a paired button and tooltip.
+ */
+.button-tooltip-wrapper {
+  position: relative;
+}
+
+/**
+ * Tooltips for buttons with icons, to be wrapped in a .menu-button-wrapper
+ * class.
+ * 1. Center tooltip in relation to the button
+ */
+[role="tooltip"] {
+  position: absolute;
+  left: 50%; /* 1 */
+  transform: translate(-50%, 0); /* 1 */
+
+  text-align: center;
+  background-color: var(--banner);
+  padding: 0.25rlh 0.5rlh;
+  margin-top: #{abstracts.$text-gap * 0.5};
+
+  transition-property: border-color, opacity, visibility;
+  transition-duration: var(--duration);
+  border: 0.1rem solid var(--secondary);
+  visibility: hidden;
+  opacity: 0;
 }

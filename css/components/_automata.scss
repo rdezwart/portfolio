@@ -42,4 +42,5 @@
   list-style: none;
 
   @include abstracts.flex-row();
+  font-size: abstracts.font-size-scaled(0);
 }

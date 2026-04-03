@@ -20,7 +20,8 @@ body {
   }
 
   color: var(--text);
-  word-break: break-word;
+  // This is here to deal with wrapping issues with long words in small columns
+  //word-break: break-word;
 }
 
 

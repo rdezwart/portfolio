@@ -31,12 +31,8 @@ const s = (sketch) => {
   /** @type boolean */
   let simulationStarted;
 
-
   /** @type p5.Element */
   let menu;
-  /** @type p5.Element[] */
-  let menuItems;
-
   /** @type p5.Element */
   let pauseButton;
   /** @type p5.Element */
@@ -70,35 +66,28 @@ const s = (sketch) => {
 
     grid = new Grid(sketch);
 
-    menuItems = [];
     menu = sketch.createElement("menu");
     menu.addClass("canvas-menu");
 
-    pauseButton = sketch.createButton("Play");
+    pauseButton = createAndAddMenuButton("Play", "pause-button", "fa-solid fa-play");
     pauseButton.mouseClicked(togglePaused);
-    menuItems.push(pauseButton);
 
-    animButton = sketch.createButton("Animate");
+    animButton = createAndAddMenuButton("Trigger Animation", "anim-button", "fa-solid fa-shuffle");
+    animButton.attribute("disabled", "");
     animButton.mouseClicked(() => {
       grid.startAnimations();
       updateButtons();
     });
-    menuItems.push(animButton);
 
-    resetButton = sketch.createButton("Reset");
+    resetButton = createAndAddMenuButton("Reset", "reset-button", "fa-solid fa-arrow-rotate-left");
+    resetButton.attribute("disabled", "");
     resetButton.mouseClicked(() => {
       if (logicIntervalId !== undefined) toggleLogicInterval();
       sketch.removeElements();
       init();
-      sketch.redraw();
+      if (!sketch.isLooping()) sketch.redraw();
     });
-    menuItems.push(resetButton);
 
-    for (let item of menuItems) {
-      let li = sketch.createElement("li");
-      li.parent(menu);
-      item.parent(li);
-    }
     updateButtons();
 
     // Manually draw the cells ONCE so they display on load
@@ -141,6 +130,7 @@ const s = (sketch) => {
     }
   };
 
+
   /**
    * Helper function to refresh parent div sizes.
    */
@@ -182,19 +172,104 @@ const s = (sketch) => {
    * Refreshes the properties of canvas menu buttons.
    */
   function updateButtons() {
-    if (sketch.isLooping()) {
-      pauseButton.html("Pause");
-      animButton.removeAttribute("disabled");
-    } else {
-      pauseButton.html("Play");
-      animButton.attribute("disabled", "");
+    updatePauseButton();
+    updateAnimButton();
+    updateResetButton();
+
+    function updatePauseButton() {
+      /** @type HTMLElement */
+      let pauseIcon = document.getElementById("pause-button-icon");
+      /** @type HTMLSpanElement */
+      let pauseSpan = document.getElementById("pause-button-span");
+      if (pauseIcon == null || pauseSpan == null)
+        return;
+
+      if (sketch.isLooping()) {
+        pauseIcon.classList.replace("fa-play", "fa-pause");
+        pauseSpan.innerHTML = "Pause";
+      } else {
+        pauseIcon.classList.replace("fa-pause", "fa-play");
+        pauseSpan.innerHTML = "Play";
+      }
     }
 
-    if (simulationStarted) {
-      resetButton.removeAttribute("disabled");
-    } else {
-      resetButton.attribute("disabled", "");
+    function updateAnimButton() {
+      if (sketch.isLooping() && !grid.isAnimating) {
+        animButton.removeAttribute("disabled");
+      } else {
+        animButton.attribute("disabled", "");
+      }
     }
+
+    function updateResetButton() {
+      if (simulationStarted) {
+        resetButton.removeAttribute("disabled");
+      } else {
+        resetButton.attribute("disabled", "");
+      }
+    }
+  }
+
+  /**
+   * Creates a new button element with additional attributes suited for the
+   * canvas menu controls, then adds it to the canvas menu.
+   *
+   * If `iconClasses` is provided, a FontAwesome icon will be used instead of
+   * text and include extra markup for accessibility.
+   * @see https://docs-v6.fontawesome.com/web/dig-deeper/accessibility#making-icons-accessible-manually
+   *      FontAwesome v6 Docs
+   *
+   * @param {string} label - The text to be used for the button label, or the
+   *     screen-reader-only label and tooltip if `iconClasses` are provided.
+   * @param {string} id - The base ID for this button and children.
+   * @param {string} [iconClasses=undefined] - Space separated string of class names to
+   *        apply to the icon.
+   * @return {p5.Element} - A new button with a FontAwesome icon.
+   */
+  function createAndAddMenuButton(label, id, iconClasses = undefined) {
+    /** @type p5.Element */
+    let li = sketch.createElement("li");
+    li.parent(menu);
+
+    /** @type p5.Element */
+    let buttonWrapper = sketch.createDiv();
+    buttonWrapper.addClass("button-tooltip-wrapper");
+    buttonWrapper.parent(li);
+
+    /** @type p5.Element */
+    let button = sketch.createButton("");
+    button.id(id);
+    button.attribute("type", "button");
+    button.attribute("aria-controls", "automata-canvas");
+    button.addClass("button");
+    button.parent(buttonWrapper);
+
+    if (iconClasses === undefined) {
+      button.html(label);
+    } else {
+      /** @type p5.Element */
+      let icon = sketch.createElement("i");
+      icon.id(`${id}-icon`);
+      icon.attribute("aria-hidden", "true");
+      icon.addClass("fa-fw"); // fixed width
+      icon.addClass(iconClasses);
+
+      /** @type p5.Element */
+      let span = sketch.createSpan(label);
+      span.id(`${id}-span`);
+      span.addClass("fa-sr-only");
+
+      /** @type p5.Element */
+      let tooltip = sketch.createDiv(label);
+      tooltip.id(`${id}-tooltip`);
+      tooltip.attribute("role", "tooltip");
+      tooltip.parent(buttonWrapper);
+
+      button.child(icon);
+      button.child(span);
+    }
+
+    return button;
   }
 };
 
