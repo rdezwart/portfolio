@@ -11,6 +11,7 @@
 
   @include abstracts.flex-column(0);
   margin-top: #{abstracts.$page-padding * -1};
+  min-height: 10rem;
 
   background-image: url("/img/autolume-gallery/canvas-2.webp"); /* 1 */
   background-image: url("/img/CellularAutomata.png"); /* 1 */

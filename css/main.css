@@ -820,6 +820,7 @@ ul.project-grid {
           flex-direction: column;
   gap: 0;
   margin-top: -1rlh;
+  min-height: 10rem;
   background-image: url("/img/autolume-gallery/canvas-2.webp"); /* 1 */
   background-image: url("/img/CellularAutomata.png"); /* 1 */
   background-size: cover;
