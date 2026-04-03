@@ -142,6 +142,22 @@ const s = (sketch) => {
    * P5 function. Runs when window is resized.
    */
   sketch.windowResized = () => {
+    handleResize()
+  };
+
+  /**
+   * P5 function. Runs when device is turned more than 90 degrees.
+   */
+  sketch.deviceTurned = () => {
+    handleResize();
+  }
+
+
+  /**
+   * Update grid to match new screen size/orientation. Keeps "Howdy!" text
+   * centered if it's still visible (i.e. simulation hasn't been started yet).
+   */
+  function handleResize() {
     if (!loaded) return;
 
     /** @type boolean */
@@ -160,7 +176,9 @@ const s = (sketch) => {
       grid.placeHowdy();
       grid.loop();
     }
-  };
+
+    sketch.redraw();
+  }
 
 
   /**
