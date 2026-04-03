@@ -189,7 +189,7 @@ const s = (sketch) => {
     }
 
     function updateAnimButton() {
-      if (sketch.isLooping() && !grid.isAnimating) {
+      if (sketch.isLooping()) {
         animButton.removeAttribute("disabled");
       } else {
         animButton.attribute("disabled", "");

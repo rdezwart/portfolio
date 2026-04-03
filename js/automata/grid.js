@@ -29,14 +29,13 @@ class Grid {
   /** @type number */
   rule3Threshold = 3;
 
-  /** @type boolean */
-  isAnimating = false;
-  /** @type number */
-  animCol = 0;
-  /** @type boolean */
-  #horiAnimLTR = false;
-  /** @type boolean */
-  #horiAnimRTL = false;
+  /** @type number[] */
+  #waveCols = [];
+  /** @type number[] */
+  #waveDeltas = [];
+  /** How many columns the wave moves each generation.
+   * @const number */
+  static ANIMATION_SPEED = 2;
 
   /** @const {boolean} */
   static PLACE_HOWDY = true;
@@ -83,14 +82,11 @@ class Grid {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    if (this.sketch.isLooping())
-      this.#runAnimations();
+    if (this.sketch.isLooping()) this.#runAnimations();
 
     for (let col = 0; col < this.cells.length; col++) {
       for (let row = 0; row < this.cells[col].length; row++) {
-        if (this.sketch.isLooping()) {
-          this.#updateCell(col, row);
-        }
+        if (this.sketch.isLooping()) this.#updateCell(col, row);
         this.#displayCell(col, row);
       }
     }
@@ -152,52 +148,50 @@ class Grid {
 
 
   /**
-   * Triggers horizontal animation across the canvas, if one isn't already
-   * playing.
+   * Triggers a wave to animate horizontally across the canvas.
+   *
+   * Multiple waves can be active at the same time.
    */
   startAnimations() {
-    if (this.isAnimating)
-      return;
-
-    if (!this.#horiAnimLTR && !this.#horiAnimRTL) {
-      this.isAnimating = true;
-      this.#horiAnimLTR = true;
-    }
+    this.#waveCols.push(0);
+    this.#waveDeltas.push(Grid.ANIMATION_SPEED);
   }
 
   /**
-   * If animation flags are active, run an iteration of the animation each time
-   * this method is called.
-   * @see Grid.startAnimations
+   * Runs the calculations for each queued wave.
+   *
+   * Waves can be triggered with {@link Grid~startAnimations}
    */
   #runAnimations() {
-    if (this.#horiAnimLTR) {
-      for (let r = 0; r < this.rows; r++) {
-        if (this.getLivingNeighbours(this.animCol, r) < 5) {
-          this.cells[this.animCol][r] = new Cell(Math.random() < 0.5, true);
+    for (let i = 0; i < this.#waveCols.length; i++) {
+      // Going to the right
+      if (this.#waveDeltas[i] > 0) {
+        for (let r = 0; r < this.rows; r++) {
+          if (this.getLivingNeighbours(this.#waveCols[i], r) < 5) {
+            this.cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.5, true);
+          }
         }
       }
 
-      this.animCol += 2;
-      if (this.animCol >= this.cols) {
-        this.#horiAnimLTR = false;
-        this.#horiAnimRTL = true;
-        this.animCol = this.cols - 1;
-      }
-    }
-
-    if (this.#horiAnimRTL) {
-      for (let r = 0; r < this.rows; r++) {
-        if (this.getLivingNeighbours(this.animCol, r) < 4) {
-          this.cells[this.animCol][r] = new Cell(Math.random() < 0.25, true);
+      // Going to the left
+      if (this.#waveDeltas[i] < 0) {
+        for (let r = 0; r < this.rows; r++) {
+          if (this.getLivingNeighbours(this.#waveCols[i], r) < 4) {
+            this.cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.25, true);
+          }
         }
       }
 
-      this.animCol -= 2;
-      if (this.animCol < 0) {
-        this.isAnimating = false;
-        this.#horiAnimRTL = false;
-        this.animCol = 0;
+      this.#waveCols[i] += this.#waveDeltas[i];
+      if (this.#waveCols[i] >= this.cols) {
+        this.#waveDeltas[i] *= -1;
+        this.#waveCols[i] = this.cols - 1;
+      }
+
+      if (this.#waveCols[i] <= 0) {
+        // Remove just this wave from the tracking lists
+        this.#waveCols.splice(i, 1);
+        this.#waveDeltas.splice(i, 1);
       }
     }
   }
