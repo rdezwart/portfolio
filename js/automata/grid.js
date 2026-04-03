@@ -39,8 +39,6 @@ class Grid {
    * @const number */
   static ANIMATION_SPEED = 2;
 
-  /** @const {boolean} */
-  static PLACE_HOWDY = true;
   /** @const {{cols: number, rows: number}} */
   static HOWDY_DIMENSIONS = {cols: 31, rows: 9};
 
@@ -71,9 +69,7 @@ class Grid {
       }
     }
 
-    if (Grid.PLACE_HOWDY) {
-      this.placeHowdy();
-    }
+    this.placeHowdy();
   }
 
 

@@ -114,7 +114,7 @@ const s = (sketch) => {
    */
   sketch.windowResized = () => {
     /** @type boolean */
-    let moveHowdy = !simulationStarted && Grid.PLACE_HOWDY;
+    let moveHowdy = !simulationStarted;
     if (moveHowdy) {
       // Remove current howdy by inverting the same pixels
       grid.placeHowdy();
