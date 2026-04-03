@@ -31,6 +31,8 @@ class Grid {
     return 8;
   }
 
+  /** @type boolean */
+  #isAnimating = false;
   /** @type number[] */
   #waveCols = [];
   /** @type number[] */
@@ -81,6 +83,7 @@ class Grid {
     this.highlightPath = new Path2D();
 
     if (this.sketch.isLooping()) this.#runAnimations();
+    this.#isAnimating = this.#waveCols.length > 0;
 
     for (let col = 0; col < this.#cells.length; col++) {
       for (let row = 0; row < this.#cells[col].length; row++) {
@@ -151,6 +154,7 @@ class Grid {
    * Multiple waves can be active at the same time.
    */
   startAnimations() {
+    this.#isAnimating = true;
     this.#waveCols.push(0);
     this.#waveDeltas.push(Grid.ANIMATION_SPEED);
   }
@@ -396,5 +400,11 @@ class Grid {
     for (let letter of word)
       for (let cell of letter)
         cell.alive = !cell.alive;
+  }
+
+
+  /** @type {boolean} */
+  get isAnimating() {
+    return this.#isAnimating;
   }
 }

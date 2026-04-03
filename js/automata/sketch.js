@@ -40,6 +40,27 @@ const s = (sketch) => {
   /** @type p5.Element */
   let resetButton;
 
+  /**
+   * Enum of strings to be used when describing various elements of the sketch
+   * to screen readers.
+   * @readonly
+   * @enum {string}
+   */
+  const DESCRIPTIONS = {
+    BASE: `A dark grey rectangle with a grid of small bright orange square \
+      cells, running a cellular automaton simulation of John Conway's "Game of \
+      Life".`,
+    RUNNING: `The simulation is currently running.`,
+    PAUSED: `The simulation is currently paused.`,
+    HOWDY: `In the center of the grid, bright orange cells spell out the word \
+      "Howdy", followed by an exclamation mark in bright blue cells.`,
+    CELLS_RUNNING: `Cells are appearing and disappearing several times per second, \
+      moving around the grid and forming a variety of shapes and patterns.`,
+    CELLS_PAUSED: `Cells are frozen in a variety of shapes and patterns.`,
+    ANIMATING: `Vertical lines of bright blue cells are sweeping horizontally \
+      across the grid, left-to-right then right-to-left. Each one is leaving \
+      new orange cells in its wake.`,
+  };
 
   /**
    * P5 function. Runs before the sketch starts.
@@ -54,7 +75,6 @@ const s = (sketch) => {
     canvas.parent(wrapper);
 
     sketch.frameRate(FRAMES_PER_SECOND);
-    sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
     sketch.noStroke();
     sketch.noLoop(); // start sketch paused
 
@@ -101,6 +121,7 @@ const s = (sketch) => {
    * P5 function. Runs every frame.
    */
   sketch.draw = () => {
+    updateDescriptions();
     sketch.background(deadColor);
     sketch.scale(Grid.SCALE_FACTOR);
     sketch.fill(aliveColor);
@@ -170,9 +191,39 @@ const s = (sketch) => {
   }
 
   /**
-   * Refreshes the properties of canvas menu buttons.
+   * Updates the user interface of the sketch, such as screen reader
+   * descriptions and canvas menu buttons.
    */
   function updateInterface() {
+    updateDescriptions();
+    updateButtons();
+  }
+
+  /**
+   * Updates the screen reader descriptions depending on current sketch state.
+   */
+  function updateDescriptions() {
+    sketch.describe(
+      `${DESCRIPTIONS.BASE} \
+        ${sketch.isLooping() ? DESCRIPTIONS.RUNNING : DESCRIPTIONS.PAUSED}`
+    );
+
+    let desc =
+      sketch.isLooping()
+        ? DESCRIPTIONS.CELLS_RUNNING
+        : DESCRIPTIONS.CELLS_PAUSED;
+    if (!simulationStarted)
+      desc = DESCRIPTIONS.HOWDY;
+    if (grid.isAnimating)
+      desc += ` ${DESCRIPTIONS.ANIMATING}`;
+
+    sketch.describeElement("Cells", desc);
+  }
+
+  /**
+   * Refreshes the properties of canvas menu buttons.
+   */
+  function updateButtons() {
     updatePauseButton();
     updateAnimButton();
     updateResetButton();
