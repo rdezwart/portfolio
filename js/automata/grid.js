@@ -13,7 +13,7 @@ class Grid {
   highlightPath;
 
   /** @type number */
-  cols;
+  #cols;
   /** @type number */
   rows;
   /** @type Cell[][] */
@@ -53,14 +53,14 @@ class Grid {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    this.cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
+    this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
     this.rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Create filled 2D arrays
-    this.#cells = new Array(this.cols);
-    this.#apply = new Array(this.cols);
+    this.#cells = new Array(this.#cols);
+    this.#apply = new Array(this.#cols);
 
-    for (let col = 0; col < this.cols; col++) {
+    for (let col = 0; col < this.#cols; col++) {
       this.#cells[col] = new Array(this.rows);
       this.#apply[col] = new Array(this.rows);
 
@@ -185,9 +185,9 @@ class Grid {
       }
 
       this.#waveCols[i] += this.#waveDeltas[i];
-      if (this.#waveCols[i] >= this.cols) {
+      if (this.#waveCols[i] >= this.#cols) {
         this.#waveDeltas[i] *= -1;
-        this.#waveCols[i] = this.cols - 1;
+        this.#waveCols[i] = this.#cols - 1;
       }
 
       if (this.#waveCols[i] <= 0) {
@@ -218,7 +218,7 @@ class Grid {
         if (!(i === 0 && j === 0)) {
           // Use modulo to wrap around to other edge of array
           // Referenced: https://stackoverflow.com/a/45397704
-          let neighbour = this.#cells[(colIndex % this.cols + this.cols) % this.cols]
+          let neighbour = this.#cells[(colIndex % this.#cols + this.#cols) % this.#cols]
             [(rowIndex % this.rows + this.rows) % this.rows];
           livingNeighbours += neighbour.alive;
         }
@@ -246,7 +246,7 @@ class Grid {
     // If there are fewer cols, reducing the length automatically removes them
     this.#cells.length = newCols;
     this.#apply.length = newCols;
-    this.cols = newCols;
+    this.#cols = newCols;
 
     for (let col = 0; col < this.#cells.length; col++) {
       // Fill any empty rows
@@ -283,7 +283,7 @@ class Grid {
    */
   placeHowdy(colOffset = undefined, rowOffset = undefined) {
     if (colOffset === undefined)
-      colOffset = Math.ceil(this.cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2);
+      colOffset = Math.ceil(this.#cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2);
     if (rowOffset === undefined)
       rowOffset = Math.ceil(this.rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2);
 
