@@ -231,9 +231,9 @@ const s = (sketch) => {
     function updatePauseButton() {
       /** @type HTMLElement */
       let pauseIcon = document.getElementById("pause-button-icon");
-      /** @type HTMLSpanElement */
-      let pauseSpan = document.getElementById("pause-button-span");
-      if (pauseIcon == null || pauseSpan == null)
+      /** @type HTMLDivElement */
+      let pauseTooltip = document.getElementById("pause-button-tooltip");
+      if (pauseIcon == null || pauseTooltip == null)
         return;
 
       if (sketch.isLooping()) {
@@ -301,18 +301,13 @@ const s = (sketch) => {
       icon.addClass(iconClasses);
 
       /** @type p5.Element */
-      let span = sketch.createSpan(label);
-      span.id(`${id}-span`);
-      span.addClass("fa-sr-only");
-
-      /** @type p5.Element */
       let tooltip = sketch.createDiv(label);
       tooltip.id(`${id}-tooltip`);
       tooltip.attribute("role", "tooltip");
       tooltip.parent(buttonWrapper);
 
+      button.attribute("aria-labelledby", `${id}-tooltip`);
       button.child(icon);
-      button.child(span);
     }
 
     return button;
