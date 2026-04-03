@@ -75,6 +75,7 @@ const s = (sketch) => {
     canvas.id("automata-canvas");
     // Set parent a second time, this makes sure the CSS starting transition plays
     canvas.parent(wrapper);
+    canvas.attribute("aria-live", "polite");
 
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.noStroke();
