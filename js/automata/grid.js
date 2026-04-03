@@ -23,8 +23,6 @@ class Grid {
 
   /** @type number */
   scaleFactor = 8;
-  /** @type number */
-  rule3Threshold = 3;
 
   /** @type number[] */
   #waveCols = [];
@@ -132,7 +130,7 @@ class Grid {
       replacement.alive = true;
     }
     // Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation.
-    if (current.alive && livingNeighbours > this.rule3Threshold) {
+    if (current.alive && livingNeighbours > 3) {
       replacement.alive = false;
     }
     // Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
