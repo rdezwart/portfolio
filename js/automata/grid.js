@@ -22,9 +22,6 @@ class Grid {
   #apply;
 
   /** @type number */
-  opacity = 255;
-
-  /** @type number */
   scaleFactor = 8;
   /** @type number */
   rule3Threshold = 3;
