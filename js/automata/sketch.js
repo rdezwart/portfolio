@@ -73,7 +73,7 @@ const s = (sketch) => {
         return;
 
       grid.startAnimations();
-      updateButtons();
+      updateInterface();
     });
 
     resetButton = createAndAddMenuButton("Reset", "reset-button", true, "fa-solid fa-arrow-rotate-left");
@@ -86,11 +86,11 @@ const s = (sketch) => {
       grid = new Grid(sketch);
       simulationStarted = false;
       grid.loop();
-      updateButtons();
+      updateInterface();
       sketch.redraw();
     });
 
-    updateButtons();
+    updateInterface();
 
     // Manually draw the cells ONCE so they display on load
     // (this will not update the cells since sketch is not looping)
@@ -152,7 +152,7 @@ const s = (sketch) => {
       if (!simulationStarted) simulationStarted = true;
     }
     toggleLogicInterval();
-    updateButtons();
+    updateInterface();
   }
 
   /**
@@ -172,7 +172,7 @@ const s = (sketch) => {
   /**
    * Refreshes the properties of canvas menu buttons.
    */
-  function updateButtons() {
+  function updateInterface() {
     updatePauseButton();
     updateAnimButton();
     updateResetButton();
