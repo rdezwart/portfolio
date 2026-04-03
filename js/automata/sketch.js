@@ -96,7 +96,7 @@ const s = (sketch) => {
    */
   sketch.draw = () => {
     sketch.background(deadColor);
-    sketch.scale(grid.scaleFactor);
+    sketch.scale(Grid.SCALE_FACTOR);
     sketch.fill(aliveColor);
     sketch.drawingContext.fill(grid.livingPath);
     sketch.fill(highlightColor);

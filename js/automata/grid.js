@@ -21,8 +21,8 @@ class Grid {
   /** @type Cell[][] */
   #apply;
 
-  /** @type number */
-  scaleFactor = 8;
+  /** @const number */
+  static SCALE_FACTOR = 8;
 
   /** @type number[] */
   #waveCols = [];
@@ -46,8 +46,8 @@ class Grid {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    this.cols = Math.floor(this.sketch.width / this.scaleFactor) + 1;
-    this.rows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
+    this.cols = Math.floor(this.sketch.width / Grid.SCALE_FACTOR) + 1;
+    this.rows = Math.floor(this.sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Create filled 2D arrays
     this.#cells = new Array(this.cols);
@@ -228,8 +228,8 @@ class Grid {
    * Referenced: https://stackoverflow.com/a/32055229/27162946
    */
   resize() {
-    let newCols = Math.floor(this.sketch.width / this.scaleFactor) + 1;
-    let newRows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
+    let newCols = Math.floor(this.sketch.width / Grid.SCALE_FACTOR) + 1;
+    let newRows = Math.floor(this.sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Add new columns to base array
     while (newCols > this.#cells.length) {
