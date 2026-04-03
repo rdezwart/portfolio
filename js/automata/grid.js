@@ -29,19 +29,6 @@ class Grid {
   /** @type number */
   rule3Threshold = 3;
 
-  /**
-   * How many generations of cells have happened in this grid. Increments each
-   * time the entire grid of cells is replaced.
-   *
-   * Starts at `1` to avoid conflict with {@link Grid#animThresholds} and
-   * modulus.
-   * @type number
-   */
-  generations = 1;
-  /** @type number[] */
-  animThresholds = [100, 250];
-  /** @type number */
-  animIndex = 0;
   /** @type boolean */
   isAnimating = false;
   /** @type number */
@@ -96,10 +83,6 @@ class Grid {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    if (this.generations % this.animThresholds[this.animIndex] === 0) {
-      this.startAnimations();
-    }
-
     if (this.sketch.isLooping())
       this.#runAnimations();
 
@@ -116,7 +99,6 @@ class Grid {
       let temp = this.apply;
       this.apply = this.cells;
       this.cells = temp;
-      this.generations++;
     }
   }
 
@@ -180,8 +162,6 @@ class Grid {
     if (!this.#horiAnimLTR && !this.#horiAnimRTL) {
       this.isAnimating = true;
       this.#horiAnimLTR = true;
-
-      if (this.animIndex === 0) this.animIndex++;
     }
   }
 
