@@ -37,9 +37,13 @@ class Grid {
   #waveCols = [];
   /** @type number[] */
   #waveDeltas = [];
+
   /** How many columns the wave moves each generation.
+   * @readonly
    * @const number */
-  static ANIMATION_SPEED = 2;
+  static get ANIMATION_SPEED() {
+    return 2;
+  }
 
   /** @const {{cols: number, rows: number}} */
   static HOWDY_DIMENSIONS = {cols: 31, rows: 9};
