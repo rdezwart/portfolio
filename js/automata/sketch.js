@@ -64,18 +64,16 @@ const s = (sketch) => {
     menu = sketch.createElement("menu");
     menu.addClass("canvas-menu");
 
-    pauseButton = createAndAddMenuButton("Play", "pause-button", "fa-solid fa-play");
+    pauseButton = createAndAddMenuButton("Play", "pause-button", false, "fa-solid fa-play");
     pauseButton.mouseClicked(togglePaused);
 
-    animButton = createAndAddMenuButton("Trigger Animation", "anim-button", "fa-solid fa-shuffle");
-    animButton.attribute("disabled", "");
+    animButton = createAndAddMenuButton("Trigger Animation", "anim-button", true, "fa-solid fa-shuffle");
     animButton.mouseClicked(() => {
       grid.startAnimations();
       updateButtons();
     });
 
-    resetButton = createAndAddMenuButton("Reset", "reset-button", "fa-solid fa-arrow-rotate-left");
-    resetButton.attribute("disabled", "");
+    resetButton = createAndAddMenuButton("Reset", "reset-button", true, "fa-solid fa-arrow-rotate-left");
     resetButton.mouseClicked(() => {
       if (logicIntervalId !== undefined) toggleLogicInterval();
       sketch.noLoop();
@@ -219,11 +217,12 @@ const s = (sketch) => {
    * @param {string} label - The text to be used for the button label, or the
    *     screen-reader-only label and tooltip if `iconClasses` are provided.
    * @param {string} id - The base ID for this button and children.
+   * @param {boolean} disabled - Whether this button should be disabled by default.
    * @param {string} [iconClasses=undefined] - Space separated string of class names to
    *        apply to the icon.
-   * @return {p5.Element} - A new button with a FontAwesome icon.
+   * @return {p5.Element} - The button that was added to the menu as a list item child.
    */
-  function createAndAddMenuButton(label, id, iconClasses = undefined) {
+  function createAndAddMenuButton(label, id, disabled = false, iconClasses = undefined) {
     /** @type p5.Element */
     let li = sketch.createElement("li");
     li.parent(menu);
@@ -238,6 +237,7 @@ const s = (sketch) => {
     button.id(id);
     button.attribute("type", "button");
     button.attribute("aria-controls", "automata-canvas");
+    if (disabled) button.attribute("disabled", "");
     button.addClass("button");
     button.parent(buttonWrapper);
 
