@@ -6,7 +6,7 @@
  */
 class Grid {
   /** @type p5 */
-  sketch;
+  #sketch;
   /** @type Path2D */
   livingPath;
   /** @type Path2D */
@@ -49,12 +49,12 @@ class Grid {
    * @param {p5} sketch - A p5 object passed from the main Processing sketch.
    */
   constructor(sketch) {
-    this.sketch = sketch;
+    this.#sketch = sketch;
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    this.cols = Math.floor(this.sketch.width / Grid.SCALE_FACTOR) + 1;
-    this.rows = Math.floor(this.sketch.height / Grid.SCALE_FACTOR) + 1;
+    this.cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
+    this.rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Create filled 2D arrays
     this.#cells = new Array(this.cols);
@@ -82,17 +82,17 @@ class Grid {
     this.livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
-    if (this.sketch.isLooping()) this.#runAnimations();
+    if (this.#sketch.isLooping()) this.#runAnimations();
     this.#isAnimating = this.#waveCols.length > 0;
 
     for (let col = 0; col < this.#cells.length; col++) {
       for (let row = 0; row < this.#cells[col].length; row++) {
-        if (this.sketch.isLooping()) this.#updateCell(col, row);
+        if (this.#sketch.isLooping()) this.#updateCell(col, row);
         this.#displayCell(col, row);
       }
     }
 
-    if (this.sketch.isLooping()) {
+    if (this.#sketch.isLooping()) {
       let temp = this.#apply;
       this.#apply = this.#cells;
       this.#cells = temp;
@@ -235,8 +235,8 @@ class Grid {
    * Referenced: https://stackoverflow.com/a/32055229/27162946
    */
   resize() {
-    let newCols = Math.floor(this.sketch.width / Grid.SCALE_FACTOR) + 1;
-    let newRows = Math.floor(this.sketch.height / Grid.SCALE_FACTOR) + 1;
+    let newCols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
+    let newRows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Add new columns to base array
     while (newCols > this.#cells.length) {
