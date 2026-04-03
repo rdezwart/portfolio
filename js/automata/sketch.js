@@ -87,7 +87,7 @@ const s = (sketch) => {
     pauseButton = createAndAddMenuButton("Play", "pause-button", false, "fa-solid fa-play");
     pauseButton.mouseClicked(togglePaused);
 
-    animButton = createAndAddMenuButton("Trigger Animation", "anim-button", true, "fa-solid fa-shuffle");
+    animButton = createAndAddMenuButton("Trigger Wave", "anim-button", true, "fa-solid fa-shuffle");
     animButton.mouseClicked(() => {
       if (animButton.attribute("aria-disabled") === "true")
         return;
