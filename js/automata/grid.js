@@ -10,7 +10,7 @@ class Grid {
   /** @type Path2D */
   #livingPath;
   /** @type Path2D */
-  highlightPath;
+  #highlightPath;
 
   /** @type number */
   #cols;
@@ -51,7 +51,7 @@ class Grid {
   constructor(sketch) {
     this.#sketch = sketch;
     this.#livingPath = new Path2D();
-    this.highlightPath = new Path2D();
+    this.#highlightPath = new Path2D();
 
     this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
     this.#rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
@@ -80,7 +80,7 @@ class Grid {
    */
   loop() {
     this.#livingPath = new Path2D();
-    this.highlightPath = new Path2D();
+    this.#highlightPath = new Path2D();
 
     if (this.#sketch.isLooping()) this.#runAnimations();
     this.#isAnimating = this.#waveCols.length > 0;
@@ -110,7 +110,7 @@ class Grid {
       this.#livingPath.rect(col, row, 1, 1);
     }
     if (this.#cells[col][row].highlighted) {
-      this.highlightPath.rect(col, row, 1, 1);
+      this.#highlightPath.rect(col, row, 1, 1);
     }
   }
 
@@ -406,6 +406,12 @@ class Grid {
    * @type Path2D */
   get livingPath() {
     return this.#livingPath;
+  }
+
+  /** @readonly
+   * @type Path2D */
+  get highlightPath() {
+    return this.#highlightPath;
   }
 
   /** @type {boolean} */
