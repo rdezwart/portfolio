@@ -19,7 +19,7 @@ class Grid {
   /** @type Cell[][] */
   #cells;
   /** @type Cell[][] */
-  apply;
+  #apply;
 
   /** @type number */
   opacity = 255;
@@ -56,16 +56,16 @@ class Grid {
 
     // Create filled 2D arrays
     this.#cells = new Array(this.cols);
-    this.apply = new Array(this.cols);
+    this.#apply = new Array(this.cols);
 
     for (let col = 0; col < this.cols; col++) {
       this.#cells[col] = new Array(this.rows);
-      this.apply[col] = new Array(this.rows);
+      this.#apply[col] = new Array(this.rows);
 
       for (let row = 0; row < this.rows; row++) {
         let c = new Cell(false);
         this.#cells[col][row] = c;
-        this.apply[col][row] = c;
+        this.#apply[col][row] = c;
       }
     }
 
@@ -92,8 +92,8 @@ class Grid {
     }
 
     if (this.sketch.isLooping()) {
-      let temp = this.apply;
-      this.apply = this.#cells;
+      let temp = this.#apply;
+      this.#apply = this.#cells;
       this.#cells = temp;
     }
   }
@@ -143,7 +143,7 @@ class Grid {
       replacement.alive = true;
     }
 
-    this.apply[col][row] = replacement; // TODO: See if Maps might save on some work here
+    this.#apply[col][row] = replacement; // TODO: See if Maps might save on some work here
   }
 
 
@@ -239,11 +239,11 @@ class Grid {
     // Add new columns to base array
     while (newCols > this.#cells.length) {
       this.#cells.push(new Array(newRows));
-      this.apply.push(new Array(newRows));
+      this.#apply.push(new Array(newRows));
     }
     // If there are fewer cols, reducing the length automatically removes them
     this.#cells.length = newCols;
-    this.apply.length = newCols;
+    this.#apply.length = newCols;
     this.cols = newCols;
 
     for (let col = 0; col < this.#cells.length; col++) {
@@ -252,7 +252,7 @@ class Grid {
         if (this.#cells[col][row] === undefined) {
           let c = new Cell();
           this.#cells[col][row] = c;
-          this.apply[col][row] = c;
+          this.#apply[col][row] = c;
         }
       }
 
@@ -260,11 +260,11 @@ class Grid {
       while (newRows > this.#cells[col].length) {
         let c = new Cell();
         this.#cells[col].push(c);
-        this.apply[col].push(c);
+        this.#apply[col].push(c);
       }
       // Chop off any extras, like above
       this.#cells[col].length = newRows;
-      this.apply[col].length = newRows;
+      this.#apply[col].length = newRows;
     }
     this.rows = newRows;
   }
