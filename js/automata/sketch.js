@@ -69,12 +69,18 @@ const s = (sketch) => {
 
     animButton = createAndAddMenuButton("Trigger Animation", "anim-button", true, "fa-solid fa-shuffle");
     animButton.mouseClicked(() => {
+      if (animButton.attribute("aria-disabled") === "true")
+        return;
+
       grid.startAnimations();
       updateButtons();
     });
 
     resetButton = createAndAddMenuButton("Reset", "reset-button", true, "fa-solid fa-arrow-rotate-left");
     resetButton.mouseClicked(() => {
+      if (resetButton.attribute("aria-disabled") === "true")
+        return;
+
       if (logicIntervalId !== undefined) toggleLogicInterval();
       sketch.noLoop();
       grid = new Grid(sketch);
@@ -189,19 +195,11 @@ const s = (sketch) => {
     }
 
     function updateAnimButton() {
-      if (sketch.isLooping()) {
-        animButton.removeAttribute("disabled");
-      } else {
-        animButton.attribute("disabled", "");
-      }
+      animButton.attribute("aria-disabled", `${!sketch.isLooping()}`);
     }
 
     function updateResetButton() {
-      if (simulationStarted) {
-        resetButton.removeAttribute("disabled");
-      } else {
-        resetButton.attribute("disabled", "");
-      }
+      resetButton.attribute("aria-disabled", `${!simulationStarted}`);
     }
   }
 
@@ -237,7 +235,7 @@ const s = (sketch) => {
     button.id(id);
     button.attribute("type", "button");
     button.attribute("aria-controls", "automata-canvas");
-    if (disabled) button.attribute("disabled", "");
+    button.attribute("aria-disabled", `${disabled}`);
     button.addClass("button");
     button.parent(buttonWrapper);
 

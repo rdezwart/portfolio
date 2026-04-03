@@ -1430,18 +1430,19 @@ figure figcaption {
   opacity: 1;
   visibility: visible;
 }
-.button:disabled {
+.button[aria-disabled=true] {
   border-color: var(--secondary);
   color: var(--secondary);
+  cursor: not-allowed;
 }
-.button:disabled + [role=tooltip] {
+.button[aria-disabled=true] + [role=tooltip] {
   border-color: var(--secondary);
 }
-.button:is(:active):not(:disabled) {
+.button:is(:active):not([aria-disabled=true]) {
   border-color: #00818a;
   color: #00818a;
 }
-.button:is(:active):not(:disabled) + [role=tooltip] {
+.button:is(:active):not([aria-disabled=true]) + [role=tooltip] {
   border-color: #00818a;
 }
 

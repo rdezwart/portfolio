@@ -35,16 +35,17 @@
     }
   }
 
-  &:disabled {
+  &[aria-disabled="true"] {
     border-color: var(--secondary);
     color: var(--secondary);
+    cursor: not-allowed;
 
     + [role="tooltip"] {
       border-color: var(--secondary);
     }
   }
 
-  &:is(:active):not(:disabled) {
+  &:is(:active):not([aria-disabled="true"]) {
     border-color: #{abstracts.$teal};
     color: #{abstracts.$teal};
 
