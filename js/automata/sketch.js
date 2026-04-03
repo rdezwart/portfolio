@@ -30,6 +30,8 @@ const s = (sketch) => {
   let logicIntervalId = undefined;
   /** @type boolean */
   let simulationStarted;
+  /** @type boolean */
+  let loaded = false;
 
   /** @type p5.Element */
   let menu;
@@ -101,6 +103,7 @@ const s = (sketch) => {
       if (resetButton.attribute("aria-disabled") === "true")
         return;
 
+      loaded = false;
       if (logicIntervalId !== undefined) toggleLogicInterval();
       sketch.noLoop();
       grid = new Grid(sketch);
@@ -108,6 +111,7 @@ const s = (sketch) => {
       grid.loop();
       updateInterface();
       sketch.redraw();
+      loaded = true;
     });
 
     updateInterface();
@@ -115,6 +119,8 @@ const s = (sketch) => {
     // Manually draw the cells ONCE so they display on load
     // (this will not update the cells since sketch is not looping)
     grid.loop();
+
+    loaded = true;
   };
 
   /**
@@ -134,6 +140,8 @@ const s = (sketch) => {
    * P5 function. Runs when window is resized.
    */
   sketch.windowResized = () => {
+    if (!loaded) return;
+
     /** @type boolean */
     let moveHowdy = !simulationStarted;
     if (moveHowdy) {
