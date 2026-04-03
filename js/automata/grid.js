@@ -45,8 +45,15 @@ class Grid {
     return 2;
   }
 
-  /** @const {{cols: number, rows: number}} */
-  static HOWDY_DIMENSIONS = {cols: 31, rows: 9};
+  /**
+   * The dimensions of the "Howdy!" text.
+   * @readonly
+   * @enum {number}
+   */
+  static HOWDY_DIMENSIONS = {
+    cols: 31,
+    rows: 9
+  }
 
 
   /**
