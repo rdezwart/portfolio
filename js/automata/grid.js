@@ -21,8 +21,15 @@ class Grid {
   /** @type Cell[][] */
   #apply;
 
-  /** @const number */
-  static SCALE_FACTOR = 8;
+  /**
+   * Cell size multiplier. Used to scale drawing output size and cell grid
+   * dimensions.
+   * @readonly
+   * @const {number}
+   */
+  static get SCALE_FACTOR() {
+    return 8;
+  }
 
   /** @type number[] */
   #waveCols = [];
