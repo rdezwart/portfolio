@@ -280,6 +280,13 @@ class Grid {
       this.#apply[col].length = newRows;
     }
     this.#rows = newRows;
+
+    // Make sure any active waves are capped to the new size of the grid
+    for (let i = 0; i < this.#waveCols.length; i++) {
+      if (this.#waveCols[i] >= this.#cols) {
+        this.#waveCols[i] = this.#cols - 1;
+      }
+    }
   }
 
 
