@@ -8,7 +8,7 @@ class Grid {
   /** @type p5 */
   #sketch;
   /** @type Path2D */
-  livingPath;
+  #livingPath;
   /** @type Path2D */
   highlightPath;
 
@@ -50,7 +50,7 @@ class Grid {
    */
   constructor(sketch) {
     this.#sketch = sketch;
-    this.livingPath = new Path2D();
+    this.#livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
     this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
@@ -79,7 +79,7 @@ class Grid {
    * Main logic loop for grid. Handles drawing and update logic.
    */
   loop() {
-    this.livingPath = new Path2D();
+    this.#livingPath = new Path2D();
     this.highlightPath = new Path2D();
 
     if (this.#sketch.isLooping()) this.#runAnimations();
@@ -107,7 +107,7 @@ class Grid {
   #displayCell(col, row) {
     // Only drawing living cells boosts performance significantly
     if (this.#cells[col][row].alive) {
-      this.livingPath.rect(col, row, 1, 1);
+      this.#livingPath.rect(col, row, 1, 1);
     }
     if (this.#cells[col][row].highlighted) {
       this.highlightPath.rect(col, row, 1, 1);
@@ -402,6 +402,11 @@ class Grid {
         cell.alive = !cell.alive;
   }
 
+  /** @readonly
+   * @type Path2D */
+  get livingPath() {
+    return this.#livingPath;
+  }
 
   /** @type {boolean} */
   get isAnimating() {
