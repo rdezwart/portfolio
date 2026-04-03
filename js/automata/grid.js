@@ -15,7 +15,7 @@ class Grid {
   /** @type number */
   #cols;
   /** @type number */
-  rows;
+  #rows;
   /** @type Cell[][] */
   #cells;
   /** @type Cell[][] */
@@ -54,17 +54,17 @@ class Grid {
     this.highlightPath = new Path2D();
 
     this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
-    this.rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
+    this.#rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
 
     // Create filled 2D arrays
     this.#cells = new Array(this.#cols);
     this.#apply = new Array(this.#cols);
 
     for (let col = 0; col < this.#cols; col++) {
-      this.#cells[col] = new Array(this.rows);
-      this.#apply[col] = new Array(this.rows);
+      this.#cells[col] = new Array(this.#rows);
+      this.#apply[col] = new Array(this.#rows);
 
-      for (let row = 0; row < this.rows; row++) {
+      for (let row = 0; row < this.#rows; row++) {
         let c = new Cell(false);
         this.#cells[col][row] = c;
         this.#apply[col][row] = c;
@@ -168,7 +168,7 @@ class Grid {
     for (let i = 0; i < this.#waveCols.length; i++) {
       // Going to the right
       if (this.#waveDeltas[i] > 0) {
-        for (let r = 0; r < this.rows; r++) {
+        for (let r = 0; r < this.#rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 5) {
             this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.5, true);
           }
@@ -177,7 +177,7 @@ class Grid {
 
       // Going to the left
       if (this.#waveDeltas[i] < 0) {
-        for (let r = 0; r < this.rows; r++) {
+        for (let r = 0; r < this.#rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 4) {
             this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.25, true);
           }
@@ -219,7 +219,7 @@ class Grid {
           // Use modulo to wrap around to other edge of array
           // Referenced: https://stackoverflow.com/a/45397704
           let neighbour = this.#cells[(colIndex % this.#cols + this.#cols) % this.#cols]
-            [(rowIndex % this.rows + this.rows) % this.rows];
+            [(rowIndex % this.#rows + this.#rows) % this.#rows];
           livingNeighbours += neighbour.alive;
         }
       }
@@ -268,7 +268,7 @@ class Grid {
       this.#cells[col].length = newRows;
       this.#apply[col].length = newRows;
     }
-    this.rows = newRows;
+    this.#rows = newRows;
   }
 
 
@@ -285,7 +285,7 @@ class Grid {
     if (colOffset === undefined)
       colOffset = Math.ceil(this.#cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2);
     if (rowOffset === undefined)
-      rowOffset = Math.ceil(this.rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2);
+      rowOffset = Math.ceil(this.#rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2);
 
     /** @type Cell[] */
     let letterH = [];
