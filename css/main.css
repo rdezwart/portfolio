@@ -1096,7 +1096,7 @@ p:has(+ :is(.tools, .concepts)) {
 /**
  * Since sidebar headings are styled as H4, we need to adjust a few things.
  */
-.sidebar-heading {
+.sidebar-wrapper .sidebar-heading {
   margin: 0;
   font-size: 1.25rem;
 }

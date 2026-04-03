@@ -79,7 +79,7 @@ mixin toc(heading="Table of Contents")
 //- Generic sidebar mixin
 mixin sidebar(heading="Sidebar")
   section.sidebar
-    +h(2, heading, true)
+    +h(2, heading, false, 4)(class="sidebar-heading")
     if block
       block
 
