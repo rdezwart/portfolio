@@ -56,14 +56,9 @@ const s = (sketch) => {
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.describe("A grey rectangle with a grid of orange squares running a simulation of John Conway's Game of Life.")
     sketch.noStroke();
-
-    init();
-  };
-
-  function init() {
     sketch.noLoop(); // start sketch paused
-    simulationStarted = false;
 
+    simulationStarted = false;
     grid = new Grid(sketch);
 
     menu = sketch.createElement("menu");
@@ -83,9 +78,12 @@ const s = (sketch) => {
     resetButton.attribute("disabled", "");
     resetButton.mouseClicked(() => {
       if (logicIntervalId !== undefined) toggleLogicInterval();
-      sketch.removeElements();
-      init();
-      if (!sketch.isLooping()) sketch.redraw();
+      sketch.noLoop();
+      grid = new Grid(sketch);
+      simulationStarted = false;
+      grid.loop();
+      updateButtons();
+      sketch.redraw();
     });
 
     updateButtons();
@@ -93,8 +91,7 @@ const s = (sketch) => {
     // Manually draw the cells ONCE so they display on load
     // (this will not update the cells since sketch is not looping)
     grid.loop();
-  }
-
+  };
 
   /**
    * P5 function. Runs every frame.
