@@ -17,7 +17,7 @@ class Grid {
   /** @type number */
   rows;
   /** @type Cell[][] */
-  cells;
+  #cells;
   /** @type Cell[][] */
   apply;
 
@@ -55,16 +55,16 @@ class Grid {
     this.rows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
 
     // Create filled 2D arrays
-    this.cells = new Array(this.cols);
+    this.#cells = new Array(this.cols);
     this.apply = new Array(this.cols);
 
     for (let col = 0; col < this.cols; col++) {
-      this.cells[col] = new Array(this.rows);
+      this.#cells[col] = new Array(this.rows);
       this.apply[col] = new Array(this.rows);
 
       for (let row = 0; row < this.rows; row++) {
         let c = new Cell(false);
-        this.cells[col][row] = c;
+        this.#cells[col][row] = c;
         this.apply[col][row] = c;
       }
     }
@@ -84,8 +84,8 @@ class Grid {
 
     if (this.sketch.isLooping()) this.#runAnimations();
 
-    for (let col = 0; col < this.cells.length; col++) {
-      for (let row = 0; row < this.cells[col].length; row++) {
+    for (let col = 0; col < this.#cells.length; col++) {
+      for (let row = 0; row < this.#cells[col].length; row++) {
         if (this.sketch.isLooping()) this.#updateCell(col, row);
         this.#displayCell(col, row);
       }
@@ -93,8 +93,8 @@ class Grid {
 
     if (this.sketch.isLooping()) {
       let temp = this.apply;
-      this.apply = this.cells;
-      this.cells = temp;
+      this.apply = this.#cells;
+      this.#cells = temp;
     }
   }
 
@@ -105,10 +105,10 @@ class Grid {
    */
   #displayCell(col, row) {
     // Only drawing living cells boosts performance significantly
-    if (this.cells[col][row].alive) {
+    if (this.#cells[col][row].alive) {
       this.livingPath.rect(col, row, 1, 1);
     }
-    if (this.cells[col][row].highlighted) {
+    if (this.#cells[col][row].highlighted) {
       this.highlightPath.rect(col, row, 1, 1);
     }
   }
@@ -120,7 +120,7 @@ class Grid {
    * @param {number} row
    */
   #updateCell(col, row) {
-    let current = this.cells[col][row];
+    let current = this.#cells[col][row];
     let livingNeighbours = this.getLivingNeighbours(col, row);
 
     // Make a copy to avoid concurrent modification
@@ -168,7 +168,7 @@ class Grid {
       if (this.#waveDeltas[i] > 0) {
         for (let r = 0; r < this.rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 5) {
-            this.cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.5, true);
+            this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.5, true);
           }
         }
       }
@@ -177,7 +177,7 @@ class Grid {
       if (this.#waveDeltas[i] < 0) {
         for (let r = 0; r < this.rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 4) {
-            this.cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.25, true);
+            this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.25, true);
           }
         }
       }
@@ -216,7 +216,7 @@ class Grid {
         if (!(i === 0 && j === 0)) {
           // Use modulo to wrap around to other edge of array
           // Referenced: https://stackoverflow.com/a/45397704
-          let neighbour = this.cells[(colIndex % this.cols + this.cols) % this.cols]
+          let neighbour = this.#cells[(colIndex % this.cols + this.cols) % this.cols]
             [(rowIndex % this.rows + this.rows) % this.rows];
           livingNeighbours += neighbour.alive;
         }
@@ -237,33 +237,33 @@ class Grid {
     let newRows = Math.floor(this.sketch.height / this.scaleFactor) + 1;
 
     // Add new columns to base array
-    while (newCols > this.cells.length) {
-      this.cells.push(new Array(newRows));
+    while (newCols > this.#cells.length) {
+      this.#cells.push(new Array(newRows));
       this.apply.push(new Array(newRows));
     }
     // If there are fewer cols, reducing the length automatically removes them
-    this.cells.length = newCols;
+    this.#cells.length = newCols;
     this.apply.length = newCols;
     this.cols = newCols;
 
-    for (let col = 0; col < this.cells.length; col++) {
+    for (let col = 0; col < this.#cells.length; col++) {
       // Fill any empty rows
-      for (let row = 0; row < this.cells[col].length; row++) {
-        if (this.cells[col][row] === undefined) {
+      for (let row = 0; row < this.#cells[col].length; row++) {
+        if (this.#cells[col][row] === undefined) {
           let c = new Cell();
-          this.cells[col][row] = c;
+          this.#cells[col][row] = c;
           this.apply[col][row] = c;
         }
       }
 
       // Append new cells if rows are too short
-      while (newRows > this.cells[col].length) {
+      while (newRows > this.#cells[col].length) {
         let c = new Cell();
-        this.cells[col].push(c);
+        this.#cells[col].push(c);
         this.apply[col].push(c);
       }
       // Chop off any extras, like above
-      this.cells[col].length = newRows;
+      this.#cells[col].length = newRows;
       this.apply[col].length = newRows;
     }
     this.rows = newRows;
@@ -310,11 +310,11 @@ class Grid {
     // Sides
     for (let c = 0; c < 2; c++)
       for (let r = 0; r < 7; r++)
-        letterH.push(this.cells[col + (4 * c)][row + r]);
+        letterH.push(this.#cells[col + (4 * c)][row + r]);
 
     // Bar
     for (let c = 0; c < 3; c++)
-      letterH.push(this.cells[col + 1 + c][row + 2]);
+      letterH.push(this.#cells[col + 1 + c][row + 2]);
 
 
     // ---- o ---- /
@@ -322,12 +322,12 @@ class Grid {
     // Sides
     for (let c = 0; c < 2; c++)
       for (let r = 0; r < 3; r++)
-        letterO.push(this.cells[col + (4 * c)][row + 3 + r]);
+        letterO.push(this.#cells[col + (4 * c)][row + 3 + r]);
 
     // Top and Bottom
     for (let c = 0; c < 3; c++)
       for (let r = 0; r < 2; r++)
-        letterO.push(this.cells[col + 1 + c][row + 2 + (4 * r)]);
+        letterO.push(this.#cells[col + 1 + c][row + 2 + (4 * r)]);
 
 
     // ---- w ---- //
@@ -335,35 +335,35 @@ class Grid {
     // Sides
     for (let c = 0; c < 2; c++)
       for (let r = 0; r < 4; r++)
-        letterW.push(this.cells[col + (4 * c)][row + 2 + r]);
+        letterW.push(this.#cells[col + (4 * c)][row + 2 + r]);
 
     // Middle
     for (let r = 0; r < 2; r++)
-      letterW.push(this.cells[col + 2][row + 4 + r]);
+      letterW.push(this.#cells[col + 2][row + 4 + r]);
 
     // Bottom
     for (let c = 0; c < 4; c++)
-      letterW.push(this.cells[col + 1 + c][row + 6]);
+      letterW.push(this.#cells[col + 1 + c][row + 6]);
 
 
     // ---- d ---- //
     col += 6;
     // Left side
     for (let r = 0; r < 3; r++)
-      letterD.push(this.cells[col][row + 3 + r]);
+      letterD.push(this.#cells[col][row + 3 + r]);
 
     // Top
     for (let c = 0; c < 2; c++)
-      letterD.push(this.cells[col + 1 + c][row + 2]);
-    letterD.push(this.cells[col + 3][row + 3]);
+      letterD.push(this.#cells[col + 1 + c][row + 2]);
+    letterD.push(this.#cells[col + 3][row + 3]);
 
     // Bottom
     for (let c = 0; c < 3; c++)
-      letterD.push(this.cells[col + 1 + c][row + 6]);
+      letterD.push(this.#cells[col + 1 + c][row + 6]);
 
     // Ascender
     for (let r = 0; r < 7; r++)
-      letterD.push(this.cells[col + 4][row + r]);
+      letterD.push(this.#cells[col + 4][row + r]);
 
 
     // ---- y ---- //
@@ -371,15 +371,15 @@ class Grid {
     // Sides, right side is taller
     for (let c = 0; c < 2; c++)
       for (let r = 0; r < 4 + (2 * c); r++)
-        letterY.push(this.cells[col + (4 * c)][row + 2 + r]);
+        letterY.push(this.#cells[col + (4 * c)][row + 2 + r]);
 
     // Bottom
     for (let c = 0; c < 3; c++)
-      letterY.push(this.cells[col + 1 + c][row + 6]);
+      letterY.push(this.#cells[col + 1 + c][row + 6]);
 
     // Tail
     for (let c = 0; c < 4; c++)
-      letterY.push(this.cells[col + c][row + 8]);
+      letterY.push(this.#cells[col + c][row + 8]);
 
 
     // ---- ! ---- //
@@ -387,7 +387,7 @@ class Grid {
     // Whole thing, skip a cell for the gap
     for (let r = 0; r < 7; r++)
       if (r !== 5)
-        letterExclamation.push(this.cells[col][row + r]);
+        letterExclamation.push(this.#cells[col][row + r]);
 
 
     // Final activation
