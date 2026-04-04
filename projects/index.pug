@@ -20,7 +20,12 @@ append sidebar
   +toc("Projects")
     ol(role="list")
       each category in categories
-        li: a(href=`#${category.slug}`)= category.displayName
+        li
+          a(href=`#${category.slug}`)= category.displayName
+          if getMatchingProjects(category).length !== 0
+            ol(role="list")
+              each project in getMatchingProjects(category)
+                li: a(href=`#${project.slug}`)= project.title
 
 append content
   each category in categories
