@@ -16,6 +16,7 @@
   grid-template-rows: auto 1fr;
 
   position: relative; /* 2 */
+  scroll-margin-top: #{abstracts.$text-gap};
 
   box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 80%);
   outline: 0 solid var(--link);

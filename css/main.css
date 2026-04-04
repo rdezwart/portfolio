@@ -811,6 +811,7 @@ body {
  *    TOC scroll tracking.
  * 2. Remove extra padding from very top heading of very first section.
  *    This brings it properly inline with the top of the grid row.
+ * 3. Add extra scroll margin to compensate for the lack of actual padding.
  */
 .content {
   display: -webkit-box;
@@ -825,6 +826,7 @@ body {
 }
 .content section:first-child {
   padding-top: 0; /* 2 */
+  scroll-margin-top: 0.5rlh; /* 3 */
 }
 
 /**
@@ -1365,6 +1367,7 @@ figure figcaption {
   -ms-grid-rows: auto 1fr;
   grid-template-rows: auto 1fr;
   position: relative; /* 2 */
+  scroll-margin-top: 0.5rlh;
   -webkit-box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
           box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
   outline: 0 solid var(--link);
