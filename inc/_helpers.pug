@@ -1,0 +1,14 @@
+-
+  /**
+   * Filters the projects dictionary for projects matching the specified
+   * category.
+   *
+   * @param {ProjectCategory} category - The {@link ProjectCategory} to filter
+   *     for.
+   * @returns {Project[]} - An array of any projects in the specified category.
+   */
+  function getMatchingProjects(category) {
+    return Object.values(projects).filter(
+            (project) => project.category === category
+    );
+  }

@@ -29,15 +29,9 @@ append content
     section(id=`${category.slug}`)
       +h(2, `${category.displayName}`)
 
-      -
-        /** @type {Project[]} */
-        let matchingProjects = Object.values(projects).filter(
-                (project) => project.category === category
-        );
-
-      if matchingProjects.length !== 0
+      if getMatchingProjects(category).length !== 0
         ul.project-grid(role="list")
-          each project in matchingProjects
+          each project in getMatchingProjects(category)
             +project-card(project)
       else
         p No projects here... yet!
