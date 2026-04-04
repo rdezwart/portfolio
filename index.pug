@@ -1,4 +1,4 @@
-extends layouts/_default
+extends layouts/_sidebar
 
 append vars
   -
@@ -6,21 +6,20 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
-    layout = "home";
+    grid = "pre-sidebar";
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
 
 
 append pre-sidebar
-  div.pre-sidebar
-    section#intro
-      h1
-        | Welcome, I'm
-        |
-        +name(false)
-      p
-        | Hello world loremp ipsum
+  section#intro
+    h1
+      | Welcome, I'm
+      |
+      +name(false)
+    p
+      | Hello world lorem ipsum
 
 append sidebar
   +sidebar("Skills")

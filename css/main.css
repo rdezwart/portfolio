@@ -521,7 +521,7 @@ body {
 }
 
 /**
- * Default layout for pages.
+ * Default grid for pages. Has no sidebar.
  * 1. Because the content begins at the top and spans multiple rows, we can tell
  *    the nav row to be as small as possible, allowing the sidebar to be placed
  *    directly beneath it.
@@ -529,39 +529,43 @@ body {
 .grid-default {
   -ms-grid-rows: auto 1fr auto;
   grid-template-rows: auto 1fr auto; /* 1 */
-      grid-template-areas: "nav hd" "side content" "ft  ft";
+      grid-template-areas: "nav hd" ".   content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-default {
-    -ms-grid-rows: auto auto auto 1fr auto;
-    grid-template-rows: auto auto auto 1fr auto;
-        grid-template-areas: "nav" "hd" "side" "content" "ft";
+    -ms-grid-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "nav" "hd" "content" "ft";
   }
 }
 
 /**
- * Layout for project pages, has a Table of Contents below the nav.
+ * Grid for pages with a sidebar.
  */
-.grid-project {
+.grid-sidebar {
   -ms-grid-rows: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
-      grid-template-areas: "nav hd" "side content" "ft  ft";
+      grid-template-areas: "nav  hd" "side content" "ft   ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  .grid-project {
+  .grid-sidebar {
     -ms-grid-rows: auto auto 1fr auto auto;
     grid-template-rows: auto auto 1fr auto auto;
         grid-template-areas: "nav" "hd" "side" "content" "ft";
   }
 }
 
-.grid-home {
+/**
+ * Grid for pages that want a sidebar, but with an additional row before it to
+ * place content (such as headings).
+ */
+.grid-pre-sidebar {
   -ms-grid-rows: auto auto 1fr auto;
   grid-template-rows: auto auto 1fr auto;
-      grid-template-areas: "nav hd" "side pre" "side content" "ft  ft";
+      grid-template-areas: "nav  hd" "side pre" "side content" "ft   ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  .grid-home {
+  .grid-pre-sidebar {
     -ms-grid-rows: auto auto auto 1fr auto auto;
     grid-template-rows: auto auto auto 1fr auto auto;
         grid-template-areas: "nav" "hd" "pre" "side" "content" "ft";
@@ -607,11 +611,11 @@ body {
   grid-area: nav;
   z-index: 1; /* 1 */
 }
-.grid-project > .nav-wrapper {
+.grid-sidebar > .nav-wrapper {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
-.grid-home > .nav-wrapper {
+.grid-pre-sidebar > .nav-wrapper {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
 }
@@ -624,11 +628,11 @@ body {
   -ms-grid-column: 2;
   grid-area: hd;
 }
-.grid-project > .header {
+.grid-sidebar > .header {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
 }
-.grid-home > .header {
+.grid-pre-sidebar > .header {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
 }
@@ -639,12 +643,12 @@ body {
   grid-area: content;
 }
 
-.grid-project > .content {
+.grid-sidebar > .content {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
 }
 
-.grid-home > .content {
+.grid-pre-sidebar > .content {
   -ms-grid-row: 3;
   -ms-grid-column: 2;
 }
@@ -661,12 +665,7 @@ body {
   grid-area: side;
 }
 
-.grid-project > .sidebar-wrapper {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-}
-
-.grid-home > .sidebar-wrapper {
+.grid-pre-sidebar > .sidebar-wrapper {
   -ms-grid-row: 2;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
@@ -681,12 +680,12 @@ body {
   -ms-grid-column-span: 2;
   grid-area: ft;
 }
-.grid-project > .footer {
+.grid-sidebar > .footer {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
 }
-.grid-home > .footer {
+.grid-pre-sidebar > .footer {
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -696,11 +695,11 @@ body {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .grid-project > .nav-wrapper {
+  .grid-sidebar > .nav-wrapper {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
-  .grid-home > .nav-wrapper {
+  .grid-pre-sidebar > .nav-wrapper {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
   }
@@ -708,23 +707,23 @@ body {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
-  .grid-project > .header {
+  .grid-sidebar > .header {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
-  .grid-home > .header {
+  .grid-pre-sidebar > .header {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
   .content {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+  .grid-sidebar > .content {
     -ms-grid-row: 4;
     -ms-grid-column: 1;
   }
-  .grid-project > .content {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-  }
-  .grid-home > .content {
+  .grid-pre-sidebar > .content {
     -ms-grid-row: 5;
     -ms-grid-column: 1;
   }
@@ -736,26 +735,22 @@ body {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
   }
-  .grid-project > .sidebar-wrapper {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-  }
-  .grid-home > .sidebar-wrapper {
+  .grid-pre-sidebar > .sidebar-wrapper {
     -ms-grid-row: 4;
     -ms-grid-row-span: 1;
     -ms-grid-column: 1;
   }
   .footer {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+  }
+  .grid-sidebar > .footer {
     -ms-grid-row: 5;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
   }
-  .grid-project > .footer {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-  }
-  .grid-home > .footer {
+  .grid-pre-sidebar > .footer {
     -ms-grid-row: 6;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
@@ -1622,17 +1617,6 @@ figure figcaption {
           flex-direction: row;
   gap: 0.5rlh;
   font-size: 1rem;
-}
-
-.intro-links {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  gap: 0.5rlh;
 }
 
 :root {

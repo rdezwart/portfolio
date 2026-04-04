@@ -1,13 +1,20 @@
-extends ../layouts/_project
+extends ../layouts/_sidebar
 
 append vars
   -
     title = "Projects"
     slug = "projects"
     description = "Under construction!"
+    grid = "pre-sidebar";
 
 append scripts
   script(src="/js/toc.js" defer)
+
+
+append pre-sidebar
+  hgroup.hgroup
+    +h(1, "Projects")
+    p.secondary Hello world!
 
 append sidebar
   +toc("Projects")
@@ -18,11 +25,6 @@ append sidebar
       li: a(href="#miscellaneous") Miscellaneous
 
 append content
-  hgroup.hgroup
-    +h(1, "Projects")
-    p.secondary Hello world!
-
-
   section#game-development
     +h(2, "Game Development")
     ul.project-grid(role="list")

@@ -1,0 +1,21 @@
+extends _default
+
+append vars
+  -
+    grid = "sidebar";
+
+
+block main
+  div.header
+    if automata
+      div#automata-wrapper
+
+  if grid === "pre-sidebar"
+    div.pre-sidebar
+      block pre-sidebar
+
+  div.sidebar-wrapper
+    block sidebar
+
+  div.content
+    block content

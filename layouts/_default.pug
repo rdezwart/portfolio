@@ -3,10 +3,10 @@ include ../inc/_project-list
 
 block vars
   -
-    let title = "Portfolio"
-    let slug = "home"
-    let description = "Hi, I'm Robin;"
-    let layout = "default"
+    let title = "Portfolio";
+    let slug = "home";
+    let description = "Hi, I'm Robin;";
+    let grid = "default";
     let automata = true;
 
 block page-title
@@ -51,7 +51,7 @@ html(lang="en")
   body
     a(href="#main-content").skip Skip to main content
 
-    div(class=`wrapper grid-${layout}`)
+    div(class=`wrapper grid-${grid}`)
       include ../inc/_nav
 
       main.main#main-content
@@ -59,11 +59,6 @@ html(lang="en")
           div.header
             if automata
               div#automata-wrapper
-
-          block pre-sidebar
-
-          div.sidebar-wrapper
-            block sidebar
 
           div.content
             block content

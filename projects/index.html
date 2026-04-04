@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Portfolio - Robin de Zwart</title>
-    <meta name="description" content="Hi, I'm Robin;">
+    <title>Projects - Robin de Zwart</title>
+    <meta name="description" content="Under construction!">
     <meta name="color-scheme" content="dark light">
-    <meta property="og:title" content="Portfolio - Robin de Zwart">
-    <meta property="og:url" content="https://rdezwart.ca/projects/home.html">
-    <meta property="og:image" content="https://rdezwart.ca/img/splash/home.png">
-    <meta property="og:image:alt" content="Hi, I'm Robin; This is my project, Portfolio.">
-    <meta property="og:description" content="Hi, I'm Robin;">
+    <meta property="og:title" content="Projects - Robin de Zwart">
+    <meta property="og:url" content="https://rdezwart.ca/projects.html">
+    <meta property="og:image" content="https://rdezwart.ca/img/splash/projects.png">
+    <meta property="og:image:alt" content="Hi, I'm Robin; This is my portfolio.">
+    <meta property="og:description" content="Under construction!">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_CA">
     <meta property="og:site_name" content="Robin de Zwart">
@@ -32,11 +32,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
-    <script src="/js/toc.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer></script>
+    <script src="/js/automata/sketch.js" defer></script>
+    <script src="/js/automata/grid.js" defer></script>
+    <script src="/js/automata/cell.js" defer></script>
     <script src="/js/toc.js" defer></script>
   </head>
   <body><a class="skip" href="#main-content">Skip to main content</a>
-    <div class="wrapper grid-project">
+    <div class="wrapper grid-pre-sidebar">
       <header class="nav-wrapper">
         <nav class="nav" aria-label="Main">
           <div class="name-wrapper"><a class="name" href="/">Robin de&nbsp;Zwart<span class="highlight">;</span></a>
@@ -62,115 +65,100 @@
         </address>
       </header>
       <main class="main" id="main-content">
-        <article class="article">
-          <header class="header">
-            <hgroup class="hgroup">
-              <h1 class="h1">Portfolio</h1>
-              <p class="description">Hi, I'm Robin;</p>
-            </hgroup>
-            <div class="gradient"></div>
-          </header>
-          <div class="sidebar-wrapper">
-            <div class="toc">
-              <h2 class="h4 sidebar-heading">Table of Contents</h2>
-              <nav class="nav" aria-labelledby="toc-heading">
-                <ol role="list">
-                  <li><a href="#overview">Overview</a></li>
-                </ol>
-              </nav>
-            </div>
-            <div class="toc">
-              <h2 class="h4 sidebar-heading">Projects</h2>
-              <nav class="nav" aria-labelledby="toc-heading">
-                <ol role="list">
-                  <li><a href="#game-development">Game Development</a></li>
-                  <li><a href="#machine-learning">Machine Learning</a></li>
-                  <li><a href="#web-development">Web Development</a></li>
-                  <li><a href="#miscellaneous">Miscellaneous</a></li>
-                </ol>
-              </nav>
-            </div>
+        <div class="header">
+          <div id="automata-wrapper"></div>
+        </div>
+        <div class="pre-sidebar">
+          <hgroup class="hgroup">
+            <h1 class="h1">Projects</h1>
+            <p class="secondary">Hello world!</p>
+          </hgroup>
+        </div>
+        <div class="sidebar-wrapper">
+          <div class="toc">
+            <h2 class="h4 sidebar-heading">Projects</h2>
+            <nav class="nav" aria-labelledby="toc-heading">
+              <ol role="list">
+                <li><a href="#game-development">Game Development</a></li>
+                <li><a href="#machine-learning">Machine Learning</a></li>
+                <li><a href="#web-development">Web Development</a></li>
+                <li><a href="#miscellaneous">Miscellaneous</a></li>
+              </ol>
+            </nav>
           </div>
-          <div class="content">
-            <section id="overview">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Overview</h2>
-            </section>
-            <hgroup class="hgroup">
-              <h1 class="h1">Projects</h1>
-              <p class="secondary">Hello world!</p>
-            </hgroup>
-            <section id="game-development">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Game Development</h2>
-              <ul class="project-grid" role="list">
-                <li class="project-card">
-                  <h3 class="project-heading"><a href="/projects/a-sight-never-seen.html">A Sight Never Seen</a></h3>
-                  <div class="project-details">
-                    <div class="project-desc">
-                      <p class="description">Short visual novel with branching paths, set in a world of magic and secrets.</p>
-                    </div>
-                    <div class="project-tools">
-                      <ul class="tools" role="list">
-                        <li>Ren'Py</li>
-                        <li>Python</li>
-                      </ul>
-                    </div>
+        </div>
+        <div class="content">
+          <section id="game-development">
+            <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Game Development</h2>
+            <ul class="project-grid" role="list">
+              <li class="project-card">
+                <h3 class="project-heading"><a href="/projects/a-sight-never-seen.html">A Sight Never Seen</a></h3>
+                <div class="project-details">
+                  <div class="project-desc">
+                    <p class="description">Short visual novel with branching paths, set in a world of magic and secrets.</p>
                   </div>
-                  <picture class="project-img">
-                    <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
-                  </picture>
-                </li>
-              </ul>
-            </section>
-            <section id="machine-learning">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Machine Learning</h2>
-              <ul class="project-grid" role="list">
-                <li class="project-card">
-                  <h3 class="project-heading"><a href="/projects/autolume-gallery.html">AutolumeGallery</a></h3>
-                  <div class="project-details">
-                    <div class="project-desc">
-                      <p class="description">Interactive virtual reality system for real-time exploration of generative adversarial network latent space.</p>
-                    </div>
-                    <div class="project-tools">
-                      <ul class="tools" role="list">
-                        <li>Unity</li>
-                        <li>C#</li>
-                        <li>Open Sound Control</li>
-                        <li>Network Device Interface</li>
-                      </ul>
-                    </div>
+                  <div class="project-tools">
+                    <ul class="tools" role="list">
+                      <li>Ren'Py</li>
+                      <li>Python</li>
+                    </ul>
                   </div>
-                  <picture class="project-img">
-                    <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
-                  </picture>
-                </li>
-                <li class="project-card">
-                  <h3 class="project-heading"><a href="/projects/food-identifier.html">Food Identifier</a></h3>
-                  <div class="project-details">
-                    <div class="project-desc">
-                      <p class="description">Object detection and image captioning for food inside fridges.</p>
-                    </div>
-                    <div class="project-tools">
-                      <ul class="tools" role="list">
-                        <li>Python</li>
-                        <li>YOLOS</li>
-                        <li>Moondream</li>
-                      </ul>
-                    </div>
+                </div>
+                <picture class="project-img">
+                  <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
+                </picture>
+              </li>
+            </ul>
+          </section>
+          <section id="machine-learning">
+            <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Machine Learning</h2>
+            <ul class="project-grid" role="list">
+              <li class="project-card">
+                <h3 class="project-heading"><a href="/projects/autolume-gallery.html">AutolumeGallery</a></h3>
+                <div class="project-details">
+                  <div class="project-desc">
+                    <p class="description">Interactive virtual reality system for real-time exploration of generative adversarial network latent space.</p>
                   </div>
-                  <picture class="project-img">
-                    <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
-                  </picture>
-                </li>
-              </ul>
-            </section>
-            <section id="web-development">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Web Development</h2>
-            </section>
-            <section id="miscellaneous">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Miscellaneous</h2>
-            </section>
-          </div>
-        </article>
+                  <div class="project-tools">
+                    <ul class="tools" role="list">
+                      <li>Unity</li>
+                      <li>C#</li>
+                      <li>Open Sound Control</li>
+                      <li>Network Device Interface</li>
+                    </ul>
+                  </div>
+                </div>
+                <picture class="project-img">
+                  <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
+                </picture>
+              </li>
+              <li class="project-card">
+                <h3 class="project-heading"><a href="/projects/food-identifier.html">Food Identifier</a></h3>
+                <div class="project-details">
+                  <div class="project-desc">
+                    <p class="description">Object detection and image captioning for food inside fridges.</p>
+                  </div>
+                  <div class="project-tools">
+                    <ul class="tools" role="list">
+                      <li>Python</li>
+                      <li>YOLOS</li>
+                      <li>Moondream</li>
+                    </ul>
+                  </div>
+                </div>
+                <picture class="project-img">
+                  <source srcset="/img/autolume-gallery/canvas-2.webp" type="image/webp"/><img alt="" src="/img/autolume-gallery/canvas-2.webp" width="1024" height="1024" loading="lazy"/>
+                </picture>
+              </li>
+            </ul>
+          </section>
+          <section id="web-development">
+            <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Web Development</h2>
+          </section>
+          <section id="miscellaneous">
+            <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Miscellaneous</h2>
+          </section>
+        </div>
       </main>
       <footer class="footer"><a class="button" href="#">Back to Top</a>
         <p class="secondary">Made by hand with love.</p>
