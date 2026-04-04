@@ -7,6 +7,7 @@ block vars
     let slug = "home"
     let description = "Hi, I'm Robin;"
     let layout = "default"
+    let automata = true;
 
 block page-title
   - let pageTitle = `${title} - Robin de Zwart`
@@ -44,6 +45,8 @@ html(lang="en")
 
     block scripts
       include ../inc/head/_scripts
+      if automata
+        include ../inc/head/_automata
 
   body
     a(href="#main-content").skip Skip to main content
@@ -53,6 +56,12 @@ html(lang="en")
 
       main.main#main-content
         block main
+          div.header
+            if automata
+              div#automata-wrapper
+
+          block pre-sidebar
+
           div.sidebar-wrapper
             block sidebar
 

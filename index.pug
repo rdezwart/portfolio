@@ -6,33 +6,27 @@ append vars
     slug = "home"
     description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
             "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
-    layout = "project";
+    layout = "home";
 
 block url
   meta(property="og:url" content="https://rdezwart.ca/")
 
-append scripts
-  include inc/head/_automata
 
+append pre-sidebar
+  div.pre-sidebar
+    section#intro
+      h1
+        | Welcome, I'm
+        |
+        +name(false)
+      p
+        | Hello world loremp ipsum
 
 append sidebar
   +sidebar("Skills")
     include inc/_skills
 
-prepend main
-  //- Needs to be a div because we can't have two header sections on one page.
-  div.header
-    div#automata-wrapper
-
-
 append content
-  section.hgroup
-    h1
-      | Hi, I'm
-      |
-      +name(false)
-  div.gradient
-
   section#projects
     +h(2, "Featured Projects")
 
