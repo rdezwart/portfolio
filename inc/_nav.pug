@@ -7,10 +7,8 @@ header.nav-wrapper
       li
         a(href="/projects/") Projects
         ul
-          li: a(href="/projects/#machine-learning") Machine Learning
-          li: a(href="/projects/#game-development") Game Development
-          li: a(href="/projects/#web-development") Web Development
-          li: a(href="/projects/#miscellaneous") Miscellaneous
+          each category in categories
+            li: a(href=`/projects/#${category.slug}`)= category.displayName
       li: a(href="/about.html") About
 
   include _social-icons
