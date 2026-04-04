@@ -32,17 +32,17 @@
    */
   class ProjectCategory {
     /**
-     * @param {string} name - The display name of this category.
+     * @param {string} displayName - The display name of this category.
      * @param {string} slug - The slug of this category.
      */
-    constructor(name, slug) {
-      this.name = name;
+    constructor(displayName, slug) {
+      this.displayName = displayName;
       this.slug = slug;
     }
   }
 
   /**
-   * Contains the proper name and slug for each project category, listed in
+   * Contains the display name and slug for each project category, listed in
    * display order.
    * @readonly
    * @enum {ProjectCategory}
