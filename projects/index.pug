@@ -19,22 +19,22 @@ append pre-sidebar
 append sidebar
   +toc("Projects")
     ol(role="list")
-      li: a(href="#game-development") Game Development
       li: a(href="#machine-learning") Machine Learning
+      li: a(href="#game-development") Game Development
       li: a(href="#web-development") Web Development
       li: a(href="#miscellaneous") Miscellaneous
 
 append content
-  section#game-development
-    +h(2, "Game Development")
-    ul.project-grid(role="list")
-      +project-card(projects["A Sight Never Seen"])
-
   section#machine-learning
     +h(2, "Machine Learning")
     ul.project-grid(role="list")
       +project-card(projects["AutolumeGallery"])
       +project-card(projects["Food Identifier"])
+
+  section#game-development
+    +h(2, "Game Development")
+    ul.project-grid(role="list")
+      +project-card(projects["A Sight Never Seen"])
 
   section#web-development
     +h(2, "Web Development")
