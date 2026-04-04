@@ -25,20 +25,19 @@ append sidebar
       li: a(href="#miscellaneous") Miscellaneous
 
 append content
-  section#machine-learning
-    +h(2, "Machine Learning")
-    ul.project-grid(role="list")
-      +project-card(projects["AutolumeGallery"])
-      +project-card(projects["Food Identifier"])
+  each category in categories
+    section(id=`${category.slug}`)
+      +h(2, `${category.displayName}`)
 
-  section#game-development
-    +h(2, "Game Development")
-    ul.project-grid(role="list")
-      +project-card(projects["A Sight Never Seen"])
+      -
+        /** @type {Project[]} */
+        let matchingProjects = Object.values(projects).filter(
+                (project) => project.category === category
+        );
 
-  section#web-development
-    +h(2, "Web Development")
-
-
-  section#miscellaneous
-    +h(2, "Miscellaneous")
+      if matchingProjects.length !== 0
+        ul.project-grid(role="list")
+          each project in matchingProjects
+            +project-card(project)
+      else
+        p No projects here... yet!
