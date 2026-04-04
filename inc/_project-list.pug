@@ -27,6 +27,33 @@
     }
   }
 
+  /**
+   * Represents a category a {@link Project} may belong to.
+   */
+  class ProjectCategory {
+    /**
+     * @param {string} name - The display name of this category.
+     * @param {string} slug - The slug of this category.
+     */
+    constructor(name, slug) {
+      this.name = name;
+      this.slug = slug;
+    }
+  }
+
+  /**
+   * Contains the proper name and slug for each project category, listed in
+   * display order.
+   * @readonly
+   * @enum {ProjectCategory}
+   */
+  const categories = {
+    MACHINE_LEARNING: new ProjectCategory("Machine Learning", "machine-learning"),
+    GAME_DEVELOPMENT: new ProjectCategory("Game Development", "game-development"),
+    WEB_DEVELOPMENT: new ProjectCategory("Web Development", "web-development"),
+    MISCELLANEOUS: new ProjectCategory("Miscellaneous", "miscellaneous"),
+  }
+
 
   /**
    * Contains information about my projects.
@@ -36,6 +63,7 @@
      * @param {string} title
      * @param {string} slug
      * @param {string} description
+     * @param {ProjectCategory} category
      * @param {ProjectLink[]} links
      * @param {string[]} tools
      * @param {string[]} concepts
@@ -45,6 +73,7 @@
             title = "Portfolio",
             slug = "home",
             description = "Hi, I'm Robin;",
+            category = categories.MISCELLANEOUS,
             links = [],
             tools = [],
             concepts = [],
@@ -53,6 +82,7 @@
       this.title = title;
       this.slug = slug;
       this.description = description;
+      this.category = category;
       this.links = links;
       this.tools = tools;
       this.concepts = concepts;
@@ -65,6 +95,7 @@
             "AutolumeGallery",
             "autolume-gallery",
             "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
+            categories.MACHINE_LEARNING,
             [
               new ProjectLink("Code", "https://github.com/rdezwart/AutolumeGallery", "GitHub"),
               new ProjectLink("Dataset", "https://voormeij.ca/", "Peter John Voormeij"),
@@ -77,6 +108,7 @@
             "Food Identifier",
             "food-identifier",
             "Object detection and image captioning for food inside fridges.",
+            categories.MACHINE_LEARNING,
             [
               new ProjectLink("Code", "https://huggingface.co/spaces/rdezwart/FoodIdentifier", "HuggingFace")
             ],
@@ -87,6 +119,7 @@
             "A Sight Never Seen",
             "a-sight-never-seen",
             "Short visual novel with branching paths, set in a world of magic and secrets.",
+            categories.GAME_DEVELOPMENT,
             [
               new ProjectLink("Code", "https://github.com/rdezwart/SightNeverSeen", "GitHub"),
               new ProjectLink("Game", "https://rdezwart.itch.io/sightneverseen", "Itch.io")
