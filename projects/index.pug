@@ -19,10 +19,8 @@ append pre-sidebar
 append sidebar
   +toc("Projects")
     ol(role="list")
-      li: a(href="#machine-learning") Machine Learning
-      li: a(href="#game-development") Game Development
-      li: a(href="#web-development") Web Development
-      li: a(href="#miscellaneous") Miscellaneous
+      each category in categories
+        li: a(href=`#${category.slug}`)= category.displayName
 
 append content
   each category in categories
