@@ -1372,12 +1372,17 @@ figure figcaption {
   scroll-margin-top: 0.5rlh;
   -webkit-box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
           box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
-  outline: 0 solid var(--link);
-  -webkit-transition: outline-width calc(var(--duration) / 2);
-  transition: outline-width calc(var(--duration) / 2);
+  outline: 0 solid var(--highlight);
+  -webkit-transition-property: outline-width, outline-color;
+  transition-property: outline-width, outline-color;
+  -webkit-transition-duration: calc(var(--duration) / 2), var(--duration);
+          transition-duration: calc(var(--duration) / 2), var(--duration);
 }
 .project-card:hover, .project-card:focus-within {
   outline-width: 0.2rem;
+}
+.project-card:active {
+  outline-color: var(--active);
 }
 .project-card a:focus {
   outline: none;
@@ -1633,6 +1638,7 @@ figure figcaption {
   --banner: #2a2a2f;
   --highlight: #00eeff;
   --link: #ff9933;
+  --active: #00818a;
   --secondary: #cccccc;
   --text: #f2f2f2;
   --base-weight: 200;
@@ -1644,6 +1650,7 @@ figure figcaption {
     --banner: #f2f2f2;
     --highlight: #ed4900;
     --link: #00818a;
+    --active: #ff9933;
     --secondary: #3f3f3f;
     --text: #1e1e22;
     --base-weight: 300;
