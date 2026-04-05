@@ -46,11 +46,11 @@
   }
 
   &:is(:active):not([aria-disabled="true"]) {
-    border-color: #{abstracts.$teal};
-    color: #{abstracts.$teal};
+    border-color: var(--active);
+    color: var(--active);
 
     + [role="tooltip"] {
-      border-color: #{abstracts.$teal};
+      border-color: var(--active);
     }
   }
 }

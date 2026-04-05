@@ -1526,11 +1526,11 @@ figure figcaption {
   border-color: var(--secondary);
 }
 .button:is(:active):not([aria-disabled=true]) {
-  border-color: #00818a;
-  color: #00818a;
+  border-color: var(--active);
+  color: var(--active);
 }
 .button:is(:active):not([aria-disabled=true]) + [role=tooltip] {
-  border-color: #00818a;
+  border-color: var(--active);
 }
 
 /**
