@@ -33,10 +33,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="prefetch" href="/js/toc.js">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="modulepreload" href="/js/automata.js">
+    <link rel="modulepreload" href="/js/automata/sketch.js">
+    <link rel="modulepreload" href="/js/automata/grid.js">
+    <link rel="modulepreload" href="/js/automata/cell.js">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer></script>
-    <script src="/js/automata/sketch.js" defer></script>
-    <script src="/js/automata/grid.js" defer></script>
-    <script src="/js/automata/cell.js" defer></script>
+    <script type="module" src="/js/automata.js"></script>
   </head>
   <body><a class="skip" href="#main-content">Skip to main content</a>
     <div class="wrapper grid-default">

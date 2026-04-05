@@ -1,10 +1,12 @@
 "use strict";
 
+import {Grid} from "./grid.js";
+
 /**
  * Wraps the sketch in an object, enabling "instance mode".
  * @param {p5} sketch - The sketch loaded by p5.
  */
-const s = (sketch) => {
+const automata = (sketch) => {
   /** @type Grid */
   let grid;
 
@@ -342,6 +344,4 @@ const s = (sketch) => {
   }
 };
 
-
-// Pass wrapper to constructor to make sure the initial sizing is correct.
-let automata = new p5(s, "automata-wrapper");
+export {automata};

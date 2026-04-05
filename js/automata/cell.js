@@ -45,3 +45,5 @@ class Cell {
     this.#highlighted = value;
   }
 }
+
+export {Cell};

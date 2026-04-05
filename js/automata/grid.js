@@ -1,5 +1,7 @@
 "use strict";
 
+import {Cell} from "./cell.js";
+
 /**
  * Represents the game grid for
  * {@link https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life|Conway's Game of Life}.
@@ -437,3 +439,5 @@ class Grid {
     return this.#isAnimating;
   }
 }
+
+export {Grid};
