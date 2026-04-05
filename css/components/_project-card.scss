@@ -81,10 +81,14 @@
  * Banner image for card.
  * 1. Sits behind `.project-heading`.
  * 2. Responsive image styles
+ * 3. Background color in case image not found
+ * 4. Prevents broken image from spilling everywhere
  */
 .project-img {
   grid-area: banner;
   z-index: -1; /* 1 */
+  background-color: var(--link); /* 3 */
+  overflow: hidden; /* 4 */
 
   img { /* 2 */
     max-inline-size: 100%;
