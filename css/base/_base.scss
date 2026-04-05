@@ -14,7 +14,7 @@ body {
 a {
   color: var(--link);
   transition: color var(--duration);
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
@@ -37,7 +37,7 @@ a.skip {
 
   padding: 1rlh;
   font-size: abstracts.font-size-scaled(1);
-  font-weight: 500;
+  font-weight: calc(var(--base-weight) + 300);
   background-color: var(--banner);
 
   &:focus {

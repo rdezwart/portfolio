@@ -229,6 +229,7 @@ img {
 :root {
   color-scheme: light dark; /* 1 */
   --duration: 0.1s;
+  --max-weight: 800;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -245,7 +246,7 @@ a {
   color: var(--link);
   -webkit-transition: color var(--duration);
   transition: color var(--duration);
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
 }
 a:hover, a:focus {
   color: var(--highlight);
@@ -263,7 +264,7 @@ a.skip {
   z-index: 10;
   padding: 1rlh;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: calc(var(--base-weight) + 300);
   background-color: var(--banner);
 }
 a.skip:focus {
@@ -294,7 +295,7 @@ body {
  */
 :is(h1, h2, h3, h4, h5, h6), :is(.h1, .h2, .h3, .h4, .h5, .h6) {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   margin: 0;
 }
 
@@ -390,7 +391,6 @@ h3, .h3 {
 figcaption {
   font-size: 0.8rem;
   font-family: "JetBrains Mono", monospace;
-  font-weight: 200;
   font-style: italic;
   color: var(--secondary);
   line-height: 1rlh;
@@ -400,15 +400,14 @@ figcaption {
  * Increase font weight for bolded items.
  */
 b, strong {
-  font-weight: 600;
+  font-weight: calc(var(--base-weight) + 400);
 }
 
 /**
  * Increases the visual hierarchy of an opening paragraph.
  */
 .introduction {
-  font-style: italic;
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
 }
 
 /**
@@ -436,8 +435,8 @@ b, strong {
  */
 .description, .secondary {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  font-weight: 200;
+  font-weight: var(--max-weight);
+  font-weight: var(--base-weight);
   font-style: italic;
   color: var(--secondary);
 }
@@ -447,7 +446,7 @@ b, strong {
  */
 .highlight {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   color: var(--highlight);
   -webkit-font-variant-ligatures: none;
           font-variant-ligatures: none;
@@ -766,7 +765,7 @@ body {
   list-style-type: "> ";
   padding-left: 2ch;
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   font-size: 1.25rem;
   line-height: 1.2;
 }
@@ -774,12 +773,12 @@ body {
   margin-top: calc(0.5rlh / 2); /* 1 */
 }
 .nav :is(ul, ol) li a {
-  font-weight: 800;
+  font-weight: var(--max-weight);
   text-decoration: none;
 }
 .nav :is(ul, ol) li::marker {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   color: var(--highlight);
   -webkit-font-variant-ligatures: none;
           font-variant-ligatures: none;
@@ -797,8 +796,8 @@ body {
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
-  font-weight: 200;
+  font-weight: var(--max-weight);
+  font-weight: var(--base-weight);
   font-style: italic;
   color: var(--secondary);
 }
@@ -969,7 +968,7 @@ ul.links { /* 1 */
   padding: 0.5rlh 1rlh;
   background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   font-size: 0.8rem;
 }
 
@@ -994,9 +993,9 @@ ul.links { /* 1 */
 }
 .tools li, .concepts li {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
   background-color: rgb(77.8125, 77.8125, 88.1875);
   border: 0.1rem solid #00818a;
   padding: 0.25rlh 0.5rlh;
@@ -1053,7 +1052,7 @@ p:has(+ :is(.tools, .concepts)) {
  */
 .name {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   color: var(--link);
   text-decoration: none;
   line-height: 1;
@@ -1093,7 +1092,7 @@ p:has(+ :is(.tools, .concepts)) {
 .nav-wrapper .name-wrapper p {
   color: var(--absolute);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
   font-style: normal;
 }
 
@@ -1149,7 +1148,7 @@ p:has(+ :is(.tools, .concepts)) {
   margin-left: 0.5ch; /* 2 */
 }
 .toc .nav > :is(ul, ol) > li > a {
-  font-weight: 700; /* 3 */
+  font-weight: calc(var(--base-weight) + 500); /* 3 */
 }
 .toc .nav :is(ul, ol) {
   font-size: 1rem;
@@ -1419,7 +1418,7 @@ figure figcaption {
  */
 .project-heading a {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   color: var(--text); /* 2 */
   text-decoration: none;
 }
@@ -1491,9 +1490,9 @@ figure figcaption {
  */
 .button {
   font-family: "JetBrains Mono", monospace;
-  font-weight: 800;
+  font-weight: var(--max-weight);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: calc(var(--base-weight) + 400);
   display: inline-block; /* 1 */
   padding: 0.25rlh 0.5rlh;
   line-height: 1.5;
@@ -1577,7 +1576,7 @@ figure figcaption {
   gap: 0;
 }
 .skills-group .h4 {
-  font-weight: 600;
+  font-weight: calc(var(--base-weight) + 400);
 }
 
 /**
@@ -1659,7 +1658,7 @@ figure figcaption {
     --secondary: #3f3f3f;
     --text: #1e1e22;
     --absolute: #000000;
-    --base-weight: 300;
+    --base-weight: 350;
   }
 }
 /*# sourceMappingURL=main.css.map */

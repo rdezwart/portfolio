@@ -12,13 +12,14 @@
   font-size: abstracts.font-size-scaled(1);
 
   line-height: 1.2;
+
   li + li {
     margin-top: calc(#{abstracts.$text-gap} / 2); /* 1 */
   }
 
   li {
     a {
-      font-weight: 800;
+      font-weight: var(--max-weight);
       text-decoration: none;
     }
 

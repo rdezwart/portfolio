@@ -7,7 +7,7 @@
   @include abstracts.flex-column(0);
 
   .h4 {
-    font-weight: 600;
+    font-weight: calc(var(--base-weight) + 400);
   }
 }
 

@@ -18,7 +18,7 @@
   p {
     color: var(--absolute);
     font-size: abstracts.font-size-scaled(0);
-    font-weight: 400;
+    font-weight: calc(var(--base-weight) + 200);
     font-style: normal;
   }
 }

@@ -29,10 +29,7 @@ body {
  * Default styles for ALL headings.
  */
 #{abstracts.$headings-all} {
-  font: {
-    family: #{abstracts.$fonts-monospace};
-    weight: 800;
-  }
+  @include abstracts.heading-typeface();
   margin: 0;
 }
 
@@ -136,7 +133,6 @@ figcaption {
   font: {
     size: abstracts.font-size-scaled(-1);
     family: #{abstracts.$fonts-monospace};
-    weight: 200;
     style: italic;
   }
   color: var(--secondary);
@@ -148,13 +144,12 @@ figcaption {
  * Increase font weight for bolded items.
  */
 b, strong {
-  font-weight: 600;
+  font-weight: calc(var(--base-weight) + 400);
 }
 
 /**
  * Increases the visual hierarchy of an opening paragraph.
  */
 .introduction {
-  font-style: italic;
-  font-weight: 400;
+  font-weight: calc(var(--base-weight) + 200);
 }

@@ -91,7 +91,7 @@ ul.links { /* 1 */
   li {
     @include abstracts.heading-typeface();
     font-size: abstracts.font-size-scaled(-1);
-    font-weight: 400;
+    font-weight: calc(var(--base-weight) + 200);
     background-color: #{lighten(abstracts.$dark, 20%)};
     border: 0.1rem solid #{abstracts.$teal};
 

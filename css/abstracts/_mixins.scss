@@ -62,7 +62,7 @@
 @mixin heading-typeface {
   font: {
     family: #{variables.$fonts-monospace};
-    weight: 800;
+    weight: var(--max-weight);
   }
 }
 
@@ -77,7 +77,7 @@
 /// Styles for secondary content, such as subtitles or descriptions.
 @mixin secondary {
   @include heading-typeface();
-  font-weight: 200;
+  font-weight: var(--base-weight);
   font-style: italic;
   color: var(--secondary);
 }
