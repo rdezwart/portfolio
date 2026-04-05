@@ -1,10 +1,15 @@
-extends layouts/_default
+extends layouts/_sidebar
 
 append vars
   -
     title = "About";
     slug = "about";
     description = "Hi, I'm Robin de Zwart;";
+
+
+append sidebar
+  +sidebar("Skills")
+    include inc/_skills
 
 append content
   section.hgroup
@@ -27,3 +32,6 @@ append content
       | I will graduate later this year and am eager to gain hands-on experience diving deeper into the training,
       | fine-tuning, implementation, and ethical considerations of LLMs, generative models, and artificial intelligence as
       | a whole.
+
+  section#experience
+    +h(2, "Experience")
