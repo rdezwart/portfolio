@@ -1091,7 +1091,7 @@ p:has(+ :is(.tools, .concepts)) {
           align-items: start; /* 1 */
 }
 .nav-wrapper .name-wrapper p {
-  color: #ffffff;
+  color: var(--absolute);
   font-size: 1rem;
   font-weight: 400;
   font-style: normal;
@@ -1645,6 +1645,7 @@ figure figcaption {
   --active: #00818a;
   --secondary: #cccccc;
   --text: #f2f2f2;
+  --absolute: #ffffff;
   --base-weight: 200;
 }
 
@@ -1657,6 +1658,7 @@ figure figcaption {
     --active: #ff9933;
     --secondary: #3f3f3f;
     --text: #1e1e22;
+    --absolute: #000000;
     --base-weight: 300;
   }
 }
