@@ -72,6 +72,10 @@
     color: var(--highlight); /* 2 */
   }
 
+  &:active {
+    color: var(--active); /* 2 */
+  }
+
   &::after { /* 1 */
     content: "";
     position: absolute;

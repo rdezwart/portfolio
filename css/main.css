@@ -243,14 +243,15 @@ body {
 
 a {
   color: var(--link);
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
+  -webkit-transition: color var(--duration);
+  transition: color var(--duration);
   font-weight: 400;
 }
 a:hover, a:focus {
   color: var(--highlight);
-  -webkit-transition: color var(--duration) ease;
-  transition: color var(--duration) ease;
+}
+a:active {
+  color: var(--active);
 }
 
 a.skip {
@@ -1424,6 +1425,9 @@ figure figcaption {
 }
 .project-heading a:hover, .project-heading a:focus {
   color: var(--highlight); /* 2 */
+}
+.project-heading a:active {
+  color: var(--active); /* 2 */
 }
 .project-heading a::after { /* 1 */
   content: "";
