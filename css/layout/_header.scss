@@ -5,6 +5,8 @@
  * Header at the top of project pages.
  * 1. Background image, to be covered by gradient from children.
  * 2. Position set to relative for absolute Automata canvas behind it.
+ * 3. Variable --project-banner is set inline on the article element.
+ * 4. Add fallback color if banner image is not found.
  */
 .header {
   position: relative; /* 2 */
@@ -13,8 +15,8 @@
   margin-top: #{abstracts.$page-padding * -1};
   min-height: 10rem;
 
-  background-image: url("/img/autolume-gallery/canvas-2.webp"); /* 1 */
-  background-image: url("/img/CellularAutomata.png"); /* 1 */
+  background-color: var(--link); /* 4 */
+  background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
   background-position: top center;
 
@@ -38,8 +40,8 @@
   @include abstracts.flex-column();
   padding: #{abstracts.$page-padding} #{abstracts.$page-padding} 0;
   background: linear-gradient(
-                  rgb(from var(--banner) r g b / 0.90) 0%,
-                  rgb(from var(--banner) r g b / 0.70) 100%); /* 1 */
+          rgb(from var(--banner) r g b / 0.90) 0%,
+          rgb(from var(--banner) r g b / 0.70) 100%); /* 1 */
   z-index: 1; /* 2 */
 }
 
@@ -53,8 +55,8 @@
   flex: auto;
   min-height: 4rlh;
   background: linear-gradient(
-                  rgb(from var(--banner) r g b / 0.70) 0%,
-                  rgb(from var(--banner) r g b / 0) 80%); /* 1 */
+          rgb(from var(--banner) r g b / 0.70) 0%,
+          rgb(from var(--banner) r g b / 0) 80%); /* 1 */
 }
 
 

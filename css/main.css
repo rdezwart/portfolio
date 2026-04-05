@@ -878,6 +878,8 @@ ul.project-grid {
  * Header at the top of project pages.
  * 1. Background image, to be covered by gradient from children.
  * 2. Position set to relative for absolute Automata canvas behind it.
+ * 3. Variable --project-banner is set inline on the article element.
+ * 4. Add fallback color if banner image is not found.
  */
 .header {
   position: relative; /* 2 */
@@ -891,8 +893,8 @@ ul.project-grid {
   gap: 0;
   margin-top: -1rlh;
   min-height: 10rem;
-  background-image: url("/img/autolume-gallery/canvas-2.webp"); /* 1 */
-  background-image: url("/img/CellularAutomata.png"); /* 1 */
+  background-color: var(--link); /* 4 */
+  background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
   background-position: top center;
 }
