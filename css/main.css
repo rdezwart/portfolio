@@ -804,6 +804,9 @@ body {
 .nav :is(ul, ol) :is(ul, ol) li a:hover, .nav :is(ul, ol) :is(ul, ol) li a:focus {
   color: var(--highlight);
 }
+.nav :is(ul, ol) :is(ul, ol) li a:active {
+  color: var(--active);
+}
 
 /**
  * Represents the body of an article. This comes after the header and TOC.
