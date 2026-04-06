@@ -162,20 +162,18 @@ const automata = (sketch) => {
   function handleResize() {
     if (!loaded) return;
 
-    /** @type boolean */
-    let moveHowdy = !simulationStarted;
-    if (moveHowdy) {
+    if (!simulationStarted) {
       // Remove current howdy by inverting the same pixels
-      grid.placeHowdy();
+      grid.placeWord("aaaa", "a");
     }
 
     updateBounds();
     sketch.resizeCanvas(divWidth, divHeight);
     grid.resize();
 
-    if (moveHowdy) {
+    if (!simulationStarted) {
       // Re-place howdy into the new centre
-      grid.placeHowdy();
+      grid.placeWord("aaaa", "a");
       grid.loop();
     }
 

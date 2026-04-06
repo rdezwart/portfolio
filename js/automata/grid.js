@@ -1,6 +1,7 @@
 "use strict";
 
 import {Cell} from "./cell.js";
+import {Word} from "./text/word.js";
 
 /**
  * Represents the game grid for
@@ -47,16 +48,6 @@ class Grid {
     return 2;
   }
 
-  /**
-   * The dimensions of the "Howdy!" text.
-   * @readonly
-   * @enum {number}
-   */
-  static HOWDY_DIMENSIONS = {
-    cols: 31,
-    rows: 9
-  }
-
 
   /**
    * @param {p5} sketch - A p5 object passed from the main Processing sketch.
@@ -84,7 +75,7 @@ class Grid {
       }
     }
 
-    this.placeHowdy();
+    this.placeWord("aaaab", "!a1");
   }
 
 
@@ -293,133 +284,40 @@ class Grid {
 
 
   /**
-   * Places an arrangement of living cells in the shape of "Howdy!".
+   * Places an arrangement of living cells in the shape of specified text.
    *
-   * Bounding box of `31` by `9` cells, but a baseline height of only `7` cells.
-   * @param {number} [colOffset=undefined] - Number of grid cells to offset in the X axis.
-   *        If `undefined`, the centre of the canvas will be calculated and used.
-   * @param {number} [rowOffset=undefined] - Number of grid cells to offset in the Y axis.
-   *        If `undefined`, the centre of the canvas will be calculated and used.
+   * @param {string} regularText - The text to be displayed in default cell
+   *     colours.
+   * @param {string} [highlightedText]
+   * @param {number} [colOffset=undefined] - Number of grid cells to offset in
+   *     the X axis. If `undefined`, the centre of the canvas will be
+   *     calculated and used.
+   * @param {number} [rowOffset=undefined] - Number of grid cells to offset in
+   *     the Y axis. If `undefined`, the centre of the canvas will be
+   *     calculated and used.
    */
-  placeHowdy(colOffset = undefined, rowOffset = undefined) {
+  placeWord(
+    regularText,
+    highlightedText = "",
+    colOffset = undefined,
+    rowOffset = undefined
+  ) {
+    let word = new Word(regularText, highlightedText);
+
     if (colOffset === undefined)
-      colOffset = Math.ceil(this.#cols / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.cols / 2);
+      colOffset = Math.ceil(this.#cols / 2) - Math.ceil(word.cols / 2);
     if (rowOffset === undefined)
-      rowOffset = Math.ceil(this.#rows / 2) - Math.ceil(Grid.HOWDY_DIMENSIONS.rows / 2);
+      rowOffset = Math.ceil(this.#rows / 2) - Math.ceil(word.rows / 2);
 
-    /** @type Cell[] */
-    let letterH = [];
-    /** @type Cell[] */
-    let letterO = [];
-    /** @type Cell[] */
-    let letterW = [];
-    /** @type Cell[] */
-    let letterD = [];
-    /** @type Cell[] */
-    let letterY = [];
-    /** @type Cell[] */
-    let letterExclamation = [];
-    /** @type Cell[][] */
-    let word = [letterH, letterO, letterW, letterD, letterY, letterExclamation];
-    /** @type Cell[][] */
-    let highlighted = [letterExclamation];
+    for (let c = 0; c < word.pixels.length; c++) {
+      for (let r = 0; r < word.pixels[c].length; r++) {
+        let currentCell = this.#cells[c + colOffset][r + rowOffset];
+        let currentPixel = word.pixels[c][r];
 
-    let col = colOffset;
-    let row = rowOffset;
-
-
-    // ---- H ---- //
-    // Sides
-    for (let c = 0; c < 2; c++)
-      for (let r = 0; r < 7; r++)
-        letterH.push(this.#cells[col + (4 * c)][row + r]);
-
-    // Bar
-    for (let c = 0; c < 3; c++)
-      letterH.push(this.#cells[col + 1 + c][row + 2]);
-
-
-    // ---- o ---- /
-    col += 6;
-    // Sides
-    for (let c = 0; c < 2; c++)
-      for (let r = 0; r < 3; r++)
-        letterO.push(this.#cells[col + (4 * c)][row + 3 + r]);
-
-    // Top and Bottom
-    for (let c = 0; c < 3; c++)
-      for (let r = 0; r < 2; r++)
-        letterO.push(this.#cells[col + 1 + c][row + 2 + (4 * r)]);
-
-
-    // ---- w ---- //
-    col += 6;
-    // Sides
-    for (let c = 0; c < 2; c++)
-      for (let r = 0; r < 4; r++)
-        letterW.push(this.#cells[col + (4 * c)][row + 2 + r]);
-
-    // Middle
-    for (let r = 0; r < 2; r++)
-      letterW.push(this.#cells[col + 2][row + 4 + r]);
-
-    // Bottom
-    for (let c = 0; c < 4; c++)
-      letterW.push(this.#cells[col + 1 + c][row + 6]);
-
-
-    // ---- d ---- //
-    col += 6;
-    // Left side
-    for (let r = 0; r < 3; r++)
-      letterD.push(this.#cells[col][row + 3 + r]);
-
-    // Top
-    for (let c = 0; c < 2; c++)
-      letterD.push(this.#cells[col + 1 + c][row + 2]);
-    letterD.push(this.#cells[col + 3][row + 3]);
-
-    // Bottom
-    for (let c = 0; c < 3; c++)
-      letterD.push(this.#cells[col + 1 + c][row + 6]);
-
-    // Ascender
-    for (let r = 0; r < 7; r++)
-      letterD.push(this.#cells[col + 4][row + r]);
-
-
-    // ---- y ---- //
-    col += 6;
-    // Sides, right side is taller
-    for (let c = 0; c < 2; c++)
-      for (let r = 0; r < 4 + (2 * c); r++)
-        letterY.push(this.#cells[col + (4 * c)][row + 2 + r]);
-
-    // Bottom
-    for (let c = 0; c < 3; c++)
-      letterY.push(this.#cells[col + 1 + c][row + 6]);
-
-    // Tail
-    for (let c = 0; c < 4; c++)
-      letterY.push(this.#cells[col + c][row + 8]);
-
-
-    // ---- ! ---- //
-    col += 6;
-    // Whole thing, skip a cell for the gap
-    for (let r = 0; r < 7; r++)
-      if (r !== 5)
-        letterExclamation.push(this.#cells[col][row + r]);
-
-
-    // Final activation
-    for (let letter of highlighted)
-      for (let cell of letter)
-        cell.highlighted = !cell.highlighted;
-
-    for (let letter of word)
-      for (let cell of letter)
-        cell.alive = !cell.alive;
+        if (currentPixel >= 2) currentCell.highlighted = !currentCell.highlighted;
+        if (currentPixel >= 1) currentCell.alive = !currentCell.alive;
+      }
+    }
   }
 
   /** @readonly
