@@ -8,7 +8,10 @@ append vars
 block main
   div.header
     if automata
-      div#automata-wrapper
+      div#automata-wrapper(
+        data-canvas-text=`${_canvasText}`
+        data-canvas-highlight=`${_canvasHighlight}`
+      )
 
   if grid === "pre-sidebar"
     div.pre-sidebar

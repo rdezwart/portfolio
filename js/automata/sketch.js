@@ -1,6 +1,7 @@
 "use strict";
 
 import {Grid} from "./grid.js";
+import {Word} from "./text/word.js";
 
 /**
  * Wraps the sketch in an object, enabling "instance mode".
@@ -31,7 +32,7 @@ const automata = (sketch) => {
   /** @type number */
   let logicIntervalId = undefined;
   /** @type boolean */
-  let simulationStarted;
+  let simulationStarted = false;
   /** @type boolean */
   let loaded = false;
 
@@ -83,8 +84,11 @@ const automata = (sketch) => {
     sketch.noStroke();
     sketch.noLoop(); // start sketch paused
 
-    simulationStarted = false;
-    grid = new Grid(sketch);
+    let canvasWord = new Word(
+      wrapper.dataset.canvasText,
+      wrapper.dataset.canvasHighlight
+    );
+    grid = new Grid(sketch, canvasWord);
 
     menu = sketch.createElement("menu");
     menu.attribute("aria-live", "polite");
@@ -163,8 +167,8 @@ const automata = (sketch) => {
     if (!loaded) return;
 
     if (!simulationStarted) {
-      // Remove current howdy by inverting the same pixels
-      grid.placeWord("aaaa", "a");
+      // Remove current text by inverting the same pixels
+      grid.placeWord();
     }
 
     updateBounds();
@@ -172,8 +176,8 @@ const automata = (sketch) => {
     grid.resize();
 
     if (!simulationStarted) {
-      // Re-place howdy into the new centre
-      grid.placeWord("aaaa", "a");
+      // Re-place text into the new centre
+      grid.placeWord();
       grid.loop();
     }
 

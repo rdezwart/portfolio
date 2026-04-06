@@ -9,9 +9,13 @@ block vars
     let description = "Hi, I'm Robin;";
     let grid = "default";
     let automata = true;
+    let canvasWord = ['Howdy', '!'];
 
 block page-title
-  - let pageTitle = `${title} - Robin de Zwart`
+  -
+    let pageTitle = `${title} - Robin de Zwart`
+    let _canvasText = canvasWord[0];
+    let _canvasHighlight = canvasWord[1];
 
 doctype html
 html(lang="en")
@@ -59,7 +63,10 @@ html(lang="en")
         block main
           div.header
             if automata
-              div#automata-wrapper
+              div#automata-wrapper(
+                data-canvas-text=`${_canvasText}`
+                data-canvas-highlight=`${_canvasHighlight}`
+              )
 
           div.content
             block content
