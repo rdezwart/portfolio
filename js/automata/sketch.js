@@ -20,6 +20,8 @@ const automata = (sketch) => {
 
   /** @type HTMLElement */
   let wrapper;
+  /** @type Word */
+  let canvasWord;
   /** @type DOMRect */
   let bounds;
   /** @type number */
@@ -51,21 +53,7 @@ const automata = (sketch) => {
    * @readonly
    * @enum {string}
    */
-  const DESCRIPTIONS = {
-    BASE: `A dark grey rectangle with a grid of small bright orange square \
-      cells, running a cellular automaton simulation of John Conway's "Game of \
-      Life".`,
-    RUNNING: `The simulation is currently running.`,
-    PAUSED: `The simulation is currently paused.`,
-    HOWDY: `In the center of the grid, bright orange cells spell out the word \
-      "Howdy", followed by an exclamation mark in bright blue cells.`,
-    CELLS_RUNNING: `Cells are appearing and disappearing several times per second, \
-      moving around the grid and forming a variety of shapes and patterns.`,
-    CELLS_PAUSED: `Cells are frozen in a variety of shapes and patterns.`,
-    ANIMATING: `Vertical lines of bright blue cells are sweeping horizontally \
-      across the grid, left-to-right then right-to-left. Each one is leaving \
-      new orange cells in its wake.`,
-  };
+  let descriptions;
 
   /**
    * P5 function. Runs before the sketch starts.
@@ -84,11 +72,30 @@ const automata = (sketch) => {
     sketch.noStroke();
     sketch.noLoop(); // start sketch paused
 
-    let canvasWord = new Word(
+    canvasWord = new Word(
       wrapper.dataset.canvasText,
       wrapper.dataset.canvasHighlight
     );
     grid = new Grid(sketch, canvasWord);
+
+    descriptions = {
+      BASE: `A dark grey rectangle with a grid of small bright orange square \
+        cells, running a cellular automaton simulation of John Conway's "Game \
+        of Life".`,
+      RUNNING: `The simulation is currently running.`,
+      PAUSED: `The simulation is currently paused.`,
+      TEXT: `In the center of the grid, bright orange cells spell out the text \
+        "${canvasWord.regularText}", followed by \
+        "${canvasWord.highlightedText}" in bright blue cells. Together, they \
+        form "${canvasWord.allText}".`,
+      CELLS_RUNNING: `Cells are appearing and disappearing several times per \
+        second, moving around the grid and forming a variety of shapes and \
+        patterns.`,
+      CELLS_PAUSED: `Cells are frozen in a variety of shapes and patterns.`,
+      ANIMATING: `Vertical lines of bright blue cells are sweeping \
+        horizontally across the grid, left-to-right then right-to-left. Each \
+        one is leaving new orange cells in its wake.`,
+    };
 
     menu = sketch.createElement("menu");
     menu.attribute("aria-live", "polite");
@@ -114,7 +121,7 @@ const automata = (sketch) => {
       loaded = false;
       if (logicIntervalId !== undefined) toggleLogicInterval();
       sketch.noLoop();
-      grid = new Grid(sketch);
+      grid = new Grid(sketch, canvasWord);
       simulationStarted = false;
       grid.loop();
       updateInterface();
@@ -236,18 +243,18 @@ const automata = (sketch) => {
    */
   function updateDescriptions() {
     sketch.describe(
-      `${DESCRIPTIONS.BASE} \
-        ${sketch.isLooping() ? DESCRIPTIONS.RUNNING : DESCRIPTIONS.PAUSED}`
+      `${descriptions.BASE} \
+        ${sketch.isLooping() ? descriptions.RUNNING : descriptions.PAUSED}`
     );
 
     let desc =
       sketch.isLooping()
-        ? DESCRIPTIONS.CELLS_RUNNING
-        : DESCRIPTIONS.CELLS_PAUSED;
+        ? descriptions.CELLS_RUNNING
+        : descriptions.CELLS_PAUSED;
     if (!simulationStarted)
-      desc = DESCRIPTIONS.HOWDY;
+      desc = descriptions.TEXT;
     if (grid.isAnimating)
-      desc += ` ${DESCRIPTIONS.ANIMATING}`;
+      desc += ` ${descriptions.ANIMATING}`;
 
     sketch.describeElement("Cells", desc);
   }

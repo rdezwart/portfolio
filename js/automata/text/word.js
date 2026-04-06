@@ -140,6 +140,36 @@ class Word {
   get rows() {
     return this.#rows;
   }
+
+  /**
+   * The string representation of the regular {@linkcode Letter|Letters} in this
+   * {@linkcode Word}.
+   * @readonly
+   * @type {string}
+   */
+  get regularText() {
+    return this.#regularText;
+  }
+
+  /**
+   * The string representation of the highlighted {@linkcode Letter|Letters} in
+   * this {@linkcode Word}.
+   * @readonly
+   * @type {string}
+   */
+  get highlightedText() {
+    return this.#highlightedText;
+  }
+
+  /**
+   * The string representation of ALL {@linkcode Letter|Letters} in this
+   * {@linkcode Word}.
+   * @readonly
+   * @type {string}
+   */
+  get allText() {
+    return this.#regularText + this.#highlightedText;
+  }
 }
 
 export {Word};
