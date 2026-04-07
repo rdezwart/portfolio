@@ -49,13 +49,25 @@ class Word {
     this.#regularText = regularText;
     this.#highlightedText = highlightedText;
 
-    if (this.#regularText?.length > 0)
-      for (let char of this.#regularText.split(""))
-        this.appendLetter(char);
+    if (this.#regularText?.length > 0) {
+      for (let char of this.#regularText.split("")) {
+        try {
+          this.appendLetter(char);
+        } catch (/** @type Error */ e) {
+          console.error(`${e.name}: ${e.message}`)
+        }
+      }
+    }
 
-    if (this.#highlightedText?.length > 0)
-      for (let char of this.#highlightedText.split(""))
-        this.appendLetter(char, true);
+    if (this.#highlightedText?.length > 0) {
+      for (let char of this.#highlightedText.split("")) {
+        try {
+          this.appendLetter(char, true);
+        } catch (/** @type Error */ e) {
+          console.error(`${e.name}: ${e.message}`)
+        }
+      }
+    }
 
     this.concatLetters();
   }
@@ -66,15 +78,13 @@ class Word {
    *
    * @param {string} char - The single character to be converted into a Letter.
    * @param {boolean} [highlighted=false] - If this Letter should be highlighted.
-   * @throws {Error} Will throw an error if an unknown `char` is passed.
+   * @throws {RangeError} - If an unsupported `char` is passed.
    */
   appendLetter(char, highlighted = false) {
-      console.warn("Cannot add '%s' from '%s', character unsupported.",
-        char,
-        this.#regularText + this.#highlightedText
     if (!(char in Alphabet)) {
+      throw new RangeError(
+        `Cannot add "${char}" from "${this.allText}", character unsupported.`
       );
-      return;
     }
 
     /** @type Letter */
