@@ -17,7 +17,7 @@ import {Letter} from "./letter.js";
  *
  * @type {Object.<string, function: Letter>}
  */
-const alphabet = {
+const Alphabet = {
   " ": () => (new Letter([
     [0, 0, 0],
     [0, 0, 0],
@@ -770,4 +770,4 @@ const alphabet = {
   ])),
 }
 
-export {alphabet};
+export {Alphabet};

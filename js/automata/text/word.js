@@ -1,15 +1,12 @@
 "use strict";
 
 import {Letter} from "./letter.js";
-import {alphabet} from "./alphabet.js";
 
+import {Alphabet} from "./alphabet.js";
 
 /**
- * Represents several {@link Letter} objects constructed from {@link alphabet},
- * strung together into one unit.
- *
- * @requires Letter
- * @requires alphabet
+ * Represents several {@linkcode Letter} objects constructed from
+ * {@linkcode Alphabet}, strung together into one unit.
  */
 class Word {
 
@@ -72,16 +69,16 @@ class Word {
    * @throws {Error} Will throw an error if an unknown `char` is passed.
    */
   appendLetter(char, highlighted = false) {
-    if (!(char in alphabet)) {
       console.warn("Cannot add '%s' from '%s', character unsupported.",
         char,
         this.#regularText + this.#highlightedText
+    if (!(char in Alphabet)) {
       );
       return;
     }
 
     /** @type Letter */
-    let letter = alphabet[char]();
+    let letter = Alphabet[char]();
 
     if (highlighted) {
       // Turn all 1s into 2s but leave 0s untouched
