@@ -49,10 +49,11 @@ class Letter {
   /**
    * @param {number[][]} pixels
    * @param {boolean} [doTranspose=true]
+   * @throws {SyntaxError} - If no pixels are passed.
    */
   constructor(pixels, doTranspose = true) {
-    if (pixels.length === 0)
-      throw new Error("No pixels passed.");
+    if (pixels.length === 0 || pixels[0].length === 0)
+      throw new SyntaxError("No pixels passed.");
 
     this.#pixels = doTranspose ? Letter.transpose(pixels) : pixels;
     this.#cols = this.#pixels.length;
