@@ -394,24 +394,29 @@ class Grid {
    * [Cells]{@linkcode module:automata/cell.Cell} in the shape of text in
    * `canvasWord`.
    *
-   * @param {number} [colOffset] - Number of grid
+   * For any "falsy" argument, the centre of the canvas (in its axis) will
+   * be calculated and used instead.
+   *
+   * @param {number} [colOffset=undefined] - Number of grid
    *     [Cells]{@linkcode module:automata/cell.Cell} to offset in the X axis.
-   *     If `undefined`, the centre of the canvas will be calculated and used.
-   * @param {number} [rowOffset] - Number of grid
+   * @param {number} [rowOffset=undefined] - Number of grid
    *     [Cells]{@linkcode module:automata/cell.Cell} to offset in the Y axis.
-   *     If `undefined`, the centre of the canvas will be calculated and used.
    */
-  placeWord(
-    colOffset = Math.ceil(this.#cols / 2) - Math.ceil(this.#canvasWord.cols / 2),
-    rowOffset = Math.floor(this.#rows / 2) - Math.ceil(this.#canvasWord.rows / 2)
-  ) {
+  placeWord(colOffset = undefined, rowOffset = undefined) {
+    colOffset = colOffset ? colOffset :
+      Math.ceil(this.#cols / 2) - Math.ceil(this.#canvasWord.cols / 2);
+    rowOffset = rowOffset ? rowOffset :
+      Math.floor(this.#rows / 2) - Math.ceil(this.#canvasWord.rows / 2);
+
     for (let c = 0; c < this.#canvasWord.pixels.length; c++) {
       for (let r = 0; r < this.#canvasWord.pixels[c].length; r++) {
         let currentCell = this.#cells[c + colOffset][r + rowOffset];
         let currentPixel = this.#canvasWord.pixels[c][r];
 
-        if (currentPixel >= 1) currentCell.alive = !currentCell.alive;
-        if (currentPixel >= 2) currentCell.highlighted = !currentCell.highlighted;
+        if (currentPixel >= 1)
+          currentCell.alive = !currentCell.alive;
+        if (currentPixel >= 2)
+          currentCell.highlighted = !currentCell.highlighted;
       }
     }
   }
