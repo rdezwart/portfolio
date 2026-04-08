@@ -1,19 +1,27 @@
 "use strict";
 
-import {Letter} from "./letter.js";
+/**
+ * Module for {@linkcode Word}.
+ * @module automata/text/word
+ * @requires module:automata/text/letter.Letter
+ * @requires module:automata/text/alphabet.Alphabet
+ */
 
+import {Letter} from "./letter.js";
 import {Alphabet} from "./alphabet.js";
 
 /**
- * Represents several {@linkcode Letter} objects constructed from
- * {@linkcode Alphabet}, strung together into one unit.
+ * Represents several [Letter]{@linkcode module:automata/text/letter.Letter}
+ * objects constructed from
+ * [Alphabet]{@linkcode module:automata/text/alphabet.Alphabet}, strung together
+ * into one unit.
  */
 class Word {
-
   /**
-   * The number of empty pixels should be placed between each
-   * {@linkcode Letter}.
-   *
+   * The number of
+   * [Letter.SEPARATOR]{@linkcode module:automata/text/letter.Letter.SEPARATOR}
+   * columns that should be placed between each
+   * [Letter]{@linkcode module:automata/text/letter.Letter}.
    * @readonly
    * @const {number}
    * @default 1
@@ -22,28 +30,56 @@ class Word {
     return 1;
   }
 
-  /** @type {string} */
+  /**
+   * The string representation of the regular
+   * [Letters]{@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
+   * @type {string}
+   */
   #regularText;
-  /** @type {string} */
+  /**
+   * The string representation of the highlighted
+   * [Letters]{@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
+   * @type {string}
+   */
   #highlightedText;
 
-  /** @type {Letter[]} */
+  /**
+   * Array of [Letters]{@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
+   * @type {Letter[]}
+   */
   #letters = [];
-  /** @type {number[][]} */
+  /**
+   * A large 2D matrix combining the individual
+   * [pixel]{@linkcode module:automata/text/letter.Letter#pixels} matrices from
+   * each {@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
+   * @type {number[][]}
+   */
   #pixels = [];
 
-  /** @type {number} */
+  /**
+   * The number of columns this {@linkcode Word} occupies.
+   * @type {number}
+   */
   #cols = 0;
-  /** @type {number} */
+  /**
+   * The number of rows this {@linkcode Word} occupies.
+   * @type {number}
+   */
   #rows = 0;
 
 
   /**
-   * Parses the individual characters of strings into their respective
-   * {@link Letter|Letters}.
-   *
-   * @param {string} regularText
-   * @param {string} [highlightedText]
+   * Constructs a {@linkcode Word} by parsing the individual characters of
+   * the arguments into their respective
+   * [Letters]{@linkcode module:automata/text/letter.Letter}.
+   * @param {string} regularText - The text to be displayed in regular living
+   *     [Cells]{@linkcode module:automata/cell.Cell}.
+   * @param {string} [highlightedText] - The text to be displayed in highlighted
+   *     [Cells]{@linkcode module:automata/cell.Cell}.
    */
   constructor(regularText, highlightedText = "") {
     this.#regularText = regularText;
@@ -74,10 +110,13 @@ class Word {
 
 
   /**
-   * Appends a {@linkcode Letter} to this {@linkcode Word}.
-   *
-   * @param {string} char - The single character to be converted into a Letter.
-   * @param {boolean} [highlighted=false] - If this Letter should be highlighted.
+   * Appends a [Letter]{@linkcode module:automata/text/letter.Letter} to this
+   * {@linkcode Word}.
+   * @param {string} char - The single character to be converted into a
+   *     [Letter]{@linkcode module:automata/text/letter.Letter}.
+   * @param {boolean} [highlighted=false] - If this
+   *     [Letter]{@linkcode module:automata/text/letter.Letter} should be
+   *     highlighted.
    * @throws {RangeError} - If an unsupported `char` is passed.
    */
   appendLetter(char, highlighted = false) {
@@ -103,8 +142,10 @@ class Word {
   }
 
   /**
-   * Concatenates all {@linkcode Letter|Letters} in this {@linkcode Word}
-   * together, with gaps in between.
+   * Concatenates all [Letters]{@linkcode module:automata/text/letter.Letter}
+   * in this {@linkcode Word} together, with
+   * [Letter.SEPARATOR]{@linkcode module:automata/text/letter.Letter.SEPARATOR}
+   * columns in between.
    */
   concatLetters() {
     this.#pixels = [];
@@ -120,9 +161,12 @@ class Word {
     }
   }
 
+
   /**
-   * A large matrix combining the individual {@linkcode Letter.pixels|pixels}
-   * from each {@linkcode Letter}.
+   * A large 2D matrix combining the individual
+   * [pixel]{@linkcode module:automata/text/letter.Letter#pixels} matrices from
+   * each {@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
    * @type {number[][]}
    */
   get pixels() {
@@ -149,7 +193,8 @@ class Word {
   }
 
   /**
-   * The string representation of the regular {@linkcode Letter|Letters} in this
+   * The string representation of the regular
+   * [Letters]{@linkcode module:automata/text/letter.Letter} in this
    * {@linkcode Word}.
    * @readonly
    * @type {string}
@@ -159,8 +204,9 @@ class Word {
   }
 
   /**
-   * The string representation of the highlighted {@linkcode Letter|Letters} in
-   * this {@linkcode Word}.
+   * The string representation of the highlighted
+   * [Letters]{@linkcode module:automata/text/letter.Letter} in this
+   * {@linkcode Word}.
    * @readonly
    * @type {string}
    */
@@ -169,7 +215,8 @@ class Word {
   }
 
   /**
-   * The string representation of ALL {@linkcode Letter|Letters} in this
+   * The string representation of ALL
+   * [Letters]{@linkcode module:automata/text/letter.Letter} in this
    * {@linkcode Word}.
    * @readonly
    * @type {string}

@@ -1,34 +1,70 @@
 "use strict";
 
+/**
+ * Module for {@linkcode Grid}.
+ * @module automata/grid
+ * @requires module:automata/cell.Cell
+ * @requires module:automata/text/word.Word
+ */
+
 import {Cell} from "./cell.js";
 import {Word} from "./text/word.js";
 
 /**
- * Represents the game grid for
- * {@link https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life|Conway's Game of Life}.
+ * Represents the simulation grid for
+ * [Conway's Game of Life]{@link https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life}.
  */
 class Grid {
-  /** @type p5 */
+  /**
+   * The object containing the instanced p5 sketch.
+   * @type p5
+   */
   #sketch;
-  /** @type Path2D */
+  /**
+   * Contains the living [Cells]{@linkcode module:automata/cell.Cell} that
+   * should be drawn each {@linkcode Grid#loop}.
+   * @type Path2D
+   */
   #livingPath;
-  /** @type Path2D */
+  /**
+   * Contains the highlighted [Cells]{@linkcode module:automata/cell.Cell} that
+   * should be drawn each {@linkcode Grid#loop}.
+   * @type Path2D
+   */
   #highlightPath;
-  /** @type Word */
+  /**
+   * The text to be displayed on the canvas at startup and reset.
+   * @type Word
+   */
   #canvasWord;
 
-  /** @type number */
+  /**
+   * The number of columns in this {@linkcode Grid}.
+   * @type number
+   */
   #cols;
-  /** @type number */
+  /**
+   * The number of rows in this {@linkcode Grid}.
+   * @type number
+   */
   #rows;
-  /** @type Cell[][] */
+
+  /**
+   * 2D array of [Cells]{@linkcode module:automata/cell.Cell}. This is what gets
+   * painted each frame.
+   * @type Cell[][]
+   */
   #cells;
-  /** @type Cell[][] */
+  /**
+   * 2D array of [Cells]{@linkcode module:automata/cell.Cell}. This is used to
+   * calculate and update the next generation.
+   * @type Cell[][]
+   */
   #apply;
 
   /**
-   * Cell size multiplier. Used to scale drawing output size and cell grid
-   * dimensions.
+   * [Cell]{@linkcode module:automata/cell.Cell} size multiplier. Used to scale
+   * drawing output size and grid dimensions.
    * @readonly
    * @const {number}
    */
@@ -36,24 +72,39 @@ class Grid {
     return 8;
   }
 
-  /** @type boolean */
+  /**
+   * If a wave animation is currently playing.
+   * @type boolean
+   */
   #isAnimating = false;
-  /** @type number[] */
+  /**
+   * Array keeping track of which column each animated wave is currently on.
+   * @type number[]
+   */
   #waveCols = [];
-  /** @type number[] */
+  /**
+   * Array keeping track of which direction each animated wave is currently
+   * moving.
+   * @type number[]
+   */
   #waveDeltas = [];
 
-  /** How many columns the wave moves each generation.
+  /**
+   * How many columns the wave animation moves each update.
    * @readonly
-   * @const number */
+   * @const number
+   */
   static get ANIMATION_SPEED() {
     return 2;
   }
 
 
   /**
-   * @param {p5} sketch - A p5 object passed from the main Processing sketch.
-   * @param {Word} canvasWord - The word to display on the canvas at startup.
+   * Constructs a new simulation {@linkcode Grid}.
+   * @param {p5} sketch - A [p5]{@linkcode p5} object passed from the main
+   *     Processing sketch.
+   * @param {Word} canvasWord - The {@linkcode Word} to display on the canvas at
+   *     startup.
    */
   constructor(sketch, canvasWord) {
     this.#sketch = sketch;
@@ -61,6 +112,7 @@ class Grid {
     this.#highlightPath = new Path2D();
     this.#canvasWord = canvasWord;
 
+    // Scale the number of rows and columns, plus a little extra
     this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
     this.#rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
 
@@ -84,7 +136,8 @@ class Grid {
 
 
   /**
-   * Main logic loop for grid. Handles drawing and update logic.
+   * Main loop for this {@linkcode Grid}. Handles drawing, animation, and update
+   * logic.
    */
   loop() {
     this.#livingPath = new Path2D();
@@ -101,6 +154,8 @@ class Grid {
     }
 
     if (this.#sketch.isLooping()) {
+      // Replace the current generation. Needs to be a copy to avoid modifying
+      // the current generation as we apply the game rules.
       let temp = this.#apply;
       this.#apply = this.#cells;
       this.#cells = temp;
@@ -108,9 +163,12 @@ class Grid {
   }
 
   /**
-   * Draw the game grid to the canvas.
-   * @param {number} col
-   * @param {number} row
+   * Adds a specific {@linkcode module:automata/cell.Cell} in the
+   * {@linkcode Grid} to the drawing paths.
+   * @param {number} col - The column index of a {@linkcode Cell}.
+   * @param {number} row - The row index of a {@linkcode Cell}.
+   * @see Grid#livingPath
+   * @see Grid#highlightPath
    */
   #displayCell(col, row) {
     // Only drawing living cells boosts performance significantly
@@ -123,10 +181,11 @@ class Grid {
   }
 
   /**
-   * Applies the rules of Conway's Game of Life to the grid and replaces the
-   * current generation.
-   * @param {number} col
-   * @param {number} row
+   * Applies the rules of Conway's Game of Life to a specific
+   * [Cell]{@linkcode module:automata/cell.Cell} in the {@linkcode Grid}, based
+   * on its neighbours.
+   * @param {number} col - The column index of a {@linkcode Cell}.
+   * @param {number} row - The row index of a {@linkcode Cell}.
    */
   #updateCell(col, row) {
     let current = this.#cells[col][row];
@@ -135,26 +194,29 @@ class Grid {
     // Make a copy to avoid concurrent modification
     let replacement = new Cell(current.alive, current.highlighted);
 
-    // Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+    // Rule 1: Any live cell with fewer than two live neighbours dies, as if by
+    // underpopulation.
     if (current.alive && livingNeighbours < 2) {
       replacement.alive = false;
     }
-    // Rule 2: Any live cell with two or three live neighbours lives on to the next generation.
+    // Rule 2: Any live cell with two or three live neighbours lives on to the
+    // next generation.
     if (current.alive && (livingNeighbours === 2 || livingNeighbours === 3)) {
       replacement.alive = true;
     }
-    // Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation.
+    // Rule 3: Any live cell with more than three live neighbours dies, as if by
+    // overpopulation.
     if (current.alive && livingNeighbours > 3) {
       replacement.alive = false;
     }
-    // Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    // Rule 4: Any dead cell with exactly three live neighbours becomes a live
+    // cell, as if by reproduction.
     if (!current.alive && livingNeighbours === 3) {
       replacement.alive = true;
     }
 
-    this.#apply[col][row] = replacement; // TODO: See if Maps might save on some work here
+    this.#apply[col][row] = replacement;
   }
-
 
   /**
    * Triggers a wave to animate horizontally across the canvas.
@@ -170,15 +232,19 @@ class Grid {
   /**
    * Runs the calculations for each queued wave.
    *
-   * Waves can be triggered with {@link Grid~startAnimations}
+   * Waves can be triggered with {@link Grid#startAnimations}
    */
   #runAnimations() {
     for (let i = 0; i < this.#waveCols.length; i++) {
+      // TODO: can simplify these loops
       // Going to the right
       if (this.#waveDeltas[i] > 0) {
         for (let r = 0; r < this.#rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 5) {
-            this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.5, true);
+            this.#cells[this.#waveCols[i]][r] = new Cell(
+              Math.random() < 0.5,
+              true
+            );
           }
         }
       }
@@ -187,7 +253,10 @@ class Grid {
       if (this.#waveDeltas[i] < 0) {
         for (let r = 0; r < this.#rows; r++) {
           if (this.getLivingNeighbours(this.#waveCols[i], r) < 4) {
-            this.#cells[this.#waveCols[i]][r] = new Cell(Math.random() < 0.25, true);
+            this.#cells[this.#waveCols[i]][r] = new Cell(
+              Math.random() < 0.25,
+              true
+            );
           }
         }
       }
@@ -206,13 +275,16 @@ class Grid {
     }
   }
 
-
   /**
    * Returns a count of the living neighbours of target cell, excluding itself.
    * Checking wraps around to the other edge of the array.
-   * @param {number} col - which column the target cell is in.
-   * @param {number} row - which row the target cell is in.
-   * @return {number} - how many living cells are adjacent to target cell.
+   * @param {number} col - The column index of the target
+   *     [Cell]{@linkcode module:automata/cell.Cell}.
+   * @param {number} row - The row index the target
+   *     [Cell]{@linkcode module:automata/cell.Cell}.
+   * @return {number} - How many living
+   *     [Cells]{@linkcode module:automata/cell.Cell} are adjacent to target
+   *     [Cell]{@linkcode module:automata/cell.Cell}.
    */
   getLivingNeighbours(col, row) {
     let livingNeighbours = 0;
@@ -226,7 +298,8 @@ class Grid {
         if (!(i === 0 && j === 0)) {
           // Use modulo to wrap around to other edge of array
           // Referenced: https://stackoverflow.com/a/45397704
-          let neighbour = this.#cells[(colIndex % this.#cols + this.#cols) % this.#cols]
+          let neighbour = this.#cells
+            [(colIndex % this.#cols + this.#cols) % this.#cols]
             [(rowIndex % this.#rows + this.#rows) % this.#rows];
           livingNeighbours += neighbour.alive;
         }
@@ -235,10 +308,9 @@ class Grid {
     return livingNeighbours;
   }
 
-
   /**
-   * Resizes the game grid based on the size of the canvas, adding and removing
-   * rows/columns as necessary.
+   * Resizes the simulation grid based on the size of the canvas, adding and
+   * removing rows/columns as necessary.
    *
    * Referenced: https://stackoverflow.com/a/32055229/27162946
    */
@@ -286,16 +358,17 @@ class Grid {
     }
   }
 
-
   /**
-   * Places an arrangement of living cells in the shape of text in `canvasWord`.
+   * Places an arrangement of living
+   * [Cells]{@linkcode module:automata/cell.Cell} in the shape of text in
+   * `canvasWord`.
    *
-   * @param {number} [colOffset] - Number of grid cells to offset in
-   *     the X axis. If `undefined`, the centre of the canvas will be
-   *     calculated and used.
-   * @param {number} [rowOffset] - Number of grid cells to offset in
-   *     the Y axis. If `undefined`, the centre of the canvas will be
-   *     calculated and used.
+   * @param {number} [colOffset] - Number of grid
+   *     [Cells]{@linkcode module:automata/cell.Cell} to offset in the X axis.
+   *     If `undefined`, the centre of the canvas will be calculated and used.
+   * @param {number} [rowOffset] - Number of grid
+   *     [Cells]{@linkcode module:automata/cell.Cell} to offset in the Y axis.
+   *     If `undefined`, the centre of the canvas will be calculated and used.
    */
   placeWord(
     colOffset = Math.ceil(this.#cols / 2) - Math.ceil(this.#canvasWord.cols / 2),
@@ -306,25 +379,38 @@ class Grid {
         let currentCell = this.#cells[c + colOffset][r + rowOffset];
         let currentPixel = this.#canvasWord.pixels[c][r];
 
-        if (currentPixel >= 2) currentCell.highlighted = !currentCell.highlighted;
         if (currentPixel >= 1) currentCell.alive = !currentCell.alive;
+        if (currentPixel >= 2) currentCell.highlighted = !currentCell.highlighted;
       }
     }
   }
 
-  /** @readonly
-   * @type Path2D */
+
+  /**
+   * Contains the living [Cells]{@linkcode module:automata/cell.Cell} that
+   * should be drawn each {@linkcode Grid#loop}.
+   * @readonly
+   * @type Path2D
+   */
   get livingPath() {
     return this.#livingPath;
   }
 
-  /** @readonly
-   * @type Path2D */
+  /**
+   * Contains the highlighted [Cells]{@linkcode module:automata/cell.Cell} that
+   * should be drawn each {@linkcode Grid#loop}.
+   * @readonly
+   * @type Path2D
+   */
   get highlightPath() {
     return this.#highlightPath;
   }
 
-  /** @type {boolean} */
+  /**
+   * If a wave animation is currently playing.
+   * @readonly
+   * @type boolean
+   */
   get isAnimating() {
     return this.#isAnimating;
   }

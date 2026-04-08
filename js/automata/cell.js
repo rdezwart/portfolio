@@ -1,48 +1,82 @@
 "use strict";
 
 /**
- * Individual cell in the game grid.
+ * Module for {@linkcode Cell}.
+ * @module automata/cell
+ * @see module:automata/grid.Grid
+ */
+
+/**
+ * Individual cell in a simulation {@linkcode module:automata/grid.Grid|Grid}.
  */
 class Cell {
-
-  /** @type boolean */
+  /**
+   * If this {@linkcode Cell} is alive and should be drawn in normal colours.
+   * @type {boolean}
+   */
   #alive;
-  /** @type boolean */
+  /**
+   * If this {@linkcode Cell} should be drawn in alternate colours.
+   *
+   * A {@linkcode Cell} cannot be highlighted and dead at the same time.
+   * @type {boolean}
+   */
   #highlighted;
 
+
   /**
-   * @param {boolean} [alive=false] - If this cell is alive.
-   * @param {boolean} [highlighted=false] - If this cell should be highlighted.
+   * Constructs a new {@linkcode Cell}.
+   * @param {boolean} [alive=false] - If this {@linkcode Cell} is alive and
+   *     should be drawn in normal colours.
+   * @param {boolean} [highlighted=false] - If this {@linkcode Cell} is
+   *     highlighted and should be drawn in alternate colours.
+   *
+   *     A {@linkcode Cell} cannot be highlighted and dead at the same time.
    */
   constructor(alive = false, highlighted = false) {
     this.#alive = alive;
     this.#highlighted = alive && highlighted;
   }
 
-  /** @return {boolean} */
+
+  /**
+   * If this {@linkcode Cell} is alive and should be drawn in normal colours.
+   * @type {boolean}
+   */
   get alive() {
     return this.#alive;
   }
 
   /**
-   * If cell is marked as dead, also sets `highlighted` to false.
-   * @param {boolean} value
+   * If this {@linkcode Cell} is alive and should be drawn in normal colours.
+   *
+   * If this {@linkcode Cell} is marked as dead, also sets
+   * {@linkcode highlighted} to `false`.
+   * @param {boolean} alive
    */
-  set alive(value) {
-    if (!value) {
+  set alive(alive) {
+    if (!alive) {
       this.#highlighted = false;
     }
-    this.#alive = value;
+    this.#alive = alive;
   }
 
-  /** @return {boolean} */
+  /**
+   * If this {@linkcode Cell} should be drawn in alternate colours.
+   * @type {boolean}
+   */
   get highlighted() {
     return this.#highlighted;
   }
 
-  /** @param {boolean} value */
-  set highlighted(value) {
-    this.#highlighted = value;
+  /**
+   * If this {@linkcode Cell} should be drawn in alternate colours.
+   *
+   * A {@linkcode Cell} cannot be highlighted and dead at the same time.
+   * @param {boolean} highlighted
+   */
+  set highlighted(highlighted) {
+    this.#highlighted = highlighted && this.#alive;
   }
 }
 

@@ -1,20 +1,27 @@
 "use strict";
 
+/**
+ * Module for {@linkcode Alphabet}.
+ * @module automata/text/alphabet
+ * @requires module:automata/text/letter.Letter
+ */
+
 import {Letter} from "./letter.js";
 
 /**
- * Object representing {@linkcode Letter|Letters} of the alphabet rendered in a
- * pixel font (specifically {@link https://github.com/IdreesInc/Minecraft-Font|
- * a fan rendition} of the font from {@link https://www.minecraft.net/|
- * Minecraft}).
+ * Object/namespace representing letters of the alphabet rendered in a pixel
+ * font (specifically
+ * [a fan rendition]{@link https://github.com/IdreesInc/Minecraft-Font} of the
+ * font from [Minecraft]{@link https://www.minecraft.net/}).
  *
  * The matrices defined in this object are written in a different orientation
  * from the canvas grid orientation, but it's much nicer to write the letters
  * out this way.
  *
- * Thankfully, they are automatically transposed by the {@link Letter}
- * constructor into the correct format!
- *
+ * Thankfully, they are automatically transposed by the
+ * [Letter]{@linkcode module:automata/text/letter.Letter} constructor into the
+ * correct format!
+ * @namespace
  * @type {Object.<string, function: Letter>}
  */
 const Alphabet = {

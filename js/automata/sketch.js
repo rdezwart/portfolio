@@ -1,5 +1,12 @@
 "use strict";
 
+/**
+ * Module for the actual p5.js sketch.
+ * @module automata/sketch
+ * @requires module:automata/grid
+ * @requires module:automata/text/word
+ */
+
 import {Grid} from "./grid.js";
 import {Word} from "./text/word.js";
 
@@ -7,44 +14,111 @@ import {Word} from "./text/word.js";
  * Wraps the sketch in an object, enabling "instance mode".
  * @param {p5} sketch - The sketch loaded by p5.
  */
-const automata = (sketch) => {
-  /** @type Grid */
+const automataSketch = (sketch) => {
+  /**
+   * The simulation grid, contains many [Cells]{@linkcode module:automata/cell}.
+   * @type Grid
+   */
   let grid;
 
-  /** @type p5.Color */
+  /**
+   * The colour of dead [Cells]{@linkcode module:automata/cell}. Essentially,
+   * the background.
+   * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
+   * @readonly
+   * @type p5.Color
+   */
   const deadColor = sketch.color(42, 42, 47, 255);
-  /** @type p5.Color */
+  /**
+   * The colour of living [Cells]{@linkcode module:automata/cell}.
+   * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
+   * @readonly
+   * @type p5.Color
+   */
   const aliveColor = sketch.color(255, 153, 51, 255);
-  /** @type p5.Color */
+  /**
+   * The colour of highlighted [Cells]{@linkcode module:automata/cell}.
+   * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
+   * @readonly
+   * @type p5.Color
+   */
   const highlightColor = sketch.color(0, 238, 255, 255);
 
-  /** @type HTMLElement */
+  /**
+   * The div element that will contain the canvas.
+   * @type HTMLDivElement
+   */
   let wrapper;
-  /** @type Word */
+  /**
+   * The text to be displayed on the canvas at startup and reset. Populated from
+   * data attributes on {@linkcode wrapper}.
+   * @type Word
+   */
   let canvasWord;
-  /** @type DOMRect */
+  /**
+   * The bounding box of {@linkcode wrapper}.
+   * @type DOMRect
+   */
   let bounds;
-  /** @type number */
+  /**
+   * The dimensions of {@linkcode bounds}.
+   * @type number
+   */
   let divWidth, divHeight;
 
-  /** @const {number} */
+  /**
+   * How many times per second the logic interval fires.
+   * @readonly
+   * @const {number}
+   */
   const UPDATES_PER_SECOND = 10;
-  /** @const {number} */
+  /**
+   * How many times the canvas paints per second. Proportional to
+   * {@linkcode UPDATES_PER_SECOND}.
+   * @readonly
+   * @const {number}
+   */
   const FRAMES_PER_SECOND = UPDATES_PER_SECOND * 4;
-  /** @type number */
+  /**
+   * The ID of the logic interval.
+   * @type number
+   */
   let logicIntervalId = undefined;
-  /** @type boolean */
+  /**
+   * If the simulation has started (moved pasted displaying
+   * {@linkcode canvasWord}).
+   * @type boolean
+   */
   let simulationStarted = false;
-  /** @type boolean */
+  /**
+   * If the sketch finished creating and loading everything.
+   * @type boolean
+   */
   let loaded = false;
 
-  /** @type p5.Element */
+  /**
+   * Wrapper object for the `menu` element that will contain control buttons.
+   * @see [p5.Element]{@link https://p5js.org/reference/p5/p5.Element/}
+   * @type p5.Element
+   */
   let menu;
-  /** @type p5.Element */
+  /**
+   * Wrapper object for the pause button.
+   * @see [p5.Element]{@link https://p5js.org/reference/p5/p5.Element/}
+   * @type p5.Element
+   */
   let pauseButton;
-  /** @type p5.Element */
+  /**
+   * Wrapper object for the animation button.
+   * @see [p5.Element]{@link https://p5js.org/reference/p5/p5.Element/}
+   * @type p5.Element
+   */
   let animButton;
-  /** @type p5.Element */
+  /**
+   * Wrapper object for the reset button.
+   * @see [p5.Element]{@link https://p5js.org/reference/p5/p5.Element/}
+   * @type p5.Element
+   */
   let resetButton;
 
   /**
@@ -55,8 +129,10 @@ const automata = (sketch) => {
    */
   let descriptions;
 
+
   /**
-   * P5 function. Runs before the sketch starts.
+   * Runs before the sketch starts.
+   * @see [setup()]{@link https://p5js.org/reference/p5/setup/}
    */
   sketch.setup = () => {
     wrapper = document.getElementById("automata-wrapper");
@@ -64,13 +140,13 @@ const automata = (sketch) => {
 
     let canvas = sketch.createCanvas(divWidth, divHeight);
     canvas.id("automata-canvas");
-    // Set parent a second time, this makes sure the CSS starting transition plays
+    // Set parent a second time (makes sure the CSS starting transition plays)
     canvas.parent(wrapper);
     canvas.attribute("aria-live", "polite");
 
     sketch.frameRate(FRAMES_PER_SECOND);
     sketch.noStroke();
-    sketch.noLoop(); // start sketch paused
+    sketch.noLoop(); // Start sketch paused
 
     canvasWord = new Word(
       wrapper.dataset.canvasText,
@@ -101,10 +177,20 @@ const automata = (sketch) => {
     menu.attribute("aria-live", "polite");
     menu.addClass("canvas-menu");
 
-    pauseButton = createAndAddMenuButton("Play", "pause-button", false, "fa-solid fa-play");
+    pauseButton = createAndAddMenuButton(
+      "Play",
+      "pause-button",
+      false,
+      "fa-solid fa-play"
+    );
     pauseButton.mouseClicked(togglePaused);
 
-    animButton = createAndAddMenuButton("Trigger Wave", "anim-button", true, "fa-solid fa-shuffle");
+    animButton = createAndAddMenuButton(
+      "Trigger Wave",
+      "anim-button",
+      true,
+      "fa-solid fa-shuffle"
+    );
     animButton.mouseClicked(() => {
       if (animButton.attribute("aria-disabled") === "true")
         return;
@@ -113,8 +199,13 @@ const automata = (sketch) => {
       updateInterface();
     });
 
-    resetButton = createAndAddMenuButton("Reset", "reset-button", true, "fa-solid fa-arrow-rotate-left");
+    resetButton = createAndAddMenuButton(
+      "Reset",
+      "reset-button",
+      true,
+      "fa-solid fa-arrow-rotate-left");
     resetButton.mouseClicked(() => {
+      // WebStorm thinks this is incorrect syntax, but it's wrong.
       if (resetButton.attribute("aria-disabled") === "true")
         return;
 
@@ -139,7 +230,8 @@ const automata = (sketch) => {
   };
 
   /**
-   * P5 function. Runs every frame.
+   * Runs every frame, as long as the sketch has been allowed to loop.
+   * @see [draw()]{@link https://p5js.org/reference/p5.Framebuffer/draw/}
    */
   sketch.draw = () => {
     updateDescriptions();
@@ -152,14 +244,19 @@ const automata = (sketch) => {
   };
 
   /**
-   * P5 function. Runs when window is resized.
+   * Runs when window is resized.
+   * @see [windowResized()]{@link https://p5js.org/reference/p5/windowResized/}
    */
   sketch.windowResized = () => {
     handleResize()
   };
 
   /**
-   * P5 function. Runs when device is turned more than 90 degrees.
+   * Runs when device is turned more than 90 degrees.
+   *
+   * Probably unnecessary, but better safe than sorry. This doesn't even get
+   * called when rotating a device preview in Chrome DevTools.
+   * @see [deviceTurned]{@link https://p5js.org/reference/p5/deviceTurned/}
    */
   sketch.deviceTurned = () => {
     handleResize();
@@ -167,8 +264,11 @@ const automata = (sketch) => {
 
 
   /**
-   * Update grid to match new screen size/orientation. Keeps "Howdy!" text
-   * centered if it's still visible (i.e. simulation hasn't been started yet).
+   * Updates grid to match new screen size/orientation. Returns early if sketch
+   * has not finished loading.
+   *
+   * Keeps any text on the canvas centered if it's still visible (i.e.
+   * simulation hasn't been started yet).
    */
   function handleResize() {
     if (!loaded) return;
@@ -240,6 +340,8 @@ const automata = (sketch) => {
 
   /**
    * Updates the screen reader descriptions depending on current sketch state.
+   * @see [describe()]{@link https://p5js.org/reference/p5/describe/}
+   * @see [describeElement()]{@link https://p5js.org/reference/p5/describeElement/}
    */
   function updateDescriptions() {
     sketch.describe(
@@ -267,6 +369,9 @@ const automata = (sketch) => {
     updateAnimButton();
     updateResetButton();
 
+    /**
+     * Updates the pause button.
+     */
     function updatePauseButton() {
       /** @type HTMLElement */
       let pauseIcon = document.getElementById("pause-button-icon");
@@ -284,10 +389,16 @@ const automata = (sketch) => {
       }
     }
 
+    /**
+     * Updates the animation button.
+     */
     function updateAnimButton() {
       animButton.attribute("aria-disabled", `${!sketch.isLooping()}`);
     }
 
+    /**
+     * Updates the reset button.
+     */
     function updateResetButton() {
       resetButton.attribute("aria-disabled", `${!simulationStarted}`);
     }
@@ -299,18 +410,24 @@ const automata = (sketch) => {
    *
    * If `iconClasses` is provided, a FontAwesome icon will be used instead of
    * text and include extra markup for accessibility.
-   * @see https://docs-v6.fontawesome.com/web/dig-deeper/accessibility#making-icons-accessible-manually
-   *      FontAwesome v6 Docs
-   *
+   * @see [FontAwesome v6 Accessibility]{@link
+   *     https://docs-v6.fontawesome.com/web/dig-deeper/accessibility#making-icons-accessible-manually}
    * @param {string} label - The text to be used for the button label, or the
    *     screen-reader-only label and tooltip if `iconClasses` are provided.
    * @param {string} id - The base ID for this button and children.
-   * @param {boolean} disabled - Whether this button should be disabled by default.
-   * @param {string} [iconClasses=undefined] - Space separated string of class names to
-   *        apply to the icon.
-   * @return {p5.Element} - The button that was added to the menu as a list item child.
+   * @param {boolean} disabled - Whether this button should be disabled by
+   *     default.
+   * @param {string} [iconClasses=undefined] - Space separated string of class
+   *     names to apply to the icon.
+   * @returns {p5.Element} - The button that was added to the menu as a list
+   *     item child.
    */
-  function createAndAddMenuButton(label, id, disabled = false, iconClasses = undefined) {
+  function createAndAddMenuButton(
+    label,
+    id,
+    disabled = false,
+    iconClasses = undefined
+  ) { // TODO: Separate into two functions, can create button then add
     /** @type p5.Element */
     let li = sketch.createElement("li");
     li.parent(menu);
@@ -353,4 +470,4 @@ const automata = (sketch) => {
   }
 };
 
-export {automata};
+export {automataSketch};
