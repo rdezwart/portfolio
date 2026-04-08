@@ -159,8 +159,9 @@ class Grid {
       cols = Math.floor(this.#sketch.width / testFactor) + 1;
       rows = Math.floor(this.#sketch.height / testFactor) + 1;
 
-      // Make sure the canvas word always fits on screen.
-    } while (cols <= this.#canvasWord.cols || rows <= this.#canvasWord.rows);
+      // Make sure canvasWord always fits on screen, with one cell of padding
+    } while (
+      cols <= this.#canvasWord.cols + 2 || rows <= this.#canvasWord.rows + 2);
 
     return [cols, rows, testFactor];
   }
