@@ -372,7 +372,7 @@ class Grid {
    */
   placeWord(
     colOffset = Math.ceil(this.#cols / 2) - Math.ceil(this.#canvasWord.cols / 2),
-    rowOffset = Math.ceil(this.#rows / 2) - Math.ceil(this.#canvasWord.rows / 2)
+    rowOffset = Math.floor(this.#rows / 2) - Math.ceil(this.#canvasWord.rows / 2)
   ) {
     for (let c = 0; c < this.#canvasWord.pixels.length; c++) {
       for (let r = 0; r < this.#canvasWord.pixels[c].length; r++) {
