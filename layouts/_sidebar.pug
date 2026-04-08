@@ -5,20 +5,10 @@ append vars
     grid = "sidebar";
 
 
-block main
-  div.header
-    if automata
-      div#automata-wrapper(
-        data-canvas-text=`${_canvasText}`
-        data-canvas-highlight=`${_canvasHighlight}`
-      )
-
+block sidebar
   if grid === "pre-sidebar"
     div.pre-sidebar
       block pre-sidebar
 
   div.sidebar-wrapper
-    block sidebar
-
-  div.content
-    block content
+    block sidebar-content
