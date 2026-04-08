@@ -177,20 +177,26 @@ const automataSketch = (sketch) => {
     menu.attribute("aria-live", "polite");
     menu.addClass("canvas-menu");
 
-    pauseButton = createAndAddMenuButton(
+    /** @type p5.Element */
+    let pauseWrapper;
+    [pauseWrapper, pauseButton] = createMenuButton(
       "Play",
       "pause-button",
       false,
       "fa-solid fa-play"
     );
+    addToMenu(pauseWrapper);
     pauseButton.mouseClicked(togglePaused);
 
-    animButton = createAndAddMenuButton(
+    /** @type p5.Element */
+    let animWrapper;
+    [animWrapper, animButton] = createMenuButton(
       "Trigger Wave",
       "anim-button",
       true,
       "fa-solid fa-shuffle"
     );
+    addToMenu(animWrapper);
     animButton.mouseClicked(() => {
       if (animButton.attribute("aria-disabled") === "true")
         return;
@@ -199,11 +205,14 @@ const automataSketch = (sketch) => {
       updateInterface();
     });
 
-    resetButton = createAndAddMenuButton(
+    /** @type p5.Element */
+    let resetWrapper;
+    [resetWrapper, resetButton] = createMenuButton(
       "Reset",
       "reset-button",
       true,
       "fa-solid fa-arrow-rotate-left");
+    addToMenu(resetWrapper);
     resetButton.mouseClicked(() => {
       // WebStorm thinks this is incorrect syntax, but it's wrong.
       if (resetButton.attribute("aria-disabled") === "true")
@@ -405,8 +414,8 @@ const automataSketch = (sketch) => {
   }
 
   /**
-   * Creates a new button element with additional attributes suited for the
-   * canvas menu controls, then adds it to the canvas menu.
+   * Creates a wrapper and new button element with additional attributes suited
+   * for the canvas menu controls.
    *
    * If `iconClasses` is provided, a FontAwesome icon will be used instead of
    * text and include extra markup for accessibility.
@@ -419,23 +428,18 @@ const automataSketch = (sketch) => {
    *     default.
    * @param {string} [iconClasses=undefined] - Space separated string of class
    *     names to apply to the icon.
-   * @returns {p5.Element} - The button that was added to the menu as a list
-   *     item child.
+   * @returns {[p5.Element, p5.Element]} - [0] the wrapping div of: [1] the
+   *     button.
    */
-  function createAndAddMenuButton(
+  function createMenuButton(
     label,
     id,
     disabled = false,
     iconClasses = undefined
-  ) { // TODO: Separate into two functions, can create button then add
-    /** @type p5.Element */
-    let li = sketch.createElement("li");
-    li.parent(menu);
-
+  ) {
     /** @type p5.Element */
     let buttonWrapper = sketch.createDiv();
     buttonWrapper.addClass("button-tooltip-wrapper");
-    buttonWrapper.parent(li);
 
     /** @type p5.Element */
     let button = sketch.createButton("");
@@ -466,7 +470,20 @@ const automataSketch = (sketch) => {
       button.child(icon);
     }
 
-    return button;
+    return [buttonWrapper, button];
+  }
+
+  /**
+   * Adds an element (such as a button wrapper) to the canvas menu.
+   * @param {p5.Element} element - The element to be added as a list item to the
+   *     canvas menu.
+   */
+  function addToMenu(element) {
+    /** @type p5.Element */
+    let li = sketch.createElement("li");
+    li.parent(menu);
+
+    element.parent(li);
   }
 };
 
