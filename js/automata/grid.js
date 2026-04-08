@@ -63,14 +63,23 @@ class Grid {
   #apply;
 
   /**
-   * [Cell]{@linkcode module:automata/cell.Cell} size multiplier. Used to scale
-   * drawing output size and grid dimensions.
+   * Base [Cell]{@linkcode module:automata/cell.Cell} size multiplier. This is
+   * the largest the cells will get, but they can scale lower than this value.
+   * @default
    * @readonly
    * @const {number}
    */
-  static get SCALE_FACTOR() {
+  static get BASE_SCALE_FACTOR() {
     return 8;
   }
+
+  /**
+   * [Cell]{@linkcode module:automata/cell.Cell} size multiplier. Used to scale
+   * drawing output size and grid dimensions. Always makes sure the canvas word
+   * will fit.
+   * @type {number}
+   */
+  #scaleFactor = Grid.BASE_SCALE_FACTOR;
 
   /**
    * If a wave animation is currently playing.
@@ -112,9 +121,7 @@ class Grid {
     this.#highlightPath = new Path2D();
     this.#canvasWord = canvasWord;
 
-    // Scale the number of rows and columns, plus a little extra
-    this.#cols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
-    this.#rows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
+    [this.#cols, this.#rows, this.#scaleFactor] = this.calculateSizeAndScale();
 
     // Create filled 2D arrays
     this.#cells = new Array(this.#cols);
@@ -134,6 +141,29 @@ class Grid {
     this.placeWord();
   }
 
+
+  /**
+   * Calculates the appropriate size and scale for the {@linkcode Grid}. Ensures
+   * that the `canvasWord` always fits on screen, regardless of size.
+   * @returns {[number, number, number]} - [cols, rows, scaleFactor]
+   */
+  calculateSizeAndScale() {
+    /** @type {number} */
+    let cols, rows;
+    let testFactor = Grid.BASE_SCALE_FACTOR + 1; // +1, for doWhile
+
+    do {
+      testFactor--;
+
+      // Scale the number of rows and columns, plus a little extra.
+      cols = Math.floor(this.#sketch.width / testFactor) + 1;
+      rows = Math.floor(this.#sketch.height / testFactor) + 1;
+
+      // Make sure the canvas word always fits on screen.
+    } while (cols <= this.#canvasWord.cols || rows <= this.#canvasWord.rows);
+
+    return [cols, rows, testFactor];
+  }
 
   /**
    * Main loop for this {@linkcode Grid}. Handles drawing, animation, and update
@@ -315,8 +345,9 @@ class Grid {
    * Referenced: https://stackoverflow.com/a/32055229/27162946
    */
   resize() {
-    let newCols = Math.floor(this.#sketch.width / Grid.SCALE_FACTOR) + 1;
-    let newRows = Math.floor(this.#sketch.height / Grid.SCALE_FACTOR) + 1;
+    /** @type {number} */
+    let newCols, newRows;
+    [newCols, newRows, this.#scaleFactor] = this.calculateSizeAndScale();
 
     // Add new columns to base array
     while (newCols > this.#cells.length) {
@@ -385,6 +416,16 @@ class Grid {
     }
   }
 
+  /**
+   * [Cell]{@linkcode module:automata/cell.Cell} size multiplier. Used to scale
+   * drawing output size and grid dimensions. Always makes sure the canvas word
+   * will fit.
+   * @readonly
+   * @type {number}
+   */
+  get scaleFactor() {
+    return this.#scaleFactor;
+  }
 
   /**
    * Contains the living [Cells]{@linkcode module:automata/cell.Cell} that

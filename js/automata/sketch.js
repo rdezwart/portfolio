@@ -245,7 +245,7 @@ const automataSketch = (sketch) => {
   sketch.draw = () => {
     updateDescriptions();
     sketch.background(deadColor);
-    sketch.scale(Grid.SCALE_FACTOR);
+    sketch.scale(grid.scaleFactor);
     sketch.fill(aliveColor);
     sketch.drawingContext.fill(grid.livingPath);
     sketch.fill(highlightColor);
