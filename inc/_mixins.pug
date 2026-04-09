@@ -113,3 +113,10 @@ mixin project-card(project)
         height="1024"
         loading="lazy"
       )
+
+
+//- Quick helper to place an anchor that opens in a new tab
+mixin link(url)
+  a(href=url, target="_blank")
+    if block
+      block
