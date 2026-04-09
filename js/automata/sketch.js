@@ -25,24 +25,21 @@ const automataSketch = (sketch) => {
    * The colour of dead [Cells]{@linkcode module:automata/cell}. Essentially,
    * the background.
    * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
-   * @readonly
    * @type p5.Color
    */
-  const deadColor = sketch.color(42, 42, 47, 255);
+  let deadColor;
   /**
    * The colour of living [Cells]{@linkcode module:automata/cell}.
    * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
-   * @readonly
    * @type p5.Color
    */
-  const aliveColor = sketch.color(255, 153, 51, 255);
+  let aliveColor;
   /**
    * The colour of highlighted [Cells]{@linkcode module:automata/cell}.
    * @see [p5.Color]{@link https://p5js.org/reference/p5/p5.Color/}
-   * @readonly
    * @type p5.Color
    */
-  const highlightColor = sketch.color(0, 238, 255, 255);
+  let highlightColor;
 
   /**
    * The div element that will contain the canvas.
@@ -153,6 +150,13 @@ const automataSketch = (sketch) => {
       wrapper.dataset.canvasHighlight
     );
     grid = new Grid(sketch, canvasWord);
+
+    window.matchMedia("(prefers-color-scheme: light)").addEventListener(
+      "change", () => {
+        updateColorScheme();
+        sketch.redraw();
+      });
+    updateColorScheme();
 
     descriptions = {
       BASE: `A dark grey rectangle with a grid of small bright orange square \
@@ -484,6 +488,17 @@ const automataSketch = (sketch) => {
     li.parent(menu);
 
     element.parent(li);
+  }
+
+  /**
+   * Updates the sketch colours based on site-wide colour scheme, from CSS
+   * variables.
+   */
+  function updateColorScheme() {
+    let style = window.getComputedStyle(document.body);
+    deadColor = sketch.color(style.getPropertyValue("--banner"));
+    aliveColor = sketch.color(style.getPropertyValue("--link"));
+    highlightColor = sketch.color(style.getPropertyValue("--highlight"));
   }
 };
 
