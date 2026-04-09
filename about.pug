@@ -5,19 +5,22 @@ append vars
     title = "About";
     slug = "about";
     description = "Hi, I'm Robin de Zwart;";
-    canvasWord = ["Who", "?"]
+    grid = "pre-sidebar";
+    canvasWord = ["Who am I", "?"]
 
+
+append pre-sidebar
+  div.hgroup
+    h1
+      | Hi, I'm
+      |
+      +name(false)
 
 append sidebar-content
   +sidebar("Skills")
     include inc/_skills
 
 append content
-  section.hgroup
-    h1
-      | Hi, I'm
-      |
-      +name(false)
 
   section#about-me
     +h(2, "About Me")

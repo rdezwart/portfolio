@@ -45,7 +45,7 @@
     <script type="module" src="/js/automata.js"></script>
   </head>
   <body><a class="skip" href="#main-content">Skip to main content</a>
-    <div class="wrapper grid-sidebar">
+    <div class="wrapper grid-pre-sidebar">
       <header class="nav-wrapper">
         <nav class="nav" aria-label="Main">
           <div class="name-wrapper"><a class="name" href="/">Robin de&nbsp;Zwart<span class="highlight">;</span></a>
@@ -73,7 +73,17 @@
       </header>
       <main class="main" id="main-content">
         <div class="header">
-          <div id="automata-wrapper" data-canvas-text="Who" data-canvas-highlight="?"></div>
+          <p class="canvas-fallback">Who am I<span class="highlight">?</span></p>
+          <div id="automata-wrapper" data-canvas-text="Who am I" data-canvas-highlight="?"></div>
+          <noscript>Enable JavaScript for an interactive canvas banner!</noscript>
+        </div>
+        <div class="pre-sidebar">
+          <div class="hgroup">
+            <h1>
+              Hi, I'm
+              <a class="name" href="/">Robin<span class="highlight">;</span></a>
+            </h1>
+          </div>
         </div>
         <div class="sidebar-wrapper">
           <section class="sidebar">
@@ -134,12 +144,6 @@
           </section>
         </div>
         <div class="content">
-          <section class="hgroup">
-            <h1>
-              Hi, I'm
-              <a class="name" href="/">Robin<span class="highlight">;</span></a>
-            </h1>
-          </section>
           <section id="about-me">
             <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>About Me</h2>
             <p>
