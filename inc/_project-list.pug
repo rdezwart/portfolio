@@ -10,7 +10,12 @@
      * @param {string} text - The text to be placed inside the anchor.
      * @param {string} attrs - Any other attributes to add to the anchor.
      */
-    constructor(title = undefined, url = "#", text = "Link", attrs = 'target="_blank" rel="noreferrer"') {
+    constructor(
+            title = undefined,
+            url = "#",
+            text = "Link",
+            attrs = 'target="_blank" rel="noopener noreferrer"'
+    ) {
       this.title = title;
       this.url = url;
       this.text = text;

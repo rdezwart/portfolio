@@ -117,6 +117,6 @@ mixin project-card(project)
 
 //- Quick helper to place an anchor that opens in a new tab
 mixin link(url)
-  a(href=url, target="_blank")
+  a(href=url, target="_blank" rel="noopener noreferrer")&attributes(attributes)
     if block
       block

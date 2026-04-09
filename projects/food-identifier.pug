@@ -27,7 +27,7 @@ append content
       The goal of this project is to create the foundation for an application that allows visually impaired people to
       identify food objects, such as those in refrigerators, by taking a photo of them and having the item described.
       According to this
-      #[a.link(href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noreferrer") 2018 article from the Canadian Journal of Ophthalmology],
+      #[+link("https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext") 2018 article from the Canadian Journal of Ophthalmology],
       5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
       with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
       of a friend of mine!
@@ -47,7 +47,7 @@ append content
     +h(2, "The App")
     p.
       Here's a direct link to
-      #[a.link(href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer") the project on Hugging Face.]
+      #[+link("https://huggingface.co/spaces/rdezwart/FoodIdentifier") the project on Hugging Face].
 
     //- Referenced: https://www.gradio.app/guides/sharing-your-app
     gradio-app(space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem")
@@ -59,13 +59,13 @@ append content
       p.
         This project uses two models, one for initial object detection and another captioning the detected objects.
       p.
-        #[b YOLOS:] #[a.link(href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noreferrer") hustvl/yolos-small-300]
+        #[b YOLOS:] #[+link("https://huggingface.co/hustvl/yolos-small-300") hustvl/yolos-small-300]
       ul.list
         li.
           YOLOS' job is to find regions of the image that should have things worth captioning (such as bottles,
           produce, containers, etc.), then feed them to Moondream.
       p.
-        #[b Moondream:] #[a.link(href="https://huggingface.co/vikhyatk/moondream2" target="_blank" rel="noreferrer") vikhyatk/moondream2]
+        #[b Moondream:] #[+link("https://huggingface.co/vikhyatk/moondream2") vikhyatk/moondream2]
       ul.list
         li.
           Moondream looks at an image (either from YOLOS or by user upload) and answers a question about it. The
@@ -75,7 +75,7 @@ append content
         allowing for the possibility of mobile device implementations.
       p.
         I found Moondream first, and while smaller than other Image-Text-to-Text models like
-        #[a.link(href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noreferrer") LLaVa-Next],
+        #[+link("https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf") LLaVa-Next],
         I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
         and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
         following not far behind.
@@ -84,14 +84,14 @@ append content
       +h(3, "Implementation")
       p.
         You can follow the exact process of development through my commits to the
-        #[a.link(href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer") Hugging Face repository]
+        #[+link("https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main") Hugging Face repository]
         for this project.
 
       p To summarize things:
       ol.list
         li.
           I started by looking into different frameworks to build the app with, settling on
-          #[a.link(href="https://www.gradio.app/" target="_blank" rel="noreferrer") Gradio].
+          #[+link("https://www.gradio.app/") Gradio].
         li.
           After setting up the repository, I began implementing an initial version of Moondream, referencing parts of
           their example code.
@@ -113,7 +113,7 @@ append content
         The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed
         during my development. #[strong However, the application would heavily benefit from fine-tuning, which I was unable to provide.]
         I used the below image of a fridge
-        (#[a.link(href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noreferrer") source])
+        (#[+link("https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/") source])
         for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
       a.img-link(href="/img/food-identifier/base-example.webp" target="_blank")
         img.img(src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482"
