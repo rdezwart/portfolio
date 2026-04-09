@@ -896,7 +896,10 @@ ul.project-grid {
   gap: 0;
   margin-top: -1rlh;
   min-height: 10rem;
-  background-color: var(--link); /* 4 */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: var(--banner); /* 4 */
   background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
   background-position: top center;
@@ -907,6 +910,104 @@ ul.project-grid {
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .header {
     margin-top: 0;
+  }
+}
+
+/**
+ * When the header is inside an article (like on project pages)
+ * 1. Use a bright placeholder background instead of a dark one
+ */
+.article .header {
+  background-color: var(--link); /* 1 */
+}
+
+/**
+ * Fallback heading for when the canvas fails to load or JS is disabled
+ */
+.canvas-fallback {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1;
+          flex: 0 1;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: var(--max-weight);
+  font-size: 3.8146972656rem;
+  line-height: 1;
+  text-align: center;
+}
+
+/**
+ * Position noscript element within canvas (this is as a backup for when the
+ * canvas fails to load)
+ */
+.header noscript {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rlh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/**
+ * When the page is supposed to have an Automata show, but JS is disabled
+ * 1. Swap to grid layout to place JS hint at the bottom of the header
+ */
+@media (scripting: none) {
+  .header:has(#automata-wrapper) {
+    display: -ms-grid;
+    display: grid; /* 1 */
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 1rlh auto;
+    grid-template-rows: 1fr auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 1rlh;
+    gap: 1rlh;
+  }
+  .header:has(#automata-wrapper) > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .header:has(#automata-wrapper) > *:nth-child(2) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+}
+.header:has(#automata-wrapper) {
+  /**
+   * When scripting is ENABLED, hide the canvas fallback briefly while the
+   * canvas loads
+   */
+}
+.header:has(#automata-wrapper) :is(.canvas-fallback, .header noscript) {
+  z-index: 1;
+}
+@media (scripting: enabled) {
+  .header:has(#automata-wrapper) :is(.canvas-fallback, .header noscript) {
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: calc(var(--duration) * 4);
+            transition-duration: calc(var(--duration) * 4);
+    -webkit-transition-delay: 1s;
+            transition-delay: 1s;
+    opacity: 1;
+  }
+  @starting-style {
+    .header:has(#automata-wrapper) :is(.canvas-fallback, .header noscript) {
+      opacity: 0;
+    }
   }
 }
 
@@ -1591,6 +1692,7 @@ figure figcaption {
  * 2. Behind hgroup text, but above the header background image.
  * 3. If Javascript is enabled, change background color to match simulation.
  *    Baseline 2023.
+ * 4. When the canvas has loaded, make sure it's in front of the fallback text
  */
 #automata-wrapper {
   position: absolute; /* 1 */
@@ -1598,10 +1700,8 @@ figure figcaption {
   height: 100%; /* 1 */
   z-index: 0; /* 2 */
 }
-@media (scripting: enabled) {
-  #automata-wrapper {
-    background-color: var(--banner);
-  }
+#automata-wrapper:has(#automata-canvas) {
+  z-index: 2; /* 4 */
 }
 
 /**

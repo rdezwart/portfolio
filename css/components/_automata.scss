@@ -6,6 +6,7 @@
  * 2. Behind hgroup text, but above the header background image.
  * 3. If Javascript is enabled, change background color to match simulation.
  *    Baseline 2023.
+ * 4. When the canvas has loaded, make sure it's in front of the fallback text
  */
 #automata-wrapper {
   position: absolute; /* 1 */
@@ -13,8 +14,8 @@
   height: 100%; /* 1 */
   z-index: 0; /* 2 */
 
-  @media (scripting: enabled) {
-    background-color: var(--banner);
+  &:has(#automata-canvas) {
+    z-index: 2; /* 4 */
   }
 }
 

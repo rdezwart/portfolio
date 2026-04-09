@@ -62,11 +62,14 @@ html(lang="en")
       main.main#main-content
         block main
           div.header
+            p.canvas-fallback #{_canvasText}#[span.highlight #{_canvasHighlight}]
+
             if automata
               div#automata-wrapper(
                 data-canvas-text=`${_canvasText}`
                 data-canvas-highlight=`${_canvasHighlight}`
               )
+              noscript Enable JavaScript for an interactive canvas banner!
 
           block sidebar
 
