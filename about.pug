@@ -17,11 +17,11 @@ append pre-sidebar
       +name(false)
 
 append sidebar-content
-  +sidebar("Skills")
-    include inc/_skills
+  picture
+    source(srcset="/img/profile.jpg" type="img/jpg")
+    img.img(alt="Robin de Zwart" src="/img/profile.jpg" width="2047" height="2047" loading="lazy")
 
 append content
-
   section#about-me
     +h(2, "About Me")
     p
@@ -39,3 +39,7 @@ append content
 
   section#experience
     +h(2, "Experience")
+
+  section#skills
+    +h(2, "Skills")
+    include inc/_skills
