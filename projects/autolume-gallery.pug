@@ -72,24 +72,19 @@ append overview
   section#examples
     +h(3, "Examples")
 
-    a.img-link(href="/img/autolume-gallery/canvas-1.webp" target="_blank")
-      img.img(src="/img/autolume-gallery/canvas-1.webp"
-        alt="The Autolume canvas in VR, a mix of greens, yellows, and whites."
-        loading="lazy" width="1920" height="1080")
+    img(src="/img/autolume-gallery/canvas-1.webp"
+      alt="The Autolume canvas in VR, a mix of greens, yellows, and whites."
+      loading="lazy" width="1920" height="1080")
 
     div.img-list
-      a.img-link(href="/img/autolume-gallery/canvas-2.webp" target="_blank")
-        img.img(src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024"
-          alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
-      a.img-link(href="/img/autolume-gallery/canvas-3.webp" target="_blank")
-        img.img(src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024"
-          alt="A composition saved from AutolumeGallery, primarily blues and greens.")
-      a.img-link(href="/img/autolume-gallery/canvas-4.webp" target="_blank")
-        img.img(src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024"
-          alt="A composition saved from AutolumeGallery, primarily whites and blues.")
-      a.img-link(href="/img/autolume-gallery/canvas-5.webp" target="_blank")
-        img.img(src="/img/autolume-gallery/canvas-5.webp"  loading="lazy" width="1024" height="1024"
-          alt="A composition saved from AutolumeGallery, primarily greens and whites.")
+      img(src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024"
+        alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
+      img(src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024"
+        alt="A composition saved from AutolumeGallery, primarily blues and greens.")
+      img(src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024"
+        alt="A composition saved from AutolumeGallery, primarily whites and blues.")
+      img(src="/img/autolume-gallery/canvas-5.webp"  loading="lazy" width="1024" height="1024"
+        alt="A composition saved from AutolumeGallery, primarily greens and whites.")
 
 
 append content
@@ -146,10 +141,10 @@ append content
       On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
       components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
 
-    ul.list
+    ul
       li Unity receives user input from the VR hardware and in-world interactables.
       li Unity uses OSC to send decimals to Autolume-Live.
-        ul.list
+        ul
           li Unity receives user input from the VR hardware and in-world interactables.
           li Unity uses OSC to send decimals to Autolume-Live.
           li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
@@ -185,9 +180,8 @@ append content
         to show. I will run through each object and any relevant children.
 
       figure
-        a.img-link(href=`/img/${project.slug}/hierarchy.png` target="_blank")
-          img.img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
-            alt="Unity hierarchy for this project.")
+        img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
+          alt="Unity hierarchy for this project.")
         figcaption #[strong Figure 1:] Root hierarchy of the Gallery scene.
 
       section#directional-light
@@ -318,7 +312,7 @@ append content
         I created a preset containing the trained model, my chosen vectors, and several parameters listening to
         different OSC channels:
 
-      ul.list
+      ul
         li Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position
         li Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation
         li Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position
@@ -338,9 +332,8 @@ append content
     //- TODO: Turn into mixin, auto bold Figure Number, can maybe use content
           blocks to easily insert image info?
     figure
-      a.img-link(href=`/img/${project.slug}/canvas-3.webp` target="_blank")
-        img.img(src=`/img/${project.slug}/canvas-3.webp` loading="lazy" width="1024" height="1024"
-          alt="A composition saved from AutolumeGallery, primarily blues and greens.")
+      img(src=`/img/${project.slug}/canvas-3.webp` loading="lazy" width="1024" height="1024"
+        alt="A composition saved from AutolumeGallery, primarily blues and greens.")
       figcaption.
         #[strong Figure 2:] The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
         showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in

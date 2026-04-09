@@ -166,8 +166,8 @@
                 </div>
               </section>
               <section id="examples">
-                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Examples</h3><a class="img-link" href="/img/autolume-gallery/canvas-1.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080"></a>
-                <div class="img-list"><a class="img-link" href="/img/autolume-gallery/canvas-2.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."></a><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a><a class="img-link" href="/img/autolume-gallery/canvas-4.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."></a><a class="img-link" href="/img/autolume-gallery/canvas-5.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></a></div>
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Examples</h3><img src="/img/autolume-gallery/canvas-1.webp" alt="The Autolume canvas in VR, a mix of greens, yellows, and whites." loading="lazy" width="1920" height="1080">
+                <div class="img-list"><img src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily oranges and whites."><img src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."><img src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily whites and blues."><img src="/img/autolume-gallery/canvas-5.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily greens and whites."></div>
               </section>
             </section>
             <section id="introduction">
@@ -234,10 +234,10 @@
                 components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
                 
               </p>
-              <ul class="list">
+              <ul>
                 <li>Unity receives user input from the VR hardware and in-world interactables.</li>
                 <li>Unity uses OSC to send decimals to Autolume-Live.
-                  <ul class="list">
+                  <ul>
                     <li>Unity receives user input from the VR hardware and in-world interactables.</li>
                     <li>Unity uses OSC to send decimals to Autolume-Live.</li>
                     <li>Autolume-Live receives OSC output and adjusts the corresponding GAN settings.</li>
@@ -279,7 +279,7 @@
                   to show. I will run through each object and any relevant children.
                   
                 </p>
-                <figure><a class="img-link" href="/img/autolume-gallery/hierarchy.png" target="_blank"><img class="img" src="/img/autolume-gallery/hierarchy.png" loading="lazy" width="286" height="239" alt="Unity hierarchy for this project."></a>
+                <figure><img src="/img/autolume-gallery/hierarchy.png" loading="lazy" width="286" height="239" alt="Unity hierarchy for this project.">
                   <figcaption><strong>Figure 1:</strong> Root hierarchy of the Gallery scene.</figcaption>
                 </figure>
                 <section id="directional-light">
@@ -449,7 +449,7 @@
                   different OSC channels:
                   
                 </p>
-                <ul class="list">
+                <ul>
                   <li>Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position</li>
                   <li>Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation</li>
                   <li>Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position</li>
@@ -467,7 +467,7 @@
             </section>
             <section id="results">
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Results</h2>
-              <figure><a class="img-link" href="/img/autolume-gallery/canvas-3.webp" target="_blank"><img class="img" src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens."></a>
+              <figure><img src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024" alt="A composition saved from AutolumeGallery, primarily blues and greens.">
                 <figcaption><strong>Figure 2:</strong> The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified,
                   showing Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in
                   this combination.
