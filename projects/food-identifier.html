@@ -123,6 +123,7 @@
                 5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
                 with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
                 of a friend of mine!
+                
               </p>
               <section id="use-case">
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Use Case</h3>
@@ -135,6 +136,7 @@
                   a fridge or specific item they want to identify. The app then uses object detection to lock on to objects of
                   interest, such as bottles, fruits, vegetables, etc., and passes that into the vision language model to
                   properly caption.
+                  
                 </p>
               </section>
             </section>
@@ -143,6 +145,7 @@
               <p>
                 Here's a direct link to
                 <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noreferrer">the project on Hugging Face.</a>
+                
               </p>
               <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
               <noscript>
@@ -176,6 +179,7 @@
                   I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
                   and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
                   following not far behind.
+                  
                 </p>
               </section>
               <section id="implementation">
@@ -184,6 +188,7 @@
                   You can follow the exact process of development through my commits to the
                   <a class="link" href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noreferrer">Hugging Face repository</a>
                   for this project.
+                  
                 </p>
                 <p>To summarize things:</p>
                 <ol class="list">
@@ -202,7 +207,10 @@
                     I wanted the user to be able to choose any of the objects YOLOS detected, so I had YOLOS output to a Gradio
                     image gallery.
                   </li>
-                  <li>Finally, I linked the two systems together using a tab-based UI and tidied things up.</li>
+                  <li>
+                    Finally, I linked the two systems together using a tab-based UI and tidied things up.
+                    
+                  </li>
                 </ol>
               </section>
               <section id="testing">
