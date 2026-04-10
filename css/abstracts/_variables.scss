@@ -44,7 +44,7 @@ $headings-all: ":is(h1, h2, h3, h4, h5, h6), :is(.h1, .h2, .h3, .h4, .h5, .h6)";
 
 /// Elements to consider as text for spacing purposes.
 /// @type List
-$text-elements: p, ul;
+$text-elements: p, ul, ol;
 
 
 // ---- ---- Layout ---- ---- //

@@ -329,7 +329,7 @@ body {
  * Styling for all text basic elements.
  * 1. Ensures they play nice in the flex layout.
  */
-p, ul {
+p, ul, ol {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto; /* 1 */
@@ -860,11 +860,11 @@ section > :not(section) {
 section > p:has(+ .summary) {
   margin-bottom: 0; /* 4 */
 }
-section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
+section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   margin-inline: 1rlh; /* 3 */
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  section > :is(p, ul, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
+  section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
     margin-inline: 0;
   }
 }
