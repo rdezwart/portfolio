@@ -1369,40 +1369,9 @@ p:has(+ :is(.tools, .concepts)) {
 /**
  * Basic styles for default responsive image.
  */
-.img {
-  width: auto;
+img {
   max-width: 100%;
   height: auto;
-  margin: auto;
-  display: block;
-}
-
-/**
- * When an image has a link attached to it, add additional styles.
- * 1. The anchor surrounding the image has the margins instead of the image.
- */
-.img-link {
-  display: block;
-  margin-inline: auto;
-  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.img-link:hover, .img-link:focus {
-  -webkit-box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
-          box-shadow: 0.5rem 0.5rem 0 0.1rem rgb(0, 0, 0);
-  outline: 0.2rem solid var(--link);
-  -webkit-transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: outline-width 0.1s, -webkit-box-shadow 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s;
-  transition: box-shadow 0.1s, outline-width 0.1s, -webkit-box-shadow 0.1s;
 }
 
 /**
@@ -1422,16 +1391,8 @@ figure {
   gap: 0.5rlh;
   margin-inline: auto;
 }
-figure img {
-  max-height: 60vh;
-}
-@supports (max-height: 60dvh) {
-  figure img {
-    max-height: 60dvh;
-  }
-}
 figure figcaption {
-  margin-inline: 1rlh;
+  margin-inline: 2rlh;
 }
 
 .img-list {

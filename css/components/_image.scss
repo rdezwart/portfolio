@@ -3,37 +3,9 @@
 /**
  * Basic styles for default responsive image.
  */
-.img {
-  width: auto;
+img {
   max-width: 100%;
   height: auto;
-
-  margin: auto;
-
-  // Referenced: https://www.reddit.com/r/webdev/comments/1eq54ld/comment/lhpb513/
-  display: block;
-}
-
-/**
- * When an image has a link attached to it, add additional styles.
- * 1. The anchor surrounding the image has the margins instead of the image.
- */
-.img-link {
-  display: block;
-  margin-inline: auto;
-
-  transition: box-shadow 0.1s, outline-width 0.1s;
-
-  height: fit-content;
-  width: fit-content;
-
-  &:hover, &:focus {
-    & {
-      box-shadow: 0.5rem 0.5rem 0 0.1rem rgba(0, 0, 0, 100%);
-      outline: 0.2rem solid var(--link);
-      transition: box-shadow 0.1s, outline-width 0.1s;
-    }
-  }
 }
 
 /**
@@ -44,19 +16,9 @@ figure {
   flex-direction: column;
   align-items: center;
   gap: #{abstracts.$text-gap};
-
   margin-inline: auto;
 
-  img {
-    max-height: 60vh;
-    // Referenced: https://stackoverflow.com/a/75241679
-    @supports (max-height: 60dvh) {
-      // Referenced: https://stackoverflow.com/a/72245072
-      max-height: 60dvh;
-    }
-  }
-
   figcaption {
-    margin-inline: 1rlh;
+    margin-inline: 2rlh;
   }
 }
