@@ -3,10 +3,11 @@
 /**
  * Contains a number of project cards.
  * 1. Wrap cards to one-per-row if they're smaller than the minimum value.
+ * 2. Undo margin applied to section children
  */
 ul.project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
   gap: #{abstracts.$page-padding};
-  margin: 0;
+  margin-inline: 0; /* 2 */
 }
