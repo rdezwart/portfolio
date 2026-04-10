@@ -120,3 +120,12 @@ mixin link(url)
   a(href=url, target="_blank" rel="noopener noreferrer")&attributes(attributes)
     if block
       block
+
+
+//- Creates a figcaption with an auto-generated figure number. The count is per
+    page.
+mixin figcaption()
+  figcaption
+    | #[strong Figure #{figureCount}: ]
+    block
+  - figureCount++;

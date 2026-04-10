@@ -113,16 +113,19 @@ append content
         The models both work fairly well out of the box, with Moondream pulling ahead in the accuracy I observed
         during my development. #[strong However, the application would heavily benefit from fine-tuning, which I was unable to provide.]
         I used the below image of a fridge
-        (#[+link("https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/") source])
         for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
-      img(src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482"
-        alt="The inside of a fridge.")
+      figure
+        img(src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482"
+          alt="The inside of a fridge.")
+        +figcaption() #[+link("https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/") Source].
 
       p.
         I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
         my test image with a threshold of 0.7:
-      img(src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732"
-        alt="The inside of a fridge, with coloured boxes labeling identified objects.")
+      figure
+        img(src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732"
+          alt="The inside of a fridge, with coloured boxes labeling identified objects.")
+        +figcaption()
 
       p.
         While it does a good job, it clearly does not capture everything, and this is where I would have loved to
@@ -132,16 +135,20 @@ append content
         For another example, here's a photo of my friend's fridge and how it was parsed. It handles bottles
         extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
         things like cartons.
-      img(src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009"
-        alt="The results of object detection on my friend's fridge")
+      figure
+        img(src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009"
+          alt="The results of object detection on my friend's fridge")
+        +figcaption()
 
   section#conclusion
     +h(2, "Conclusion")
     p.
       The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
       text, as I discovered through this fun bug:
-    img(src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847"
-      alt="Image captioning result on a bottle of Motrin" )
+    figure
+      img(src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847"
+        alt="Image captioning result on a bottle of Motrin" )
+      +figcaption()
     p.
       The models themselves are not trained on data from a wide range of sources, providing some ethical concerns
       when it comes to recognizing foods from other cultures. This is something that could be alleviated with
