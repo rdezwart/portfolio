@@ -12,7 +12,8 @@
 
   display: inline-block; /* 1 */
 
-  padding: 0.25rlh 0.5rlh;
+  padding-block: 0.25rlh;
+  padding-inline: 0.5rlh;
   line-height: 1.5;
   background-color: var(--banner);
   border: 0.1rem solid var(--link);
@@ -69,13 +70,14 @@
  */
 [role="tooltip"] {
   position: absolute;
-  left: 50%; /* 1 */
+  inset-inline-start: 50%; /* 1 */
   transform: translate(-50%, 0); /* 1 */
 
   text-align: center;
   background-color: var(--banner);
-  padding: 0.25rlh 0.5rlh;
-  margin-top: #{abstracts.$text-gap * 0.5};
+  padding-block: 0.25rlh;
+  padding-inline: 0.5rlh;
+  margin-block-start: #{abstracts.$text-gap * 0.5};
 
   transition-property: border-color, opacity, visibility;
   transition-duration: var(--duration);

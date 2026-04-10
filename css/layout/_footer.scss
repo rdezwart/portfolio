@@ -16,7 +16,7 @@
   font-size: abstracts.font-size-scaled(-1);
 
   padding: #{abstracts.$page-padding};
-  margin-bottom: #{abstracts.$page-padding * -1};
+  margin-block-end: #{abstracts.$page-padding * -1};
 
   @include abstracts.respond-to("full") {
     margin-inline: #{abstracts.$page-padding * -1}; /* 1 */

@@ -8,8 +8,8 @@
  *    necessary, but it doesn't hurt to have a fallback!
  */
 body {
-  min-height: 100vh;
-  @supports (min-height: 100dvh) { /* 2 */
-    min-height: 100dvh; /* 1 */
+  min-block-size: 100vh;
+  @supports (min-block-size: 100dvh) { /* 2 */
+    min-block-size: 100dvh; /* 1 */
   }
 }

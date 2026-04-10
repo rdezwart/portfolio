@@ -16,7 +16,7 @@
   grid-template-rows: auto 1fr;
 
   position: relative; /* 2 */
-  scroll-margin-top: #{abstracts.$text-gap};
+  scroll-margin-block-start: #{abstracts.$text-gap};
 
   box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 80%);
   outline: 0 solid var(--highlight);
@@ -79,10 +79,8 @@
   &::after { /* 1 */
     content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    inset-block: 0 0;
+    inset-inline: 0 0;
   }
 }
 
@@ -100,8 +98,6 @@
   overflow: hidden; /* 4 */
 
   img { /* 2 */
-    max-inline-size: 100%;
-    block-size: auto;
     aspect-ratio: 16 / 9;
     //aspect-ratio: 2 / 1; // TODO: Another possible value
     object-fit: cover;
@@ -114,11 +110,11 @@
  */
 .project-details {
   border: 0.2rem solid var(--banner);
-  border-top-style: none;
+  border-block-start-style: none;
 
   @include abstracts.flex-column();
   align-items: start;
 
   padding: #{abstracts.$page-padding};
-  padding-top: #{abstracts.$text-gap}; // TODO: See if you like this or not
+  padding-block-start: #{abstracts.$text-gap}; // TODO: See if you like this or not
 }

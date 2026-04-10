@@ -30,9 +30,8 @@ a {
 a.skip {
   position: absolute;
   overflow: hidden;
-  top: 0;
-  left: -9999rem;
-  right: auto;
+  inset-block-start: 0;
+  inset-inline: -9999rem auto;
   z-index: 10;
 
   padding: 1rlh;
@@ -41,6 +40,6 @@ a.skip {
   background-color: var(--banner);
 
   &:focus {
-    left: 0;
+    inset-inline-start: 0;
   }
 }

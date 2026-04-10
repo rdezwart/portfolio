@@ -13,7 +13,7 @@
 .wrapper {
   margin: auto;
   padding: #{abstracts.$page-padding};
-  min-height: 100dvh; /* 4 */
+  min-block-size: 100dvh; /* 4 */
 
   display: grid;
   justify-content: center;

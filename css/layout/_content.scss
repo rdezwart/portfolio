@@ -30,16 +30,16 @@
 section {
   @include abstracts.flex-column();
   row-gap: 0; /* 1 */
-  padding-top: #{abstracts.$text-gap}; /* 1 */
+  padding-block-start: #{abstracts.$text-gap}; /* 1 */
 
   overflow-wrap: normal;
 
   > :not(section) {
-    margin-bottom: #{abstracts.$text-gap}; /* 2 */
+    margin-block-end: #{abstracts.$text-gap}; /* 2 */
   }
 
   > p:has(+ .summary) {
-    margin-bottom: 0; /* 4 */
+    margin-block-end: 0; /* 4 */
   }
 
   > :is(#{abstracts.$text-elements}, #{abstracts.$headings-no-banner}) {

@@ -40,7 +40,7 @@ body {
   background-color: var(--banner);
   line-height: 1;
   padding: #{abstracts.$text-gap} #{abstracts.$content-margin};
-  margin-bottom: #{abstracts.$text-gap};
+  margin-block-end: #{abstracts.$text-gap};
 
   @include abstracts.respond-to("full") {
     padding-inline: #{abstracts.$page-padding};
@@ -119,10 +119,10 @@ p {
  *    items and sub-lists.
  */
 :is(ul, ol) {
-  padding-left: calc(1rem + 0.5rlh);
+  padding-inline-start: calc(1rem + 0.5rlh);
 
   & &, li + li {
-    margin-top: calc(#{abstracts.$text-gap} / 3); /* 1 */
+    margin-block-start: calc(#{abstracts.$text-gap} / 3); /* 1 */
   }
 }
 

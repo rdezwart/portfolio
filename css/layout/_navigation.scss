@@ -6,7 +6,7 @@
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
-  padding-left: 2ch;
+  padding-inline-start: 2ch;
 
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(1);
@@ -14,7 +14,7 @@
   line-height: 1.2;
 
   li + li {
-    margin-top: calc(#{abstracts.$text-gap} / 2); /* 1 */
+    margin-block-start: calc(#{abstracts.$text-gap} / 2); /* 1 */
   }
 
   li {
@@ -36,7 +36,7 @@
  */
 .nav :is(ul, ol) :is(ul, ol) {
   list-style-type: ">> ";
-  padding-left: 3ch; /* 1 */
+  padding-inline-start: 3ch; /* 1 */
   font-size: abstracts.font-size-scaled(0);
 
   li a {
