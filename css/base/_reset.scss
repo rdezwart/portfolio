@@ -31,8 +31,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /**
  * Limit max width/height (depending on writing mode) to container size.
+ * 1. Make images responsive and maintain aspect ratio
  */
 img {
   display: block;
   max-inline-size: 100%;
+  block-size: auto; /* 1 */
 }

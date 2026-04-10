@@ -1,24 +1,2 @@
 @use "../abstracts";
 
-/**
- * Basic styles for default responsive image.
- */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/**
- * Images contained within a figure and included caption.
- */
-figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: #{abstracts.$text-gap};
-  margin-inline: auto;
-
-  figcaption {
-    margin-inline: 2rlh;
-  }
-}

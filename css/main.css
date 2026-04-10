@@ -217,10 +217,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /**
  * Limit max width/height (depending on writing mode) to container size.
+ * 1. Make images responsive and maintain aspect ratio
  */
 img {
   display: block;
   max-inline-size: 100%;
+  block-size: auto; /* 1 */
 }
 
 /**
@@ -1367,12 +1369,20 @@ p:has(+ :is(.tools, .concepts)) {
   border: none;
 }
 
-/**
- * Basic styles for default responsive image.
- */
-img {
-  max-width: 100%;
-  height: auto;
+.img-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr calc(0.5rlh * 1) 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(0.5rlh * 1);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  justify-items: center;
+}
+.img-list .img-link {
+  margin: 0;
 }
 
 /**
@@ -1394,22 +1404,6 @@ figure {
 }
 figure figcaption {
   margin-inline: 2rlh;
-}
-
-.img-list {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr calc(0.5rlh * 1) 1fr;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(0.5rlh * 1);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-inline: auto;
-  justify-items: center;
-}
-.img-list .img-link {
-  margin: 0;
 }
 
 /**
