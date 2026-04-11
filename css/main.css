@@ -574,155 +574,34 @@ body {
  *    elements.
  */
 .nav-wrapper {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: nav;
   z-index: 1; /* 1 */
-}
-.grid-sidebar > .nav-wrapper {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
-.grid-pre-sidebar > .nav-wrapper {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
 }
 
 /**
  * Defining grid areas for article header, content, and sidebar (TOC).
  */
 .header {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
   grid-area: hd;
-}
-.grid-sidebar > .header {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-}
-.grid-pre-sidebar > .header {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
 }
 
 .content {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
   grid-area: content;
 }
 
-.grid-sidebar > .content {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-}
-
-.grid-pre-sidebar > .content {
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
-}
-
 .pre-sidebar {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
   grid-area: pre;
 }
 
 .sidebar-wrapper {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
   grid-area: side;
-}
-
-.grid-pre-sidebar > .sidebar-wrapper {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 1;
 }
 
 /**
  * Defining grid area for site footer.
  */
 .footer {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
   grid-area: ft;
-}
-.grid-sidebar > .footer {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-}
-.grid-pre-sidebar > .footer {
-  -ms-grid-row: 4;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-}
-@media screen and (max-width: calc(40rem + 2rlh)) {
-  .nav-wrapper {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
-  .grid-sidebar > .nav-wrapper {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
-  .grid-pre-sidebar > .nav-wrapper {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
-  .header {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-  }
-  .grid-sidebar > .header {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-  }
-  .grid-pre-sidebar > .header {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-  }
-  .content {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-  }
-  .grid-sidebar > .content {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-  }
-  .grid-pre-sidebar > .content {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-  }
-  .pre-sidebar {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-  }
-  .sidebar-wrapper {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-  }
-  .grid-pre-sidebar > .sidebar-wrapper {
-    -ms-grid-row: 4;
-    -ms-grid-row-span: 1;
-    -ms-grid-column: 1;
-  }
-  .footer {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-  }
-  .grid-sidebar > .footer {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-  }
-  .grid-pre-sidebar > .footer {
-    -ms-grid-row: 6;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 1;
-  }
 }
 
 /**
@@ -1307,8 +1186,6 @@ figure figcaption {
  * 2. Add extra padding to match border thickness of `.project-details`.
  */
 .project-heading {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: banner;
   align-self: end; /* 1 */
   margin: 0;
@@ -1351,8 +1228,6 @@ figure figcaption {
  * 4. Prevents broken image from spilling everywhere
  */
 .project-img {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: banner;
   z-index: -1; /* 1 */
   background-color: var(--link); /* 3 */
