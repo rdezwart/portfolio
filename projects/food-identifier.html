@@ -57,11 +57,11 @@
         </nav>
         <address>
           <ul class="socials" role="list">
-            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span></a>
+            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" rel="external noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span><span class="visually-hidden"> (external link)</span></a>
             </li>
-            <li><a class="social-link" href="https://github.com/rdezwart" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span></a>
+            <li><a class="social-link" href="https://github.com/rdezwart" rel="external noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span><span class="visually-hidden"> (external link)</span></a>
             </li>
-            <li><a class="social-link" href="https://huggingface.co/rdezwart" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span></a>
+            <li><a class="social-link" href="https://huggingface.co/rdezwart" rel="external noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span><span class="visually-hidden"> (external link)</span></a>
             </li>
           </ul>
         </address>
@@ -75,7 +75,7 @@
             </hgroup>
             <div class="gradient"></div>
             <ul class="links" role="list">
-              <li><strong>Code:</strong> <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noopener noreferrer">HuggingFace</a></li>
+              <li><strong>Code:</strong> <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" rel="external noreferrer">HuggingFace</a></li>
             </ul>
           </header>
           <div class="sidebar-wrapper">
@@ -122,7 +122,7 @@
                 The goal of this project is to create the foundation for an application that allows visually impaired people to
                 identify food objects, such as those in refrigerators, by taking a photo of them and having the item described.
                 According to this
-                <a href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" target="_blank" rel="noopener noreferrer">2018 article from the Canadian Journal of Ophthalmology</a>,
+                <a href="https://www.canadianjournalofophthalmology.ca/article/S0008-4182(17)31135-3/fulltext" rel="external noreferrer">2018 article from the Canadian Journal of Ophthalmology<span class="visually-hidden"> (external link)</span></a>,
                 5.7% of Canadian adults had some form of visual impairment, so I firmly believe this is an area in which tools
                 with this functionality can prove to be quite beneficial. In fact, this project was inspired by the grandmother
                 of a friend of mine!
@@ -147,7 +147,7 @@
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>The App</h2>
               <p>
                 Here's a direct link to
-                <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" target="_blank" rel="noopener noreferrer">the project on Hugging Face</a>.
+                <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier" rel="external noreferrer">the project on Hugging Face<span class="visually-hidden"> (external link)</span></a>.
                 
               </p>
               <gradio-app space="rdezwart/FoodIdentifier" theme_mode="dark" initial_height="28.25rem"></gradio-app>
@@ -157,7 +157,7 @@
               <section id="models">
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Models</h3>
                 <p>This project uses two models, one for initial object detection and another captioning the detected objects.</p>
-                <p><b>YOLOS:</b> <a href="https://huggingface.co/hustvl/yolos-small-300" target="_blank" rel="noopener noreferrer">hustvl/yolos-small-300</a>
+                <p><b>YOLOS:</b> <a href="https://huggingface.co/hustvl/yolos-small-300" rel="external noreferrer">hustvl/yolos-small-300<span class="visually-hidden"> (external link)</span></a>
                 </p>
                 <ul>
                   <li>
@@ -165,7 +165,7 @@
                     produce, containers, etc.), then feed them to Moondream.
                   </li>
                 </ul>
-                <p><b>Moondream:</b> <a href="https://huggingface.co/vikhyatk/moondream2" target="_blank" rel="noopener noreferrer">vikhyatk/moondream2</a>
+                <p><b>Moondream:</b> <a href="https://huggingface.co/vikhyatk/moondream2" rel="external noreferrer">vikhyatk/moondream2<span class="visually-hidden"> (external link)</span></a>
                 </p>
                 <ul>
                   <li>
@@ -180,7 +180,7 @@
                 </p>
                 <p>
                   I found Moondream first, and while smaller than other Image-Text-to-Text models like
-                  <a href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" target="_blank" rel="noopener noreferrer">LLaVa-Next</a>,
+                  <a href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf" rel="external noreferrer">LLaVa-Next<span class="visually-hidden"> (external link)</span></a>,
                   I found it to work remarkably well on the test images I gave it! It took some time to learn the Hugging Face
                   and Gradio environments, but I eventually found my stride and was able to implement Moondream with YOLOS
                   following not far behind.
@@ -191,7 +191,7 @@
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Implementation</h3>
                 <p>
                   You can follow the exact process of development through my commits to the
-                  <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" target="_blank" rel="noopener noreferrer">Hugging Face repository</a>
+                  <a href="https://huggingface.co/spaces/rdezwart/FoodIdentifier/commits/main" rel="external noreferrer">Hugging Face repository<span class="visually-hidden"> (external link)</span></a>
                   for this project.
                   
                 </p>
@@ -199,7 +199,7 @@
                 <ol>
                   <li>
                     I started by looking into different frameworks to build the app with, settling on
-                    <a href="https://www.gradio.app/" target="_blank" rel="noopener noreferrer">Gradio</a>.
+                    <a href="https://www.gradio.app/" rel="external noreferrer">Gradio<span class="visually-hidden"> (external link)</span></a>.
                   </li>
                   <li>
                     After setting up the repository, I began implementing an initial version of Moondream, referencing parts of
@@ -227,7 +227,7 @@
                   for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
                 </p>
                 <figure><img src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge.">
-                  <figcaption><strong>Figure 1: </strong><a href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" target="_blank" rel="noopener noreferrer">Source</a>.
+                  <figcaption><strong>Figure 1: </strong><a href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" rel="external noreferrer">Source<span class="visually-hidden"> (external link)</span></a>.
                   </figcaption>
                 </figure>
                 <p>
@@ -288,11 +288,11 @@
         <p class="secondary">Made by hand with love.</p>
         <address>
           <ul class="socials" role="list">
-            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span></a>
+            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" rel="external noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span><span class="visually-hidden"> (external link)</span></a>
             </li>
-            <li><a class="social-link" href="https://github.com/rdezwart" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span></a>
+            <li><a class="social-link" href="https://github.com/rdezwart" rel="external noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span><span class="visually-hidden"> (external link)</span></a>
             </li>
-            <li><a class="social-link" href="https://huggingface.co/rdezwart" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span></a>
+            <li><a class="social-link" href="https://huggingface.co/rdezwart" rel="external noreferrer"><i class="fa-solid fa-face-smiling-hands" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span><span class="visually-hidden"> (external link)</span></a>
             </li>
           </ul>
         </address>

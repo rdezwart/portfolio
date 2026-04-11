@@ -115,11 +115,14 @@ mixin project-card(project)
       )
 
 
-//- Quick helper to place an anchor that opens in a new tab
+//- Quick helper for links to external pages
 mixin link(url)
-  a(href=url, target="_blank" rel="noopener noreferrer")&attributes(attributes)
+  a(href=url, rel="external noreferrer")&attributes(attributes)
     if block
       block
+    else
+      = url
+    span.visually-hidden  (external link)
 
 
 //- Creates a figcaption with an auto-generated figure number. The count is per
