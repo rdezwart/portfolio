@@ -44,7 +44,7 @@ mixin fancy-name(fancy = false)
   span.name(data-fancy=fancy)
     if fancy
       a.link(href="/") Robin
-        span.sr-only  de Zwart;
+        span.visually-hidden  de Zwart;
         span.letters(aria-hidden="true")
           | #[span  ]
           span d

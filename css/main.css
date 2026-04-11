@@ -415,7 +415,7 @@ b, strong {
  *
  * Referenced: https://guides.18f.gov/accessibility/hidden-content/
  */
-.sr-only {
+.visually-hidden {
   position: absolute;
   inline-size: 1px;
   block-size: 1px;
