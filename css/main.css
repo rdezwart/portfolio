@@ -9,8 +9,7 @@ Use a better box model (opinionated).
 *,
 ::before,
 ::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /**
@@ -246,7 +245,6 @@ body {
 
 a {
   color: var(--link);
-  -webkit-transition: color var(--duration);
   transition: color var(--duration);
   font-weight: calc(var(--base-weight) + 200);
 }
@@ -307,8 +305,7 @@ body {
   background-color: var(--banner);
   line-height: 1;
   padding: 0.5rlh 1rlh;
-  -webkit-margin-after: 0.5rlh;
-          margin-block-end: 0.5rlh;
+  margin-block-end: 0.5rlh;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   :is(h2, h3), :is(.h2, .h3) {
@@ -332,9 +329,7 @@ body {
  * 1. Ensures they play nice in the flex layout.
  */
 p, ul, ol {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto; /* 1 */
+  flex: 1 1 auto; /* 1 */
 }
 
 /**
@@ -381,12 +376,10 @@ h3, .h3 {
  *    items and sub-lists.
  */
 :is(ul, ol) {
-  -webkit-padding-start: calc(1rem + 0.5rlh);
-          padding-inline-start: calc(1rem + 0.5rlh);
+  padding-inline-start: calc(1rem + 0.5rlh);
 }
 :is(ul, ol) :is(ul, ol), :is(ul, ol) li + li {
-  -webkit-margin-before: calc(0.5rlh / 3);
-          margin-block-start: calc(0.5rlh / 3); /* 1 */
+  margin-block-start: calc(0.5rlh / 3); /* 1 */
 }
 
 /**
@@ -452,8 +445,7 @@ b, strong {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   color: var(--highlight);
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none;
+  font-variant-ligatures: none;
 }
 
 /**
@@ -493,33 +485,18 @@ body {
   margin: auto;
   padding: 1rlh;
   min-block-size: 100dvh; /* 4 */
-  display: -ms-grid;
   display: grid;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   justify-items: stretch; /* 3 */
-  -webkit-column-gap: 2rlh;
-     -moz-column-gap: 2rlh;
-          column-gap: 2rlh;
+  -moz-column-gap: 2rlh;
+       column-gap: 2rlh;
   row-gap: 1rlh;
-  -ms-grid-columns: minmax(auto, 21rem) 2rlh minmax(auto, calc(40rem + 2rlh));
   grid-template-columns: minmax(auto, 21rem) minmax(auto, calc(40rem + 2rlh)); /* 1 */
-  -ms-grid-rows: none;
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
 }
-.wrapper > *:nth-child(1) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
-.wrapper > *:nth-child(2) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-}
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .wrapper {
-    -ms-grid-columns: minmax(auto, calc(40rem + 2rlh));
     grid-template-columns: minmax(auto, calc(40rem + 2rlh));
   }
 }
@@ -531,15 +508,13 @@ body {
  *    directly beneath it.
  */
 .grid-default {
-  -ms-grid-rows: auto 1fr auto;
   grid-template-rows: auto 1fr auto; /* 1 */
-      grid-template-areas: "nav hd" ".   content" "ft  ft";
+  grid-template-areas: "nav hd" ".   content" "ft  ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-default {
-    -ms-grid-rows: auto auto 1fr auto;
     grid-template-rows: auto auto 1fr auto;
-        grid-template-areas: "nav" "hd" "content" "ft";
+    grid-template-areas: "nav" "hd" "content" "ft";
   }
 }
 
@@ -547,15 +522,13 @@ body {
  * Grid for pages with a sidebar.
  */
 .grid-sidebar {
-  -ms-grid-rows: auto 1fr auto;
   grid-template-rows: auto 1fr auto;
-      grid-template-areas: "nav  hd" "side content" "ft   ft";
+  grid-template-areas: "nav  hd" "side content" "ft   ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-sidebar {
-    -ms-grid-rows: auto auto 1fr auto auto;
     grid-template-rows: auto auto 1fr auto auto;
-        grid-template-areas: "nav" "hd" "side" "content" "ft";
+    grid-template-areas: "nav" "hd" "side" "content" "ft";
   }
 }
 
@@ -564,15 +537,13 @@ body {
  * place content (such as headings).
  */
 .grid-pre-sidebar {
-  -ms-grid-rows: auto auto 1fr auto;
   grid-template-rows: auto auto 1fr auto;
-      grid-template-areas: "nav  hd" "side pre" "side content" "ft   ft";
+  grid-template-areas: "nav  hd" "side pre" "side content" "ft   ft";
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .grid-pre-sidebar {
-    -ms-grid-rows: auto auto auto 1fr auto auto;
     grid-template-rows: auto auto auto 1fr auto auto;
-        grid-template-areas: "nav" "hd" "pre" "side" "content" "ft";
+    grid-template-areas: "nav" "hd" "pre" "side" "content" "ft";
   }
 }
 
@@ -587,19 +558,12 @@ body {
  *    clicking/tapping sends focus to unexpected places.
  */
 .main, .article {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: subgrid;
   grid-template-columns: subgrid;
-  -ms-grid-rows: subgrid;
   grid-template-rows: subgrid;
   justify-items: stretch; /* 2 */
   grid-column: 1/-1; /* 1 */
   grid-row: 1/-1; /* 1 */
-}
-.main > *:nth-child(1), .article > *:nth-child(1) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
 }
 
 /**
@@ -767,16 +731,14 @@ body {
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
-  -webkit-padding-start: 2ch;
-          padding-inline-start: 2ch;
+  padding-inline-start: 2ch;
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   font-size: 1.25rem;
   line-height: 1.2;
 }
 .nav :is(ul, ol) li + li {
-  -webkit-margin-before: calc(0.5rlh / 2);
-          margin-block-start: calc(0.5rlh / 2); /* 1 */
+  margin-block-start: calc(0.5rlh / 2); /* 1 */
 }
 .nav :is(ul, ol) li a {
   font-weight: var(--max-weight);
@@ -786,8 +748,7 @@ body {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   color: var(--highlight);
-  -webkit-font-variant-ligatures: none;
-          font-variant-ligatures: none;
+  font-variant-ligatures: none;
 }
 
 /**
@@ -797,8 +758,7 @@ body {
  */
 .nav :is(ul, ol) :is(ul, ol) {
   list-style-type: ">> ";
-  -webkit-padding-start: 3ch;
-          padding-inline-start: 3ch; /* 1 */
+  padding-inline-start: 3ch; /* 1 */
   font-size: 1rem;
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
@@ -824,13 +784,8 @@ body {
  * 3. Add extra scroll margin to compensate for the lack of actual padding.
  */
 .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
 }
@@ -849,26 +804,18 @@ body {
  * 4. Reduce space above summary bullet list in Overview
  */
 section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
-  -webkit-padding-before: 0.5rlh;
-          padding-block-start: 0.5rlh; /* 1 */
+  padding-block-start: 0.5rlh; /* 1 */
   overflow-wrap: normal;
 }
 section > :not(section) {
-  -webkit-margin-after: 0.5rlh;
-          margin-block-end: 0.5rlh; /* 2 */
+  margin-block-end: 0.5rlh; /* 2 */
 }
 section > p:has(+ .summary) {
-  -webkit-margin-after: 0;
-          margin-block-end: 0; /* 4 */
+  margin-block-end: 0; /* 4 */
 }
 section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   margin-inline: 1rlh; /* 3 */
@@ -885,7 +832,6 @@ section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
  * 2. Undo margin applied to section children
  */
 ul.project-grid {
-  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
   gap: 1rlh;
@@ -901,20 +847,12 @@ ul.project-grid {
  */
 .header {
   position: relative; /* 2 */
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0;
-  -webkit-margin-before: -1rlh;
-          margin-block-start: -1rlh;
+  margin-block-start: -1rlh;
   min-block-size: 10rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   background-color: var(--banner); /* 4 */
   background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
@@ -925,8 +863,7 @@ ul.project-grid {
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .header {
-    -webkit-margin-before: 0;
-            margin-block-start: 0;
+    margin-block-start: 0;
   }
 }
 
@@ -942,9 +879,7 @@ ul.project-grid {
  * Fallback heading for when the canvas fails to load or JS is disabled
  */
 .canvas-fallback {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1;
-          flex: 0 1;
+  flex: 0 1;
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   font-size: 3.8146972656rem;
@@ -957,20 +892,11 @@ ul.project-grid {
  * canvas fails to load)
  */
 .header noscript {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   font-style: italic;
   font-size: 0.8rem;
 }
@@ -981,25 +907,12 @@ ul.project-grid {
  */
 @media (scripting: none) {
   .header:has(#automata-wrapper) {
-    display: -ms-grid;
     display: grid; /* 1 */
-    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    -ms-grid-rows: 1fr 1rlh auto;
     grid-template-rows: 1fr auto;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     padding: 1rlh;
     gap: 1rlh;
-  }
-  .header:has(#automata-wrapper) > *:nth-child(1) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-  }
-  .header:has(#automata-wrapper) > *:nth-child(2) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
   }
 }
 .header:has(#automata-wrapper) {
@@ -1013,12 +926,9 @@ ul.project-grid {
 }
 @media (scripting: enabled) {
   .header:has(#automata-wrapper) :is(.canvas-fallback, .header noscript) {
-    -webkit-transition-property: opacity;
     transition-property: opacity;
-    -webkit-transition-duration: calc(var(--duration) * 4);
-            transition-duration: calc(var(--duration) * 4);
-    -webkit-transition-delay: 1s;
-            transition-delay: 1s;
+    transition-duration: calc(var(--duration) * 4);
+    transition-delay: 1s;
     opacity: 1;
   }
   @starting-style {
@@ -1036,17 +946,11 @@ ul.project-grid {
  *    with Automata wrapper.
  */
 .header .hgroup {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
   padding-inline: 1rlh;
   padding-block: 1rlh 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(from var(--banner) r g b/0.9)), to(rgb(from var(--banner) r g b/0.7)));
   background: linear-gradient(rgb(from var(--banner) r g b/0.9) 0%, rgb(from var(--banner) r g b/0.7) 100%); /* 1 */
   z-index: 1; /* 2 */
 }
@@ -1058,11 +962,8 @@ ul.project-grid {
  */
 .header .gradient {
   z-index: 2;
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
+  flex: auto;
   min-block-size: 4rlh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(from var(--banner) r g b/0.7)), color-stop(80%, rgb(from var(--banner) r g b/0)));
   background: linear-gradient(rgb(from var(--banner) r g b/0.7) 0%, rgb(from var(--banner) r g b/0) 80%); /* 1 */
 }
 
@@ -1071,22 +972,12 @@ ul.project-grid {
  * 1. Had to increase specificity a bit for padding/margins.
  */
 ul.links { /* 1 */
-  -webkit-box-flex: 0;
-      -ms-flex: 0 auto;
-          flex: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  flex: 0 auto;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   gap: 0 1rlh;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding-block: 0.5rlh;
   padding-inline: 1rlh;
   background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
@@ -1099,19 +990,11 @@ ul.links { /* 1 */
  * List of tools in Overview section.
  */
 .tools, .concepts {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   gap: 0.5rlh;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  flex-wrap: wrap;
+  align-items: start;
   justify-items: center;
 }
 .tools li, .concepts li {
@@ -1135,8 +1018,7 @@ ul.links { /* 1 */
  * Reduce bottom margin on paragraph directly above Tools and Concepts lists.
  */
 p:has(+ :is(.tools, .concepts)) {
-  -webkit-margin-after: 0.25rlh;
-          margin-block-end: 0.25rlh;
+  margin-block-end: 0.25rlh;
 }
 
 /**
@@ -1145,20 +1027,15 @@ p:has(+ :is(.tools, .concepts)) {
  * 2. Rearrange footer contents when screen becomes too small.
  */
 .footer {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 0.5rlh 1fr 0.5rlh auto;
   grid-template-columns: auto 1fr auto;
   gap: 0.5rlh;
   justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   background-color: var(--banner);
   font-size: 0.8rem;
   padding: 1rlh;
-  -webkit-margin-after: -1rlh;
-          margin-block-end: -1rlh;
+  margin-block-end: -1rlh;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .footer {
@@ -1167,7 +1044,6 @@ p:has(+ :is(.tools, .concepts)) {
 }
 @media screen and (max-width: 32rem) {
   .footer {
-    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr; /* 2 */
   }
 }
@@ -1187,13 +1063,8 @@ p:has(+ :is(.tools, .concepts)) {
  * A header element, contains the main navigation and social links
  */
 .nav-wrapper, .nav-wrapper .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
 }
 
@@ -1202,17 +1073,10 @@ p:has(+ :is(.tools, .concepts)) {
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
 .nav-wrapper .name-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.125rlh;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start; /* 1 */
+  align-items: start; /* 1 */
 }
 .nav-wrapper .name-wrapper p {
   color: var(--absolute);
@@ -1243,13 +1107,8 @@ p:has(+ :is(.tools, .concepts)) {
   }
 }
 .toc {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
@@ -1271,8 +1130,7 @@ p:has(+ :is(.tools, .concepts)) {
 .toc .nav {
   overflow-y: auto; /* 1 */
   overflow-block: auto; /* 1 */
-  -webkit-margin-before: 0.5ch;
-          margin-block-start: 0.5ch; /* 2 */
+  margin-block-start: 0.5ch; /* 2 */
 }
 .toc .nav > :is(ul, ol) > li > a {
   font-weight: calc(var(--base-weight) + 500); /* 3 */
@@ -1284,7 +1142,6 @@ p:has(+ :is(.tools, .concepts)) {
 }
 .toc .nav :is(ul, ol) li::marker { /* 4 */
   color: color-mix(in srgb, var(--highlight), transparent 100%);
-  -webkit-transition: color var(--duration) ease;
   transition: color var(--duration) ease;
 }
 .toc .nav :is(ul, ol) li.current::marker { /* 5 */
@@ -1303,28 +1160,17 @@ p:has(+ :is(.tools, .concepts)) {
 }
 
 .sidebar-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 1rlh;
 }
 .sidebar-wrapper section:first-child {
-  -webkit-padding-before: 0;
-          padding-block-start: 0; /* 2 */
+  padding-block-start: 0; /* 2 */
 }
 
 .sidebar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0;
 }
 
@@ -1333,11 +1179,8 @@ p:has(+ :is(.tools, .concepts)) {
  * See PUG include of the same name.
  */
 .socials {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: 0.6em;
   font-size: 1.5625rem;
   line-height: 1;
@@ -1388,12 +1231,9 @@ p:has(+ :is(.tools, .concepts)) {
 }
 
 .img-list {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr calc(0.5rlh * 1) 1fr;
   grid-template-columns: repeat(2, 1fr);
   gap: calc(0.5rlh * 1);
-  inline-size: -webkit-fit-content;
   inline-size: -moz-fit-content;
   inline-size: fit-content;
   margin-inline: auto;
@@ -1407,16 +1247,9 @@ p:has(+ :is(.tools, .concepts)) {
  * Images contained within a figure and included caption.
  */
 figure {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 0.5rlh;
   margin-inline: auto;
 }
@@ -1443,22 +1276,16 @@ figure figcaption {
  *    :focus-within is supported.
  */
 .project-card {
-  display: -ms-grid;
   display: grid;
-      grid-template-areas: "banner"; /* 1 */
-  -ms-grid-columns: 1fr;
+  grid-template-areas: "banner"; /* 1 */
   grid-template-columns: 1fr;
-  -ms-grid-rows: auto 1fr;
   grid-template-rows: auto 1fr;
   position: relative; /* 2 */
   scroll-margin-block-start: 0.5rlh;
-  -webkit-box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
-          box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
+  box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
   outline: 0 solid var(--highlight);
-  -webkit-transition-property: outline-width, outline-color;
   transition-property: outline-width, outline-color;
-  -webkit-transition-duration: calc(var(--duration) / 2), var(--duration);
-          transition-duration: calc(var(--duration) / 2), var(--duration);
+  transition-duration: calc(var(--duration) / 2), var(--duration);
 }
 .project-card:hover, .project-card:focus-within {
   outline-width: 0.2rem;
@@ -1483,8 +1310,7 @@ figure figcaption {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: banner;
-  -ms-grid-row-align: end;
-      align-self: end; /* 1 */
+  align-self: end; /* 1 */
   margin: 0;
   padding-block: 0.5rlh;
   padding-inline: calc(1rlh + 0.2rem); /* 2 */
@@ -1546,20 +1372,12 @@ figure figcaption {
 .project-details {
   border: 0.2rem solid var(--banner);
   border-block-start-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0.5rlh;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  align-items: start;
   padding: 1rlh;
-  -webkit-padding-before: 0.5rlh;
-          padding-block-start: 0.5rlh;
+  padding-block-start: 0.5rlh;
 }
 
 /**
@@ -1579,10 +1397,8 @@ figure figcaption {
   background-color: var(--banner);
   border: 0.1rem solid var(--link);
   color: var(--link);
-  -webkit-transition-property: border-color, color;
   transition-property: border-color, color;
-  -webkit-transition-duration: var(--duration);
-          transition-duration: var(--duration);
+  transition-duration: var(--duration);
   /**
    * 1. When button is hovered, also activate tooltip
    */
@@ -1627,18 +1443,14 @@ figure figcaption {
 [role=tooltip] {
   position: absolute;
   inset-inline-start: 50%; /* 1 */
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0); /* 1 */
+  transform: translate(-50%, 0); /* 1 */
   text-align: center;
   background-color: var(--banner);
   padding-block: 0.25rlh;
   padding-inline: 0.5rlh;
-  -webkit-margin-before: 0.25rlh;
-          margin-block-start: 0.25rlh;
-  -webkit-transition-property: border-color, opacity, visibility;
+  margin-block-start: 0.25rlh;
   transition-property: border-color, opacity, visibility;
-  -webkit-transition-duration: var(--duration);
-          transition-duration: var(--duration);
+  transition-duration: var(--duration);
   border: 0.1rem solid var(--secondary);
   visibility: hidden;
   opacity: 0;
@@ -1648,13 +1460,8 @@ figure figcaption {
  * Groups containing a heading and a list of skills.
  */
 .skills-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 0;
 }
 .skills-group .h4 {
@@ -1691,7 +1498,6 @@ figure figcaption {
   inline-size: 100%;
   block-size: 100%;
   opacity: 1;
-  -webkit-transition: opacity calc(var(--duration) * 4);
   transition: opacity calc(var(--duration) * 4);
 }
 @starting-style {
@@ -1706,13 +1512,8 @@ figure figcaption {
   margin: 0;
   padding-inline: 0;
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   gap: 0.5rlh;
   font-size: 1rem;
 }
