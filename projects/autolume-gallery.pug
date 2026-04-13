@@ -72,19 +72,22 @@ append overview
   section#examples
     +h(3, "Examples")
 
-    img(src="/img/autolume-gallery/canvas-1.webp"
-      alt="The Autolume canvas in VR, a mix of greens, yellows, and whites."
-      loading="lazy" width="1920" height="1080")
-
-    div.img-list
-      img(src="/img/autolume-gallery/canvas-2.webp" loading="lazy" width="1024" height="1024"
-        alt="A composition saved from AutolumeGallery, primarily oranges and whites.")
-      img(src="/img/autolume-gallery/canvas-3.webp" loading="lazy" width="1024" height="1024"
-        alt="A composition saved from AutolumeGallery, primarily blues and greens.")
-      img(src="/img/autolume-gallery/canvas-4.webp" loading="lazy" width="1024" height="1024"
-        alt="A composition saved from AutolumeGallery, primarily whites and blues.")
-      img(src="/img/autolume-gallery/canvas-5.webp"  loading="lazy" width="1024" height="1024"
-        alt="A composition saved from AutolumeGallery, primarily greens and whites.")
+    ol.img-list(role="list")
+      li: figure
+        +picture-sm(project, "canvas-1", 960, 540, "The Autolume canvas in VR, a mix of greens, yellows, and white.")
+        +figcaption("canvas-1")
+      li: figure
+        +picture-sm(project, "canvas-2", 512, 512, "A composition saved from AutolumeGallery, primarily oranges and whites.")
+        +figcaption("canvas-2")
+      li: figure
+        +picture-sm(project, "canvas-3", 512, 512, "A composition saved from AutolumeGallery, primarily blues and greens.")
+        +figcaption("canvas-3")
+      li: figure
+        +picture-sm(project, "canvas-4", 512, 512, "A composition saved from AutolumeGallery, primarily whites and blues.")
+        +figcaption("canvas-4")
+      li: figure
+        +picture-sm(project, "canvas-5", 512, 512, "A composition saved from AutolumeGallery, primarily greens and whites.")
+        +figcaption("canvas-5")
 
 
 append content
@@ -180,8 +183,7 @@ append content
         to show. I will run through each object and any relevant children.
 
       figure
-        img(src=`/img/${project.slug}/hierarchy.png` loading="lazy" width="286" height="239"
-          alt="Unity hierarchy for this project.")
+        +picture(project, "hierarchy", 286, 239, "Unity hierarchy for this project.", "png")
         +figcaption() Root hierarchy of the Gallery scene.
 
       section#directional-light
@@ -329,9 +331,8 @@ append content
   section#results
     +h(2, "Results")
     figure
-      img(src=`/img/${project.slug}/canvas-3.webp` loading="lazy" width="512" height="512"
-        alt="A composition saved from AutolumeGallery, primarily blues and greens.")
-      +figcaption().
+      +picture-sm(project, "canvas-3", 512, 512, "A composition saved from AutolumeGallery, primarily blues and greens.")
+      +figcaption("canvas-3").
         The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified, showing
         Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in this
         combination.
