@@ -1109,31 +1109,53 @@ p:has(+ :is(.tools, .concepts)) {
   border: none;
 }
 
-.img-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(0.5rlh * 1);
-  inline-size: -moz-fit-content;
-  inline-size: fit-content;
-  margin-inline: auto;
-  justify-items: center;
-}
-.img-list .img-link {
-  margin: 0;
+/**
+ * Responsive image styles for images with multiple sources. Since this wraps
+ * the img element, we need to apply these structural styles here.
+ */
+picture {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 /**
- * Images contained within a figure and included caption.
+ * Flex grid for a gallery of images. Used in "Examples" sections.
+ * 1. Reduce row gap due to extra space from figcaptions
+ * 2. Remove inline margin applied to children of section elements
+ * 3. Reduce figcaption outer margin since this typically isn't placed inline
+ *    with text
+ */
+:is(ul, ol).img-list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rlh 1rlh;
+  /* 1 */
+  flex-wrap: wrap;
+  margin-inline: 0; /* 2 */
+}
+:is(ul, ol).img-list li {
+  flex: 15rem;
+}
+:is(ul, ol).img-list li:first-child {
+  flex: auto;
+}
+:is(ul, ol).img-list figcaption {
+  margin-inline: 1rlh; /* 3 */
+}
+
+/**
+ * Content contained within a figure and included caption.
+ * 1. Extra inline margin to properly mimic general text margins.
  */
 figure {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rlh;
-  margin-inline: auto;
+  align-items: center;
 }
 figure figcaption {
-  margin-inline: 2rlh;
+  margin-inline: 2rlh; /* 1 */
 }
 
 /**

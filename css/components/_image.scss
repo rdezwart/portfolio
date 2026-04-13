@@ -1,2 +1,11 @@
 @use "../abstracts";
 
+/**
+ * Responsive image styles for images with multiple sources. Since this wraps
+ * the img element, we need to apply these structural styles here.
+ */
+picture {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}

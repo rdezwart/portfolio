@@ -1,16 +1,14 @@
 @use "../abstracts";
 
 /**
- * Images contained within a figure and included caption.
+ * Content contained within a figure and included caption.
+ * 1. Extra inline margin to properly mimic general text margins.
  */
 figure {
-  display: flex;
-  flex-direction: column;
+  @include abstracts.flex-column();
   align-items: center;
-  gap: #{abstracts.$text-gap};
-  margin-inline: auto;
 
   figcaption {
-    margin-inline: 2rlh;
+    margin-inline: #{abstracts.$page-padding * 2}; /* 1 */
   }
 }

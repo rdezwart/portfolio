@@ -1,20 +1,26 @@
 @use "../abstracts";
 
-.img-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(#{abstracts.$text-gap} * 1);
-  inline-size: fit-content;
-  margin-inline: auto;
-  justify-items: center;
+/**
+ * Flex grid for a gallery of images. Used in "Examples" sections.
+ * 1. Reduce row gap due to extra space from figcaptions
+ * 2. Remove inline margin applied to children of section elements
+ * 3. Reduce figcaption outer margin since this typically isn't placed inline
+ *    with text
+ */
+:is(ul, ol).img-list {
+  @include abstracts.flex-row(abstracts.$text-gap abstracts.$page-padding); /* 1 */
+  flex-wrap: wrap;
+  margin-inline: 0; /* 2 */
 
-  // TODO: Keep in-line with edges of banner headings
+  li {
+    flex: 15rem;
 
-  //@media (width < abstracts.$main-width - 10rem) {
-  //  grid-template-columns: 1fr;
-  //}
+    &:first-child {
+      flex: auto;
+    }
+  }
 
-  .img-link {
-    margin: 0;
+  figcaption {
+    margin-inline: #{abstracts.$page-padding}; /* 3 */
   }
 }
