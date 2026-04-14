@@ -2,14 +2,14 @@ extends _sidebar
 
 append vars
   -
-    let project = new Project();
+    let currentProject = new Project();
     automata = false;
 
 prepend page-title
   -
-    title = project.title
-    slug = project.slug
-    description = project.description
+    title = currentProject.title
+    slug = currentProject.slug
+    description = currentProject.description
 
 block url
   meta(property="og:url" content=`https://rdezwart.ca/projects/${slug}.html`)
@@ -29,8 +29,8 @@ block main
             +h(1, title)
             p.description #{description}
         div.gradient
-        if project.links.length > 0
-          +list(project.links)(class="links" role="list")
+        if currentProject.links.length > 0
+          +list(currentProject.links)(class="links" role="list")
 
     div.sidebar-wrapper
       block sidebar-content
@@ -44,9 +44,9 @@ block main
         section#overview
           +h(2, "Overview")
             block overview
-              if project.tools.length > 0
+              if currentProject.tools.length > 0
                 p: strong Tools:
-                +list(project.tools)(class="tools" role="list")
-              if project.concepts.length > 0
+                +list(currentProject.tools)(class="tools" role="list")
+              if currentProject.concepts.length > 0
                 p: strong Concepts:
-                +list(project.concepts)(class="concepts" role="list")
+                +list(currentProject.concepts)(class="concepts" role="list")

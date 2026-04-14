@@ -128,14 +128,14 @@ mixin link(url)
 //- Creates a figcaption with an auto-generated figure number. The count is per
     page.
 //- Referenced: https://www.simonsmith.io/destructuring-objects-as-function-parameters-in-es6
-mixin figcaption(hiResName, {_project = project} = {})
+mixin figcaption(hiResName, {project = currentProject} = {})
   - figureCount++;
   figcaption
     strong
       | Figure #{figureCount}
       if hiResName
         |  (
-        +hi-res-label(hiResName, {_project: _project})
+        +hi-res-label(hiResName, {project: project})
         | )
       if block
         = ": "
@@ -144,8 +144,8 @@ mixin figcaption(hiResName, {_project = project} = {})
 
 //- Inserts a standard link for the highest resolution version of an image,
   one that usually won't be loaded onto the page directly.
-mixin hi-res-label(name, {_project = project} = {})
-  a(href=`/img/${_project.slug}/${name}.png`) Hi-Res
+mixin hi-res-label(name, {project = currentProject} = {})
+  a(href=`/img/${project.slug}/${name}.png`) Hi-Res
 
 
 //- Expects webp and fallback images to exist, including smaller versions for
