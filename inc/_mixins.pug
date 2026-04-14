@@ -68,20 +68,29 @@ mixin name(full=true)
     a.name(href="/") Robin#[span.highlight ;]
 
 
-//- TOC needs to be wrapped for sticky to work properly
-mixin toc(heading="Table of Contents")
-  div.toc
-    +h(2, heading, false, 4)(class="sidebar-heading")
-    nav.nav(aria-labelledby="toc-heading")
-      if block
-        block
+//- Modifies `+sidebar()` for TOC-specific features
+mixin toc(options = {})
+  -
+    const {
+      heading = "Table of Contents",
+      headingID = "toc-heading",
+    } = options;
 
-//- Generic sidebar mixin
-mixin sidebar(heading="Sidebar", sticky=false)
-  section.sidebar(class=sticky ? "sticky" : "")
-    +h(2, heading, false, 4)(class="sidebar-heading")
-    if block
+  +sidebar({heading, headingID})(class="sticky toc")&attributes(attributes)
+    nav.nav(aria-labelledby="toc-heading")
       block
+
+//- Generic sidebar mixin, meant to be wrapped in a `.sidebar-wrapper`
+mixin sidebar(options = {})
+  -
+    const {
+      heading = "Sidebar",
+      headingID = undefined,
+    } = options;
+
+  section.sidebar&attributes(attributes)
+    +h(2, heading, false, 4)(class="sidebar-heading" id=headingID)
+    block
 
 
 //- Renders a list of items, with extra cases for a comma separated list

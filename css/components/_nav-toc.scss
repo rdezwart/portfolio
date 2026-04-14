@@ -2,58 +2,37 @@
 
 /**
  * Table of Contents
- * 1. Limit height so it always fits on screen.
  */
 .toc {
-  position: sticky;
-  inset-block-start: #{abstracts.$page-padding};
-
-  max-block-size: calc(100vh - (#{abstracts.$page-padding} * 2)); /* 1 */
-  @supports (max-block-size: 100dvh) {
-    max-block-size: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
-  }
-
-  @include abstracts.flex-column();
-
-  @include abstracts.respond-to("full") {
-    max-block-size: none;
-  }
 }
 
 /**
  * Nav list within a Table of Contents
- * 1. Display a scroll bar if the TOC is longer than the screen.
- * 2. Align TOC with main nav text, bit of a magic number but the math works
- *    out. Has to only apply to the root list, sublists are already fine.
- * 3. Reduce font weight of root items to not compete with main nav as much.
- * 4. Make list markers invisible by default
- * 5. Markers should be shown when they have .current or are focused/hovered
- * 6. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 1. Reduce font weight of root items to not compete with main nav as much.
+ * 2. Make list markers invisible by default
+ * 3. Markers should be shown when they have .current or are focused/hovered
+ * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
  */
 .toc .nav {
-  overflow-y: auto; /* 1 */
-  overflow-block: auto; /* 1 */
-  margin-block-start: 0.5ch; /* 2 */
-
   & > :is(ul, ol) > li > a {
-    font-weight: calc(var(--base-weight) + 500); /* 3 */
+    font-weight: calc(var(--base-weight) + 500); /* 1 */
   }
 
   & :is(ul, ol) {
     font-size: abstracts.font-size-scaled(0);
-    overflow-y: hidden; /* 6 */
-    overflow-block: hidden; /* 6 */
+    overflow-y: hidden; /* 4 */
+    overflow-block: hidden; /* 4 */
 
-    li::marker { /* 4 */
+    li::marker { /* 2 */
       color: color-mix(in srgb, var(--highlight), transparent 100%);
       transition: color var(--duration) ease;
     }
 
-    li.current::marker { /* 5 */
+    li.current::marker { /* 3 */
       color: color-mix(in srgb, var(--highlight), transparent 0%);
     }
 
-    li:has(> a:focus, > a:hover)::marker { /* 5 */
+    li:has(> a:focus, > a:hover)::marker { /* 3 */
       color: color-mix(in srgb, var(--highlight), transparent 0%);
     }
   }

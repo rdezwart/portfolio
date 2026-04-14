@@ -21,9 +21,25 @@
  */
 .sidebar {
   @include abstracts.flex-column(0);
+}
 
-  &.sticky {
-    position: sticky;
-    inset-block-start: #{abstracts.$page-padding};
+/**
+ * Sticky sidebar styles.
+ * 1. Limit height so it always fits on screen.
+ * 2. Display a scroll bar if the TOC is longer than the screen.
+ */
+.sidebar.sticky {
+  inset-block-start: #{abstracts.$page-padding};
+
+  overflow-y: auto; /* 2 */
+  overflow-block: auto; /* 2 */
+
+  max-block-size: calc(100vh - (#{abstracts.$page-padding} * 2)); /* 1 */
+  @supports (max-block-size: 100dvh) {
+    max-block-size: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
+  }
+
+  @include abstracts.respond-to("full") {
+    max-block-size: none;
   }
 }

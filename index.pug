@@ -18,7 +18,7 @@ append pre-sidebar
     p Hello world lorem ipsum
 
 append sidebar-content
-  +sidebar("Skills", true)
+  +sidebar({heading: "Skills"})(class="sticky")
     include inc/_skills
 
 append content

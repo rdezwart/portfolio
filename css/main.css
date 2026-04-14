@@ -456,6 +456,13 @@ b, strong {
 }
 
 /**
+ * Make an element sticky.
+ */
+.sticky {
+  position: sticky;
+}
+
+/**
  * Ensure body always fills the entire screen.
  * 1. Use dynamic viewport height to account for browser UI on mobile devices.
  *    See: https://stackoverflow.com/a/72245072
@@ -964,60 +971,30 @@ ul.links { /* 1 */
 
 /**
  * Table of Contents
- * 1. Limit height so it always fits on screen.
  */
-.toc {
-  position: sticky;
-  inset-block-start: 1rlh;
-  max-block-size: calc(100vh - 1rlh * 2); /* 1 */
-}
-@supports (max-block-size: 100dvh) {
-  .toc {
-    max-block-size: calc(100dvh - 1rlh * 2); /* 1 */
-  }
-}
-.toc {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rlh;
-}
-@media screen and (max-width: calc(40rem + 2rlh)) {
-  .toc {
-    max-block-size: none;
-  }
-}
-
 /**
  * Nav list within a Table of Contents
- * 1. Display a scroll bar if the TOC is longer than the screen.
- * 2. Align TOC with main nav text, bit of a magic number but the math works
- *    out. Has to only apply to the root list, sublists are already fine.
- * 3. Reduce font weight of root items to not compete with main nav as much.
- * 4. Make list markers invisible by default
- * 5. Markers should be shown when they have .current or are focused/hovered
- * 6. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 1. Reduce font weight of root items to not compete with main nav as much.
+ * 2. Make list markers invisible by default
+ * 3. Markers should be shown when they have .current or are focused/hovered
+ * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
  */
-.toc .nav {
-  overflow-y: auto; /* 1 */
-  overflow-block: auto; /* 1 */
-  margin-block-start: 0.5ch; /* 2 */
-}
 .toc .nav > :is(ul, ol) > li > a {
-  font-weight: calc(var(--base-weight) + 500); /* 3 */
+  font-weight: calc(var(--base-weight) + 500); /* 1 */
 }
 .toc .nav :is(ul, ol) {
   font-size: 1rem;
-  overflow-y: hidden; /* 6 */
-  overflow-block: hidden; /* 6 */
+  overflow-y: hidden; /* 4 */
+  overflow-block: hidden; /* 4 */
 }
-.toc .nav :is(ul, ol) li::marker { /* 4 */
+.toc .nav :is(ul, ol) li::marker { /* 2 */
   color: color-mix(in srgb, var(--highlight), transparent 100%);
   transition: color var(--duration) ease;
 }
-.toc .nav :is(ul, ol) li.current::marker { /* 5 */
+.toc .nav :is(ul, ol) li.current::marker { /* 3 */
   color: color-mix(in srgb, var(--highlight), transparent 0%);
 }
-.toc .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker { /* 5 */
+.toc .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker { /* 3 */
   color: color-mix(in srgb, var(--highlight), transparent 0%);
 }
 
@@ -1046,9 +1023,27 @@ ul.links { /* 1 */
   flex-direction: column;
   gap: 0;
 }
+
+/**
+ * Sticky sidebar styles.
+ * 1. Limit height so it always fits on screen.
+ * 2. Display a scroll bar if the TOC is longer than the screen.
+ */
 .sidebar.sticky {
-  position: sticky;
   inset-block-start: 1rlh;
+  overflow-y: auto; /* 2 */
+  overflow-block: auto; /* 2 */
+  max-block-size: calc(100vh - 1rlh * 2); /* 1 */
+}
+@supports (max-block-size: 100dvh) {
+  .sidebar.sticky {
+    max-block-size: calc(100dvh - 1rlh * 2); /* 1 */
+  }
+}
+@media screen and (max-width: calc(40rem + 2rlh)) {
+  .sidebar.sticky {
+    max-block-size: none;
+  }
 }
 
 /**
