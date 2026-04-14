@@ -16,6 +16,14 @@
   }
 }
 
+/**
+ * Generic sidebar, the section itself.
+ */
 .sidebar {
   @include abstracts.flex-column(0);
+
+  &.sticky {
+    position: sticky;
+    inset-block-start: #{abstracts.$page-padding};
+  }
 }

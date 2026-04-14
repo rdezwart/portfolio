@@ -1038,10 +1038,17 @@ ul.links { /* 1 */
   padding-block-start: 0; /* 2 */
 }
 
+/**
+ * Generic sidebar, the section itself.
+ */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+.sidebar.sticky {
+  position: sticky;
+  inset-block-start: 1rlh;
 }
 
 /**

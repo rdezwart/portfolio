@@ -77,8 +77,8 @@ mixin toc(heading="Table of Contents")
         block
 
 //- Generic sidebar mixin
-mixin sidebar(heading="Sidebar")
-  section.sidebar
+mixin sidebar(heading="Sidebar", sticky=false)
+  section.sidebar(class=sticky ? "sticky" : "")
     +h(2, heading, false, 4)(class="sidebar-heading")
     if block
       block
