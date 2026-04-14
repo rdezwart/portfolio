@@ -131,12 +131,13 @@ mixin figcaption(hiResName, options = {})
   -
     const {
       project = currentProject,
+      counterName = "Figure",
     } = options;
-    figureCount++;
+    counters[counterName]++;
 
   figcaption
     strong
-      | Figure #{figureCount}
+      | #{counterName} #{counters[counterName]}
       if hiResName
         |  (
         +hi-res-label(hiResName, options)
