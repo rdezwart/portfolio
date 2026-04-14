@@ -180,10 +180,3 @@ ul.links { /* 1 */
   }
 }
 
-
-/**
- * Reduce bottom margin on paragraph directly above Tools and Concepts lists.
- */
-p:has(+ :is(.tools, .concepts)) {
-  margin-block-end: #{abstracts.$text-gap * 0.5};
-}

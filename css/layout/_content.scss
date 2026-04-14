@@ -25,7 +25,6 @@
  *    TOC scroll tracking.
  * 2. With no row-gap, elements need their bottom margins back.
  * 3. Inset text a small amount from the edges of the container.
- * 4. Reduce space above summary bullet list in Overview
  */
 section {
   @include abstracts.flex-column();
@@ -36,10 +35,6 @@ section {
 
   > :not(section) {
     margin-block-end: #{abstracts.$text-gap}; /* 2 */
-  }
-
-  > p:has(+ .summary) {
-    margin-block-end: 0; /* 4 */
   }
 
   > :is(#{abstracts.$text-elements}, #{abstracts.$headings-no-banner}) {
