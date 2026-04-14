@@ -607,10 +607,13 @@ body {
 /**
  * Navigation lists, general
  * 1. Add reduced margin above list items for clearer breaks when wrapping
+ * 2. Line up left edge of bullets with left margin. We can safely use `2ch`
+ *    because we're working in a monospace font.
+ * 3. If a navigation list item is marked as "current", highlight it blue
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
-  padding-inline-start: 2ch;
+  padding-inline-start: 2ch; /* 2 */
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   font-size: 1.25rem;
@@ -618,6 +621,9 @@ body {
 }
 .nav :is(ul, ol) li + li {
   margin-block-start: calc(0.5rlh / 2); /* 1 */
+}
+.nav :is(ul, ol) li.current > a {
+  color: var(--highlight); /* 3 */
 }
 .nav :is(ul, ol) li a {
   font-weight: var(--max-weight);
@@ -632,12 +638,8 @@ body {
 
 /**
  * Sub lists, mostly used in table of contents.
- * 1. Line up left edge of bullets with text of parent. We can use `2ch` because
- *    we're working in a monospace font.
  */
 .nav :is(ul, ol) :is(ul, ol) {
-  list-style-type: ">> ";
-  padding-inline-start: 3ch; /* 1 */
   font-size: 1rem;
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
