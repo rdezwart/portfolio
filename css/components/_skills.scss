@@ -2,20 +2,13 @@
 
 /**
  * Groups containing a heading and a list of skills.
+ * 1. Highlight category titles
  */
 .skills-group {
   @include abstracts.flex-column(0);
 
   .h4 {
     font-weight: calc(var(--base-weight) + 400);
+    color: var(--highlight); /* 1 */
   }
-}
-
-/**
- * Lists of skills displayed in sidebar.
- */
-.skills-list {
-  //display: flex;
-  //flex-direction: row;
-  //flex-wrap: wrap;
 }

@@ -1339,6 +1339,7 @@ figure figcaption {
 
 /**
  * Groups containing a heading and a list of skills.
+ * 1. Highlight category titles
  */
 .skills-group {
   display: flex;
@@ -1347,11 +1348,9 @@ figure figcaption {
 }
 .skills-group .h4 {
   font-weight: calc(var(--base-weight) + 400);
+  color: var(--highlight); /* 1 */
 }
 
-/**
- * Lists of skills displayed in sidebar.
- */
 /**
  * Container for P5 automata canvas.
  * 1. Do not change the size of the header, just fit inside it.
