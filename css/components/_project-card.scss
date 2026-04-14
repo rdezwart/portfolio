@@ -65,16 +65,7 @@
  */
 .project-heading a {
   @include abstracts.heading-typeface();
-  color: var(--text); /* 2 */
   text-decoration: none;
-
-  &:hover, &:focus {
-    color: var(--highlight); /* 2 */
-  }
-
-  &:active {
-    color: var(--active); /* 2 */
-  }
 
   &::after { /* 1 */
     content: "";

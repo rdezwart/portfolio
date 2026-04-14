@@ -1217,14 +1217,7 @@ figure figcaption {
 .project-heading a {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
-  color: var(--text); /* 2 */
   text-decoration: none;
-}
-.project-heading a:hover, .project-heading a:focus {
-  color: var(--highlight); /* 2 */
-}
-.project-heading a:active {
-  color: var(--active); /* 2 */
 }
 .project-heading a::after { /* 1 */
   content: "";
