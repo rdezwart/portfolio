@@ -127,15 +127,19 @@ mixin link(url)
 
 //- Creates a figcaption with an auto-generated figure number. The count is per
     page.
-//- Referenced: https://www.simonsmith.io/destructuring-objects-as-function-parameters-in-es6
-mixin figcaption(hiResName, {project = currentProject} = {})
-  - figureCount++;
+mixin figcaption(hiResName, options = {})
+  -
+    const {
+      project = currentProject,
+    } = options;
+    figureCount++;
+
   figcaption
     strong
       | Figure #{figureCount}
       if hiResName
         |  (
-        +hi-res-label(hiResName, {project: project})
+        +hi-res-label(hiResName, options)
         | )
       if block
         = ": "
@@ -144,29 +148,44 @@ mixin figcaption(hiResName, {project = currentProject} = {})
 
 //- Inserts a standard link for the highest resolution version of an image,
   one that usually won't be loaded onto the page directly.
-mixin hi-res-label(name, {project = currentProject} = {})
+mixin hi-res-label(name, options = {})
+  -
+    const {
+      project = currentProject,
+    } = options;
+
   a(href=`/img/${project.slug}/${name}.png`) Hi-Res
 
 
 //- Expects webp and fallback images to exist, including smaller versions for
   different pixel densities.
-mixin picture-sm(_project, name, width, height, alt="", fallbackFormat="jpg", loading="lazy")
+mixin picture(imageName, options = {})
+  -
+    const {
+      project = currentProject,
+      width = 0,
+      height = 0,
+      alt = "",
+      fallbackFormat = "jpg",
+      loading = "lazy",
+      small = true
+    } = options;
+
   picture
-    source(srcset=`/img/${_project.slug}/${name}-sm.webp 1x,
-        /img/${_project.slug}/${name}.webp 2x` type="image/webp")
-    img(srcset=`/img/${_project.slug}/${name}-sm.${fallbackFormat} 1x,
-        /img/${_project.slug}/${name}.${fallbackFormat} 2x`
-      src=`/img/${_project.slug}/${name}-sm.${fallbackFormat}` loading=`${loading}`
-      width=`${width}` height=`${height}`
-      alt=`${alt}`)
+    if small
+      source(srcset=`/img/${project.slug}/${imageName}-sm.webp 1x,
+          /img/${project.slug}/${imageName}.webp 2x` type="image/webp")
 
+      img(srcset=`/img/${project.slug}/${imageName}-sm.${fallbackFormat} 1x,
+          /img/${project.slug}/${imageName}.${fallbackFormat} 2x`
+        src=`/img/${project.slug}/${imageName}-sm.${fallbackFormat}` loading=`${loading}`
+        width=`${width}` height=`${height}`
+        alt=`${alt}`)
 
-//- Expects webp and fallback image to exist
-mixin picture(_project, name, width, height, alt="", fallbackFormat="jpg", loading="lazy")
-  picture
-    source(srcset=`/img/${_project.slug}/${name}.webp 1x` type="image/webp")
-    img(srcset=`/img/${_project.slug}/${name}.${fallbackFormat} 1x`
-      src=`/img/${_project.slug}/${name}.${fallbackFormat}` loading=`${loading}`
-      width=`${width}` height=`${height}`
-      alt=`${alt}`)
+    else
+      source(srcset=`/img/${project.slug}/${imageName}.webp 1x` type="image/webp")
 
+      img(srcset=`/img/${project.slug}/${imageName}.${fallbackFormat} 1x`
+        src=`/img/${project.slug}/${imageName}.${fallbackFormat}` loading=`${loading}`
+        width=`${width}` height=`${height}`
+        alt=`${alt}`)
