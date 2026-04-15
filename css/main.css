@@ -243,15 +243,19 @@ body {
   background-color: var(--background);
 }
 
+/**
+ * Generic link styles.
+ * 1. Apply color changes to any highlights that are part of the link.
+ */
 a {
   color: var(--link);
   transition: color var(--duration);
   font-weight: calc(var(--base-weight) + 200);
 }
-a:hover, a:focus {
+a:hover, a:hover .highlight, a:focus, a:focus .highlight { /* 1 */
   color: var(--highlight);
 }
-a:active {
+a:active, a:active .highlight { /* 1 */
   color: var(--active);
 }
 
@@ -446,6 +450,8 @@ b, strong {
   font-weight: var(--max-weight);
   color: var(--highlight);
   font-variant-ligatures: none;
+  font-weight: inherit;
+  transition: color var(--duration);
 }
 
 /**
@@ -641,6 +647,8 @@ body {
   font-weight: var(--max-weight);
   color: var(--highlight);
   font-variant-ligatures: none;
+  font-weight: inherit;
+  transition: color var(--duration);
 }
 
 /**

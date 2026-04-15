@@ -11,6 +11,10 @@ body {
 }
 
 
+/**
+ * Generic link styles.
+ * 1. Apply color changes to any highlights that are part of the link.
+ */
 a {
   color: var(--link);
   transition: color var(--duration);
@@ -18,11 +22,15 @@ a {
 
   // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
   &:hover, &:focus {
-    color: var(--highlight);
+    &, .highlight { /* 1 */
+      color: var(--highlight);
+    }
   }
 
   &:active {
-    color: var(--active);
+    &, .highlight { /* 1 */
+      color: var(--active);
+    }
   }
 }
 

@@ -68,10 +68,14 @@
 
 /// Styles for highlights. See helpers.
 /// 1. Font ligatures caused triple arrows to turn into bitwise operators.
+/// 2. Add transition in case highlight is used inside a link
 @mixin highlight {
   @include heading-typeface();
   color: var(--highlight);
   font-variant-ligatures: none; // 1
+
+  font-weight: inherit;
+  transition: color var(--duration); // 2
 }
 
 /// Styles for secondary content, such as subtitles or descriptions.
