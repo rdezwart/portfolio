@@ -900,8 +900,7 @@ ul.links { /* 1 */
 
 /**
  * Footer for entire site.
- * 1. Become full width when banners become full width.
- * 2. Rearrange footer contents when screen becomes too small.
+ * 1. Rearrange footer contents when screen becomes too small.
  */
 .footer {
   display: grid;
@@ -913,15 +912,11 @@ ul.links { /* 1 */
   font-size: 0.8rem;
   padding: 1rlh;
   margin-block-end: -1rlh;
-}
-@media screen and (max-width: calc(40rem + 2rlh)) {
-  .footer {
-    margin-inline: -1rlh; /* 1 */
-  }
+  margin-inline: -1rlh;
 }
 @media screen and (max-width: 32rem) {
   .footer {
-    grid-template-columns: 1fr; /* 2 */
+    grid-template-columns: 1fr; /* 1 */
   }
 }
 

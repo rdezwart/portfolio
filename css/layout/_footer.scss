@@ -2,8 +2,7 @@
 
 /**
  * Footer for entire site.
- * 1. Become full width when banners become full width.
- * 2. Rearrange footer contents when screen becomes too small.
+ * 1. Rearrange footer contents when screen becomes too small.
  */
 .footer {
   display: grid;
@@ -17,12 +16,9 @@
 
   padding: #{abstracts.$page-padding};
   margin-block-end: #{abstracts.$page-padding * -1};
-
-  @include abstracts.respond-to("full") {
-    margin-inline: #{abstracts.$page-padding * -1}; /* 1 */
-  }
+  margin-inline: #{abstracts.$page-padding * -1};
 
   @include abstracts.respond-to("medium") {
-    grid-template-columns: 1fr; /* 2 */
+    grid-template-columns: 1fr; /* 1 */
   }
 }
