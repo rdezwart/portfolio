@@ -1,13 +1,17 @@
+@use "../abstracts";
+
 /**
- * These are to simplify the Gradio app embed.
+ * Custom Gradio embed, preferred over iframe.
+ * 1. Remove section child margins.
  */
-.gradio-container {
-  .prose {
+gradio-app {
+  margin-inline: 0; /* 1 */
+}
 
-    display: none;
-  }
-
-  #component-0 {
-    gap: 0;
-  }
+/**
+ * Inner container of Gradio app, had to be extra specific to override default
+ * styles.
+ */
+gradio-app.gradio-app .embed-container.gradio-container {
+  margin-block: 0;
 }

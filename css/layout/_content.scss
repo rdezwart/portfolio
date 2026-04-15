@@ -25,6 +25,7 @@
  *    TOC scroll tracking.
  * 2. With no row-gap, elements need their bottom margins back.
  * 3. Inset text a small amount from the edges of the container.
+ * 4. Lower specificity with :where clause
  */
 section {
   @include abstracts.flex-column();
@@ -33,11 +34,8 @@ section {
 
   overflow-wrap: normal;
 
-  > :not(section) {
+  > :where(:not(section)) {
     margin-block-end: #{abstracts.$text-gap}; /* 2 */
-  }
-
-  > :is(#{abstracts.$text-elements}, #{abstracts.$headings-no-banner}) {
     margin-inline: #{abstracts.$content-margin}; /* 3 */
 
     @include abstracts.respond-to("full") {

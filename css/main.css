@@ -365,10 +365,11 @@ h3, .h3 {
 /**
  * Further sub-sub-section headings, have 3, 4, 5 arrows respectively.
  * Equal to body text size.
- * 1. Cross the flow/grid gap to touch the following element.
+ * 1. Indent headings to align with text
  */
 :is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: 1rem;
+  margin-inline: 1rlh; /* 1 */
 }
 
 /**
@@ -697,6 +698,7 @@ body {
  *    TOC scroll tracking.
  * 2. With no row-gap, elements need their bottom margins back.
  * 3. Inset text a small amount from the edges of the container.
+ * 4. Lower specificity with :where clause
  */
 section {
   display: flex;
@@ -706,14 +708,12 @@ section {
   padding-block-start: 0.5rlh; /* 1 */
   overflow-wrap: normal;
 }
-section > :not(section) {
+section > :where(:not(section)) {
   margin-block-end: 0.5rlh; /* 2 */
-}
-section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
   margin-inline: 1rlh; /* 3 */
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  section > :is(p, ul, ol, :is(h4, h5, h6), :is(.h4, .h5, .h6)) {
+  section > :where(:not(section)) {
     margin-inline: 0;
   }
 }
@@ -1091,6 +1091,7 @@ ul.links { /* 1 */
   aspect-ratio: 16/9;
   overflow: hidden;
   max-inline-size: 100%;
+  margin-inline: 0;
 }
 
 /**
@@ -1143,25 +1144,33 @@ picture {
 /**
  * Content contained within a figure and included caption.
  * 1. Extra inline margin to properly mimic general text margins.
+ * 2. Undo section child margins.
  */
 figure {
   display: flex;
   flex-direction: column;
   gap: 0.5rlh;
   align-items: center;
+  margin-inline: 0;
 }
 figure figcaption {
   margin-inline: 2rlh; /* 1 */
 }
 
 /**
- * These are to simplify the Gradio app embed.
+ * Custom Gradio embed, preferred over iframe.
+ * 1. Remove section child margins.
  */
-.gradio-container .prose {
-  display: none;
+gradio-app {
+  margin-inline: 0; /* 1 */
 }
-.gradio-container #component-0 {
-  gap: 0;
+
+/**
+ * Inner container of Gradio app, had to be extra specific to override default
+ * styles.
+ */
+gradio-app.gradio-app .embed-container.gradio-container {
+  margin-block: 0;
 }
 
 /**
@@ -1345,6 +1354,7 @@ figure figcaption {
 /**
  * Groups containing a heading and a list of skills.
  * 1. Highlight category titles
+ * 2. Undo section child margins
  */
 .skills-group {
   display: flex;
@@ -1353,6 +1363,7 @@ figure figcaption {
 }
 .skills-group .h4 {
   font-weight: calc(var(--base-weight) + 400);
+  margin-inline: 0; /* 2 */
   color: var(--highlight); /* 1 */
 }
 

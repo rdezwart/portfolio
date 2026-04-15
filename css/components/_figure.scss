@@ -3,10 +3,12 @@
 /**
  * Content contained within a figure and included caption.
  * 1. Extra inline margin to properly mimic general text margins.
+ * 2. Undo section child margins.
  */
 figure {
   @include abstracts.flex-column();
   align-items: center;
+  margin-inline: 0;
 
   figcaption {
     margin-inline: #{abstracts.$page-padding * 2}; /* 1 */

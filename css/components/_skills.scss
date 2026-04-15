@@ -3,12 +3,14 @@
 /**
  * Groups containing a heading and a list of skills.
  * 1. Highlight category titles
+ * 2. Undo section child margins
  */
 .skills-group {
   @include abstracts.flex-column(0);
 
   .h4 {
     font-weight: calc(var(--base-weight) + 400);
+    margin-inline: 0; /* 2 */
     color: var(--highlight); /* 1 */
   }
 }
