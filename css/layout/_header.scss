@@ -96,6 +96,13 @@
   }
 }
 
+/**
+ * Apply margins to hgroups that are inside a pre-sidebar area. Normally they'd
+ * get this styling from a parent section, but not in this case.
+ */
+.pre-sidebar :is(hgroup, .hgroup) {
+  margin-inline: #{abstracts.$page-padding};
+}
 
 /**
  * Semi-transparent background color in front of `.header` background image,
@@ -104,8 +111,7 @@
  * 2. Set z index so it's above the background image of `.header`. Mainly for
  *    with Automata wrapper.
  */
-.header .hgroup {
-  @include abstracts.flex-column();
+.header :is(hgroup, .hgroup) {
   padding-inline: #{abstracts.$page-padding};
   padding-block: #{abstracts.$page-padding} 0;
   background: linear-gradient(

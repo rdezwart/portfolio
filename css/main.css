@@ -303,6 +303,14 @@ body {
 }
 
 /**
+ * H1 specific styles.
+ * 1. If it has any sibling directly touching it, ensure a bottom margin.
+ */
+:is(h1, .h1):has(+ *) {
+  margin-block-end: 0.5rlh; /* 1 */
+}
+
+/**
  * Styling for headings that have a solid background (banner).
  */
 :is(h2, h3), :is(.h2, .h3) {
@@ -831,16 +839,21 @@ section > :where(:not(section)) {
 }
 
 /**
+ * Apply margins to hgroups that are inside a pre-sidebar area. Normally they'd
+ * get this styling from a parent section, but not in this case.
+ */
+.pre-sidebar :is(hgroup, .hgroup) {
+  margin-inline: 1rlh;
+}
+
+/**
  * Semi-transparent background color in front of `.header` background image,
  * but only where the text is.
  * 1. Set transparency using relative color syntax (Baseline 2024).
  * 2. Set z index so it's above the background image of `.header`. Mainly for
  *    with Automata wrapper.
  */
-.header .hgroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rlh;
+.header :is(hgroup, .hgroup) {
   padding-inline: 1rlh;
   padding-block: 1rlh 0;
   background: linear-gradient(rgb(from var(--banner) r g b/0.9) 0%, rgb(from var(--banner) r g b/0.7) 100%); /* 1 */

@@ -34,6 +34,16 @@ body {
 }
 
 /**
+ * H1 specific styles.
+ * 1. If it has any sibling directly touching it, ensure a bottom margin.
+ */
+:is(h1, .h1) {
+  &:has(+ *) {
+    margin-block-end: #{abstracts.$text-gap}; /* 1 */
+  }
+}
+
+/**
  * Styling for headings that have a solid background (banner).
  */
 #{abstracts.$headings-with-banner} {

@@ -25,7 +25,8 @@ block image-alt
 
 append content
   section
-    +h(1, `Error ${errorCode}<span class="highlight">&colon;</span> ${errorName}`)
+    div.hgroup
+      +h(1, `Error ${errorCode}<span class="highlight">&colon;</span> ${errorName}`)
 
     block error-message
       p I'm a little teapot
