@@ -90,7 +90,9 @@ mixin sidebar(options = {})
 
   section.sidebar&attributes(attributes)
     +h(2, heading, false, 4)(class="sidebar-heading" id=headingID)
-    block
+    div.scrollable
+      block
+    a.to-top(href="#") Back to Top#[span.highlight ;]
 
 
 //- Renders a list of items, with extra cases for a comma separated list

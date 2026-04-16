@@ -995,7 +995,13 @@ ul.links { /* 1 */
  * 2. Make list markers invisible by default
  * 3. Markers should be shown when they have .current or are focused/hovered
  * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 5. Add a tiny bit of padding to top of nav to account for smaller line height
+ *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
+ *    seems to be consistent at different sizes.
  */
+.toc .nav {
+  margin-block-start: calc(0.5rlh / 6); /* 5 */
+}
 .toc .nav > :is(ul, ol) > li > a {
   font-weight: calc(var(--base-weight) + 500); /* 1 */
 }
@@ -1034,22 +1040,55 @@ ul.links { /* 1 */
 
 /**
  * Generic sidebar, the section itself.
+ * 1. This stops the back-to-top link from filling the full width.
  */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 0;
+  align-items: start; /* 1 */
+}
+
+/**
+ * Scrollable content within sidebar contents.
+  * 1. Display a scroll bar if the sidebar is taller than the screen.
+ */
+.sidebar .scrollable {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rlh;
+  overflow-y: auto; /* 1 */
+  overflow-block: auto; /* 1 */
+}
+
+/**
+ * Back to Top link beneath sidebar contents.
+ * 1. Same weight as TOC nav items, should really make this a variable
+ */
+.sidebar .to-top {
+  display: block;
+  margin: 0;
+  margin-block-start: 1rlh;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: var(--max-weight);
+  font-size: 0.8rem;
+  font-weight: calc(var(--base-weight) + 500); /* 1 */
+  line-height: 1;
+  text-decoration: none;
+}
+@media screen and (max-width: calc(40rem + 2rlh)) {
+  .sidebar .to-top {
+    display: none;
+  }
 }
 
 /**
  * Sticky sidebar styles.
  * 1. Limit height so it always fits on screen.
- * 2. Display a scroll bar if the TOC is longer than the screen.
  */
 .sidebar.sticky {
   inset-block-start: 1rlh;
-  overflow-y: auto; /* 2 */
-  overflow-block: auto; /* 2 */
   max-block-size: calc(100vh - 1rlh * 2); /* 1 */
 }
 @supports (max-block-size: 100dvh) {

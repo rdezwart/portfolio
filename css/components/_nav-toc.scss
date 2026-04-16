@@ -12,8 +12,13 @@
  * 2. Make list markers invisible by default
  * 3. Markers should be shown when they have .current or are focused/hovered
  * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 5. Add a tiny bit of padding to top of nav to account for smaller line height
+ *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
+ *    seems to be consistent at different sizes.
  */
 .toc .nav {
+  margin-block-start: calc(#{abstracts.$text-gap} / 6); /* 5 */
+
   & > :is(ul, ol) > li > a {
     font-weight: calc(var(--base-weight) + 500); /* 1 */
   }
