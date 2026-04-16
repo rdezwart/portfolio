@@ -8,7 +8,10 @@ header.nav-wrapper
         a(href="/projects/") Projects
         ul
           each category in categories
-            li: a(href=`/projects/#${category.slug}`)= category.displayName
+            li(class={
+              current: (currentProject && currentProject.category === category)
+            })
+              a(href=`/projects/#${category.slug}`)= category.displayName
       li: a(href="/about.html") About
 
   include _social-icons
