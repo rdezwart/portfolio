@@ -629,10 +629,10 @@ body {
 
 /**
  * Navigation lists, general
- * 1. Add reduced margin above list items for clearer breaks when wrapping
+ * 1. Add reduced margin above list items and sublists for clearer breaks when
+ *    wrapping
  * 2. Line up left edge of bullets with left margin. We can safely use `2ch`
  *    because we're working in a monospace font.
- * 3. If a navigation list item is marked as "current", highlight it blue
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
@@ -645,9 +645,15 @@ body {
 .nav :is(ul, ol) :is(ul, ol), .nav :is(ul, ol) li + li {
   margin-block-start: calc(0.5rlh / 2); /* 1 */
 }
-.nav :is(ul, ol) li.current > a {
-  color: var(--highlight); /* 3 */
-}
+
+/**
+ * Styles for all list items.
+ * 1. If a navigation list item is marked as "current", highlight it blue
+ * 2. Make list markers invisible by default
+ * 3. Markers are shown when they have .current or are focused/hovered
+ * 4. Change marker colour when link is active. We also don't need to worry
+ *    about transparency here, since when it is active it is always focused.
+ */
 .nav :is(ul, ol) li a {
   font-weight: var(--max-weight);
   text-decoration: none;
@@ -659,10 +665,26 @@ body {
   font-variant-ligatures: none;
   font-weight: inherit;
   transition: color var(--duration);
+  color: color-mix(in srgb, var(--highlight), transparent 100%); /* 2 */
+}
+.nav :is(ul, ol) li.current > a {
+  color: var(--highlight); /* 1 */
+}
+.nav :is(ul, ol) li.current::marker {
+  color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+}
+.nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker {
+  color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+}
+.nav :is(ul, ol) li:has(> a:active)::marker {
+  color: var(--active); /* 4 */
 }
 
 /**
- * Sub lists, mostly used in table of contents.
+ * Sub lists and items.
+ * 1. Apply secondary styles to link only, we don't want to change the list
+ *    marker here.
+ * 2. Because we're setting color, we need to re-set focus state colours
  */
 .nav :is(ul, ol) :is(ul, ol) {
   font-size: 1rem;
@@ -673,12 +695,13 @@ body {
   font-weight: var(--base-weight);
   font-style: italic;
   color: var(--secondary);
+  /* 1 */
 }
 .nav :is(ul, ol) :is(ul, ol) li a:hover, .nav :is(ul, ol) :is(ul, ol) li a:focus {
-  color: var(--highlight);
+  color: var(--highlight); /* 2 */
 }
 .nav :is(ul, ol) :is(ul, ol) li a:active {
-  color: var(--active);
+  color: var(--active); /* 2 */
 }
 
 /**
@@ -992,33 +1015,21 @@ ul.links { /* 1 */
 /**
  * Nav list within a Table of Contents
  * 1. Reduce font weight of root items to not compete with main nav as much.
- * 2. Make list markers invisible by default
- * 3. Markers should be shown when they have .current or are focused/hovered
- * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
- * 5. Add a tiny bit of padding to top of nav to account for smaller line height
+ * 2. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 3. Add a tiny bit of padding to top of nav to account for smaller line height
  *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
  *    seems to be consistent at different sizes.
  */
 .toc .nav {
-  margin-block-start: calc(0.5rlh / 6); /* 5 */
+  margin-block-start: calc(0.5rlh / 6); /* 3 */
 }
 .toc .nav > :is(ul, ol) > li > a {
   font-weight: calc(var(--base-weight) + 500); /* 1 */
 }
 .toc .nav :is(ul, ol) {
   font-size: 1rem;
-  overflow-y: hidden; /* 4 */
-  overflow-block: hidden; /* 4 */
-}
-.toc .nav :is(ul, ol) li::marker { /* 2 */
-  color: color-mix(in srgb, var(--highlight), transparent 100%);
-  transition: color var(--duration) ease;
-}
-.toc .nav :is(ul, ol) li.current::marker { /* 3 */
-  color: color-mix(in srgb, var(--highlight), transparent 0%);
-}
-.toc .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker { /* 3 */
-  color: color-mix(in srgb, var(--highlight), transparent 0%);
+  overflow-y: hidden; /* 2 */
+  overflow-block: hidden; /* 2 */
 }
 
 /**

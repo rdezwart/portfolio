@@ -2,10 +2,10 @@
 
 /**
  * Navigation lists, general
- * 1. Add reduced margin above list items for clearer breaks when wrapping
+ * 1. Add reduced margin above list items and sublists for clearer breaks when
+ *    wrapping
  * 2. Line up left edge of bullets with left margin. We can safely use `2ch`
  *    because we're working in a monospace font.
- * 3. If a navigation list item is marked as "current", highlight it blue
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
@@ -13,44 +13,69 @@
 
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(1);
-
   line-height: 1.2;
 
   :is(ul, ol), li + li {
     margin-block-start: calc(#{abstracts.$text-gap} / 2); /* 1 */
   }
+}
 
-  li {
-    &.current > a {
-      color: var(--highlight); /* 3 */
-    }
+/**
+ * Styles for all list items.
+ * 1. If a navigation list item is marked as "current", highlight it blue
+ * 2. Make list markers invisible by default
+ * 3. Markers are shown when they have .current or are focused/hovered
+ * 4. Change marker colour when link is active. We also don't need to worry
+ *    about transparency here, since when it is active it is always focused.
+ */
+.nav :is(ul, ol) li {
+  a {
+    font-weight: var(--max-weight);
+    text-decoration: none;
+  }
 
-    a {
-      font-weight: var(--max-weight);
-      text-decoration: none;
+  &::marker {
+    @include abstracts.highlight();
+    color: color-mix(in srgb, var(--highlight), transparent 100%); /* 2 */
+  }
+
+  &.current {
+    > a {
+      color: var(--highlight); /* 1 */
     }
 
     &::marker {
-      @include abstracts.highlight();
+      color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
     }
+  }
+
+  &:has(> a:focus, > a:hover)::marker {
+    color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+  }
+
+  &:has(> a:active)::marker {
+    color: var(--active); /* 4 */
   }
 }
 
 /**
- * Sub lists, mostly used in table of contents.
+ * Sub lists and items.
+ * 1. Apply secondary styles to link only, we don't want to change the list
+ *    marker here.
+ * 2. Because we're setting color, we need to re-set focus state colours
  */
 .nav :is(ul, ol) :is(ul, ol) {
   font-size: abstracts.font-size-scaled(0);
 
   li a {
-    @include abstracts.secondary();
+    @include abstracts.secondary(); /* 1 */
 
     &:hover, &:focus {
-      color: var(--highlight);
+      color: var(--highlight); /* 2 */
     }
 
     &:active {
-      color: var(--active);
+      color: var(--active); /* 2 */
     }
   }
 }

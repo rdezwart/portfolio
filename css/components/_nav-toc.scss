@@ -9,15 +9,13 @@
 /**
  * Nav list within a Table of Contents
  * 1. Reduce font weight of root items to not compete with main nav as much.
- * 2. Make list markers invisible by default
- * 3. Markers should be shown when they have .current or are focused/hovered
- * 4. Fixes an issue where nav would show scrollbar despite enough room to grow.
- * 5. Add a tiny bit of padding to top of nav to account for smaller line height
+ * 2. Fixes an issue where nav would show scrollbar despite enough room to grow.
+ * 3. Add a tiny bit of padding to top of nav to account for smaller line height
  *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
  *    seems to be consistent at different sizes.
  */
 .toc .nav {
-  margin-block-start: calc(#{abstracts.$text-gap} / 6); /* 5 */
+  margin-block-start: calc(#{abstracts.$text-gap} / 6); /* 3 */
 
   & > :is(ul, ol) > li > a {
     font-weight: calc(var(--base-weight) + 500); /* 1 */
@@ -25,20 +23,7 @@
 
   & :is(ul, ol) {
     font-size: abstracts.font-size-scaled(0);
-    overflow-y: hidden; /* 4 */
-    overflow-block: hidden; /* 4 */
-
-    li::marker { /* 2 */
-      color: color-mix(in srgb, var(--highlight), transparent 100%);
-      transition: color var(--duration) ease;
-    }
-
-    li.current::marker { /* 3 */
-      color: color-mix(in srgb, var(--highlight), transparent 0%);
-    }
-
-    li:has(> a:focus, > a:hover)::marker { /* 3 */
-      color: color-mix(in srgb, var(--highlight), transparent 0%);
-    }
+    overflow-y: hidden; /* 2 */
+    overflow-block: hidden; /* 2 */
   }
 }
