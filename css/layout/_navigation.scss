@@ -16,7 +16,7 @@
 
   line-height: 1.2;
 
-  li + li {
+  :is(ul, ol), li + li {
     margin-block-start: calc(#{abstracts.$text-gap} / 2); /* 1 */
   }
 

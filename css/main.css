@@ -387,12 +387,13 @@ h3, .h3 {
  * Default list styles.
  * 1. Use a variant of lobotomized owl notation to add margins between list
  *    items and sub-lists.
+ * 2. Add margin to top of sublists, as owl notation on list items will not
  */
 :is(ul, ol) {
   padding-inline-start: calc(1rem + 0.5rlh);
 }
 :is(ul, ol) :is(ul, ol), :is(ul, ol) li + li {
-  margin-block-start: calc(0.5rlh / 3); /* 1 */
+  margin-block-start: calc(0.5rlh / 3); /* 1, 2 */
 }
 
 /**
@@ -641,7 +642,7 @@ body {
   font-size: 1.25rem;
   line-height: 1.2;
 }
-.nav :is(ul, ol) li + li {
+.nav :is(ul, ol) :is(ul, ol), .nav :is(ul, ol) li + li {
   margin-block-start: calc(0.5rlh / 2); /* 1 */
 }
 .nav :is(ul, ol) li.current > a {
