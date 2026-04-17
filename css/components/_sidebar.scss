@@ -49,7 +49,7 @@
   font-size: abstracts.font-size-scaled(-1);
   font-weight: calc(var(--base-weight) + 500); /* 1 */
   line-height: 1;
-  text-decoration: none;
+  text-decoration-color: transparent;
 
   @include abstracts.respond-to("full") {
     display: none;

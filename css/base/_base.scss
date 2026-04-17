@@ -13,15 +13,26 @@ body {
 
 /**
  * Generic link styles.
- * 1. Apply color changes to any highlights that are part of the link.
  */
 a {
   color: var(--link);
-  transition: color var(--duration);
+  transition-property: color, text-decoration;
+  transition-duration: var(--duration);
   font-weight: calc(var(--base-weight) + 200);
 
-  // Referenced: https://sass-lang.com/documentation/style-rules/parent-selector/
+  text-decoration: underline from-font;
+  text-underline-position: from-font;
+}
+
+/**
+ * Extra specificity with fake classes to make sure the effects get added
+ * properly.
+ * 1. Apply color changes to any highlights that are part of the link.
+ */
+a:not(.specificity) {
   &:hover, &:focus {
+    text-decoration-color: currentColor;
+
     &, .highlight { /* 1 */
       color: var(--highlight);
     }
@@ -32,6 +43,16 @@ a {
       color: var(--active);
     }
   }
+}
+
+
+/**
+ * Highlights inside links.
+ * 1. Setting inline-block stops any text decorations from applying to it, such
+ *    as the underline when hovering/focusing a link.
+ */
+a .highlight {
+  display: inline-block; /* 1 */
 }
 
 

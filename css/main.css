@@ -245,18 +245,41 @@ body {
 
 /**
  * Generic link styles.
- * 1. Apply color changes to any highlights that are part of the link.
  */
 a {
   color: var(--link);
-  transition: color var(--duration);
+  transition-property: color, -webkit-text-decoration;
+  transition-property: color, text-decoration;
+  transition-property: color, text-decoration, -webkit-text-decoration;
+  transition-duration: var(--duration);
   font-weight: calc(var(--base-weight) + 200);
+  -webkit-text-decoration: underline from-font;
+          text-decoration: underline from-font;
+  text-underline-position: from-font;
 }
-a:hover, a:hover .highlight, a:focus, a:focus .highlight { /* 1 */
+
+/**
+ * Extra specificity with fake classes to make sure the effects get added
+ * properly.
+ * 1. Apply color changes to any highlights that are part of the link.
+ */
+a:not(.specificity):hover, a:not(.specificity):focus {
+  text-decoration-color: currentColor;
+}
+a:not(.specificity):hover, a:not(.specificity):hover .highlight, a:not(.specificity):focus, a:not(.specificity):focus .highlight { /* 1 */
   color: var(--highlight);
 }
-a:active, a:active .highlight { /* 1 */
+a:not(.specificity):active, a:not(.specificity):active .highlight { /* 1 */
   color: var(--active);
+}
+
+/**
+ * Highlights inside links.
+ * 1. Setting inline-block stops any text decorations from applying to it, such
+ *    as the underline when hovering/focusing a link.
+ */
+a .highlight {
+  display: inline-block; /* 1 */
 }
 
 a.skip {
@@ -656,7 +679,14 @@ body {
  */
 .nav :is(ul, ol) li a {
   font-weight: var(--max-weight);
-  text-decoration: none;
+  text-decoration-color: transparent;
+}
+.nav :is(ul, ol) li a:hover, .nav :is(ul, ol) li a:focus {
+  color: var(--highlight); /* 2 */
+  text-decoration-color: currentColor;
+}
+.nav :is(ul, ol) li a:active {
+  color: var(--active); /* 2 */
 }
 .nav :is(ul, ol) li::marker {
   font-family: "JetBrains Mono", monospace;
@@ -669,6 +699,9 @@ body {
 }
 .nav :is(ul, ol) li.current > a {
   color: var(--highlight); /* 1 */
+}
+.nav :is(ul, ol) li.current > a:active {
+  color: var(--active);
 }
 .nav :is(ul, ol) li.current::marker {
   color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
@@ -696,12 +729,6 @@ body {
   font-style: italic;
   color: var(--secondary);
   /* 1 */
-}
-.nav :is(ul, ol) :is(ul, ol) li a:hover, .nav :is(ul, ol) :is(ul, ol) li a:focus {
-  color: var(--highlight); /* 2 */
-}
-.nav :is(ul, ol) :is(ul, ol) li a:active {
-  color: var(--active); /* 2 */
 }
 
 /**
@@ -972,7 +999,7 @@ ul.links { /* 1 */
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   color: var(--link);
-  text-decoration: none;
+  text-decoration-color: transparent;
   line-height: 1;
 }
 
@@ -1086,7 +1113,7 @@ ul.links { /* 1 */
   font-size: 0.8rem;
   font-weight: calc(var(--base-weight) + 500); /* 1 */
   line-height: 1;
-  text-decoration: none;
+  text-decoration-color: transparent;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
   .sidebar .to-top {
@@ -1265,10 +1292,6 @@ gradio-app.gradio-app .embed-container.gradio-container {
 }
 .project-card a:focus {
   outline: none;
-  text-decoration: underline; /* 3 */
-}
-.project-card:focus-within a:focus {
-  text-decoration: none; /* 3 */
 }
 
 /**
@@ -1295,7 +1318,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
 .project-heading a {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
-  text-decoration: none;
+  text-decoration-color: transparent;
 }
 .project-heading a::after { /* 1 */
   content: "";

@@ -33,11 +33,6 @@
 
   & a:focus {
     outline: none;
-    text-decoration: underline; /* 3 */
-  }
-
-  &:focus-within a:focus {
-    text-decoration: none; /* 3 */
   }
 }
 
@@ -65,7 +60,7 @@
  */
 .project-heading a {
   @include abstracts.heading-typeface();
-  text-decoration: none;
+  text-decoration-color: transparent;
 
   &::after { /* 1 */
     content: "";

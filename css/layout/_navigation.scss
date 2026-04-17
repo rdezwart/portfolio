@@ -31,7 +31,16 @@
 .nav :is(ul, ol) li {
   a {
     font-weight: var(--max-weight);
-    text-decoration: none;
+    text-decoration-color: transparent;
+
+    &:hover, &:focus {
+      color: var(--highlight); /* 2 */
+      text-decoration-color: currentColor;
+    }
+
+    &:active {
+      color: var(--active); /* 2 */
+    }
   }
 
   &::marker {
@@ -42,6 +51,10 @@
   &.current {
     > a {
       color: var(--highlight); /* 1 */
+
+      &:active {
+        color: var(--active);
+      }
     }
 
     &::marker {
@@ -70,12 +83,6 @@
   li a {
     @include abstracts.secondary(); /* 1 */
 
-    &:hover, &:focus {
-      color: var(--highlight); /* 2 */
-    }
 
-    &:active {
-      color: var(--active); /* 2 */
-    }
   }
 }

@@ -6,6 +6,6 @@
 .name {
   @include abstracts.heading-typeface();
   color: var(--link);
-  text-decoration: none;
+  text-decoration-color: transparent;
   line-height: 1;
 }
