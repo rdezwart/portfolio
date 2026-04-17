@@ -14,5 +14,7 @@ header.nav-wrapper
               a(href=`/projects/#${category.slug}`)= category.displayName
       li(class={current: slug === "about"})
         a(href="/about.html") About
+        ul
+          li: a(href="/files/Robin_de_Zwart_Resume.pdf") Resume
 
   include _social-icons
