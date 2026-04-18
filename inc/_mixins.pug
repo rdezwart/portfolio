@@ -175,6 +175,7 @@ mixin picture(imageName, options = {})
   -
     const {
       project = currentProject,
+      slug = project.slug,
       width = 0,
       height = 0,
       alt = "",
@@ -185,19 +186,19 @@ mixin picture(imageName, options = {})
 
   picture
     if small
-      source(srcset=`/img/${project.slug}/${imageName}-sm.webp 1x,
-          /img/${project.slug}/${imageName}.webp 2x` type="image/webp")
+      source(srcset=`/img/${slug}/${imageName}-sm.webp 1x,
+          /img/${slug}/${imageName}.webp 2x` type="image/webp")
 
-      img(srcset=`/img/${project.slug}/${imageName}-sm.${fallbackFormat} 1x,
-          /img/${project.slug}/${imageName}.${fallbackFormat} 2x`
-        src=`/img/${project.slug}/${imageName}-sm.${fallbackFormat}` loading=`${loading}`
+      img(srcset=`/img/${slug}/${imageName}-sm.${fallbackFormat} 1x,
+          /img/${slug}/${imageName}.${fallbackFormat} 2x`
+        src=`/img/${slug}/${imageName}-sm.${fallbackFormat}` loading=`${loading}`
         width=`${width}` height=`${height}`
-        alt=`${alt}`)
+        alt=`${alt}`)&attributes(attributes)
 
     else
-      source(srcset=`/img/${project.slug}/${imageName}.webp 1x` type="image/webp")
+      source(srcset=`/img/${slug}/${imageName}.webp 1x` type="image/webp")
 
-      img(srcset=`/img/${project.slug}/${imageName}.${fallbackFormat} 1x`
-        src=`/img/${project.slug}/${imageName}.${fallbackFormat}` loading=`${loading}`
+      img(srcset=`/img/${slug}/${imageName}.${fallbackFormat} 1x`
+        src=`/img/${slug}/${imageName}.${fallbackFormat}` loading=`${loading}`
         width=`${width}` height=`${height}`
-        alt=`${alt}`)
+        alt=`${alt}`)&attributes(attributes)

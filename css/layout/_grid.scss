@@ -99,6 +99,30 @@
   }
 }
 
+/**
+ * Grid for About page, where the profile photo needs to be aligned with
+ * Content and not the Pre-Sidebar.
+ */
+.grid-about {
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "nav  hd"
+    ".    pre"
+    "side content"
+    "ft   ft";
+
+  @include abstracts.respond-to("full") {
+    grid-template-rows: auto auto auto 1fr auto auto;
+    grid-template-areas:
+      "nav"
+      "hd"
+      "pre"
+      "side"
+      "content"
+      "ft";
+  }
+}
+
 
 /**
  * Due to semantic HTML, the content of the page is wrapped in some additional

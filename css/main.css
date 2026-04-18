@@ -594,6 +594,21 @@ body {
 }
 
 /**
+ * Grid for About page, where the profile photo needs to be aligned with
+ * Content and not the Pre-Sidebar.
+ */
+.grid-about {
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: "nav  hd" ".    pre" "side content" "ft   ft";
+}
+@media screen and (max-width: calc(40rem + 2rlh)) {
+  .grid-about {
+    grid-template-rows: auto auto auto 1fr auto auto;
+    grid-template-areas: "nav" "hd" "pre" "side" "content" "ft";
+  }
+}
+
+/**
  * Due to semantic HTML, the content of the page is wrapped in some additional
  * tags. They are subgrids of the main wrapper, and inherit all grid template
  * areas. This allows me to position elements anywhere in any of these wrapping
@@ -1499,6 +1514,51 @@ gradio-app.gradio-app .embed-container.gradio-container {
   flex-direction: row;
   gap: 0.5rlh;
   font-size: 1rem;
+}
+
+/**
+ * Center "Hi, I'm Robin;" text on smaller viewports.
+ */
+.grid-about .pre-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rlh;
+  align-items: start;
+}
+@media screen and (max-width: calc(40rem + 2rlh)) {
+  .grid-about .pre-sidebar {
+    align-items: center;
+  }
+}
+
+/**
+ * Profile picture is wrapped in a div with the same clip-path to create a
+ * border that follows the path.
+ */
+.profile-border {
+  position: relative;
+  align-self: center;
+  flex: 0 1 256px;
+  clip-path: circle();
+  background-color: var(--banner);
+  aspect-ratio: 1/1;
+}
+
+/**
+ * Picture element containing the actual image.
+ * 1. Equivalent to a 3px border, when 1rem=16px.
+ */
+picture:has(.profile-image) {
+  position: absolute;
+  inset: 0.1875rem; /* 1 */
+}
+
+/**
+ * Profile image itself.
+ * 1. Calling the circle path without arguments places it in the center.
+ */
+.profile-image {
+  clip-path: circle(); /* 1 */
 }
 
 :root {

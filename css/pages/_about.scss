@@ -1,0 +1,44 @@
+@use "../abstracts";
+
+/**
+ * Center "Hi, I'm Robin;" text on smaller viewports.
+ */
+.grid-about .pre-sidebar {
+  @include abstracts.flex-column();
+  align-items: start;
+
+  @include abstracts.respond-to("full") {
+    align-items: center;
+  }
+}
+
+/**
+ * Profile picture is wrapped in a div with the same clip-path to create a
+ * border that follows the path.
+ */
+.profile-border {
+  position: relative;
+  align-self: center;
+  flex: 0 1 256px;
+
+  clip-path: circle();
+  background-color: var(--banner);
+  aspect-ratio: 1 / 1;
+}
+
+/**
+ * Picture element containing the actual image.
+ * 1. Equivalent to a 3px border, when 1rem=16px.
+ */
+picture:has(.profile-image) {
+  position: absolute;
+  inset: 0.1875rem; /* 1 */
+}
+
+/**
+ * Profile image itself.
+ * 1. Calling the circle path without arguments places it in the center.
+ */
+.profile-image {
+  clip-path: circle(); /* 1 */
+}

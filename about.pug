@@ -5,7 +5,7 @@ append vars
     title = "About";
     slug = "about";
     description = "Hi, I'm Robin de Zwart;";
-    grid = "pre-sidebar";
+    grid = "about";
     canvasWord = ["Who am I", "?"]
 
 
@@ -17,9 +17,13 @@ append pre-sidebar
       +name(false)
 
 append sidebar-content
-  picture
-    source(srcset="/img/profile.jpg" type="img/jpg")
-    img.img(alt="Robin de Zwart" src="/img/profile.jpg" width="2047" height="2047" loading="lazy")
+  div.profile-border
+    +picture("profile", {
+      width: 256,
+      height: 256,
+      slug: slug,
+      alt: "Headshot of Robin de Zwart."
+    }).profile-image
 
 append content
   section#about-me
