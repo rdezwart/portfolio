@@ -73,6 +73,7 @@
      * @param {string} [options.slug] - The base slug of this project.
      * @param {string} [options.description] - The description of this project.
      * @param {ProjectCategory} [options.category] - The category this project belongs to.
+     * @param {string} [options.image] - The name of the image to use for this project's banner.
      * @param {ProjectLink[]} [options.links] - Links associated to this project.
      * @param {string[]} [options.tools] - Tools used in this project.
      * @param {string[]} [options.concepts] - Concepts involved in this project.
@@ -83,6 +84,7 @@
               slug = "home",
               description = "Hi, I'm Robin;",
               category = categories.MISCELLANEOUS,
+              image = "banner",
               links = [],
               tools = [],
               concepts = []
@@ -92,6 +94,7 @@
       this.slug = slug;
       this.description = description;
       this.category = category;
+      this.image = image;
       this.links = links;
       this.tools = tools;
       this.concepts = concepts;
@@ -104,6 +107,7 @@
       slug: "autolume-gallery",
       description: "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
       category: categories.MACHINE_LEARNING,
+      image: "canvas-2",
       links: [
         new ProjectLink({title: "Code", url: "https://github.com/rdezwart/AutolumeGallery", text: "GitHub"}),
         new ProjectLink({title: "Dataset", url: "https://voormeij.ca/", text: "Peter John Voormeij"}),
