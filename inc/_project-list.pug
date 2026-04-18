@@ -4,17 +4,20 @@
    */
   class ProjectLink {
     /**
-     * @param {string} title - The text to be inserted ahead of the link,
+     * @param {Object} [options] - Object literal with configuration information.
+     * @param {string} [options.title] - The text to be inserted ahead of the link,
      *     followed by a colon.
-     * @param {string} url - The URL this link points to.
-     * @param {string} text - The text to be placed inside the anchor.
-     * @param {string} attrs - Any other attributes to add to the anchor.
+     * @param {string} [options.url] - The URL this link points to.
+     * @param {string} [options.text] - The text to be placed inside the anchor.
+     * @param {string} [options.attrs] - Any other attributes to add to the anchor.
      */
     constructor(
-            title = undefined,
-            url = "#",
-            text = "Link",
-            attrs = 'rel="external noreferrer"'
+            {
+              title = undefined,
+              url = "#",
+              text = "Link",
+              attrs = 'rel="external noreferrer"'
+            } = {}
     ) {
       this.title = title;
       this.url = url;
@@ -56,8 +59,8 @@
     MACHINE_LEARNING: new ProjectCategory("Machine Learning", "machine-learning"),
     GAME_DEVELOPMENT: new ProjectCategory("Game Development", "game-development"),
     WEB_DEVELOPMENT: new ProjectCategory("Web Development", "web-development"),
-    MISCELLANEOUS: new ProjectCategory("Miscellaneous", "miscellaneous"),
-  }
+    MISCELLANEOUS: new ProjectCategory("Miscellaneous", "miscellaneous")
+  };
 
 
   /**
@@ -65,22 +68,25 @@
    */
   class Project {
     /**
-     * @param {string} title
-     * @param {string} slug
-     * @param {string} description
-     * @param {ProjectCategory} category
-     * @param {ProjectLink[]} links
-     * @param {string[]} tools
-     * @param {string[]} concepts
+     * @param {Object} [options] - Object literal with configuration information.
+     * @param {string} [options.title] - The title of this project.
+     * @param {string} [options.slug] - The base slug of this project.
+     * @param {string} [options.description] - The description of this project.
+     * @param {ProjectCategory} [options.category] - The category this project belongs to.
+     * @param {ProjectLink[]} [options.links] - Links associated to this project.
+     * @param {string[]} [options.tools] - Tools used in this project.
+     * @param {string[]} [options.concepts] - Concepts involved in this project.
      */
     constructor(
-            title = "Portfolio",
-            slug = "home",
-            description = "Hi, I'm Robin;",
-            category = categories.MISCELLANEOUS,
-            links = [],
-            tools = [],
-            concepts = [],
+            {
+              title = "Portfolio",
+              slug = "home",
+              description = "Hi, I'm Robin;",
+              category = categories.MISCELLANEOUS,
+              links = [],
+              tools = [],
+              concepts = []
+            } = {}
     ) {
       this.title = title;
       this.slug = slug;
@@ -93,39 +99,45 @@
   }
 
   const projects = {
-    "AutolumeGallery": new Project(
-            "AutolumeGallery",
-            "autolume-gallery",
-            "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
-            categories.MACHINE_LEARNING,
-            [
-              new ProjectLink("Code", "https://github.com/rdezwart/AutolumeGallery", "GitHub"),
-              new ProjectLink("Dataset", "https://voormeij.ca/", "Peter John Voormeij"),
-              new ProjectLink("Original Paper", "/files/AutolumeGallery_RobinDeZwart.pdf", "View PDF"),
-            ],
-            ["Unity", "C#", "OSC", "NDI"],
-            ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space"]
-    ),
-    "Food Identifier": new Project(
-            "Food Identifier",
-            "food-identifier",
-            "Object detection and image captioning for food inside fridges.",
-            categories.MACHINE_LEARNING,
-            [
-              new ProjectLink("Code", "https://huggingface.co/spaces/rdezwart/FoodIdentifier", "HuggingFace")
-            ],
-            ["Python", "YOLOS", "Moondream"],
-            ["Object Recognition", "Image Captioning"]
-    ),
-    "A Sight Never Seen": new Project(
-            "A Sight Never Seen",
-            "a-sight-never-seen",
-            "Short visual novel with branching paths, set in a world of magic and secrets.",
-            categories.GAME_DEVELOPMENT,
-            [
-              new ProjectLink("Code", "https://github.com/rdezwart/SightNeverSeen", "GitHub"),
-              new ProjectLink("Game", "https://rdezwart.itch.io/sightneverseen", "Itch.io")
-            ],
-            ["Ren'Py", "Python"]
-    )
-  }
+    "AutolumeGallery": new Project({
+      title: "AutolumeGallery",
+      slug: "autolume-gallery",
+      description: "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
+      category: categories.MACHINE_LEARNING,
+      links: [
+        new ProjectLink({title: "Code", url: "https://github.com/rdezwart/AutolumeGallery", text: "GitHub"}),
+        new ProjectLink({title: "Dataset", url: "https://voormeij.ca/", text: "Peter John Voormeij"}),
+        new ProjectLink({title: "Original Paper", url: "/files/AutolumeGallery_RobinDeZwart.pdf", text: "View PDF"})
+      ],
+      tools: ["Unity", "C#", "OSC", "NDI"],
+      concepts: ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space"]
+    }),
+
+    "Food Identifier": new Project({
+      title: "Food Identifier",
+      slug: "food-identifier",
+      description: "Object detection and image captioning for food inside fridges.",
+      category: categories.MACHINE_LEARNING,
+      links: [
+        new ProjectLink({
+          title: "Code",
+          url: "https://huggingface.co/spaces/rdezwart/FoodIdentifier",
+          text: "HuggingFace"
+        })
+      ],
+      tools: ["Python", "YOLOS", "Moondream"],
+      concepts: ["Object Recognition", "Image Captioning"]
+    }),
+
+    "A Sight Never Seen": new Project({
+      title: "A Sight Never Seen",
+      slug: "a-sight-never-seen",
+      description: "Short visual novel with branching paths, set in a world of magic and secrets.",
+      category: categories.GAME_DEVELOPMENT,
+      links: [
+        new ProjectLink({title: "Code", url: "https://github.com/rdezwart/SightNeverSeen", text: "GitHub"}),
+        new ProjectLink({title: "Game", url: "https://rdezwart.itch.io/sightneverseen", text: "Itch.io"})
+      ],
+      tools: ["Ren'Py", "Python"]
+    })
+  };
