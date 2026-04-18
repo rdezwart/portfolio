@@ -21,7 +21,7 @@ append scripts
   script(src="/js/toc.js" defer)
 
 block main
-  article.article(style=`--project-banner: url('/img/${slug}/${currentProject.image}.webp');`)
+  article.article(style=`--project-banner: url('/img/${slug}/${currentProject.image.name}.webp');`)
     header.header
       block header
         block hgroup

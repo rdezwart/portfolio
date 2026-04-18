@@ -50,6 +50,22 @@
   }
 
   /**
+   * Represents the image associated with a {@link Project}.
+   */
+  class ProjectImage {
+    /**
+     * @param {string} name - The name of the image, without the file extension.
+     * @param {number} width - The width of the image, in pixels.
+     * @param {number} height - The height of the image, in pixels.
+     */
+    constructor(name = "banner", width = 512, height = 512) {
+      this.name = name;
+      this.width = width;
+      this.height = height;
+    }
+  }
+
+  /**
    * Contains the display name and slug for each project category, listed in
    * display order.
    * @readonly
@@ -73,7 +89,7 @@
      * @param {string} [options.slug] - The base slug of this project.
      * @param {string} [options.description] - The description of this project.
      * @param {ProjectCategory} [options.category] - The category this project belongs to.
-     * @param {string} [options.image] - The name of the image to use for this project's banner.
+     * @param {ProjectImage} [options.image] - The image to use for this project's banner.
      * @param {ProjectLink[]} [options.links] - Links associated to this project.
      * @param {string[]} [options.tools] - Tools used in this project.
      * @param {string[]} [options.concepts] - Concepts involved in this project.
@@ -84,7 +100,7 @@
               slug = "home",
               description = "Hi, I'm Robin;",
               category = categories.MISCELLANEOUS,
-              image = "banner",
+              image = new ProjectImage(),
               links = [],
               tools = [],
               concepts = []
@@ -107,7 +123,7 @@
       slug: "autolume-gallery",
       description: "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
       category: categories.MACHINE_LEARNING,
-      image: "canvas-2",
+      image: new ProjectImage("canvas-2", 512, 512),
       links: [
         new ProjectLink({title: "Code", url: "https://github.com/rdezwart/AutolumeGallery", text: "GitHub"}),
         new ProjectLink({title: "Dataset", url: "https://voormeij.ca/", text: "Peter John Voormeij"}),

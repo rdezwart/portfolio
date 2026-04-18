@@ -115,15 +115,11 @@ mixin project-card(project)
       div.project-tools
         +list(project.tools)(class="tools" role="list")
 
-    picture.project-img
-      source(srcset=`/img/${project.slug}/${project.image}.webp` type="image/webp")
-      img(
-        alt=""
-        src=`/img/${project.slug}/${project.image}.webp`
-        width="1024"
-        height="1024"
-        loading="lazy"
-      )
+    +picture(project.image.name, {
+      width: project.image.width,
+      height: project.image.height,
+      slug: project.slug
+    }).project-img
 
 
 //- Quick helper for links to external pages
