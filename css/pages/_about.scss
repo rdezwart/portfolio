@@ -30,7 +30,7 @@
  * Picture element containing the actual image.
  * 1. Equivalent to a 3px border, when 1rem=16px.
  */
-picture:has(.profile-image) {
+.profile-picture {
   position: absolute;
   inset: 0.1875rem; /* 1 */
 }
@@ -39,6 +39,6 @@ picture:has(.profile-image) {
  * Profile image itself.
  * 1. Calling the circle path without arguments places it in the center.
  */
-.profile-image {
+.profile-picture img {
   clip-path: circle(); /* 1 */
 }
