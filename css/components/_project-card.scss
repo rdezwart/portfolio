@@ -18,7 +18,7 @@
   position: relative; /* 2 */
   scroll-margin-block-start: #{abstracts.$text-gap};
 
-  box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 80%);
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 80%);
   outline: 0 solid var(--highlight);
   transition-property: outline-width, outline-color;
   transition-duration: calc(var(--duration) / 2), var(--duration);

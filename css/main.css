@@ -1294,7 +1294,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   grid-template-rows: auto 1fr;
   position: relative; /* 2 */
   scroll-margin-block-start: 0.5rlh;
-  box-shadow: 0.5rem 0.5rem 0.5rem 0.1rem rgba(0, 0, 0, 0.8);
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.8);
   outline: 0 solid var(--highlight);
   transition-property: outline-width, outline-color;
   transition-duration: calc(var(--duration) / 2), var(--duration);
