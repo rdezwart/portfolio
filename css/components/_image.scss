@@ -3,9 +3,21 @@
 /**
  * Responsive image styles for images with multiple sources. Since this wraps
  * the img element, we need to apply these structural styles here.
+ * 1. Having the inner img inline means if it breaks, then the remaining alt
+ *    alt text isn't forced to a size that cannot be overridden by things like
+ *    a flex layout.
+ * 2. This hides the extra height at the bottom of the containing element,
+ *    which is due to `display: inline;`
  */
 picture {
   display: block;
   max-inline-size: 100%;
   block-size: auto;
+  background-color: var(--banner);
+
+  img {
+    display: inline; /* 1 */
+    vertical-align: middle; /* 2 */
+    object-fit: contain;
+  }
 }

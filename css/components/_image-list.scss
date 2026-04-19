@@ -6,6 +6,7 @@
  * 2. Remove inline margin applied to children of section elements
  * 3. Reduce figcaption outer margin since this typically isn't placed inline
  *    with text
+ * 4. Help stop broken images from escaping.
  */
 :is(ul, ol).img-list {
   @include abstracts.flex-row(abstracts.$text-gap abstracts.$page-padding); /* 1 */
@@ -14,6 +15,7 @@
 
   li {
     flex: 15rem;
+    overflow: hidden; /* 4 */
 
     &:first-child {
       flex: auto;
