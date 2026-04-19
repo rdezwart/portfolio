@@ -61,11 +61,17 @@ mixin fancy-name(fancy = false)
 
 
 //- Shortcut for name, also prevents breaking between my last name
+  Double child spans is for allowing the link text to get decoration, but not
+  the highlight.
 mixin name(full=true)
   if full
-    a.name(href="/") Robin de&nbsp;Zwart#[span.highlight ;]
+    a.name(href="/")
+      span Robin de&nbsp;Zwart
+      span.highlight ;
   else
-    a.name(href="/") Robin#[span.highlight ;]
+    a.name(href="/")
+      span Robin
+      span.highlight ;
 
 
 //- Modifies `+sidebar()` for TOC-specific features
@@ -92,7 +98,9 @@ mixin sidebar(options = {})
     +h(2, heading, false, 4)(class="sidebar-heading" id=headingID)
     div.scrollable
       block
-    a.to-top(href="#") Back to Top#[span.highlight ;]
+    a.to-top(href="#")
+      span Back to Top
+      span.highlight ;
 
 
 //- Renders a list of items, with extra cases for a comma separated list

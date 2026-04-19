@@ -25,13 +25,29 @@ a {
 }
 
 /**
+ * When a includes a highlight that doesn't want the underline, we separate the
+ * link text into two spans. We want to inherit the important styles from the
+ * the parent.
+ */
+a span {
+  transition: inherit;
+  font-weight: inherit;
+  text-decoration: inherit;
+  text-underline-position: inherit;
+}
+
+/**
  * Extra specificity with fake classes to make sure the effects get added
  * properly.
  * 1. Apply color changes to any highlights that are part of the link.
+ * 2. Apply text decoration styles ONLY to the link text, and not any spans that
+ *    are highlights.
  */
 a:not(.specificity) {
   &:hover, &:focus {
-    text-decoration-color: currentColor;
+    & span:not(.highlight) {
+      text-decoration-color: currentColor;
+    }
 
     &, .highlight { /* 1 */
       color: var(--highlight);
@@ -43,16 +59,6 @@ a:not(.specificity) {
       color: var(--active);
     }
   }
-}
-
-
-/**
- * Highlights inside links.
- * 1. Setting inline-block stops any text decorations from applying to it, such
- *    as the underline when hovering/focusing a link.
- */
-a .highlight {
-  display: inline-block; /* 1 */
 }
 
 
