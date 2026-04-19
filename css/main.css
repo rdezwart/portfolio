@@ -534,9 +534,9 @@ body {
   display: grid;
   justify-content: center;
   justify-items: stretch; /* 3 */
-  -moz-column-gap: 2rlh;
-       column-gap: 2rlh;
-  row-gap: 1rlh;
+  -moz-column-gap: 1rlh;
+       column-gap: 1rlh;
+  row-gap: 2rlh;
   grid-template-columns: minmax(auto, 21rem) minmax(auto, calc(40rem + 2rlh)); /* 1 */
   grid-template-rows: none; /* 2 */
   grid-auto-rows: auto; /* 2 */
@@ -779,7 +779,7 @@ section {
   flex-direction: column;
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
-  padding-block-start: 0.5rlh; /* 1 */
+  padding-block-start: 1rlh; /* 1 */
   overflow-wrap: normal;
 }
 section > :where(:not(section)) {
@@ -790,6 +790,9 @@ section > :where(:not(section)) {
   section > :where(:not(section)) {
     margin-inline: 0;
   }
+}
+section > :where(:not(section)):last-child, section > :where(:not(section)):has(+ section) {
+  margin-block-end: 0;
 }
 
 /**

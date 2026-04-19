@@ -30,7 +30,7 @@
 section {
   @include abstracts.flex-column();
   row-gap: 0; /* 1 */
-  padding-block-start: #{abstracts.$text-gap}; /* 1 */
+  padding-block-start: #{abstracts.$text-gap * 2}; /* 1 */
 
   overflow-wrap: normal;
 
@@ -40,6 +40,10 @@ section {
 
     @include abstracts.respond-to("full") {
       margin-inline: 0;
+    }
+
+    &:last-child, &:has(+ section) {
+      margin-block-end: 0;
     }
   }
 }
