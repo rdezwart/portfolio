@@ -167,8 +167,8 @@ mixin hi-res-label(name, options = {})
 mixin picture(/** @type {ProjectImage} */ image)
   picture&attributes(attributes)
     if image.small
-      source(srcset=`/img/${image.slug}${image.name}-sm.webp 1x,
-          /img/${image.slug}${image.name}.webp 2x` type="image/webp")
+      source(srcset=`/img/${image.slug}${image.name}-sm.${image.primaryFormat} 1x,
+          /img/${image.slug}${image.name}.${image.primaryFormat} 2x` type=`image/${image.primaryFormat}`)
 
       img(srcset=`/img/${image.slug}${image.name}-sm.${image.fallbackFormat} 1x,
           /img/${image.slug}${image.name}.${image.fallbackFormat} 2x`
@@ -177,7 +177,8 @@ mixin picture(/** @type {ProjectImage} */ image)
         alt=`${image.alt}`)
 
     else
-      source(srcset=`/img/${image.slug}${image.name}.webp 1x` type="image/webp")
+      if image.primaryFormat !== image.fallbackFormat
+        source(srcset=`/img/${image.slug}${image.name}.${image.primaryFormat} 1x` type=`image/${image.primaryFormat}`)
 
       img(srcset=`/img/${image.slug}${image.name}.${image.fallbackFormat} 1x`
         src=`/img/${image.slug}${image.name}.${image.fallbackFormat}` loading=`${image.loading}`

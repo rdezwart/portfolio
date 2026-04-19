@@ -57,6 +57,7 @@
    * @property {number} [width]
    * @property {number} [height]
    * @property {string} [alt]
+   * @property {string} [primaryFormat]
    * @property {string} [fallbackFormat]
    * @property {string} [loading]
    * @property {boolean} [small]
@@ -77,6 +78,7 @@
               width = 512,
               height = 512,
               alt = "",
+              primaryFormat = "webp",
               fallbackFormat = "jpg",
               loading = "lazy",
               small = true
@@ -87,6 +89,7 @@
       this.width = width;
       this.height = height;
       this.alt = alt;
+      this.primaryFormat = primaryFormat;
       this.fallbackFormat = fallbackFormat;
       this.loading = loading;
       this.small = small;
