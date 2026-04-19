@@ -274,11 +274,15 @@ a span {
  * Extra specificity with fake classes to make sure the effects get added
  * properly.
  * 1. Apply color changes to any highlights that are part of the link.
- * 2. Apply text decoration styles ONLY to the link text, and not any spans that
+ * 2. If the link has NO highlights, apply the decoration styles normally.
+ * 3. Apply text decoration styles ONLY to the link text, and not any spans that
  *    are highlights.
  */
-a:not(.specificity):hover span:not(.highlight), a:not(.specificity):focus span:not(.highlight) {
-  text-decoration-color: currentColor;
+a:not(.specificity):hover:not(:has(> .highlight)), a:not(.specificity):focus:not(:has(> .highlight)) {
+  text-decoration-color: currentColor; /* 2 */
+}
+a:not(.specificity):hover :not(.highlight), a:not(.specificity):focus :not(.highlight) {
+  text-decoration-color: currentColor; /* 3 */
 }
 a:not(.specificity):hover, a:not(.specificity):hover .highlight, a:not(.specificity):focus, a:not(.specificity):focus .highlight { /* 1 */
   color: var(--highlight);
