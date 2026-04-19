@@ -13,8 +13,8 @@
   row-gap: 0; /* 1 */
 
   section:first-child {
-    padding-top: 0; /* 2 */
-    scroll-margin-top: #{abstracts.$text-gap}; /* 3 */
+    padding-block-start: 0; /* 2 */
+    scroll-margin-block-start: #{abstracts.$text-gap}; /* 3 */
   }
 }
 

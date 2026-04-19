@@ -766,8 +766,8 @@ body {
   row-gap: 0; /* 1 */
 }
 .content section:first-child {
-  padding-top: 0; /* 2 */
-  scroll-margin-top: 0.5rlh; /* 3 */
+  padding-block-start: 0; /* 2 */
+  scroll-margin-block-start: 0.5rlh; /* 3 */
 }
 
 /**
