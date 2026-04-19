@@ -50,18 +50,46 @@
   }
 
   /**
+   * Parameters to be passed to {@link ProjectImage}.
+   * @typedef ProjectImageOptions
+   * @property {string} [name]
+   * @property {string} [slug]
+   * @property {number} [width]
+   * @property {number} [height]
+   * @property {string} [alt]
+   * @property {string} [fallbackFormat]
+   * @property {string} [loading]
+   * @property {boolean} [small]
+   */
+
+  /**
    * Represents the image associated with a {@link Project}.
    */
   class ProjectImage {
     /**
-     * @param {string} name - The name of the image, without the file extension.
-     * @param {number} width - The width of the image, in pixels.
-     * @param {number} height - The height of the image, in pixels.
+     * @param {ProjectImageOptions} [options] - {@link ProjectImageOptions}
+     *     containing options for creating this `ProjectImage`.
      */
-    constructor(name = "banner", width = 512, height = 512) {
+    constructor(
+            {
+              name = "banner",
+              slug = (typeof currentProject !== 'undefined') ? currentProject.slug : "",
+              width = 512,
+              height = 512,
+              alt = "",
+              fallbackFormat = "jpg",
+              loading = "lazy",
+              small = true
+            } = {}
+    ) {
       this.name = name;
+      this.slug = (slug.length > 0 && slug.slice(-1) !== "/") ? `${slug}/` : slug;
       this.width = width;
       this.height = height;
+      this.alt = alt;
+      this.fallbackFormat = fallbackFormat;
+      this.loading = loading;
+      this.small = small;
     }
   }
 
@@ -89,7 +117,7 @@
      * @param {string} [options.slug] - The base slug of this project.
      * @param {string} [options.description] - The description of this project.
      * @param {ProjectCategory} [options.category] - The category this project belongs to.
-     * @param {ProjectImage} [options.image] - The image to use for this project's banner.
+     * @param {ProjectImageOptions} [options.imageOptions] - The image options to use for this project's banner.
      * @param {ProjectLink[]} [options.links] - Links associated to this project.
      * @param {string[]} [options.tools] - Tools used in this project.
      * @param {string[]} [options.concepts] - Concepts involved in this project.
@@ -100,7 +128,7 @@
               slug = "home",
               description = "Hi, I'm Robin;",
               category = categories.MISCELLANEOUS,
-              image = new ProjectImage(),
+              imageOptions = {},
               links = [],
               tools = [],
               concepts = []
@@ -110,7 +138,13 @@
       this.slug = slug;
       this.description = description;
       this.category = category;
-      this.image = image;
+
+      /* By inserting a default slug here, we avoid accessing `currentProject`
+       in this scope ENTIRELY (normally used as the default value when creating
+       a ProjectImage). This is ideal since it's not initialized yet at this
+       point, and would throw an error if we tried. */
+      this.image = new ProjectImage({slug: this.slug, ...imageOptions});
+
       this.links = links;
       this.tools = tools;
       this.concepts = concepts;
@@ -123,7 +157,7 @@
       slug: "autolume-gallery",
       description: "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
       category: categories.MACHINE_LEARNING,
-      image: new ProjectImage("canvas-2", 512, 512),
+      imageOptions: {name: "canvas-2", width: 1024, height: 1024, small: false, slug: "test"},
       links: [
         new ProjectLink({title: "Code", url: "https://github.com/rdezwart/AutolumeGallery", text: "GitHub"}),
         new ProjectLink({title: "Dataset", url: "https://voormeij.ca/", text: "Peter John Voormeij"}),
@@ -138,6 +172,7 @@
       slug: "food-identifier",
       description: "Object detection and image captioning for food inside fridges.",
       category: categories.MACHINE_LEARNING,
+      imageOptions: {name: "base-example", width: 857, height: 482, small: false},
       links: [
         new ProjectLink({
           title: "Code",

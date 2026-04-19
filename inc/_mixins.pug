@@ -115,11 +115,7 @@ mixin project-card(project)
       div.project-tools
         +list(project.tools)(class="tools" role="list")
 
-    +picture(project.image.name, {
-      width: project.image.width,
-      height: project.image.height,
-      slug: project.slug
-    }).project-img
+    +picture(project.image).project-img
 
 
 //- Quick helper for links to external pages
@@ -167,34 +163,23 @@ mixin hi-res-label(name, options = {})
 
 //- Expects webp and fallback images to exist, including smaller versions for
   different pixel densities.
-mixin picture(imageName, options = {})
-  -
-    const {
-      project = currentProject,
-      slug = project.slug,
-      width = 0,
-      height = 0,
-      alt = "",
-      fallbackFormat = "jpg",
-      loading = "lazy",
-      small = true
-    } = options;
-
+  ProjectImage ensures slugs have an ending slash, if necessary.
+mixin picture(/** @type {ProjectImage} */ image)
   picture&attributes(attributes)
-    if small
-      source(srcset=`/img/${slug}/${imageName}-sm.webp 1x,
-          /img/${slug}/${imageName}.webp 2x` type="image/webp")
+    if image.small
+      source(srcset=`/img/${image.slug}${image.name}-sm.webp 1x,
+          /img/${image.slug}${image.name}.webp 2x` type="image/webp")
 
-      img(srcset=`/img/${slug}/${imageName}-sm.${fallbackFormat} 1x,
-          /img/${slug}/${imageName}.${fallbackFormat} 2x`
-        src=`/img/${slug}/${imageName}-sm.${fallbackFormat}` loading=`${loading}`
-        width=`${width}` height=`${height}`
-        alt=`${alt}`)
+      img(srcset=`/img/${image.slug}${image.name}-sm.${image.fallbackFormat} 1x,
+          /img/${image.slug}${image.name}.${image.fallbackFormat} 2x`
+        src=`/img/${image.slug}${image.name}-sm.${image.fallbackFormat}` loading=`${image.loading}`
+        width=`${image.width}` height=`${image.height}`
+        alt=`${image.alt}`)
 
     else
-      source(srcset=`/img/${slug}/${imageName}.webp 1x` type="image/webp")
+      source(srcset=`/img/${image.slug}${image.name}.webp 1x` type="image/webp")
 
-      img(srcset=`/img/${slug}/${imageName}.${fallbackFormat} 1x`
-        src=`/img/${slug}/${imageName}.${fallbackFormat}` loading=`${loading}`
-        width=`${width}` height=`${height}`
-        alt=`${alt}`)
+      img(srcset=`/img/${image.slug}${image.name}.${image.fallbackFormat} 1x`
+        src=`/img/${image.slug}${image.name}.${image.fallbackFormat}` loading=`${image.loading}`
+        width=`${image.width}` height=`${image.height}`
+        alt=`${image.alt}`)

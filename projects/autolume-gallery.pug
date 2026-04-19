@@ -74,39 +74,44 @@ append overview
 
     ol.img-list(role="list")
       li: figure
-        +picture("canvas-1", {
+        +picture(new ProjectImage({
+          name: "canvas-1",
           width: 960,
           height: 540,
           alt: "The Autolume canvas in VR, a mix of greens, yellows, and white."
-        })
+        }))
         +figcaption("canvas-1", {counterName: "Example"})
       li: figure
-        +picture("canvas-2", {
+        +picture(new ProjectImage({
+          name: "canvas-2",
           width: 512,
           height: 512,
           alt: "A composition saved from AutolumeGallery, primarily oranges and whites."
-        })
+        }))
         +figcaption("canvas-2", {counterName: "Example"})
       li: figure
-        +picture("canvas-3", {
+        +picture(new ProjectImage({
+          name: "canvas-3",
           width: 512,
           height: 512,
           alt: "A composition saved from AutolumeGallery, primarily blues and greens."
-        })
+        }))
         +figcaption("canvas-3", {counterName: "Example"})
       li: figure
-        +picture("canvas-4", {
+        +picture(new ProjectImage({
+          name: "canvas-4",
           width: 512,
           height: 512,
           alt: "A composition saved from AutolumeGallery, primarily whites and blues."
-        })
+        }))
         +figcaption("canvas-4", {counterName: "Example"})
       li: figure
-        +picture("canvas-5", {
+        +picture(new ProjectImage({
+          name: "canvas-5",
           width: 512,
           height: 512,
           alt: "A composition saved from AutolumeGallery, primarily greens and whites."
-        })
+        }))
         +figcaption("canvas-5", {counterName: "Example"})
 
 
@@ -203,13 +208,14 @@ append content
         to show. I will run through each object and any relevant children.
 
       figure
-        +picture("hierarchy", {
+        +picture(new ProjectImage({
+          name: "hierarchy",
           width: 286,
           height: 239,
           alt: "Unity hierarchy for this project.",
           fallbackFormat: "png",
           small: false
-        })
+        }))
         +figcaption() Root hierarchy of the Gallery scene.
 
       section#directional-light
@@ -357,11 +363,12 @@ append content
   section#results
     +h(2, "Results")
     figure
-      +picture("canvas-3", {
+      +picture(new ProjectImage({
+        name: "canvas-3",
         width: 512,
         height: 512,
         alt: "A composition saved from AutolumeGallery, primarily blues and greens."
-      })
+      }))
       +figcaption("canvas-3").
         The output of all four canvas panels tiled next to each other. The bottom left panel is unmodified, showing
         Autolume's output in the original orientation. By default, the rest of the tiles are always flipped in this

@@ -18,12 +18,13 @@ append pre-sidebar
 
 append sidebar-content
   div.profile-border
-    +picture("profile", {
+    +picture(new ProjectImage({
+      name: "profile",
       width: 256,
       height: 256,
       slug: slug,
       alt: "Headshot of Robin de Zwart."
-    }).profile-picture
+    })).profile-picture
 
 append content
   section#about-me
