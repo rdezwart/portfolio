@@ -1370,7 +1370,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   overflow: hidden; /* 4 */
 }
 .project-img img { /* 2 */
-  aspect-ratio: 16/9;
+  aspect-ratio: 2/1;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: top center;

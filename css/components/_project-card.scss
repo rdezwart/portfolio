@@ -84,8 +84,8 @@
   overflow: hidden; /* 4 */
 
   img { /* 2 */
-    aspect-ratio: 16 / 9;
-    //aspect-ratio: 2 / 1; // TODO: Another possible value
+    //aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 1; // TODO: Another possible value
     object-fit: cover;
     object-position: top center;
   }
