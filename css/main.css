@@ -1411,6 +1411,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   flex-direction: column;
   gap: 0.5rlh;
   align-items: start;
+  justify-content: space-between;
   padding: 1rlh;
   padding-block-start: 0.5rlh;
 }

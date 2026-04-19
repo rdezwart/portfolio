@@ -100,6 +100,7 @@
 
   @include abstracts.flex-column();
   align-items: start;
+  justify-content: space-between;
 
   padding: #{abstracts.$page-padding};
   padding-block-start: #{abstracts.$text-gap}; // TODO: See if you like this or not
