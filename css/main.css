@@ -771,6 +771,13 @@ body {
 }
 
 /**
+ * Remove top padding to the first section in the pre-sidebar area.
+ */
+.pre-sidebar section:first-child {
+  padding-block-start: 0;
+}
+
+/**
  * Saves having to manage exact margins and gaps on each item I might add to a
  * page, project or otherwise.
  * 1. Remove row-gap and recreate it with padding to avoid dead zones with the
