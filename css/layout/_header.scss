@@ -102,6 +102,10 @@
  */
 .pre-sidebar :is(hgroup, .hgroup) {
   margin-inline: #{abstracts.$page-padding};
+
+  @include abstracts.respond-to("full") {
+    margin-inline: 0;
+  }
 }
 
 /**

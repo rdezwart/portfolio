@@ -914,6 +914,11 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 .pre-sidebar :is(hgroup, .hgroup) {
   margin-inline: 1rlh;
 }
+@media screen and (max-width: calc(40rem + 2rlh)) {
+  .pre-sidebar :is(hgroup, .hgroup) {
+    margin-inline: 0;
+  }
+}
 
 /**
  * Semi-transparent background color in front of `.header` background image,
