@@ -143,12 +143,13 @@
  * List of links at the bottom of header.
  * 1. Had to increase specificity a bit for padding/margins.
  */
-ul.links { /* 1 */
+:is(ul, ol).links { /* 1 */
   flex: 0 auto;
 
-  @include abstracts.flex-row(0 #{abstracts.$page-padding});
+  @include abstracts.flex-row(#{abstracts.$text-gap} #{abstracts.$page-padding});
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+
   padding-block: #{abstracts.$page-padding * 0.5};
   padding-inline: #{abstracts.$page-padding};
 

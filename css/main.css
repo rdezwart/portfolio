@@ -966,13 +966,13 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  * List of links at the bottom of header.
  * 1. Had to increase specificity a bit for padding/margins.
  */
-ul.links { /* 1 */
+:is(ul, ol).links { /* 1 */
   flex: 0 auto;
   display: flex;
   flex-direction: row;
-  gap: 0 1rlh;
+  gap: 0.5rlh 1rlh;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   padding-block: 0.5rlh;
   padding-inline: 1rlh;
   background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
