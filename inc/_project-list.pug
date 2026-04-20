@@ -116,7 +116,8 @@
   class Project {
     /**
      * @param {Object} [options] - Object literal with configuration information.
-     * @param {string} [options.title] - The title of this project.
+     * @param {string} [options.title] - The title of this project. May include HTML entities.
+     * @param {string} [options.rawTitle] - The plain text title of this project.
      * @param {string} [options.slug] - The base slug of this project.
      * @param {string} [options.description] - The description of this project.
      * @param {ProjectCategory} [options.category] - The category this project belongs to.
@@ -128,6 +129,7 @@
     constructor(
             {
               title = "Portfolio",
+              rawTitle = title,
               slug = "home",
               description = "Hi, I'm Robin;",
               category = categories.MISCELLANEOUS,
@@ -138,6 +140,7 @@
             } = {}
     ) {
       this.title = title;
+      this.rawTitle = rawTitle;
       this.slug = slug;
       this.description = description;
       this.category = category;
@@ -156,7 +159,8 @@
 
   const projects = {
     "AutolumeGallery": new Project({
-      title: "AutolumeGallery",
+      title: "Autolume&shy;Gallery",
+      rawTitle: "AutolumeGallery",
       slug: "autolume-gallery",
       description: "Interactive virtual reality system for real-time exploration of generative adversarial network latent space.",
       category: categories.MACHINE_LEARNING,
