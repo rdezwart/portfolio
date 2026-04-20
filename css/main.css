@@ -1566,7 +1566,8 @@ gradio-app.gradio-app .embed-container.gradio-container {
 .profile-border {
   position: relative;
   align-self: center;
-  flex: 0 1 256px;
+  inline-size: 100%;
+  max-inline-size: 256px;
   clip-path: circle();
   background-color: var(--banner);
   aspect-ratio: 1/1;
