@@ -56,7 +56,7 @@ $text-gap: 0.5rlh; // 12px
 
 /// Inline margin on text-based content.
 /// @type Length
-$content-margin: 1rlh;
+$content-margin: 1.5rem;
 
 /// Helps to make the margins around block elements visually match the gaps
 /// between text.
@@ -65,11 +65,22 @@ $rlh-cap-diff: calc((1rlh - 1cap) / 2);
 
 /// Max width of main tag. 40rem ~= 80 characters
 /// @type Length
-$main-width: calc(40rem + #{$content-margin * 2});
+$main-width: 40rem;
+
+/// Max width of main tag, including content margins.
+/// @type Length
+$main-width-margins: $main-width + ($content-margin * 2);
+
+/// Min width of main tag.
+/// This mostly ends up controlling the proportional shrinking between itself
+/// and the sidebar column, as the breakpoint (ideally) triggers before this
+/// matters.
+/// @type Length
+$main-min-width: 27.125rem;
 
 /// Gap between content and sidebar.
 /// @type Length
-$content-gap: 2rlh;
+$content-gap: 1rlh;
 
 /// Max width of sidebar nav.
 /// @type Length
@@ -86,8 +97,12 @@ $total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2)
 /// List of media query breakpoints by name.
 /// @see {function} respond-to
 /// @type Map
+
+/// Map of breakpoints used across the site.
+/// NOTE: calc() and var() cannot be used in media queries, so we're not allowed
+/// to use them here either.
 $breakpoints: (
-        "full": (max-width: $main-width),
+        "full": (max-width: $main-width-margins),
         "medium": (max-width: 32rem)
 );
 

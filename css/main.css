@@ -348,10 +348,10 @@ body {
 :is(h2, h3), :is(.h2, .h3) {
   background-color: var(--banner);
   line-height: 1;
-  padding: 0.5rlh 1rlh;
+  padding: 0.5rlh 1.5rem;
   margin-block-end: 0.5rlh;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   :is(h2, h3), :is(.h2, .h3) {
     padding-inline: 1rlh;
     margin-inline: -1rlh;
@@ -528,31 +528,37 @@ body {
 
 /**
  * Main wrapper for body of site.
+ * 1. Push footer to bottom of page regardless of content size.
+ */
+.wrapper {
+  margin: auto;
+  padding: 1rlh;
+  min-block-size: 100dvh; /* 1 */
+}
+
+/**
+ * Higher specificity for grid styles, so `grid-template-columns` can override
+ * the shorthand `grid-template` values.
  * 1. Sidebar column is auto, main content has a limited width to preserve
  *    reasonable line lengths.
  * 2. Implicit rows of size auto, this makes it simpler when moving to smaller
  *    breakpoints.
  * 3. Ensure elements act block-like on smaller screens, otherwise
  *    clicking/tapping sends focus to unexpected places.
- * 4. Push footer to bottom of page regardless of content size.
  */
-.wrapper {
-  margin: auto;
-  padding: 1rlh;
-  min-block-size: 100dvh; /* 4 */
+.wrapper.grid {
   display: grid;
   justify-content: center;
   justify-items: stretch; /* 3 */
   -moz-column-gap: 1rlh;
        column-gap: 1rlh;
   row-gap: 2rlh;
-  grid-template-columns: minmax(auto, 21rem) minmax(auto, calc(40rem + 2rlh)); /* 1 */
-  grid-template-rows: none; /* 2 */
+  grid-template-columns: auto minmax(27.125rem, 43rem); /* 1 */
   grid-auto-rows: auto; /* 2 */
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
-  .wrapper {
-    grid-template-columns: minmax(auto, calc(40rem + 2rlh));
+@media screen and (max-width: 43rem) {
+  .wrapper.grid {
+    grid-template-columns: minmax(auto, 40rem);
   }
 }
 
@@ -565,7 +571,7 @@ body {
 .grid-default {
   grid-template: "nav  head" auto ".    content" 1fr "foot foot" auto;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .grid-default {
     grid-template: "nav" auto "head" auto "content" 1fr "foot" auto;
   }
@@ -577,7 +583,7 @@ body {
 .grid-sidebar {
   grid-template: "nav  head" auto "side content" 1fr "foot foot" auto;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .grid-sidebar {
     grid-template: "nav" auto "head" auto "side" auto "content" 1fr "foot" auto;
   }
@@ -590,7 +596,7 @@ body {
 .grid-pre-sidebar {
   grid-template: "nav  head" auto "side pre-side" auto "side content" 1fr "foot foot" auto;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .grid-pre-sidebar {
     grid-template: "nav" auto "head" auto "pre-side" auto "side" auto "content" 1fr "foot" auto;
   }
@@ -603,7 +609,7 @@ body {
 .grid-pre-sidebar-low {
   grid-template: "nav  head" auto ".    pre-side" auto "side content" 1fr "foot foot" auto;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .grid-pre-sidebar-low {
     grid-template: "nav" auto "head" auto "pre-side" auto "side" auto "content" 1fr "foot" auto;
   }
@@ -789,9 +795,9 @@ section {
 }
 section > :where(:not(section)) {
   margin-block-end: 0.5rlh; /* 2 */
-  margin-inline: 1rlh; /* 3 */
+  margin-inline: 1.5rem; /* 3 */
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   section > :where(:not(section)) {
     margin-inline: 0;
   }
@@ -835,7 +841,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 .header .description {
   color: #DDDDDD;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .header {
     margin-block-start: 0;
   }
@@ -919,7 +925,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 .pre-sidebar :is(hgroup, .hgroup) {
   margin-inline: 1rlh;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .pre-sidebar :is(hgroup, .hgroup) {
     margin-inline: 0;
   }
@@ -1143,7 +1149,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   line-height: 1;
   text-decoration-color: transparent;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .sidebar .to-top {
     display: none;
   }
@@ -1162,7 +1168,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
     max-block-size: calc(100dvh - 1rlh * 2); /* 1 */
   }
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .sidebar.sticky {
     max-block-size: none;
   }
@@ -1553,7 +1559,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   gap: 0.5rlh;
   align-items: start;
 }
-@media screen and (max-width: calc(40rem + 2rlh)) {
+@media screen and (max-width: 43rem) {
   .grid-pre-sidebar-low .pre-sidebar {
     align-items: center;
   }
