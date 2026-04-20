@@ -600,11 +600,11 @@ body {
  * Grid for About page, where the profile photo needs to be aligned with
  * Content and not the Pre-Sidebar.
  */
-.grid-about {
+.grid-pre-sidebar-low {
   grid-template: "nav  head" auto ".    pre-side" auto "side content" 1fr "foot foot" auto;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  .grid-about {
+  .grid-pre-sidebar-low {
     grid-template: "nav" auto "head" auto "pre-side" auto "side" auto "content" 1fr "foot" auto;
   }
 }
@@ -1547,14 +1547,14 @@ gradio-app.gradio-app .embed-container.gradio-container {
 /**
  * Center "Hi, I'm Robin;" text on smaller viewports.
  */
-.grid-about .pre-sidebar {
+.grid-pre-sidebar-low .pre-sidebar {
   display: flex;
   flex-direction: column;
   gap: 0.5rlh;
   align-items: start;
 }
 @media screen and (max-width: calc(40rem + 2rlh)) {
-  .grid-about .pre-sidebar {
+  .grid-pre-sidebar-low .pre-sidebar {
     align-items: center;
   }
 }

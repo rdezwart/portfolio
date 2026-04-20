@@ -3,7 +3,7 @@
 /**
  * Center "Hi, I'm Robin;" text on smaller viewports.
  */
-.grid-about .pre-sidebar {
+.grid-pre-sidebar-low .pre-sidebar {
   @include abstracts.flex-column();
   align-items: start;
 

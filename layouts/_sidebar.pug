@@ -6,7 +6,7 @@ append vars
 
 
 block sidebar
-  if grid === "pre-sidebar" || grid === "about"
+  if grid.includes("pre-sidebar")
     div.pre-sidebar
       block pre-sidebar
 
