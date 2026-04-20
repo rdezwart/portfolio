@@ -38,19 +38,17 @@
  *    directly beneath it.
  */
 .grid-default {
-  grid-template-rows: auto 1fr auto; /* 1 */
-  grid-template-areas:
-    "nav hd"
-    ".   content"
-    "ft  ft";
+  grid-template:
+    "nav  head"    auto
+    ".    content" 1fr   /* 1 */
+    "foot foot"    auto;
 
   @include abstracts.respond-to("full") {
-    grid-template-rows: auto auto 1fr auto;
-    grid-template-areas:
-      "nav"
-      "hd"
-      "content"
-      "ft";
+    grid-template:
+      "nav"     auto
+      "head"    auto
+      "content" 1fr
+      "foot"    auto;
   }
 }
 
@@ -58,20 +56,18 @@
  * Grid for pages with a sidebar.
  */
 .grid-sidebar {
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "nav  hd"
-    "side content"
-    "ft   ft";
+  grid-template:
+    "nav  head"    auto
+    "side content" 1fr
+    "foot foot"    auto;
 
   @include abstracts.respond-to("full") {
-    grid-template-rows: auto auto 1fr auto auto;
-    grid-template-areas:
-      "nav"
-      "hd"
-      "side"
-      "content"
-      "ft";
+    grid-template:
+      "nav"     auto
+      "head"    auto
+      "side"    auto
+      "content" 1fr
+      "foot"    auto;
   }
 }
 
@@ -80,22 +76,20 @@
  * place content (such as headings).
  */
 .grid-pre-sidebar {
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas:
-    "nav  hd"
-    "side pre"
-    "side content"
-    "ft   ft";
+  grid-template:
+    "nav  head"     auto
+    "side pre-side" auto
+    "side content"  1fr
+    "foot foot"     auto;
 
   @include abstracts.respond-to("full") {
-    grid-template-rows: auto auto auto 1fr auto auto;
-    grid-template-areas:
-      "nav"
-      "hd"
-      "pre"
-      "side"
-      "content"
-      "ft";
+    grid-template:
+      "nav"      auto
+      "head"     auto
+      "pre-side" auto
+      "side"     auto
+      "content"  1fr
+      "foot"     auto;
   }
 }
 
@@ -104,22 +98,20 @@
  * Content and not the Pre-Sidebar.
  */
 .grid-about {
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas:
-    "nav  hd"
-    ".    pre"
-    "side content"
-    "ft   ft";
+  grid-template:
+    "nav  head"     auto
+    ".    pre-side" auto
+    "side content"  1fr
+    "foot foot"     auto;
 
   @include abstracts.respond-to("full") {
-    grid-template-rows: auto auto auto 1fr auto auto;
-    grid-template-areas:
-      "nav"
-      "hd"
-      "pre"
-      "side"
-      "content"
-      "ft";
+    grid-template:
+      "nav"      auto
+      "head"     auto
+      "pre-side" auto
+      "side"     auto
+      "content"  1fr
+      "foot"     auto;
   }
 }
 
@@ -158,10 +150,10 @@
 }
 
 /**
- * Defining grid areas for article header, content, and sidebar (TOC).
+ * Mapping grid areas.
  */
 .header {
-  grid-area: hd;
+  grid-area: head;
 }
 
 .content {
@@ -169,17 +161,13 @@
 }
 
 .pre-sidebar {
-  grid-area: pre;
+  grid-area: pre-side;
 }
 
 .sidebar-wrapper {
   grid-area: side;
 }
 
-
-/**
- * Defining grid area for site footer.
- */
 .footer {
-  grid-area: ft;
+  grid-area: foot;
 }
