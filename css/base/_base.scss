@@ -2,15 +2,21 @@
 
 /**
  * Root styles.
- * 1. Breaks words that are too big for the container, helps make sure the grid
+ * 1. Dark scheme is preferred, reflected in meta tags.
+ * 2. Breaks words that are too big for the container, helps make sure the grid
  *    doesn't break.
  */
 :root {
+  color-scheme: light dark; /* 1 */
+
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
   }
 
-  overflow-wrap: break-word; /* 1 */
+  overflow-wrap: break-word; /* 2 */
+
+  --duration: 0.1s;
+  --max-weight: 800;
 }
 
 body {
