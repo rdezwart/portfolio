@@ -142,6 +142,8 @@
 /**
  * List of links at the bottom of header.
  * 1. Had to increase specificity a bit for padding/margins.
+ * 2. Since we're bunching the links in the middle, this looks better than
+ *    when they wrap aligned left.
  */
 :is(ul, ol).links { /* 1 */
   flex: 0 auto;
@@ -149,6 +151,10 @@
   @include abstracts.flex-row(#{abstracts.$text-gap} #{abstracts.$page-padding});
   flex-wrap: wrap;
   justify-content: center;
+
+  li {
+    text-align: center; /* 2 */
+  }
 
   padding-block: #{abstracts.$page-padding * 0.5};
   padding-inline: #{abstracts.$page-padding};

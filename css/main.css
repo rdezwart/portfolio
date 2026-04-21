@@ -967,6 +967,8 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 /**
  * List of links at the bottom of header.
  * 1. Had to increase specificity a bit for padding/margins.
+ * 2. Since we're bunching the links in the middle, this looks better than
+ *    when they wrap aligned left.
  */
 :is(ul, ol).links { /* 1 */
   flex: 0 auto;
@@ -975,6 +977,11 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   gap: 0.5rlh 1rlh;
   flex-wrap: wrap;
   justify-content: center;
+}
+:is(ul, ol).links li {
+  text-align: center; /* 2 */
+}
+:is(ul, ol).links {
   padding-block: 0.5rlh;
   padding-inline: 1rlh;
   background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
