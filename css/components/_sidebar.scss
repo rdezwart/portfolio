@@ -11,9 +11,14 @@
 /**
  * Wrapper for sidebar contents.
  * 1. Removes top padding from first section in sidebar.
+ * 2. Stops the grid from using the width of the sidebar to calculate column
+ *    size, instead using the next largest element (the subtitle). This is
+ *    especially useful with the skills lists.
+ *    Referenced: https://stackoverflow.com/a/78771773/27162946
  */
 .sidebar-wrapper {
   @include abstracts.flex-column(#{abstracts.$page-padding});
+  contain: inline-size; /* 2 */
 
   section:first-child {
     padding-block-start: 0; /* 1 */
