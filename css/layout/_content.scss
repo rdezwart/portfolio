@@ -41,11 +41,7 @@ section {
 
   > :where(:not(section)) {
     margin-block-end: #{abstracts.$text-gap}; /* 2 */
-    margin-inline: #{abstracts.$content-margin}; /* 3 */
-
-    @include abstracts.respond-to("full") {
-      margin-inline: 0;
-    }
+    margin-inline: var(--content-margin); /* 3 */
 
     &:last-child, &:has(+ section) {
       margin-block-end: 0;

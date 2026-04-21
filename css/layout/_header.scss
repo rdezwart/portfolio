@@ -13,7 +13,7 @@
 
   @include abstracts.flex-column(0);
   margin-block-start: #{abstracts.$page-padding * -1};
-  min-block-size: 10rem;
+  min-block-size: 15rem;
   justify-content: center;
 
   background-color: var(--banner); /* 4 */
@@ -27,6 +27,7 @@
 
   @include abstracts.respond-to("full") {
     margin-block-start: 0;
+    margin-inline: #{abstracts.$page-padding * -1};
   }
 }
 

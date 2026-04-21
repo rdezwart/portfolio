@@ -17,6 +17,11 @@
 
   --duration: 0.1s;
   --max-weight: 800;
+  --content-margin: #{abstracts.$content-margin};
+
+  @include abstracts.respond-to("full") {
+    --content-margin: 0rem;
+  }
 }
 
 body {

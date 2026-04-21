@@ -114,7 +114,7 @@ h3, .h3 {
  */
 :is(h4, h5, h6), :is(.h4, .h5, .h6) {
   font-size: #{abstracts.font-size-scaled(0)};
-  margin-inline: #{abstracts.$page-padding}; /* 1 */
+  margin-inline: var(--content-margin); /* 1 */
 }
 
 /**
