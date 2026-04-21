@@ -39,8 +39,6 @@ section {
   row-gap: 0; /* 1 */
   padding-block-start: #{abstracts.$text-gap * 2}; /* 1 */
 
-  overflow-wrap: normal;
-
   > :where(:not(section)) {
     margin-block-end: #{abstracts.$text-gap}; /* 2 */
     margin-inline: #{abstracts.$content-margin}; /* 3 */

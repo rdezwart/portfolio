@@ -7,7 +7,7 @@
  */
 :is(ul, ol).project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); /* 1 */
   gap: #{abstracts.$page-padding};
   margin-inline: 0; /* 2 */
 }

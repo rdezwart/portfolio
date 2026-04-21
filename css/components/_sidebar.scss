@@ -8,21 +8,28 @@
   font-size: abstracts.font-size-scaled(1);
 }
 
+/**
+ * Wrapper for sidebar contents.
+ * 1. Removes top padding from first section in sidebar.
+ */
 .sidebar-wrapper {
   @include abstracts.flex-column(#{abstracts.$page-padding});
 
   section:first-child {
-    padding-block-start: 0; /* 2 */
+    padding-block-start: 0; /* 1 */
   }
 }
 
 /**
  * Generic sidebar, the section itself.
  * 1. This stops the back-to-top link from filling the full width.
+ * 2. Allow words that are too long wrap, such as "Acknowledgements"
  */
 .sidebar {
   @include abstracts.flex-column(0);
   align-items: start; /* 1 */
+
+  overflow-wrap: anywhere; /* 2*/
 }
 
 /**

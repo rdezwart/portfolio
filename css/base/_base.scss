@@ -1,9 +1,16 @@
 @use "../abstracts";
 
-html {
+/**
+ * Root styles.
+ * 1. Breaks words that are too big for the container, helps make sure the grid
+ *    doesn't break.
+ */
+:root {
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
   }
+
+  overflow-wrap: break-word; /* 1 */
 }
 
 body {

@@ -233,10 +233,18 @@ img {
   --max-weight: 800;
 }
 
+/**
+ * Root styles.
+ * 1. Breaks words that are too big for the container, helps make sure the grid
+ *    doesn't break.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  html {
+  :root {
     scroll-behavior: smooth;
   }
+}
+:root {
+  overflow-wrap: break-word; /* 1 */
 }
 
 body {
@@ -553,12 +561,12 @@ body {
   -moz-column-gap: 1rlh;
        column-gap: 1rlh;
   row-gap: 2rlh;
-  grid-template-columns: auto minmax(27.125rem, 43rem); /* 1 */
+  grid-template-columns: minmax(auto, auto) minmax(27.125rem, 43rem); /* 1 */
   grid-auto-rows: auto; /* 2 */
 }
 @media screen and (max-width: 43rem) {
   .wrapper.grid {
-    grid-template-columns: minmax(auto, 40rem);
+    grid-template-columns: minmax(16rem, 40rem);
   }
 }
 
@@ -791,7 +799,6 @@ section {
   gap: 0.5rlh;
   row-gap: 0; /* 1 */
   padding-block-start: 1rlh; /* 1 */
-  overflow-wrap: normal;
 }
 section > :where(:not(section)) {
   margin-block-end: 0.5rlh; /* 2 */
@@ -813,7 +820,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  */
 :is(ul, ol).project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* 1 */
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); /* 1 */
   gap: 1rlh;
   margin-inline: 0; /* 2 */
 }
@@ -1101,24 +1108,30 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   font-size: 1.25rem;
 }
 
+/**
+ * Wrapper for sidebar contents.
+ * 1. Removes top padding from first section in sidebar.
+ */
 .sidebar-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rlh;
 }
 .sidebar-wrapper section:first-child {
-  padding-block-start: 0; /* 2 */
+  padding-block-start: 0; /* 1 */
 }
 
 /**
  * Generic sidebar, the section itself.
  * 1. This stops the back-to-top link from filling the full width.
+ * 2. Allow words that are too long wrap, such as "Acknowledgements"
  */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 0;
   align-items: start; /* 1 */
+  overflow-wrap: anywhere; /* 2*/
 }
 
 /**

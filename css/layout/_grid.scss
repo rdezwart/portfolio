@@ -28,12 +28,12 @@
   row-gap: #{abstracts.$page-padding * 2};
 
   grid-template-columns:
-    auto
+    minmax(auto, auto)
     minmax(#{abstracts.$main-min-width}, #{abstracts.$main-width-margins}); /* 1 */
   grid-auto-rows: auto; /* 2 */
 
   @include abstracts.respond-to("full") {
-    grid-template-columns: minmax(auto, #{abstracts.$main-width});
+    grid-template-columns: minmax(16rem, #{abstracts.$main-width});
   }
 }
 
