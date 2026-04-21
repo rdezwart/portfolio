@@ -35,13 +35,24 @@
   }
 }
 
+/**
+ * Menu container for buttons that control the Automata sim.
+ * 1. Horizontally center menu on smaller screens.
+ */
 .canvas-menu {
   position: absolute;
   inset-block-end: 0;
+  inset-inline: 0 0; /* 1 */
+  inline-size: fit-content; /* 1 */
+
   margin: 0;
   padding-inline: 0;
   list-style: none;
 
   @include abstracts.flex-row();
   font-size: abstracts.font-size-scaled(0);
+
+  @include abstracts.respond-to("full") {
+    margin-inline: auto; /* 1 */
+  }
 }

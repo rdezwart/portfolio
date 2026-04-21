@@ -1565,9 +1565,16 @@ gradio-app.gradio-app .embed-container.gradio-container {
   }
 }
 
+/**
+ * Menu container for buttons that control the Automata sim.
+ * 1. Horizontally center menu on smaller screens.
+ */
 .canvas-menu {
   position: absolute;
   inset-block-end: 0;
+  inset-inline: 0 0; /* 1 */
+  inline-size: -moz-fit-content;
+  inline-size: fit-content; /* 1 */
   margin: 0;
   padding-inline: 0;
   list-style: none;
@@ -1575,6 +1582,11 @@ gradio-app.gradio-app .embed-container.gradio-container {
   flex-direction: row;
   gap: 0.5rlh;
   font-size: 1rem;
+}
+@media screen and (max-width: 43rem) {
+  .canvas-menu {
+    margin-inline: auto; /* 1 */
+  }
 }
 
 /**
