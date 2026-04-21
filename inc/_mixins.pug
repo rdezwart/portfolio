@@ -115,11 +115,11 @@ mixin list(items = [], type="ul")
 mixin project-card(project)
   li.project-card(id=`${project.slug}`)
     h3.project-heading
-      a(href=`/projects/${project.slug}.html`) #{project.title}
+      a(href=`/projects/${project.slug}.html`)!= project.title
 
     div.project-details
       div.project-desc
-        p.description #{project.description}
+        p.description= project.description
       div.project-tools
         +list(project.tools)(class="tools" role="list")
 

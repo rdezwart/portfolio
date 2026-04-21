@@ -7,7 +7,7 @@ append vars
 
 prepend page-title
   -
-    title = currentProject.title
+    title = currentProject.rawTitle
     slug = currentProject.slug
     description = currentProject.description
 
@@ -26,7 +26,7 @@ block main
       block header
         block hgroup
           hgroup.hgroup
-            +h(1, title)
+            +h(1, currentProject.title)
             p.description #{description}
         div.gradient
         if currentProject.links.length > 0
