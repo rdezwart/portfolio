@@ -1552,10 +1552,12 @@ gradio-app.gradio-app .embed-container.gradio-container {
  * Canvas used by P5js.
  * 1. Add transition when canvas is added to DOM. Using @starting-style is
  *    Baseline 2024.
+ * 2. Reduces anti-aliasing fuzziness and keeps things looking crisp
  */
 #automata-canvas {
   inline-size: 100%;
   block-size: 100%;
+  image-rendering: pixelated; /* 2 */
   opacity: 1;
   transition: opacity calc(var(--duration) * 4);
 }
