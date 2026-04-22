@@ -20,6 +20,8 @@
   @include abstracts.flex-column(#{abstracts.$page-padding});
   contain: inline-size; /* 2 */
 
+  margin-block: #{abstracts.$page-padding};
+
   section:first-child {
     padding-block-start: 0; /* 1 */
   }

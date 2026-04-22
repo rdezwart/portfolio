@@ -8,14 +8,23 @@
 }
 
 /**
+ * Uses the same gap as the flex layout applied to top-level nav lists.
+ */
+.nav-wrapper .nav :is(ul, ol) :is(ul, ol) {
+  display: grid;
+  gap: abstracts.nav-list-gap();
+  grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+}
+
+/**
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
 .nav-wrapper .name-wrapper {
-  @include abstracts.flex-column(abstracts.$text-gap * 0.25);
   align-items: start; /* 1 */
 
   p {
+    margin-top: #{abstracts.$text-gap * 0.25};
     color: var(--absolute);
     font-size: abstracts.font-size-scaled(0);
     font-weight: calc(var(--base-weight) + 200);

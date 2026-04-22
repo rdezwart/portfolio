@@ -6,18 +6,19 @@
  *    wrapping
  * 2. Line up left edge of bullets with left margin. We can safely use `2ch`
  *    because we're working in a monospace font.
+ * 3. Use Sass function to grab the right combination of values from the map.
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
   padding-inline-start: 2ch; /* 2 */
 
+  display: flex;
+  flex-direction: column;
+  gap: abstracts.nav-list-gap(); /* 3 */
+
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(1);
   line-height: 1.2;
-
-  :is(ul, ol), li + li {
-    margin-block-start: calc(#{abstracts.$text-gap} / 2); /* 1 */
-  }
 }
 
 /**
@@ -27,8 +28,11 @@
  * 3. Markers are shown when they have .current or are focused/hovered
  * 4. Change marker colour when link is active. We also don't need to worry
  *    about transparency here, since when it is active it is always focused.
+ * 5. Remove default list margins in favour of flex/grid gap spacing.
  */
 .nav :is(ul, ol) li {
+  margin-block-start: 0;
+
   a {
     font-weight: var(--max-weight);
     text-decoration-color: transparent;
@@ -75,14 +79,13 @@
  * Sub lists and items.
  * 1. Apply secondary styles to link only, we don't want to change the list
  *    marker here.
- * 2. Because we're setting color, we need to re-set focus state colours
+ * 2. Apply matching nav gap to sublists.
  */
 .nav :is(ul, ol) :is(ul, ol) {
   font-size: abstracts.font-size-scaled(0);
+  margin-block-start: abstracts.nav-list-gap("row"); /* 2 */
 
   li a {
     @include abstracts.secondary(); /* 1 */
-
-
   }
 }

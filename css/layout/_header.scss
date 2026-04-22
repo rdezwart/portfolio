@@ -101,11 +101,15 @@
  * Apply margins to hgroups that are inside a pre-sidebar area. Normally they'd
  * get this styling from a parent section, but not in this case.
  */
-.pre-sidebar :is(hgroup, .hgroup) {
-  margin-inline: #{abstracts.$page-padding};
+.pre-sidebar {
+  margin-block: #{abstracts.$page-padding};
 
-  @include abstracts.respond-to("full") {
-    margin-inline: 0;
+  :is(hgroup, .hgroup) {
+    margin-inline: #{abstracts.$page-padding};
+
+    @include abstracts.respond-to("full") {
+      margin-inline: 0;
+    }
   }
 }
 

@@ -11,6 +11,8 @@
 @use "variables";
 @use "sass:math";
 @use "sass:string";
+@use "sass:list";
+@use "sass:map";
 
 /// Constructs a string of several arrows. For use with the `content` property.
 ///
@@ -58,4 +60,26 @@
 /// @see $type-scale
 @function font-size-scaled($modifier) {
   @return math.pow(variables.$type-scale, $modifier) * 1rem;
+}
+
+
+/// Helper function to retrieve one or both values of `nav-list-gap`.
+/// Essentially serves as a getter function.
+///
+/// @todo Can probably turn this into a generic map accessor.
+/// @requires {variable} $nav-list-gap
+/// @param {string} $axis [null] - The axis of the gap to access, namely "row"
+///     and "col".
+/// @returns {string} The specified gap value, or a space-separated list of
+//      both values if $axis is null.
+@function nav-list-gap($axis: null) {
+  @if ($axis == null) {
+    @return list.join(map.values(variables.$nav-list-gap), (), space);
+  }
+
+  @if (map.has-key(variables.$nav-list-gap, $axis)) {
+    @return map.get(variables.$nav-list-gap, $axis);
+  } @else {
+    @error "Key '#{$axis}' not found in nav-list-gap.";
+  }
 }

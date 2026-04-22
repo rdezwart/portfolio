@@ -554,16 +554,13 @@ body {
  *    reasonable line lengths.
  * 2. Implicit rows of size auto, this makes it simpler when moving to smaller
  *    breakpoints.
- * 3. Ensure elements act block-like on smaller screens, otherwise
- *    clicking/tapping sends focus to unexpected places.
  */
 .wrapper.grid {
   display: grid;
   justify-content: center;
-  justify-items: stretch; /* 3 */
   -moz-column-gap: 1rlh;
        column-gap: 1rlh;
-  row-gap: 2rlh;
+  row-gap: 1rlh;
   grid-template-columns: minmax(auto, auto) minmax(27.125rem, 43rem); /* 1 */
   grid-auto-rows: auto; /* 2 */
 }
@@ -686,17 +683,18 @@ body {
  *    wrapping
  * 2. Line up left edge of bullets with left margin. We can safely use `2ch`
  *    because we're working in a monospace font.
+ * 3. Use Sass function to grab the right combination of values from the map.
  */
 .nav :is(ul, ol) {
   list-style-type: "> ";
   padding-inline-start: 2ch; /* 2 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rlh 1.5rlh; /* 3 */
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   font-size: 1.25rem;
   line-height: 1.2;
-}
-.nav :is(ul, ol) :is(ul, ol), .nav :is(ul, ol) li + li {
-  margin-block-start: calc(0.5rlh / 2); /* 1 */
 }
 
 /**
@@ -706,7 +704,11 @@ body {
  * 3. Markers are shown when they have .current or are focused/hovered
  * 4. Change marker colour when link is active. We also don't need to worry
  *    about transparency here, since when it is active it is always focused.
+ * 5. Remove default list margins in favour of flex/grid gap spacing.
  */
+.nav :is(ul, ol) li {
+  margin-block-start: 0;
+}
 .nav :is(ul, ol) li a {
   font-weight: var(--max-weight);
   text-decoration-color: transparent;
@@ -747,10 +749,11 @@ body {
  * Sub lists and items.
  * 1. Apply secondary styles to link only, we don't want to change the list
  *    marker here.
- * 2. Because we're setting color, we need to re-set focus state colours
+ * 2. Apply matching nav gap to sublists.
  */
 .nav :is(ul, ol) :is(ul, ol) {
   font-size: 1rem;
+  margin-block-start: 0.375rlh; /* 2 */
 }
 .nav :is(ul, ol) :is(ul, ol) li a {
   font-family: "JetBrains Mono", monospace;
@@ -928,6 +931,9 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  * Apply margins to hgroups that are inside a pre-sidebar area. Normally they'd
  * get this styling from a parent section, but not in this case.
  */
+.pre-sidebar {
+  margin-block: 1rlh;
+}
 .pre-sidebar :is(hgroup, .hgroup) {
   margin-inline: 1rlh;
 }
@@ -1060,16 +1066,23 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 }
 
 /**
+ * Uses the same gap as the flex layout applied to top-level nav lists.
+ */
+.nav-wrapper .nav :is(ul, ol) :is(ul, ol) {
+  display: grid;
+  gap: 0.375rlh 1.5rlh;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+}
+
+/**
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
  */
 .nav-wrapper .name-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rlh;
   align-items: start; /* 1 */
 }
 .nav-wrapper .name-wrapper p {
+  margin-top: 0.125rlh;
   color: var(--absolute);
   font-size: 1rem;
   font-weight: calc(var(--base-weight) + 200);
@@ -1127,6 +1140,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   flex-direction: column;
   gap: 1rlh;
   contain: inline-size; /* 2 */
+  margin-block: 1rlh;
 }
 .sidebar-wrapper section:first-child {
   padding-block-start: 0; /* 1 */

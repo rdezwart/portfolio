@@ -95,15 +95,21 @@ $page-padding: 1rlh;
 $total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2));
 
 /// List of media query breakpoints by name.
-/// @see {function} respond-to
-/// @type Map
-
-/// Map of breakpoints used across the site.
 /// NOTE: calc() and var() cannot be used in media queries, so we're not allowed
 /// to use them here either.
+/// @see {function} respond-to
+/// @type map
 $breakpoints: (
         "full": (max-width: $main-width-margins),
         "medium": (max-width: 32rem)
+);
+
+/// Map for navigation list spacing.
+/// @see {function} nav-list-gap
+/// @type map
+$nav-list-gap: (
+        "row": $text-gap * 0.75,
+        "col": $page-padding * 1.5
 );
 
 
