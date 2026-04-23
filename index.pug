@@ -15,8 +15,8 @@ block url
 append pre-sidebar
   section#intro
     div.hgroup
-      h1.h1 Welcome, I'm #[+name(false)]
-    p Hello world lorem ipsum
+      h1.h1 Welcome, I'm #[+name({full: false})]
+      p.secondary Hello world lorem ipsum
 
 append sidebar-content
   +sidebar({heading: "Skills"})(class="sticky")
