@@ -1219,7 +1219,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6em;
+  gap: 0.5rlh;
   font-size: 1.5625rem;
   line-height: 1;
 }
@@ -1229,20 +1229,6 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  */
 .social-link {
   color: var(--text);
-}
-
-/**
- * 1. Manually adjust padding on social icons so they're properly within bounds.
- *    Definitely a magic number, this is just what worked.
- * 2. Negative margins on HuggingFace icon as the gap should visually be based
- *    on the face, not the hands.
- */
-.fa-face-smiling-hands {
-  padding-inline: 0.01em; /* 1 */
-  margin-inline: -0.1em; /* 2 */
-}
-.fa-github {
-  padding-inline: 0.01em; /* 1 */
 }
 
 /**
