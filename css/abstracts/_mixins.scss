@@ -86,6 +86,18 @@
   color: var(--secondary);
 }
 
+/// Helper for visually hidden content without having to use the full class.
+@mixin visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 
 /// Responsive breakpoint manager, modified from Sass Guidelines
 /// @link https://sass-guidelin.es/#responsive-web-design-and-breakpoints
