@@ -44,7 +44,7 @@ const Alphabet = {
     [0],
     [1],
     [0]
-  ])),
+  ], {isPunctuation: true})),
   "?": () => (new Letter([
     [0, 1, 1, 1, 0],
     [1, 0, 0, 0, 1],
@@ -54,7 +54,7 @@ const Alphabet = {
     [0, 0, 0, 0, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
   ":": () => (new Letter([
     [0],
     [0],
@@ -64,7 +64,7 @@ const Alphabet = {
     [0],
     [1],
     [0]
-  ])),
+  ], {isPunctuation: true})),
   ";": () => (new Letter([
     [0],
     [0],
@@ -74,7 +74,7 @@ const Alphabet = {
     [0],
     [1],
     [1]
-  ])),
+  ], {isPunctuation: true})),
 
   "[": () => (new Letter([
     [1, 1, 1],
@@ -85,7 +85,7 @@ const Alphabet = {
     [1, 0, 0],
     [1, 1, 1],
     [0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
   "]": () => (new Letter([
     [1, 1, 1],
     [0, 0, 1],
@@ -95,7 +95,7 @@ const Alphabet = {
     [0, 0, 1],
     [1, 1, 1],
     [0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
 
   "<": () => (new Letter([
     [0, 0, 0, 1],
@@ -106,7 +106,7 @@ const Alphabet = {
     [0, 0, 1, 0],
     [0, 0, 0, 1],
     [0, 0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
   ">": () => (new Letter([
     [1, 0, 0, 0],
     [0, 1, 0, 0],
@@ -116,7 +116,7 @@ const Alphabet = {
     [0, 1, 0, 0],
     [1, 0, 0, 0],
     [0, 0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
 
   "(": () => (new Letter([
     [0, 0, 1],
@@ -127,7 +127,7 @@ const Alphabet = {
     [0, 1, 0],
     [0, 0, 1],
     [0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
   ")": () => (new Letter([
     [1, 0, 0],
     [0, 1, 0],
@@ -137,7 +137,7 @@ const Alphabet = {
     [0, 1, 0],
     [1, 0, 0],
     [0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
 
   '"': () => (new Letter([
     [1, 0, 1],
@@ -148,7 +148,7 @@ const Alphabet = {
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
-  ])),
+  ], {isPunctuation: true})),
   "'": () => (new Letter([
     [1],
     [1],
@@ -158,7 +158,7 @@ const Alphabet = {
     [0],
     [0],
     [0]
-  ])),
+  ], {isPunctuation: true})),
 
   ",": () => (new Letter([
     [0],
@@ -169,7 +169,7 @@ const Alphabet = {
     [0],
     [1],
     [1]
-  ])),
+  ], {isPunctuation: true})),
   ".": () => (new Letter([
     [0],
     [0],
@@ -179,7 +179,7 @@ const Alphabet = {
     [0],
     [1],
     [0]
-  ])),
+  ], {isPunctuation: true})),
 
   "a": () => (new Letter([
     [0, 0, 0, 0, 0],

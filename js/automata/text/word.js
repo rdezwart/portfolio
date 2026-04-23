@@ -116,7 +116,7 @@ class Word {
    *     [Letter]{@linkcode module:automata/text/letter.Letter}.
    * @param {boolean} [highlighted=false] - If this
    *     [Letter]{@linkcode module:automata/text/letter.Letter} should be
-   *     highlighted.
+   *     highlighted. Punctuation characters are automatically highlighted.
    * @throws {RangeError} - If an unsupported `char` is passed.
    */
   appendLetter(char, highlighted = false) {
@@ -129,7 +129,7 @@ class Word {
     /** @type Letter */
     let letter = Alphabet[char]();
 
-    if (highlighted) {
+    if (highlighted || letter.isPunctuation) {
       // Turn all 1s into 2s but leave 0s untouched
       letter.map((val) => {
         return val * 2;

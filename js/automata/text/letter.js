@@ -58,6 +58,12 @@ class Letter {
    */
   #rows;
 
+  /**
+   * If this {@linkcode Letter} is a punctuation character.
+   * @type {boolean}
+   */
+  #isPunctuation;
+
 
   /**
    * Constructs a new {@linkcode Letter}.
@@ -85,18 +91,28 @@ class Letter {
    *     Dead [Cells]{@linkcode module:automata/cell.Cell} should be represented
    *     with `0`, living [Cells]{@linkcode module:automata/cell.Cell} with `1`,
    *     and highlighted [Cells]{@linkcode module:automata/cell.Cell} with `2`.
-   * @param {boolean} [doTranspose=true] - If {@linkcode Letter#pixels} should
+   * @param {Object} [options] - Object literal containing optional parameters.
+   * @param {boolean} [options.doTranspose=true] - If {@linkcode Letter#pixels} should
    *     be [transposed]{@link Letter.transpose} into the correct format for a
    *     [Grid]{@linkcode module:automata/grid.Grid}.
+   * @param {boolean} [options.isPunctuation=false] - If this {@linkcode Letter}
+   *     is punctuation.
    * @throws {SyntaxError} - If no pixels are passed.
    */
-  constructor(pixels, doTranspose = true) {
+  constructor(
+    pixels,
+    {
+      doTranspose = true,
+      isPunctuation = false
+    } = {}
+  ) {
     if (pixels.length === 0 || pixels[0].length === 0)
       throw new SyntaxError("No pixels passed.");
 
     this.#pixels = doTranspose ? Letter.transpose(pixels) : pixels;
     this.#cols = this.#pixels.length;
     this.#rows = this.#pixels[0].length;
+    this.#isPunctuation = isPunctuation;
   }
 
 
@@ -159,6 +175,15 @@ class Letter {
    */
   get rows() {
     return this.#rows;
+  }
+
+  /**
+   * If this {@linkcode Letter} is a punctuation character.
+   * @readonly
+   * @type {boolean}
+   */
+  get isPunctuation() {
+    return this.#isPunctuation;
   }
 }
 
