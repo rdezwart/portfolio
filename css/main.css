@@ -318,6 +318,15 @@ a.skip:focus {
 }
 
 /**
+ * Set accent color on supported inputs (checkbox, radio, and range). Browser
+ * support is Limited Availability, so we'll wrap it in a media query for now.
+ */
+@supports (accent-color: var(--link)) {
+  input {
+    accent-color: var(--link);
+  }
+}
+/**
  * Set base font size and line height according to WCAG criteria.
  */
 :root {

@@ -101,3 +101,14 @@ a.skip {
     inset-inline-start: 0;
   }
 }
+
+
+/**
+ * Set accent color on supported inputs (checkbox, radio, and range). Browser
+ * support is Limited Availability, so we'll wrap it in a media query for now.
+ */
+@supports (accent-color: var(--link)) {
+  input {
+    accent-color: var(--link);
+  }
+}
