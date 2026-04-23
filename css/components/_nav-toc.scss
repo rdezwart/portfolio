@@ -10,13 +10,8 @@
  * Nav list within a Table of Contents
  * 1. Reduce font weight of root items to not compete with main nav as much.
  * 2. Fixes an issue where nav would show scrollbar despite enough room to grow.
- * 3. Add a tiny bit of padding to top of nav to account for smaller line height
- *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
- *    seems to be consistent at different sizes.
  */
 .toc .nav {
-  margin-block-start: calc(#{abstracts.$text-gap} / 6); /* 3 */
-
   & > :is(ul, ol) > li > a {
     font-weight: calc(var(--base-weight) + 500); /* 1 */
   }

@@ -5,6 +5,7 @@
  */
 .sidebar-wrapper .sidebar-heading {
   margin: 0;
+  margin-block-end: #{abstracts.$text-gap * 0.5};
   font-size: abstracts.font-size-scaled(1);
 }
 

@@ -1065,6 +1065,10 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   gap: 0.5rlh;
 }
 
+.nav-wrapper {
+  gap: 0.75rlh;
+}
+
 /**
  * Uses the same gap as the flex layout applied to top-level nav lists.
  */
@@ -1103,13 +1107,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  * Nav list within a Table of Contents
  * 1. Reduce font weight of root items to not compete with main nav as much.
  * 2. Fixes an issue where nav would show scrollbar despite enough room to grow.
- * 3. Add a tiny bit of padding to top of nav to account for smaller line height
- *    so it matches generic sidebars. Bit of a magic number, admittedly, but it
- *    seems to be consistent at different sizes.
  */
-.toc .nav {
-  margin-block-start: calc(0.5rlh / 6); /* 3 */
-}
 .toc .nav > :is(ul, ol) > li > a {
   font-weight: calc(var(--base-weight) + 500); /* 1 */
 }
@@ -1124,6 +1122,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  */
 .sidebar-wrapper .sidebar-heading {
   margin: 0;
+  margin-block-end: 0.25rlh;
   font-size: 1.25rem;
 }
 

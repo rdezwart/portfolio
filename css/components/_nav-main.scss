@@ -7,6 +7,10 @@
   @include abstracts.flex-column(abstracts.$text-gap);
 }
 
+.nav-wrapper {
+  gap: #{abstracts.$text-gap * 1.5};
+}
+
 /**
  * Uses the same gap as the flex layout applied to top-level nav lists.
  */
