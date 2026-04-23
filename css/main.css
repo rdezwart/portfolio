@@ -1651,6 +1651,10 @@ gradio-app.gradio-app .embed-container.gradio-container {
   clip-path: circle(); /* 1 */
 }
 
+.error-heading {
+  font-size: 1.953125rem;
+}
+
 :root {
   --background: #1e1e22;
   --banner: #2a2a2f;

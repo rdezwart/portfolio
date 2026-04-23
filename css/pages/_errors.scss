@@ -1,0 +1,5 @@
+@use "../abstracts";
+
+.error-heading {
+  font-size: abstracts.font-size-scaled(3);
+}

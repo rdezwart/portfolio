@@ -6,7 +6,7 @@ append vars
     description = "This is an error page."
     let errorCode = 418
     let errorName = "I'm a teapot"
-    canvasWord = ["Woops", "!"];
+    canvasWord = ["Whoops", "!"];
 
 prepend page-title
   - title = `Error ${errorCode}: ${errorName}`
@@ -26,7 +26,10 @@ block image-alt
 append content
   section
     div.hgroup
-      +h(1, `Error ${errorCode}<span class="highlight">&colon;</span> ${errorName}`)
+      +h(
+        1,
+        `Error ${errorCode}<span class="highlight">&colon;</span> ${errorName}`
+      ).error-heading
 
     block error-message
       p I'm a little teapot
