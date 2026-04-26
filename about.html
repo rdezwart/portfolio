@@ -32,6 +32,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Robin">
     <link rel="manifest" href="/site.webmanifest">
+    <script>"use strict";!function(){const e=document.documentElement,t="theme",a=localStorage.getItem(t);a&&(e.dataset[t]=a),document.addEventListener("DOMContentLoaded",(()=>{const o=document.querySelectorAll("form.theme-picker"),c=document.querySelectorAll("gradio-app");function r(e,a){e[t].value=a}function n(e,t){"light"===t?e.classList.remove("dark"):e.classList.add("dark"),e.setAttribute("theme_mode",t)}function d(a){const d=a.target.value;"dark"===d?(delete e.dataset[t],localStorage.removeItem(t)):(e.dataset[t]=d,localStorage.setItem(t,d)),o.forEach((e=>{e!==a.currentTarget&&r(e,d)})),c.forEach((e=>{n(e,d)}))}o.forEach((e=>{r(e,a),e.addEventListener("change",d)})),c.forEach((e=>{n(e,a)}))}))}();</script>
     <link rel="prefetch" href="/js/toc.js">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="modulepreload" href="/js/automata.js">
@@ -41,6 +42,7 @@
     <link rel="modulepreload" href="/js/automata/text/alphabet.js">
     <link rel="modulepreload" href="/js/automata/text/letter.js">
     <link rel="modulepreload" href="/js/automata/text/word.js">
+    <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/bezier-easing@3.0.0/+esm">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer></script>
     <script type="module" src="/js/automata.js"></script>
   </head>
@@ -51,9 +53,9 @@
           <div class="name-wrapper"><a class="name" href="/"><span>Robin de&nbsp;Zwart</span><span class="highlight">;</span></a>
             <p class="description">AI &amp; Interactive Systems Developer</p>
           </div>
-          <ul>
+          <ul role="list">
             <li><a href="/projects/">Projects</a>
-              <ul>
+              <ul role="list">
                 <li><a href="/projects/#machine-learning">Machine Learning</a></li>
                 <li><a href="/projects/#game-development">Game Development</a></li>
                 <li><a href="/projects/#web-development">Web Development</a></li>
@@ -61,22 +63,35 @@
               </ul>
             </li>
             <li class="current"><a href="/about.html">About</a>
-              <ul>
+              <ul role="list">
                 <li><a href="/files/Robin_de_Zwart_Resume.pdf">Resume</a></li>
               </ul>
             </li>
           </ul>
         </nav>
-        <address>
-          <ul class="socials" role="list">
-            <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" rel="external noreferrer"><i class="fa-brands fa-linkedin fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span><span class="visually-hidden"> (external link)</span></a>
-            </li>
-            <li><a class="social-link" href="https://github.com/rdezwart" rel="external noreferrer"><i class="fa-brands fa-github fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span><span class="visually-hidden"> (external link)</span></a>
-            </li>
-            <li><a class="social-link" href="https://huggingface.co/rdezwart" rel="external noreferrer"><i class="fa-solid fa-face-smiling-hands fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span><span class="visually-hidden"> (external link)</span></a>
-            </li>
-          </ul>
-        </address>
+        <div class="nav-widgets">
+          <address>
+            <ul class="socials" role="list">
+              <li><a class="social-link" href="https://www.linkedin.com/in/rdezwart/" rel="external noreferrer"><i class="fa-brands fa-linkedin fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's LinkedIn</span><span class="visually-hidden"> (external link)</span></a>
+              </li>
+              <li><a class="social-link" href="https://github.com/rdezwart" rel="external noreferrer"><i class="fa-brands fa-github fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's GitHub</span><span class="visually-hidden"> (external link)</span></a>
+              </li>
+              <li><a class="social-link" href="https://huggingface.co/rdezwart" rel="external noreferrer"><i class="fa-solid fa-face-smiling-hands fa-fw" aria-hidden="true"></i><span class="visually-hidden">Robin's Hugging Face</span><span class="visually-hidden"> (external link)</span></a>
+              </li>
+            </ul>
+          </address>
+          <form class="theme-picker">
+            <fieldset>
+              <legend class="visually-hidden">Theme Picker:</legend>
+              <label>
+                <input class="visually-hidden" name="theme" type="radio" value="dark" checked><span class="visually-hidden">Dark</span><i class="fa-solid fa-moon fa-fw" aria-hidden="true"></i>
+              </label>
+              <label>
+                <input class="visually-hidden" name="theme" type="radio" value="light"><span class="visually-hidden">Light</span><i class="fa-solid fa-sun fa-fw" aria-hidden="true"></i>
+              </label>
+            </fieldset>
+          </form>
+        </div>
       </header>
       <main class="main" id="main-content">
         <div class="header">

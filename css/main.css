@@ -225,22 +225,40 @@ img {
 }
 
 /**
- * Root styles.
- * 1. Dark scheme is preferred, reflected in meta tags.
- * 2. Breaks words that are too big for the container, helps make sure the grid
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 90% opacity.
+ */
+@property --gradient-90 {
+  syntax: "<color>";
+  initial-value: rgb(from #2a2a2f r g b/0.9);
+  inherits: true;
+}
+/**
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 70% opacity.
+ */
+@property --gradient-70 {
+  syntax: "<color>";
+  initial-value: rgb(from #2a2a2f r g b/0.7);
+  inherits: true;
+}
+/**
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 0% opacity.
+ */
+@property --gradient-00 {
+  syntax: "<color>";
+  initial-value: rgb(from #2a2a2f r g b/0);
+  inherits: true;
+}
+/**
+ * Baseline root styles.
+ * 1. Breaks words that are too big for the container, helps make sure the grid
  *    doesn't break.
  */
 :root {
-  color-scheme: light dark; /* 1 */
-}
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
-}
-:root {
-  overflow-wrap: break-word; /* 2 */
-  --duration: 0.1s;
+  overflow-wrap: break-word; /* 1 */
+  --duration: 100ms;
   --max-weight: 800;
   --content-margin: 1.5rem;
 }
@@ -249,9 +267,51 @@ img {
     --content-margin: 0rem;
   }
 }
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+/**
+ * Theme-related root styles.
+ * 1. Dark scheme is preferred, reflected in meta tags.
+ */
+:root {
+  color-scheme: dark; /* 1 */
+  --background: #1e1e22;
+  --banner: #2a2a2f;
+  --banner-alt: hsl(from var(--banner) h s calc(l + 15));
+  --highlight: #00eeff;
+  --link: #ff9933;
+  --active: #00818a;
+  --secondary: #cccccc;
+  --secondary-alt: rgb(from var(--secondary) calc(r + 17) calc(g + 17) calc(b + 17));
+  --text: #f2f2f2;
+  --absolute: #ffffff;
+  --base-weight: 200;
+  --gradient-90: rgb(from var(--banner) r g b / 0.90);
+  --gradient-70: rgb(from var(--banner) r g b / 0.70);
+  --gradient-00: rgb(from var(--banner) r g b / 0);
+}
+:root[data-theme=light] {
+  color-scheme: light;
+  --background: #ffffff;
+  --banner: #f2f2f2;
+  --banner-alt: hsl(from var(--banner) h s calc(l - 15));
+  --highlight: #ed4900;
+  --link: #00818a;
+  --active: #ff9933;
+  --secondary: #3f3f3f;
+  --secondary-alt: rgb(from var(--secondary) calc(r - 17) calc(g - 17) calc(b - 17));
+  --text: #1e1e22;
+  --absolute: #000000;
+  --base-weight: 350;
+}
 
 body {
   background-color: var(--background);
+  transition: background-color var(--duration);
 }
 
 /**
@@ -352,6 +412,8 @@ body {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   margin: 0;
+  transition-property: color;
+  transition-duration: var(--duration);
 }
 
 /**
@@ -367,6 +429,8 @@ body {
  */
 :is(h2, h3), :is(.h2, .h3) {
   background-color: var(--banner);
+  transition-property: background-color, color;
+  transition-duration: var(--duration);
   line-height: 1;
   padding: 0.5rlh 1.5rem;
   margin-block-end: 0.5rlh;
@@ -435,6 +499,10 @@ h3, .h3 {
 /**
  * No margin on top, small margin on bottom.
  */
+p {
+  transition: color var(--duration);
+}
+
 /**
  * Default list styles.
  * 1. Use a variant of lobotomized owl notation to add margins between list
@@ -448,6 +516,10 @@ h3, .h3 {
   margin-block-start: calc(0.5rlh / 3); /* 1, 2 */
 }
 
+:is(ul, ol):not([role]) li {
+  transition: color var(--duration);
+}
+
 /**
  * Figure captions.
  */
@@ -456,6 +528,7 @@ figcaption {
   font-family: "JetBrains Mono", monospace;
   font-style: italic;
   color: var(--secondary);
+  transition: color var(--duration);
   line-height: 1rlh;
 }
 
@@ -464,6 +537,7 @@ figcaption {
  */
 b, strong {
   font-weight: calc(var(--base-weight) + 400);
+  transition: color var(--duration);
 }
 
 /**
@@ -736,7 +810,7 @@ body {
   font-variant-ligatures: none;
   font-weight: inherit;
   transition: color var(--duration);
-  color: color-mix(in srgb, var(--highlight), transparent 100%); /* 2 */
+  color: rgb(from var(--highlight) r g b/0); /* 2 */
 }
 .nav :is(ul, ol) li.current > a {
   color: var(--highlight); /* 1 */
@@ -745,10 +819,10 @@ body {
   color: var(--active);
 }
 .nav :is(ul, ol) li.current::marker {
-  color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+  color: var(--highlight); /* 3 */
 }
 .nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker {
-  color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+  color: var(--highlight); /* 3 */
 }
 .nav :is(ul, ol) li:has(> a:active)::marker {
   color: var(--active); /* 4 */
@@ -771,6 +845,22 @@ body {
   font-style: italic;
   color: var(--secondary);
   /* 1 */
+}
+
+/**
+ * Wrapper for social icons and theme picker at the end of the nav.
+ * 1. Set font styles for widgets to inherit.
+ */
+.nav-widgets {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rlh 2rlh;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  font-size: 1.5625rem; /* 1 */
+  line-height: 1; /* 1 */
 }
 
 /**
@@ -854,9 +944,10 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
   background-position: top center;
+  transition: background-color var(--duration);
 }
 .header .description {
-  color: #DDDDDD;
+  color: var(--secondary-alt);
 }
 @media screen and (max-width: 43rem) {
   .header {
@@ -871,6 +962,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  */
 .article .header {
   background-color: var(--link); /* 1 */
+  transition: background-color var(--duration);
 }
 
 /**
@@ -962,8 +1054,10 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 .header :is(hgroup, .hgroup) {
   padding-inline: 1rlh;
   padding-block: 1rlh 0;
-  background: linear-gradient(rgb(from var(--banner) r g b/0.9) 0%, rgb(from var(--banner) r g b/0.7) 100%); /* 1 */
+  background: linear-gradient(var(--gradient-90) 0%, var(--gradient-70) 100%); /* 1 */
   z-index: 1; /* 2 */
+  transition-property: --gradient-90, --gradient-70;
+  transition-duration: var(--duration);
 }
 
 /**
@@ -975,7 +1069,9 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   z-index: 2;
   flex: auto;
   min-block-size: 4rlh;
-  background: linear-gradient(rgb(from var(--banner) r g b/0.7) 0%, rgb(from var(--banner) r g b/0) 80%); /* 1 */
+  background: linear-gradient(var(--gradient-70) 0%, var(--gradient-00) 80%); /* 1 */
+  transition-property: --gradient-70, --gradient-00;
+  transition-duration: var(--duration);
 }
 
 /**
@@ -999,6 +1095,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   padding-block: 0.5rlh;
   padding-inline: 1rlh;
   background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
+  transition: background-color var(--duration);
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
   font-size: 0.8rem;
@@ -1020,8 +1117,10 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   font-weight: var(--max-weight);
   font-size: 0.8rem;
   font-weight: calc(var(--base-weight) + 200);
-  background-color: rgb(77.8125, 77.8125, 88.1875);
-  border: 0.1rem solid #00818a;
+  background-color: var(--banner-alt);
+  border: 0.1rem solid var(--active);
+  transition-property: background-color, color, border;
+  transition-duration: var(--duration);
   padding: 0.25rlh 0.5rlh;
 }
 
@@ -1029,7 +1128,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  * List of concepts in Overview section. Extends `.tools`.
  */
 .concepts li {
-  background-color: #2a2a2f;
+  background-color: var(--banner);
 }
 
 /**
@@ -1038,19 +1137,31 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  */
 .footer {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-auto-rows: auto;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column; /* 1 */
   gap: 0.5rlh;
   justify-items: center;
   align-items: center;
   background-color: var(--banner);
+  transition: background-color var(--duration);
   font-size: 0.8rem;
   padding: 1rlh;
   margin-block-end: -1rlh;
   margin-inline: -1rlh;
 }
-@media screen and (max-width: 32rem) {
+.footer :first-child {
+  justify-self: start;
+}
+.footer :last-child {
+  justify-self: end;
+}
+@media screen and (max-width: 43rem) {
   .footer {
-    grid-template-columns: 1fr; /* 1 */
+    grid-auto-flow: row; /* 1 */
+  }
+  .footer :first-child, .footer :last-child {
+    justify-self: center;
   }
 }
 
@@ -1277,6 +1388,7 @@ picture {
   max-inline-size: 100%;
   block-size: auto;
   background-color: var(--banner);
+  transition: background-color var(--duration);
 }
 picture img {
   display: inline; /* 1 */
@@ -1421,6 +1533,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   grid-area: banner;
   z-index: -1; /* 1 */
   background-color: var(--link); /* 3 */
+  transition: background-color var(--duration);
   overflow: hidden; /* 4 */
 }
 .project-img img { /* 2 */
@@ -1437,6 +1550,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
 .project-details {
   border: 0.2rem solid var(--banner);
   border-block-start-style: none;
+  transition: border var(--duration);
   display: flex;
   flex-direction: column;
   gap: 0.5rlh;
@@ -1463,7 +1577,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   background-color: var(--banner);
   border: 0.1rem solid var(--link);
   color: var(--link);
-  transition-property: border-color, color;
+  transition-property: border-color, color, background-color;
   transition-duration: var(--duration);
   /**
    * 1. When button is hovered, also activate tooltip
@@ -1600,6 +1714,47 @@ gradio-app.gradio-app .embed-container.gradio-container {
 }
 
 /**
+ * Theme picker form.
+ * 1. Remove default styles from fieldset.
+ * 2. Add browser-default focus outline to form fieldset when focus is on any
+ *    of the inputs.
+ */
+.theme-picker fieldset {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rlh;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-self: center;
+  margin: 0; /* 1 */
+  padding: 0; /* 1 */
+  border: none; /* 1 */
+  font-size: 1.5625rem;
+  line-height: 1;
+}
+.theme-picker fieldset:has(:focus-visible) {
+  outline-style: auto; /* 2 */
+}
+
+/**
+ * Label styles. These colours will be inherited by the text/icons inside the
+ * actual labels.
+ * 1. Needs to be listed first, so it can be overridden.
+ */
+.theme-picker label {
+  transition: color var(--duration);
+}
+.theme-picker label:has(input:checked) {
+  color: var(--link); /* 1 */
+}
+.theme-picker label:has(input):hover, .theme-picker label:has(input):focus {
+  color: var(--highlight);
+}
+.theme-picker label:has(input):active {
+  color: var(--active);
+}
+
+/**
  * Center "Hi, I'm Robin;" text on smaller viewports.
  */
 .grid-pre-sidebar-low .pre-sidebar {
@@ -1625,6 +1780,7 @@ gradio-app.gradio-app .embed-container.gradio-container {
   max-inline-size: 256px;
   clip-path: circle();
   background-color: var(--banner);
+  transition: background-color var(--duration);
   aspect-ratio: 1/1;
 }
 
@@ -1647,31 +1803,5 @@ gradio-app.gradio-app .embed-container.gradio-container {
 
 .error-heading {
   font-size: 1.953125rem;
-}
-
-:root {
-  --background: #1e1e22;
-  --banner: #2a2a2f;
-  --highlight: #00eeff;
-  --link: #ff9933;
-  --active: #00818a;
-  --secondary: #cccccc;
-  --text: #f2f2f2;
-  --absolute: #ffffff;
-  --base-weight: 200;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --banner: #f2f2f2;
-    --highlight: #ed4900;
-    --link: #00818a;
-    --active: #ff9933;
-    --secondary: #3f3f3f;
-    --text: #1e1e22;
-    --absolute: #000000;
-    --base-weight: 350;
-  }
 }
 /*# sourceMappingURL=main.css.map */

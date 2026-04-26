@@ -81,6 +81,7 @@
   grid-area: banner;
   z-index: -1; /* 1 */
   background-color: var(--link); /* 3 */
+  transition: background-color var(--duration);
   overflow: hidden; /* 4 */
 
   img { /* 2 */
@@ -97,6 +98,7 @@
 .project-details {
   border: 0.2rem solid var(--banner);
   border-block-start-style: none;
+  transition: border var(--duration);
 
   @include abstracts.flex-column();
   align-items: start;

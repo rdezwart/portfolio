@@ -49,7 +49,7 @@
 
   &::marker {
     @include abstracts.highlight();
-    color: color-mix(in srgb, var(--highlight), transparent 100%); /* 2 */
+    color: rgb(from var(--highlight) r g b / 0); /* 2 */
   }
 
   &.current {
@@ -62,12 +62,12 @@
     }
 
     &::marker {
-      color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+      color: var(--highlight); /* 3 */
     }
   }
 
   &:has(> a:focus, > a:hover)::marker {
-    color: color-mix(in srgb, var(--highlight), transparent 0%); /* 3 */
+    color: var(--highlight); /* 3 */
   }
 
   &:has(> a:active)::marker {
@@ -88,4 +88,20 @@
   li a {
     @include abstracts.secondary(); /* 1 */
   }
+}
+
+
+/**
+ * Wrapper for social icons and theme picker at the end of the nav.
+ * 1. Set font styles for widgets to inherit.
+ */
+.nav-widgets {
+  @include abstracts.flex-row(abstracts.$text-gap abstracts.$page-padding * 2);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+
+  font-size: abstracts.font-size-scaled(2); /* 1 */
+  line-height: 1; /* 1 */
 }

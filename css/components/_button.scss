@@ -19,7 +19,7 @@
   border: 0.1rem solid var(--link);
   color: var(--link);
 
-  transition-property: border-color, color;
+  transition-property: border-color, color, background-color;
   transition-duration: var(--duration);
 
   /**

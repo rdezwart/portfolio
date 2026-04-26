@@ -20,9 +20,11 @@
   background-image: var(--project-banner); /* 1, 3 */
   background-size: cover;
   background-position: top center;
+  transition: background-color var(--duration);
 
   .description {
-    color: #DDDDDD; // TODO: Add variable
+    //color: #DDDDDD; // TODO: Add variable
+    color: var(--secondary-alt);
   }
 
   @include abstracts.respond-to("full") {
@@ -37,6 +39,7 @@
  */
 .article .header {
   background-color: var(--link); /* 1 */
+  transition: background-color var(--duration);
 }
 
 
@@ -113,6 +116,7 @@
   }
 }
 
+
 /**
  * Semi-transparent background color in front of `.header` background image,
  * but only where the text is.
@@ -124,9 +128,11 @@
   padding-inline: #{abstracts.$page-padding};
   padding-block: #{abstracts.$page-padding} 0;
   background: linear-gradient(
-          rgb(from var(--banner) r g b / 0.90) 0%,
-          rgb(from var(--banner) r g b / 0.70) 100%); /* 1 */
+          var(--gradient-90) 0%,
+          var(--gradient-70) 100%); /* 1 */
   z-index: 1; /* 2 */
+  transition-property: --gradient-90, --gradient-70;
+  transition-duration: var(--duration);
 }
 
 /**
@@ -139,8 +145,10 @@
   flex: auto;
   min-block-size: 4rlh;
   background: linear-gradient(
-          rgb(from var(--banner) r g b / 0.70) 0%,
-          rgb(from var(--banner) r g b / 0) 80%); /* 1 */
+          var(--gradient-70) 0%,
+          var(--gradient-00) 80%); /* 1 */
+  transition-property: --gradient-70, --gradient-00;
+  transition-duration: var(--duration);
 }
 
 
@@ -165,6 +173,7 @@
   padding-inline: #{abstracts.$page-padding};
 
   background-color: rgb(from var(--banner) r g b / 0.9); /* 1 */
+  transition: background-color var(--duration);
 
   @include abstracts.heading-typeface();
   font-size: abstracts.font-size-scaled(-1);
@@ -184,8 +193,11 @@
     @include abstracts.heading-typeface();
     font-size: abstracts.font-size-scaled(-1);
     font-weight: calc(var(--base-weight) + 200);
-    background-color: #{lighten(abstracts.$dark, 20%)};
-    border: 0.1rem solid #{abstracts.$teal};
+    background-color: var(--banner-alt);
+    border: 0.1rem solid var(--active);
+
+    transition-property: background-color, color, border;
+    transition-duration: var(--duration);
 
     padding: 0.25rlh 0.5rlh;
   }
@@ -198,7 +210,7 @@
   @extend .tools;
 
   li {
-    background-color: #{abstracts.$dark-banner};
+    background-color: var(--banner);
   }
 }
 

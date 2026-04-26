@@ -117,3 +117,8 @@
       "Please make sure it is defined in `$breakpoints` map.";
   }
 }
+
+@mixin icon-bar {
+  font-size: functions.font-size-scaled(2);
+  line-height: 1;
+}

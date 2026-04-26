@@ -1,0 +1,47 @@
+@use "../abstracts";
+
+/**
+ * Theme picker form.
+ * 1. Remove default styles from fieldset.
+ * 2. Add browser-default focus outline to form fieldset when focus is on any
+ *    of the inputs.
+ */
+.theme-picker fieldset {
+  @include abstracts.flex-row();
+  flex-wrap: wrap;
+  align-self: center;
+  justify-self: center;
+
+  margin: 0; /* 1 */
+  padding: 0; /* 1 */
+  border: none; /* 1 */
+
+  @include abstracts.icon-bar;
+
+  &:has(:focus-visible) {
+    outline-style: auto; /* 2 */
+  }
+}
+
+/**
+ * Label styles. These colours will be inherited by the text/icons inside the
+ * actual labels.
+ * 1. Needs to be listed first, so it can be overridden.
+ */
+.theme-picker label {
+  transition: color var(--duration);
+
+  &:has(input:checked) {
+    color: var(--link); /* 1 */
+  }
+
+  &:has(input) {
+    &:hover, &:focus {
+      color: var(--highlight);
+    }
+
+    &:active {
+      color: var(--active);
+    }
+  }
+}

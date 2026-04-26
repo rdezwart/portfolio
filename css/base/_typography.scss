@@ -31,6 +31,8 @@ body {
 #{abstracts.$headings-all} {
   @include abstracts.heading-typeface();
   margin: 0;
+  transition-property: color;
+  transition-duration: var(--duration);
 }
 
 /**
@@ -48,6 +50,8 @@ body {
  */
 #{abstracts.$headings-with-banner} {
   background-color: var(--banner);
+  transition-property: background-color, color;
+  transition-duration: var(--duration);
   line-height: 1;
   padding: #{abstracts.$text-gap} #{abstracts.$content-margin};
   margin-block-end: #{abstracts.$text-gap};
@@ -121,7 +125,7 @@ h3, .h3 {
  * No margin on top, small margin on bottom.
  */
 p {
-  //font-size: #{abstracts.font-size-scaled(0)};
+  transition: color var(--duration);
 }
 
 /**
@@ -138,6 +142,10 @@ p {
   }
 }
 
+:is(ul, ol):not([role]) li {
+  transition: color var(--duration);
+}
+
 /**
  * Figure captions.
  */
@@ -148,6 +156,7 @@ figcaption {
     style: italic;
   }
   color: var(--secondary);
+  transition: color var(--duration);
   line-height: 1rlh;
 }
 
@@ -157,6 +166,7 @@ figcaption {
  */
 b, strong {
   font-weight: calc(var(--base-weight) + 400);
+  transition: color var(--duration);
 }
 
 /**

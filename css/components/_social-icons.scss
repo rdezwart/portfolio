@@ -8,8 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: #{abstracts.$text-gap};
-  font-size: abstracts.font-size-scaled(2);
-  line-height: 1;
+  @include abstracts.icon-bar;
 }
 
 /**

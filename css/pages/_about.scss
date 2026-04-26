@@ -24,6 +24,7 @@
 
   clip-path: circle();
   background-color: var(--banner);
+  transition: background-color var(--duration);
   aspect-ratio: 1 / 1;
 }
 

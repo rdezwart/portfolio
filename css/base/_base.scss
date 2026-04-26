@@ -1,31 +1,96 @@
 @use "../abstracts";
 
 /**
- * Root styles.
- * 1. Dark scheme is preferred, reflected in meta tags.
- * 2. Breaks words that are too big for the container, helps make sure the grid
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 90% opacity.
+ */
+@property --gradient-90 {
+  syntax: "<color>";
+  initial-value: rgb(from #{abstracts.$dark-banner} r g b / 0.90);
+  inherits: true;
+}
+
+/**
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 70% opacity.
+ */
+@property --gradient-70 {
+  syntax: "<color>";
+  initial-value: rgb(from #{abstracts.$dark-banner}  r g b / 0.70);
+  inherits: true;
+}
+
+/**
+ * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 0% opacity.
+ */
+@property --gradient-00 {
+  syntax: "<color>";
+  initial-value: rgb(from #{abstracts.$dark-banner} r g b / 0);
+  inherits: true;
+}
+
+/**
+ * Baseline root styles.
+ * 1. Breaks words that are too big for the container, helps make sure the grid
  *    doesn't break.
  */
 :root {
-  color-scheme: light dark; /* 1 */
+  overflow-wrap: break-word; /* 1 */
+
+  --duration: 100ms;
+  --max-weight: 800;
+  --content-margin: #{abstracts.$content-margin};
+  @include abstracts.respond-to("full") {
+    --content-margin: 0rem;
+  }
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
   }
+}
 
-  overflow-wrap: break-word; /* 2 */
+/**
+ * Theme-related root styles.
+ * 1. Dark scheme is preferred, reflected in meta tags.
+ */
+:root {
+  color-scheme: dark; /* 1 */
+  --background: #{abstracts.$dark};
+  --banner: #{abstracts.$dark-banner};
+  --banner-alt: hsl(from var(--banner) h s calc(l + 15));
+  --highlight: #{abstracts.$blue};
+  --link: #{abstracts.$orange};
+  --active: #{abstracts.$teal};
+  --secondary: #{abstracts.$silver};
+  --secondary-alt: rgb(from var(--secondary) calc(r + 17) calc(g + 17) calc(b + 17));
+  --text: #{abstracts.$pale};
+  --absolute: #{abstracts.$white};
+  --base-weight: 200;
 
-  --duration: 0.1s;
-  --max-weight: 800;
-  --content-margin: #{abstracts.$content-margin};
+  --gradient-90: rgb(from var(--banner) r g b / 0.90);
+  --gradient-70: rgb(from var(--banner) r g b / 0.70);
+  --gradient-00: rgb(from var(--banner) r g b / 0);
 
-  @include abstracts.respond-to("full") {
-    --content-margin: 0rem;
+  &[data-theme="light"] {
+    color-scheme: light;
+    --background: #{abstracts.$white};
+    --banner: #{abstracts.$pale};
+    --banner-alt: hsl(from var(--banner) h s calc(l - 15));
+    --highlight: #{abstracts.$dutch};
+    --link: #{abstracts.$teal};
+    --active: #{abstracts.$orange};
+    --secondary: #{abstracts.$grey};
+    --secondary-alt: rgb(from var(--secondary) calc(r - 17) calc(g - 17) calc(b - 17));
+    --text: #{abstracts.$dark};
+    --absolute: #{abstracts.$black};
+    --base-weight: 350;
   }
 }
 
 body {
   background-color: var(--background);
+  transition: background-color var(--duration);
 }
 
 

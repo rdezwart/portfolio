@@ -3,10 +3,10 @@ header.nav-wrapper
     div.name-wrapper
       +name()
       p.description AI &amp; Interactive Systems Developer
-    ul
+    ul(role="list")
       li(class={current: slug === "projects"})
         a(href="/projects/") Projects
-        ul
+        ul(role="list")
           each category in categories
             li(class={
               current: (currentProject && currentProject.category === category)
@@ -14,7 +14,9 @@ header.nav-wrapper
               a(href=`/projects/#${category.slug}`)= category.displayName
       li(class={current: slug === "about"})
         a(href="/about.html") About
-        ul
+        ul(role="list")
           li: a(href="/files/Robin_de_Zwart_Resume.pdf") Resume
 
-  include _social-icons
+  div.nav-widgets
+    include _social-icons
+    include _theme-picker

@@ -6,19 +6,35 @@
  */
 .footer {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-auto-rows: auto;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column; /* 1 */
+
   gap: #{abstracts.$text-gap};
   justify-items: center;
   align-items: center;
 
   background-color: var(--banner);
+  transition: background-color var(--duration);
   font-size: abstracts.font-size-scaled(-1);
 
   padding: #{abstracts.$page-padding};
   margin-block-end: #{abstracts.$page-padding * -1};
   margin-inline: #{abstracts.$page-padding * -1};
 
-  @include abstracts.respond-to("medium") {
-    grid-template-columns: 1fr; /* 1 */
+  :first-child {
+    justify-self: start;
+  }
+
+  :last-child {
+    justify-self: end;
+  }
+
+  @include abstracts.respond-to("full") {
+    grid-auto-flow: row; /* 1 */
+
+    :first-child, :last-child {
+      justify-self: center;
+    }
   }
 }

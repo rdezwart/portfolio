@@ -5,10 +5,13 @@
  * @module automata/sketch
  * @requires module:automata/grid
  * @requires module:automata/text/word
+ * @requires module:{@link https://cdn.jsdelivr.net/npm/bezier-easing@3.0.0/+esm}
  */
 
 import {Grid} from "./grid.js";
 import {Word} from "./text/word.js";
+import {default as BezierEasing} from
+    "https://cdn.jsdelivr.net/npm/bezier-easing@3.0.0/+esm";
 
 /**
  * Wraps the sketch in an object, enabling "instance mode".
@@ -92,6 +95,11 @@ const automataSketch = (sketch) => {
    * @type boolean
    */
   let loaded = false;
+  /**
+   * If the sketch is currently running.
+   * @type {boolean}
+   */
+  let sketchRunning = false;
 
   /**
    * Wrapper object for the `menu` element that will contain control buttons.
@@ -126,6 +134,82 @@ const automataSketch = (sketch) => {
    */
   let descriptions;
 
+  /**
+   * Live object containing the styles on `:root`, namely used to grab custom
+   * CSS variables.
+   * @type {CSSStyleDeclaration}
+   */
+  let documentStyles;
+
+  /**
+   * Namespace object for sketch color transitions.
+   * @namespace
+   * @prop {function(number): number} _easing - Easing function, declared once
+   *     in `setup()` to save on object creations.
+   * @prop {boolean} fallenBackToLinear - If something went wrong with the
+   *     Bezier easing, and we have fallen back to linear interpolation.
+   * @prop {function(number): number} easing - Cubic Bezier easing function
+   *     identical to the `ease` keyword in CSS. Falls back to returning the
+   *     same value as was passed in.
+   * @prop {function(Error)} fallBackToLinear - Handle errors related to Bezier
+   *     easing.
+   * @prop {boolean} running - Is a transition currently running.
+   * @prop {number} duration - Desired transition duration, in milliseconds.
+   * @prop {number} timeElapsed - How long the current transition has been
+   *     running.
+   * @prop {boolean} wasSketchLooping - Was the sketch looping before starting
+   *     this transition?
+   * @prop {Object} colors - Collection of [Colors]{@linkcode p5.Color} to
+   *     transition between.
+   * @prop {p5.Color} colors.originDeadColor - The original value of
+   *     {@linkcode deadColor}.
+   * @prop {p5.Color} colors.targetDeadColor - The target value of
+   *     {@linkcode deadColor}.
+   * @prop {p5.Color} colors.originAliveColor - The original value of
+   *     {@linkcode aliveColor}.
+   * @prop {p5.Color} colors.targetAliveColor - The target value of
+   *     {@linkcode aliveColor}.
+   * @prop {p5.Color} colors.originHighlightColor - The original value of
+   *     {@linkcode highlightColor}.
+   * @prop {p5.Color} colors.targetHighlightColor - The target value of
+   *     {@linkcode highlightColor}.
+   */
+  const transition = {
+    _easing: null,
+    fallenBackToLinear: false,
+    easing: function (progress) {
+      try {
+        return this._easing(progress);
+      } catch (e) {
+        this.fallBackToLinear(e);
+        return progress;
+      }
+    },
+    fallBackToLinear: function (e) {
+      transition.fallenBackToLinear = true;
+      transition._easing = (progress) => progress;
+      console.warn("Something went wrong with the BezierEasing " +
+        "library, falling back to linear interpolation.");
+      console.warn(e);
+    },
+
+    running: false,
+    duration: 0,
+    timeElapsed: 0,
+    wasSketchLooping: false,
+
+    colors: {
+      originDeadColor: null,
+      targetDeadColor: null,
+
+      originAliveColor: null,
+      targetAliveColor: null,
+
+      originHighlightColor: null,
+      targetHighlightColor: null,
+    }
+  }
+
 
   /**
    * Runs before the sketch starts.
@@ -151,11 +235,30 @@ const automataSketch = (sketch) => {
     );
     grid = new Grid(sketch, canvasWord);
 
+    // Try to use Bezier easing, but fall back to linear interpolation if
+    // anything goes wrong.
+    try {
+      transition._easing = BezierEasing(0.25, 0.1, 0.25, 1);
+    } catch (e) {
+      transition.fallBackToLinear(e);
+    }
+
+    // Listen for theme changers
+    /** @type {NodeListOf<HTMLFormElement>} */
+    const themePickers = document.querySelectorAll("form.theme-picker");
+    themePickers.forEach((themePicker) => {
+      themePicker.addEventListener(
+        "change", handleThemeChange
+      );
+    });
+
+    // Listen for preferred color scheme changes
     window.matchMedia("(prefers-color-scheme: light)").addEventListener(
-      "change", () => {
-        updateColorScheme();
-        sketch.redraw();
-      });
+      "change", handleThemeChange
+    );
+
+    // Store a reference to body styles, especially custom CSS variables
+    documentStyles = window.getComputedStyle(document.body);
     updateColorScheme();
 
     descriptions = {
@@ -223,13 +326,25 @@ const automataSketch = (sketch) => {
         return;
 
       loaded = false;
+
+      // Stop logic interval
       if (logicIntervalId !== undefined) toggleLogicInterval();
-      sketch.noLoop();
-      grid = new Grid(sketch, canvasWord);
+
+      // Pause the draw loop, or wait until transition complete and then do so
+      if (transition.running) {
+        transition.wasSketchLooping = false;
+      } else {
+        sketch.noLoop();
+      }
+
+      // Reset sketch and grid state
+      sketchRunning = false;
       simulationStarted = false;
+      grid = new Grid(sketch, canvasWord);
       grid.loop();
       updateInterface();
       sketch.redraw();
+
       loaded = true;
     });
 
@@ -248,6 +363,8 @@ const automataSketch = (sketch) => {
    */
   sketch.draw = () => {
     updateDescriptions();
+    if (transition.running)
+      doColorTransition();
     sketch.background(deadColor);
     sketch.scale(grid.scaleFactor);
     sketch.fill(aliveColor);
@@ -318,12 +435,17 @@ const automataSketch = (sketch) => {
    * Toggles the logic interval as well as the draw loop of the sketch.
    */
   function togglePaused() {
-    if (sketch.isLooping()) {
-      sketch.noLoop();
+    if (sketchRunning) {
+      sketchRunning = false;
+      if (!transition.running) sketch.noLoop();
     } else {
-      sketch.loop();
+      sketchRunning = true;
+      if (!transition.running) sketch.loop();
       if (!simulationStarted) simulationStarted = true;
     }
+
+    // Setting this to false will stop the sketch draw loop once it's done
+    transition.wasSketchLooping = sketchRunning;
     toggleLogicInterval();
     updateInterface();
   }
@@ -337,7 +459,7 @@ const automataSketch = (sketch) => {
       logicIntervalId = undefined;
     } else {
       logicIntervalId = setInterval(function () {
-        if (sketch.isLooping()) grid.loop();
+        if (sketchRunning) grid.loop();
       }, 1000 / UPDATES_PER_SECOND);
     }
   }
@@ -359,11 +481,11 @@ const automataSketch = (sketch) => {
   function updateDescriptions() {
     sketch.describe(
       `${descriptions.BASE} \
-        ${sketch.isLooping() ? descriptions.RUNNING : descriptions.PAUSED}`
+        ${sketchRunning ? descriptions.RUNNING : descriptions.PAUSED}`
     );
 
     let desc =
-      sketch.isLooping()
+      sketchRunning
         ? descriptions.CELLS_RUNNING
         : descriptions.CELLS_PAUSED;
     if (!simulationStarted)
@@ -393,7 +515,7 @@ const automataSketch = (sketch) => {
       if (pauseIcon == null || pauseTooltip == null)
         return;
 
-      if (sketch.isLooping()) {
+      if (sketchRunning) {
         pauseIcon.classList.replace("fa-play", "fa-pause");
         pauseTooltip.textContent = "Pause";
       } else {
@@ -406,7 +528,7 @@ const automataSketch = (sketch) => {
      * Updates the animation button.
      */
     function updateAnimButton() {
-      animButton.attribute("aria-disabled", `${!sketch.isLooping()}`);
+      animButton.attribute("aria-disabled", `${!sketchRunning}`);
     }
 
     /**
@@ -491,14 +613,110 @@ const automataSketch = (sketch) => {
   }
 
   /**
+   * Callback function for theme-related change listeners.
+   */
+  function handleThemeChange() {
+    startColorTransition();
+  }
+
+  /**
    * Updates the sketch colours based on site-wide colour scheme, from CSS
    * variables.
    */
   function updateColorScheme() {
-    let style = window.getComputedStyle(document.body);
-    deadColor = sketch.color(style.getPropertyValue("--banner"));
-    aliveColor = sketch.color(style.getPropertyValue("--link"));
-    highlightColor = sketch.color(style.getPropertyValue("--highlight"));
+    deadColor = sketch.color(
+      documentStyles.getPropertyValue("--banner")
+    );
+    aliveColor = sketch.color(
+      documentStyles.getPropertyValue("--link")
+    );
+    highlightColor = sketch.color(
+      documentStyles.getPropertyValue("--highlight")
+    );
+  }
+
+  /**
+   * Start the color transition. Enables the sketch drawing loop if it has to,
+   * but {@linkcode finishColorTransition} will set it back to the correct state
+   * once the transition is complete.
+   */
+  function startColorTransition() {
+    // Cut off the "ms" from the CSS value
+    transition.duration = parseInt(
+      documentStyles.getPropertyValue("--duration").slice(0, -2));
+    transition.timeElapsed = 0;
+
+    // Keep track of starting color
+    transition.colors.originDeadColor = deadColor;
+    transition.colors.originAliveColor = aliveColor;
+    transition.colors.originHighlightColor = highlightColor;
+
+    // Get target colors from CSS
+    transition.colors.targetDeadColor = sketch.color(
+      documentStyles.getPropertyValue("--banner"));
+    transition.colors.targetAliveColor = sketch.color(
+      documentStyles.getPropertyValue("--link"));
+    transition.colors.targetHighlightColor = sketch.color(
+      documentStyles.getPropertyValue("--highlight"));
+
+    if (!transition.running && !transition.wasSketchLooping) {
+      // Start looping so that the transition can actually be drawn
+      sketch.loop();
+      // Need to reset deltaTime since the sketch may have been paused, leading
+      // to inflated deltaTime values.
+      sketch.deltaTime = 0;
+    }
+
+    transition.running = true;
+  }
+
+  /**
+   * Finish the color transition. Returns the sketch drawing loop to the correct
+   * state.
+   */
+  function finishColorTransition() {
+    // Make sure we always end up with the target color.
+    deadColor = transition.colors.targetDeadColor;
+    aliveColor = transition.colors.targetAliveColor;
+    highlightColor = transition.colors.targetHighlightColor;
+
+    transition.running = false;
+    if (!transition.wasSketchLooping) {
+      sketch.noLoop();
+    }
+  }
+
+  /**
+   * Apply the color transition for this frame, using a cubic Bezier easing
+   * function identical to CSS's `ease` value.
+   */
+  function doColorTransition() {
+    // Calculate eased progress
+    transition.timeElapsed += sketch.deltaTime;
+    let easedProgress = transition.easing(
+      Math.max(0, Math.min(transition.timeElapsed / transition.duration, 1))
+    );
+
+    // Set colors
+    deadColor = sketch.lerpColor(
+      transition.colors.originDeadColor,
+      transition.colors.targetDeadColor,
+      easedProgress
+    );
+    aliveColor = sketch.lerpColor(
+      transition.colors.originAliveColor,
+      transition.colors.targetAliveColor,
+      easedProgress
+    );
+    highlightColor = sketch.lerpColor(
+      transition.colors.originHighlightColor,
+      transition.colors.targetHighlightColor,
+      easedProgress
+    );
+
+    if (transition.timeElapsed >= transition.duration) {
+      finishColorTransition();
+    }
   }
 };
 

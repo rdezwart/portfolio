@@ -14,6 +14,7 @@ picture {
   max-inline-size: 100%;
   block-size: auto;
   background-color: var(--banner);
+  transition: background-color var(--duration);
 
   img {
     display: inline; /* 1 */
