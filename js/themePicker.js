@@ -15,7 +15,10 @@
   const THEME_OWNER = document.documentElement;
   const THEME_STORAGE_KEY = "theme";
 
-  // Grab saved theme from local storage, and apply it if found
+  /**
+   * Can be `null` if theme not found in local storage.
+   * @type {?string}
+   */
   const cachedTheme = localStorage.getItem(THEME_STORAGE_KEY);
   if (cachedTheme) {
     THEME_OWNER.dataset[THEME_STORAGE_KEY] = cachedTheme;
@@ -30,7 +33,7 @@
     /**
      * Sets the correct them as active on a theme picker form.
      * @param {HTMLFormElement} themePickerForm
-     * @param {string} theme
+     * @param {?string} theme
      */
     function setTheme(themePickerForm, theme) {
       themePickerForm[THEME_STORAGE_KEY].value = theme;
@@ -39,7 +42,7 @@
     /**
      * Updates the theme for Gradio applets.
      * @param {Element} gradioApplet
-     * @param {string} theme
+     * @param {?string} theme
      */
     function updateGradio(gradioApplet, theme) {
       if (theme === "light") {
@@ -48,6 +51,28 @@
         gradioApplet.classList.add("dark");
       }
       gradioApplet.setAttribute("theme_mode", theme);
+    }
+
+    /**
+     * Updates the FontAwesome icons to match the current state.
+     * @param {HTMLFormElement} themePickerForm
+     * @param {?string} theme
+     */
+    function updateIcons(themePickerForm, theme) {
+      /** @type {RadioNodeList} */
+      let inputs = themePickerForm[THEME_STORAGE_KEY];
+
+      inputs.forEach((input) => {
+        // Only works because the input and icon are nested in the same label
+        let icon = input.parentNode.querySelector("i");
+
+        // Theme is null when there is no cached theme, default theme is dark
+        if (input.value === (theme ?? "dark")) {
+          icon.classList.replace("fa-regular", "fa-solid");
+        } else {
+          icon.classList.replace("fa-solid", "fa-regular");
+        }
+      });
     }
 
     /**
@@ -69,6 +94,7 @@
         if (picker !== e.currentTarget) {
           setTheme(picker, theme);
         }
+        updateIcons(picker, theme);
       });
 
       // Sync Gradio applets
@@ -81,6 +107,7 @@
     // Add listeners and sync all pickers
     themePickers.forEach((themePicker) => {
       setTheme(themePicker, cachedTheme);
+      updateIcons(themePicker, cachedTheme);
       themePicker.addEventListener("change", handleChange);
     });
 
