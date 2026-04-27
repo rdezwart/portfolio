@@ -42,13 +42,18 @@
 
 /**
  * Scrollable content within sidebar contents.
-  * 1. Display a scroll bar if the sidebar is taller than the screen.
+ * 1. Display a scroll bar if the sidebar is taller than the screen.
+ * 2. Fix issue with sub-pixel rendering causing a scrollbar to appear
+ *    erroneously
  */
 .sidebar .scrollable {
   margin: 0;
   @include abstracts.flex-column();
   overflow-y: auto; /* 1 */
   overflow-block: auto; /* 1 */
+
+  padding-block-end: 1px; /* 2 */
+  margin-block-end: -1px; /* 2 */
 }
 
 /**

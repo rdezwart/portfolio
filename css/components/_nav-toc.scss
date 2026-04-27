@@ -18,7 +18,5 @@
 
   & :is(ul, ol) {
     font-size: abstracts.font-size-scaled(0);
-    overflow-y: hidden; /* 2 */
-    overflow-block: hidden; /* 2 */
   }
 }

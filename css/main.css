@@ -1233,8 +1233,6 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 }
 .toc .nav :is(ul, ol) {
   font-size: 1rem;
-  overflow-y: hidden; /* 2 */
-  overflow-block: hidden; /* 2 */
 }
 
 /**
@@ -1280,7 +1278,9 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 
 /**
  * Scrollable content within sidebar contents.
-  * 1. Display a scroll bar if the sidebar is taller than the screen.
+ * 1. Display a scroll bar if the sidebar is taller than the screen.
+ * 2. Fix issue with sub-pixel rendering causing a scrollbar to appear
+ *    erroneously
  */
 .sidebar .scrollable {
   margin: 0;
@@ -1289,6 +1289,8 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   gap: 0.5rlh;
   overflow-y: auto; /* 1 */
   overflow-block: auto; /* 1 */
+  padding-block-end: 1px; /* 2 */
+  margin-block-end: -1px; /* 2 */
 }
 
 /**
