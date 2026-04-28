@@ -14,6 +14,7 @@
 (function () {
   const THEME_OWNER = document.documentElement;
   const THEME_STORAGE_KEY = "theme";
+  const DEFAULT_THEME = "dark";
 
   /**
    * Can be `null` if theme not found in local storage.
@@ -36,7 +37,7 @@
      * @param {?string} theme
      */
     function setTheme(themePickerForm, theme) {
-      themePickerForm[THEME_STORAGE_KEY].value = theme;
+      themePickerForm[THEME_STORAGE_KEY].value = theme ?? DEFAULT_THEME;
     }
 
     /**
@@ -45,12 +46,8 @@
      * @param {?string} theme
      */
     function updateGradio(gradioApplet, theme) {
-      if (theme === "light") {
-        gradioApplet.classList.remove("dark");
-      } else {
-        gradioApplet.classList.add("dark");
-      }
-      gradioApplet.setAttribute("theme_mode", theme);
+      gradioApplet.classList.toggle("dark", (theme ?? DEFAULT_THEME) === DEFAULT_THEME);
+      gradioApplet.setAttribute("theme_mode", theme ?? DEFAULT_THEME);
     }
 
     /**
@@ -67,7 +64,7 @@
         let icon = input.parentNode.querySelector("i");
 
         // Theme is null when there is no cached theme, default theme is dark
-        if (input.value === (theme ?? "dark")) {
+        if (input.value === (theme ?? DEFAULT_THEME)) {
           icon.classList.replace("fa-regular", "fa-solid");
         } else {
           icon.classList.replace("fa-solid", "fa-regular");
@@ -81,7 +78,7 @@
      */
     function handleChange(e) {
       const theme = e.target.value;
-      if (theme === "dark") {
+      if (theme === DEFAULT_THEME) {
         delete THEME_OWNER.dataset[THEME_STORAGE_KEY];
         localStorage.removeItem(THEME_STORAGE_KEY);
       } else {
