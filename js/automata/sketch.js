@@ -73,13 +73,6 @@ const automataSketch = (sketch) => {
    */
   const UPDATES_PER_SECOND = 10;
   /**
-   * How many times the canvas paints per second. Proportional to
-   * {@linkcode UPDATES_PER_SECOND}.
-   * @readonly
-   * @const {number}
-   */
-  const FRAMES_PER_SECOND = UPDATES_PER_SECOND * 4;
-  /**
    * The ID of the logic interval.
    * @type number
    */
@@ -225,7 +218,6 @@ const automataSketch = (sketch) => {
     canvas.parent(wrapper);
     canvas.attribute("aria-live", "polite");
 
-    sketch.frameRate(FRAMES_PER_SECOND);
     sketch.noStroke();
     sketch.noLoop(); // Start sketch paused
 
