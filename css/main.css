@@ -1806,4 +1806,9 @@ gradio-app.gradio-app .embed-container.gradio-container {
 .error-heading {
   font-size: 1.953125rem;
 }
+
+#overview {
+  scroll-margin-block-start: 100vh;
+  scroll-margin-block-start: 100dvh;
+}
 /*# sourceMappingURL=main.css.map */
