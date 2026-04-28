@@ -6,11 +6,19 @@
 class NavItem {
   /**
    * @param {Element} element - The list-item associated with this NavItem.
-   * @param {NavItem} [parent=null] - The parent of this NavItem if it has one, based on DOM structure.
-   * @param {NavItem[]} [children=[]] - The children of this NavItem if it has any, based on DOM structure.
-   * @param {boolean} [isIntersecting=false] - Is this NavItem currently intersecting with an {@link IntersectionObserver}?
+   * @param {?NavItem} [parent=null] - The parent of this NavItem if it has one,
+   *     based on DOM structure.
+   * @param {NavItem[]} [children=[]] - The children of this NavItem if it has
+   *     any, based on DOM structure.
+   * @param {boolean} [isIntersecting=false] - Is this NavItem currently
+   *     intersecting with an {@link IntersectionObserver}?
    */
-  constructor(element, parent = null, children = [], isIntersecting = false) {
+  constructor(
+    element,
+    parent = null,
+    children = [],
+    isIntersecting = false
+  ) {
     this.element = element;
     this.parent = parent;
     this.children = children;
@@ -61,169 +69,174 @@ class NavItem {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+/**
+ * Returns an object modelling the links between the IDs of DOM sections and
+ * paired [NavItems]{@linkcode NavItem}.
+ *
+ * Automatically handles one level of sub-lists, so only need to pass in the
+ * top-level list items.
+ * @param {Element[]} items - The items to populate the model with.
+ * @return {Object.<string, NavItem>} - A populated model.
+ */
+function populateModel(items) {
   /** @type {Object.<string, NavItem>} */
-  const model = {};
-  /** @type {Element[]} */
-  const tocRootItems = [...document.querySelectorAll(".toc nav > ol > li")];
-  let firstLoad = true;
-  let overviewChecked = false;
-  const overview = document.getElementById("overview");
-
-  /**
-   * Helper function to make sure the values are always fresh.
-   * @return {number}
-   */
-  let overviewTop = () => overview.getBoundingClientRect().top;
+  const _model = {};
 
   // Populate model with each of the level 1 items in the TOC list
-  tocRootItems.forEach((item) => {
+  items.forEach((item) => {
     let navItem = new NavItem(item);
-    model[navItem.href] = navItem;
+    _model[navItem.href] = navItem;
 
     // Add any children to the model with links to and from their parent item so
     // the children can update their parents on intersection.
     let children = item.querySelectorAll(":scope > ol li");
     children.forEach((child) => {
       let c = new NavItem(child, navItem);
-      model[c.href] = c;
+      _model[c.href] = c;
       navItem.children.push(c);
     });
   });
 
+  return _model;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * The top-level list items from the Table of Contents.
+   * @type {Element[]}
+   */
+  const tocRootItems = [...document.querySelectorAll(
+    ".toc nav > :is(ol, ul) > li"
+  )];
+  /**
+   * Object modelling the links between section IDs and [NavItems]{@linkcode
+   * NavItem}.
+   * @type {Object.<string, NavItem>}
+   */
+  const model = populateModel(tocRootItems);
+
+  /**
+   * Is this the first time the {@linkcode IntersectionObserver} callback
+   * {@linkcode spyItem} has been triggered?
+   * @type {boolean}
+   */
+  let firstLoad = true;
+  /**
+   * Has Overview been successfully verified to be in the correct state?
+   * @type {boolean}
+   */
+  let wasOverviewVerified = false;
+
   /** @type {NavItem} */
-  let overviewItem = model["#overview"];
+  let overviewNavItem = model["#overview"];
+  /** @type {Element} */
+  const overviewElement = document.getElementById("overview");
 
 
   /**
+   * Helper function to make sure the returned values are always fresh.
+   * @return {number} - The `top` value from Overview's {@linkcode DOMRect}.
+   */
+  function getOverviewTop() {
+    return overviewElement.getBoundingClientRect().top;
+  }
+
+  /**
+   * Verifies if Overview's current state is actually allowed, and
+   * [deactivates]{@linkcode NavItem#deactivate} Overview's {@linkcode NavItem}
+   * if the state is not valid.
+   *
+   * ---
+   *
+   * We want Overview to have `.current` on page load, but if we reload while
+   * scrolled lower down the page, things get a bit muddled.
+   *
+   * Sometimes the Scroll event (to return to the user's previous position on
+   * the page) happens *before* the IntersectionObserver fires off its first
+   * callback ({@linkcode spyItem}), and sometimes *after*. This seems to
+   * be based on the order scripts finish loading and is not consistent.
+   *
+   * This means that Overview can be confused as to its true position on the
+   * page once everything is finished loading, so we need to make a few
+   * additional checks:
+   *
+   * - **CHECK 1:** Overview first checks its own position and responds
+   *   appropriately. Initial [activation]{@linkcode NavItem#activate} is
+   *   handled in {@linkcode spyItem}.
+   * - **CHECK 2:** After the first callback containing all entries, the page
+   *   will have scrolled down and triggered an intersection on any newly
+   *   visible sections, which will respond appropriately.
    *
    * @param {IntersectionObserverEntry} entry
+   * @return {boolean}
    */
-  function checkOverview(entry) {
-    /*
-     * We want Overview to have `.current` on page load, but if we reload while
-     * scrolled lower down the page, there are a number of edge cases we need to
-     * take care of.
-     *
-     * We only want Overview to be activated if it is currently intersecting, or
-     * if we are scrolled above it. This is easy to handle by getting it to
-     * check its own position and responding appropriately. See `Case 1`.
-     *
-     * However, sometimes the scroll event happens before the observers fire off
-     * their first callback (on the first render cycle), and sometimes after.
-     * This seems to be based on the order scripts finish loading and is not
-     * consistent.
-     *
-     * If the scroll fires after the callback, then Overview thinks it's allowed
-     * to activate itself, before the page scrolls down to where it's supposed
-     * to be, incorrectly leaving Overview active.
-     *
-     * These mostly happen
-     * 1. Get Overview to check itself
-     */
-
-
+  function verifyOverview(entry) {
     const {id} = entry.target;
 
-    /* Case 1 */
-    if (id === "overview") {
-      console.log("Overview: checking itself", overviewTop())
-
-      if (overviewTop() <= 0) {
-        if (!overviewChecked) {
-          // Overview correctly realizes it's below the top of the screen
-          overviewChecked = true;
-          if (entry.isIntersecting) {
-            // It's allowed to stay active
-            console.log("Overview: wanted to deactivate, but was intersecting");
-          } else {
-            // It should deactivate itself
-            overviewItem.deactivate();
-            console.warn("Overview: deactivated itself");
-          }
-        } else {
-          console.log("Overview: was already checked");
-        }
+    /* CHECK 1 */
+    if (id === "overview" && getOverviewTop() <= 0) {
+      // Overview has correctly realized it's below the top of the screen.
+      // It's allowed to stay active if it's actually intersecting.
+      if (!entry.isIntersecting) {
+        overviewNavItem.deactivate();
       }
+      return true;
     }
 
-    /*
-     * CASE 2: After the first callback containing all entries, the page will
-     * scroll down and trigger an intersection on the newly visible section.
-     */
+    /* CHECK 2 */
     if (!firstLoad) {
-      if (!overviewChecked) {
-        console.log(`Entries: ${id} is checking overview`, overviewTop());
-
-        // If the first intersection after the load is Overview
-        if (id === "overview") {
-          console.log("CHECKING ITSELF");
-          overviewChecked = true;
-        } else {
-          if (overviewTop() <= 0) {
-            overviewItem.deactivate();
-            console.warn(`Entries: ${id} deactivated overview`);
-            overviewChecked = true;
-          } else {
-            console.log(`Entries: ${id} thinks overview seems fine`);
-          }
-        }
-      } else {
-        console.log(`Entries: ${id} thinks overview was already checked`);
+      // We have to wait until after the first load, so that the only entries
+      // passed to the callback are from new intersection changes.
+      if (id === "overview") {
+        // If the first intersection after the load is Overview, we're scrolling
+        // into Overview from above, and it can stay active.
+        return true;
+      } else if (getOverviewTop() <= 0) {
+        // Any other section notices Overview shouldn't be active
+        overviewNavItem.deactivate();
+        return true;
       }
     }
+
+    return false;
   }
 
 
   /**
-   * Callback function for {@link IntersectionObserver}.
+   * Callback function for {@linkcode IntersectionObserver}.
+   *
+   * During the first render cycle after starting observation, all `entries` get
+   * passed to the callback at once, giving us their initial states.
+   *
+   * Sometimes this can happen before or after the document scrolls to the
+   * user's previous position, so we need to double-check that Overview is
+   * allowed to be active on (re)load.
+   *
+   * @function
    * @param {IntersectionObserverEntry[]} entries
    */
   const spyItem = (entries) => {
-    // During the first render cycle after starting observation, all entries
-    // get a callback.
     entries.forEach((entry) => {
       const {id} = entry.target;
       const spy = model[`#${id}`];
       entry.isIntersecting ? spy.activate() : spy.deactivate();
 
-      // If top is positive, we are scrolled above the top of Overview
-      if (id === "overview" && overviewTop() > 0) {
-        overviewItem.activate();
-        console.log("Overview: above zero, activated itself");
-      }
+      if (overviewElement) {
+        // If top is positive, we are scrolled above the top of Overview
+        if (id === "overview" && getOverviewTop() > 0) {
+          overviewNavItem.activate();
+        }
 
-      if (!overviewChecked) {
-        checkOverview(entry);
+        // Need to make sure Overview is allowed to be active
+        if (!wasOverviewVerified) {
+          wasOverviewVerified = verifyOverview(entry);
+        }
       }
     });
 
-    //
-    // /*
-    //  * CASE 3: If the first two cases fail to determine if Overview is in the
-    //  * correct state, this is our final measure.
-    //  *
-    //  * Cases 1 and 2 catch pretty much everything, but I have had this case
-    //  * reached a few times, though I'm unable to consistently reproduce it.
-    //  */
-    // console.log("Post entries: checking overview", overviewTop());
-    // if (!overviewChecked) {
-    //   if (overviewTop() <= 0) {
-    //     model["#overview"].deactivate();
-    //     console.warn("Post entries: deactivated overview");
-    //     overviewChecked = true;
-    //   } else {
-    //     console.log("Post entries: overview seems fine");
-    //   }
-    // } else {
-    //   console.log("Post entries: overview was already checked");
-    // }
-
-
-    if (firstLoad) {
-      firstLoad = false;
-      console.info("FIRST LOAD IS DONE");
-    }
+    // Keep track of if this is the first time the callback has been called
+    if (firstLoad) firstLoad = false;
   };
 
   /** @type {IntersectionObserver} */
