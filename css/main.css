@@ -1257,7 +1257,12 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   flex-direction: column;
   gap: 1rlh;
   contain: inline-size; /* 2 */
-  margin-block: 1rlh;
+  margin-block-start: 1rlh;
+}
+@media screen and (max-width: 43rem) {
+  .sidebar-wrapper {
+    margin-block-end: 1rlh;
+  }
 }
 .sidebar-wrapper section:first-child {
   padding-block-start: 0; /* 1 */

@@ -92,15 +92,17 @@ mixin sidebar(options = {})
     const {
       heading = "Sidebar",
       headingID = undefined,
+      toTopButton = false,
     } = options;
 
   section.sidebar&attributes(attributes)
     +h(2, heading, false, 4)(class="sidebar-heading" id=headingID)
     div.scrollable
       block
-    a.to-top(href="#")
-      span Back to Top
-      span.highlight ;
+    if toTopButton
+      a.to-top(href="#")
+        span Back to Top
+        span.highlight ;
 
 
 //- Renders a list of items, with extra cases for a comma separated list
