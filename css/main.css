@@ -1807,8 +1807,16 @@ gradio-app.gradio-app .embed-container.gradio-container {
   font-size: 1.953125rem;
 }
 
+/**
+ * When jumping to the Overview anchor, scroll to the very top of the page so
+ * that the header is included. Then this also doubles as a back-to-top button.
+ */
 #overview {
   scroll-margin-block-start: 100vh;
-  scroll-margin-block-start: 100dvh;
+}
+@supports (scroll-margin-block-start: 100dvh) {
+  #overview {
+    scroll-margin-block-start: 100dvh;
+  }
 }
 /*# sourceMappingURL=main.css.map */
