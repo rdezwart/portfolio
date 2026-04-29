@@ -1762,6 +1762,19 @@ gradio-app.gradio-app .embed-container.gradio-container {
 }
 
 /**
+ * Styles for References/Works Cited lists
+ * 1. Indent every line except the first. Indent amount was suggested by the
+ *    exported HTML from Zotero.
+ * 2. Add extra space between items for better readability.
+ */
+.ref-list {
+  text-indent: 2em hanging; /* 1 */
+}
+.ref-list .ref-entry + .ref-entry {
+  margin-block-start: 0.5rlh; /* 2 */
+}
+
+/**
  * Center "Hi, I'm Robin;" text on smaller viewports.
  */
 .grid-pre-sidebar-low .pre-sidebar {

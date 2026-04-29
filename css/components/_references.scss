@@ -1,0 +1,15 @@
+@use "../abstracts";
+
+/**
+ * Styles for References/Works Cited lists
+ * 1. Indent every line except the first. Indent amount was suggested by the
+ *    exported HTML from Zotero.
+ * 2. Add extra space between items for better readability.
+ */
+.ref-list {
+  text-indent: 2em hanging; /* 1 */
+
+  .ref-entry + .ref-entry {
+    margin-block-start: #{abstracts.$text-gap}; /* 2 */
+  }
+}
