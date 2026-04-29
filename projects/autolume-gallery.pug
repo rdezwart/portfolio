@@ -143,23 +143,23 @@ append content
       An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
       highlighting the real-time image generation with a wide array of options and vectors to explore, all
       configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
-      devices (#[+citation("Wright &amp; Freed", "1997")]). Given the abstract nature of my dataset, working with Autolume's unique visual
-      style felt like the right approach for the project.
+      devices (#[+citation("Wright &amp; Freed", "1997")]). Given the abstract nature of my dataset, working with
+      Autolume's unique visual style felt like the right approach for the project.
     p.
       Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
       that streams video and audio to connected multimedia devices (#[+citation("NDI", "2025")]).
     p.
-      During the proposal peer review process, I was introduced to a demo video (#[+citation("Hobby Technology", "2024")]) of
-      a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
-      featured a different type of model, the user interface served as an inspiration and a confirmation that my
-      initial idea was feasible.
+      During the proposal peer review process, I was introduced to a demo video
+      (#[+citation("Hobby Technology", "2024")]) of a project with a similar concept, also using a VR headset to
+      manipulate the vectors of a latent space. While it featured a different type of model, the user interface served
+      as an inspiration and a confirmation that my initial idea was feasible.
 
   section#system-design
     +h(2, "System Design")
     p.
       I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
-      the XR Interaction Toolkit (#[+citation("Unity Technologies", "2025")]), other headsets are easily supportable with little
-      extra effort!
+      the XR Interaction Toolkit (#[+citation("Unity Technologies", "2025")]), other headsets are easily supportable
+      with little extra effort!
     p.
       On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
       components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
@@ -187,15 +187,15 @@ append content
     section#vr-hardware
       +h(3, "VR Hardware")
       p.
-        The Meta Quest is connected to a computer using the Meta Quest Link application (#[+citation("Meta", "2025")]), either
-        over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
-        headset.
+        The Meta Quest is connected to a computer using the Meta Quest Link application (#[+citation("Meta", "2025")]),
+        either over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to
+        the headset.
 
     section#unity
       +h(3, "Unity")
       p.
-        The heart of the system. Relies on OpenXR (#[+citation("The Khronos Group", "2016")]) and the XR Interaction Toolkit
-        (#[+citation("Unity Technologies", "2025")]) for the baseline virtual reality functionality.
+        The heart of the system. Relies on OpenXR (#[+citation("The Khronos Group", "2016")]) and the XR Interaction
+        Toolkit (#[+citation("Unity Technologies", "2025")]) for the baseline virtual reality functionality.
       p.
         There are comments in every script I wrote linking to any external resources I drew from.
       p.
@@ -398,8 +398,9 @@ append content
     p.
       There were some additional approaches to visualizing latent spaces that I found during my preliminary research
       phase, but unfortunately did not get to implement due to scope creep and a lack of time
-      (#[+citation("Despois", "2017")]; #[+citation("van der Maaten &amp; Hinton", "2008")]). I'd love to explore the visualization possibilities of
-      latent spaces more in the future, especially under the guidance of the Metacreation Lab.
+      (#[+citation("Despois", "2017")]; #[+citation("van der Maaten &amp; Hinton", "2008")]). I'd love to explore the
+      visualization possibilities of latent spaces more in the future, especially under the guidance of the Metacreation
+      Lab.
     p.
       Brought up as feedback during the class presentation, I struggled to find clear information on the concept of
       "intermediate latent fields", which was a potential way of smoothing the harsh panel boundaries when textures
