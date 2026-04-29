@@ -194,3 +194,7 @@ mixin picture(/** @type {ProjectImage} */ image)
         src=`/img/${image.slug}${image.name}.${image.fallbackFormat}` loading=`${image.loading}`
         width=`${image.width}` height=`${image.height}`
         alt=`${image.alt}`)
+
+//- Quick helper to pair an in-text citation with a proper time object.
+mixin citation(name, time)
+  != `${name}, <time datetime="${time}">${time}</time>`

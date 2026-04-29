@@ -136,20 +136,20 @@ append content
   section#literature-review
     +h(2, "Literature Review")
     p.
-      Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
+      Enter Autolume-Live (#[+citation("Kraasch", "2023")]), a tool for training, tweaking, and running GAN models
       locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
-      development, improvements, and usage \cite{sobhan_autolume_2024}.
+      development, improvements, and usage (#[+citation("Sobhan et al.", "2024")]).
     p.
       An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
       highlighting the real-time image generation with a wide array of options and vectors to explore, all
       configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
-      devices \cite{wright_open_1997}. Given the abstract nature of my dataset, working with Autolume's unique visual
+      devices (#[+citation("Wright &amp; Freed", "1997")]). Given the abstract nature of my dataset, working with Autolume's unique visual
       style felt like the right approach for the project.
     p.
       Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
-      that streams video and audio to connected multimedia devices \cite{ndi_ndi_2025}.
+      that streams video and audio to connected multimedia devices (#[+citation("NDI", "2025")]).
     p.
-      During the proposal peer review process, I was introduced to a demo video \cite{hobby_technology_latent_2024} of
+      During the proposal peer review process, I was introduced to a demo video (#[+citation("Hobby Technology", "2024")]) of
       a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
       featured a different type of model, the user interface served as an inspiration and a confirmation that my
       initial idea was feasible.
@@ -158,7 +158,7 @@ append content
     +h(2, "System Design")
     p.
       I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
-      the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
+      the XR Interaction Toolkit (#[+citation("Unity Technologies", "2025")]), other headsets are easily supportable with little
       extra effort!
     p.
       On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
@@ -187,15 +187,15 @@ append content
     section#vr-hardware
       +h(3, "VR Hardware")
       p.
-        The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
+        The Meta Quest is connected to a computer using the Meta Quest Link application (#[+citation("Meta", "2025")]), either
         over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
         headset.
 
     section#unity
       +h(3, "Unity")
       p.
-        The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
-        \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
+        The heart of the system. Relies on OpenXR (#[+citation("The Khronos Group", "2016")]) and the XR Interaction Toolkit
+        (#[+citation("Unity Technologies", "2025")]) for the baseline virtual reality functionality.
       p.
         There are comments in every script I wrote linking to any external resources I drew from.
       p.
@@ -235,7 +235,7 @@ append content
           \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
           not trigger any of the transmissions itself, but will diligently send off any messages it's given.
         p.libraries.
-          Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.
+          Libraries: Iam1337/extOSC (#[+citation("Sigalkin", "2025")]).
 
       section#xr-origin
         +h(4, "XR Origin (XR Rig) Affordance Variant")
@@ -266,7 +266,7 @@ append content
           Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
           Live" on the local machine.
         p.libraries.
-          Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.
+          Libraries: Custom,  keijiro/KlakNDI (#[+citation("Takahashi", "2025")]), XR Interaction Toolkit.
 
       section#vector-controllers
         +h(4, "Vector Controller Left/Right")
@@ -275,7 +275,7 @@ append content
           but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
           affordances labelling each podium.
         p.libraries.
-          Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
 
       section#layer-controller
         +h(4, "Layer Controller")
@@ -284,7 +284,7 @@ append content
           the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
           Autolume via the OSC Manager. There is an affordance labelling this podium.
         p.libraries.
-          Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
 
       section#seed-controller
         +h(4, "Seed Controller")
@@ -293,7 +293,7 @@ append content
           the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
           the OSC Manager. There is an affordance labelling this podium.
         p.libraries.
-          Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
 
       section#panel-resetter
         +h(4, "Panel Resetter")
@@ -398,7 +398,7 @@ append content
     p.
       There were some additional approaches to visualizing latent spaces that I found during my preliminary research
       phase, but unfortunately did not get to implement due to scope creep and a lack of time
-      \cite{despois_latent_2017, maaten_visualizing_2008}. I'd love to explore the visualization possibilities of
+      (#[+citation("Despois", "2017")]; #[+citation("van der Maaten &amp; Hinton", "2008")]). I'd love to explore the visualization possibilities of
       latent spaces more in the future, especially under the guidance of the Metacreation Lab.
     p.
       Brought up as feedback during the class presentation, I struggled to find clear information on the concept of

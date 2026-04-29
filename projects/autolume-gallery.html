@@ -274,24 +274,22 @@
             </section>
             <section id="literature-review">
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
-              <p>
-                Enter Autolume-Live \cite{kraasch_autolume-live_2023}, a tool for training, tweaking, and running GAN models
+              <p>Enter Autolume-Live (Kraasch, <time datetime="2023">2023</time>), a tool for training, tweaking, and running GAN models
                 locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
-                development, improvements, and usage \cite{sobhan_autolume_2024}.
+                development, improvements, and usage (Sobhan et al., <time datetime="2024">2024</time>).
               </p>
               <p>
                 An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
                 highlighting the real-time image generation with a wide array of options and vectors to explore, all
                 configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
-                devices \cite{wright_open_1997}. Given the abstract nature of my dataset, working with Autolume's unique visual
+                devices (Wright &amp; Freed, <time datetime="1997">1997</time>). Given the abstract nature of my dataset, working with Autolume's unique visual
                 style felt like the right approach for the project.
               </p>
               <p>
                 Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
-                that streams video and audio to connected multimedia devices \cite{ndi_ndi_2025}.
+                that streams video and audio to connected multimedia devices (NDI, <time datetime="2025">2025</time>).
               </p>
-              <p>
-                During the proposal peer review process, I was introduced to a demo video \cite{hobby_technology_latent_2024} of
+              <p>During the proposal peer review process, I was introduced to a demo video (Hobby Technology, <time datetime="2024">2024</time>) of
                 a project with a similar concept, also using a VR headset to manipulate the vectors of a latent space. While it
                 featured a different type of model, the user interface served as an inspiration and a confirmation that my
                 initial idea was feasible.
@@ -302,7 +300,7 @@
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
               <p>
                 I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
-                the XR Interaction Toolkit \cite{unity_technologies_xr_2025}, other headsets are easily supportable with little
+                the XR Interaction Toolkit (Unity Technologies, <time datetime="2025">2025</time>), other headsets are easily supportable with little
                 extra effort!
               </p>
               <p>
@@ -336,8 +334,7 @@
               </p>
               <section id="vr-hardware">
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>VR Hardware</h3>
-                <p>
-                  The Meta Quest is connected to a computer using the Meta Quest Link application \cite{meta_setup_2025}, either
+                <p>The Meta Quest is connected to a computer using the Meta Quest Link application (Meta, <time datetime="2025">2025</time>), either
                   over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to the
                   headset.
                   
@@ -345,9 +342,8 @@
               </section>
               <section id="unity">
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Unity</h3>
-                <p>
-                  The heart of the system. Relies on OpenXR \cite{the_khronos_group_openxr_2016} and the XR Interaction Toolkit
-                  \cite{unity_technologies_xr_2025} for the baseline virtual reality functionality.
+                <p>The heart of the system. Relies on OpenXR (The Khronos Group, <time datetime="2016">2016</time>) and the XR Interaction Toolkit
+                  (Unity Technologies, <time datetime="2025">2025</time>) for the baseline virtual reality functionality.
                 </p>
                 <p>There are comments in every script I wrote linking to any external resources I drew from.</p>
                 <p>
@@ -388,8 +384,7 @@
                     \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
                     not trigger any of the transmissions itself, but will diligently send off any messages it's given.
                   </p>
-                  <p class="libraries">
-                    Libraries: Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}.
+                  <p class="libraries">Libraries: Iam1337/extOSC (Sigalkin, <time datetime="2025">2025</time>).
                     
                   </p>
                 </section>
@@ -428,8 +423,7 @@
                     Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
                     Live" on the local machine.
                   </p>
-                  <p class="libraries">
-                    Libraries: Custom,  keijiro/KlakNDI \cite{takahashi_keijiroklakndi_2025}, XR Interaction Toolkit.
+                  <p class="libraries">Libraries: Custom,  keijiro/KlakNDI (Takahashi, <time datetime="2025">2025</time>), XR Interaction Toolkit.
                     
                   </p>
                 </section>
@@ -440,8 +434,7 @@
                     but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
                     affordances labelling each podium.
                   </p>
-                  <p class="libraries">
-                    Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC (Sigalkin, <time datetime="2025">2025</time>), XR Interaction Toolkit.
                     
                   </p>
                 </section>
@@ -452,8 +445,7 @@
                     the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
                     Autolume via the OSC Manager. There is an affordance labelling this podium.
                   </p>
-                  <p class="libraries">
-                    Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC (Sigalkin, <time datetime="2025">2025</time>), XR Interaction Toolkit.
                     
                   </p>
                 </section>
@@ -464,8 +456,7 @@
                     the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
                     the OSC Manager. There is an affordance labelling this podium.
                   </p>
-                  <p class="libraries">
-                    Libraries: Custom,  Iam1337/extOSC \cite{sigalkin_iam1337extosc_2025}, XR Interaction Toolkit.
+                  <p class="libraries">Libraries: Custom,  Iam1337/extOSC (Sigalkin, <time datetime="2025">2025</time>), XR Interaction Toolkit.
                     
                   </p>
                 </section>
@@ -595,7 +586,7 @@
               <p>
                 There were some additional approaches to visualizing latent spaces that I found during my preliminary research
                 phase, but unfortunately did not get to implement due to scope creep and a lack of time
-                \cite{despois_latent_2017, maaten_visualizing_2008}. I'd love to explore the visualization possibilities of
+                (Despois, <time datetime="2017">2017</time>; van der Maaten &amp; Hinton, <time datetime="2008">2008</time>). I'd love to explore the visualization possibilities of
                 latent spaces more in the future, especially under the guidance of the Metacreation Lab.
               </p>
               <p>
