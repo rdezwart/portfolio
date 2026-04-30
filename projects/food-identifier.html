@@ -247,7 +247,7 @@
                   I used the below image of a fridge
                   for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
                 </p>
-                <figure>
+                <figure id="figure-1">
                   <picture><img srcset="/img/food-identifier/base-example.webp 1x" src="/img/food-identifier/base-example.webp" loading="lazy" width="857" height="482" alt="The inside of a fridge."/>
                   </picture>
                   <figcaption><strong>Figure 1: </strong><a href="https://www.cnet.com/pictures/things-you-should-always-keep-in-the-fridge/" rel="external noreferrer">Source<span class="visually-hidden"> (external link)</span></a>.
@@ -257,7 +257,7 @@
                   I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
                   my test image with a threshold of 0.7:
                 </p>
-                <figure>
+                <figure id="figure-2">
                   <picture><img srcset="/img/food-identifier/base-yolos.webp 1x" src="/img/food-identifier/base-yolos.webp" loading="lazy" width="1260" height="732" alt="The inside of a fridge, with coloured boxes labeling identified objects."/>
                   </picture>
                   <figcaption><strong>Figure 2</strong>
@@ -273,7 +273,7 @@
                   extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
                   things like cartons.
                 </p>
-                <figure>
+                <figure id="figure-3">
                   <picture><img srcset="/img/food-identifier/friend-fridge.webp 1x" src="/img/food-identifier/friend-fridge.webp" loading="lazy" width="1344" height="1009" alt="The results of object detection on my friend's fridge"/>
                   </picture>
                   <figcaption><strong>Figure 3</strong>
@@ -287,7 +287,7 @@
                 The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
                 text, as I discovered through this fun bug:
               </p>
-              <figure>
+              <figure id="figure-4">
                 <picture><img srcset="/img/food-identifier/motrin-bug.webp 1x" src="/img/food-identifier/motrin-bug.webp" loading="lazy" width="1495" height="847" alt="Image captioning result on a bottle of Motrin"/>
                 </picture>
                 <figcaption><strong>Figure 4</strong>

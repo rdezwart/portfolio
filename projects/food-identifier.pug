@@ -114,7 +114,7 @@ append content
         during my development. #[strong However, the application would heavily benefit from fine-tuning, which I was unable to provide.]
         I used the below image of a fridge
         for a lot of my tests, as it had a variety of different food types and varying levels of occlusion.
-      figure
+      +figure()
         +picture(new ProjectImage({
           name: "base-example",
           width: 857,
@@ -128,7 +128,7 @@ append content
       p.
         I tried a few YOLOS variants but found a sweet spot with the Small-300 model. Here's what it detects in
         my test image with a threshold of 0.7:
-      figure
+      +figure()
         +picture(new ProjectImage({
           name: "base-yolos",
           width: 1260,
@@ -147,7 +147,7 @@ append content
         For another example, here's a photo of my friend's fridge and how it was parsed. It handles bottles
         extremely well, as likely that's one of the main labels the model is trained with, but it struggles with
         things like cartons.
-      figure
+      +figure()
         +picture(new ProjectImage({
           name: "friend-fridge",
           width: 1344,
@@ -163,7 +163,7 @@ append content
     p.
       The models are not perfect, that much is obvious. Moondream does not do well when trying to decipher small
       text, as I discovered through this fun bug:
-    figure
+    +figure()
       +picture(new ProjectImage({
         name: "motrin-bug",
         width: 1495,

@@ -68,7 +68,7 @@ append overview
     +h(3, "Examples")
 
     ol.img-list(role="list")
-      li: figure
+      li: +figure({counterName: "Example"})
         +picture(new ProjectImage({
           name: "canvas-1",
           width: 960,
@@ -76,7 +76,7 @@ append overview
           alt: "The Autolume canvas in VR, a mix of greens, yellows, and white."
         }))
         +figcaption("canvas-1", {counterName: "Example"})
-      li: figure
+      li: +figure({counterName: "Example"})
         +picture(new ProjectImage({
           name: "canvas-2",
           width: 512,
@@ -84,7 +84,7 @@ append overview
           alt: "A composition saved from AutolumeGallery, primarily oranges and whites."
         }))
         +figcaption("canvas-2", {counterName: "Example"})
-      li: figure
+      li: +figure({counterName: "Example"})
         +picture(new ProjectImage({
           name: "canvas-3",
           width: 512,
@@ -92,7 +92,7 @@ append overview
           alt: "A composition saved from AutolumeGallery, primarily blues and greens."
         }))
         +figcaption("canvas-3", {counterName: "Example"})
-      li: figure
+      li: +figure({counterName: "Example"})
         +picture(new ProjectImage({
           name: "canvas-4",
           width: 512,
@@ -100,7 +100,7 @@ append overview
           alt: "A composition saved from AutolumeGallery, primarily whites and blues."
         }))
         +figcaption("canvas-4", {counterName: "Example"})
-      li: figure
+      li: +figure({counterName: "Example"})
         +picture(new ProjectImage({
           name: "canvas-5",
           width: 512,
@@ -199,10 +199,10 @@ append content
       p.
         There are comments in every script I wrote linking to any external resources I drew from.
       p.
-        The hierarchy in Figure \ref{fig1} shows the game objects in a collapsed state, as they have too many children
-        to show. I will run through each object and any relevant children.
+        The hierarchy in #[+figure-link(counters["Figure"] + 1)] shows the game objects in a collapsed state, as they have too
+        many children to show. I will run through each object and any relevant children.
 
-      figure
+      +figure()
         +picture(new ProjectImage({
           name: "hierarchy",
           width: 286,
@@ -357,7 +357,7 @@ append content
 
   section#results
     +h(2, "Results")
-    figure
+    +figure()
       +picture(new ProjectImage({
         name: "canvas-3",
         width: 512,
@@ -374,9 +374,9 @@ append content
       from Autolume-Live and was great for prototyping and developing the code base! However, it didn't quite have the
       visual interest or interactivity I was looking for.
     p.
-      See Figure \ref{fig:2}. If you like, use your hands to cover three-quarters of the image, leaving just the
-      bottom left corner clear. You're now seeing what essentially was the original single-panel setup. I found it
-      still interesting, but felt it was missing\ldots something. Now, uncover the rest of the image and notice how
+      See #[+figure-link(counters["Figure"])]. If you like, use your hands to cover three-quarters of the image, leaving
+      just the bottom left corner clear. You're now seeing what essentially was the original single-panel setup. I found
+      it still interesting, but felt it was missing\ldots something. Now, uncover the rest of the image and notice how
       different the piece feels. To me, there's more complexity, feels unified, and is overall more aesthetically
       pleasing.
     p.

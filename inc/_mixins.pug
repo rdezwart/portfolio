@@ -138,6 +138,23 @@ mixin link(url)
     span.visually-hidden  (external link)
 
 
+//- Handles automatic ID assignment to figures/examples/other counters
+mixin figure(options = {})
+  -
+    const {
+      counterName = "Figure"
+    } = options;
+    counters[counterName]++;
+
+  figure(id=`${counterName.toLowerCase()}-${counters[counterName]}`)
+    block
+
+
+//- Creates an anchor to a specific figure, by number
+mixin figure-link(figNumber, text="Figure")
+  a(href=`#${text.toLowerCase()}-${figNumber}`) #{text} #{figNumber}
+
+
 //- Creates a figcaption with an auto-generated figure number. The count is per
     page.
 mixin figcaption(hiResName, options = {})
@@ -146,7 +163,6 @@ mixin figcaption(hiResName, options = {})
       project = currentProject,
       counterName = "Figure",
     } = options;
-    counters[counterName]++;
 
   figcaption
     strong
