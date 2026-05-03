@@ -6,6 +6,7 @@
 @use "functions";
 @use "variables";
 @use "sass:meta";
+@use "sass:map";
 
 // NOTE: Turns out, validator doesn't like it when we try to insert content via
 //   CSS.
@@ -104,7 +105,7 @@
 /// @param {String} $breakpoint - Breakpoint
 /// @requires $breakpoints
 @mixin respond-to($breakpoint) {
-  $raw-query: map-get(variables.$breakpoints, $breakpoint);
+  $raw-query: map.get(variables.$breakpoints, $breakpoint);
 
   @if $raw-query {
     $query: meta.inspect($raw-query);
