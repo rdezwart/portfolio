@@ -1,0 +1,31 @@
+-
+  /**
+   * Dictionary mapping abbreviations to full titles.
+   * @type {Object.<string, string>}
+   */
+  const _abbreviations = {
+    /* General */
+    "SFU": "Simon Fraser University",
+
+    /* AutolumeGallery */
+    "GAN": "generative adversarial network",
+    "VR": "virtual reality",
+    "OSC": "Open SoundControl",
+    "NDI": "Network Device Interface",
+  };
+
+  /**
+   * Returns the full title of an abbreviation.
+   *
+   * @param {string} abbreviation - The abbreviation to retrieve the title of.
+   * @param {boolean} [plural=false] - If the returned title should be
+   *     pluralized.
+   * @return {string|undefined} - The full title of the specified abbreviation.
+   *     Returns `undefined` if abbreviation mapping does not exist.
+   */
+  function getAbbr(abbreviation, plural = false) {
+    if (!Object.hasOwn(_abbreviations, abbreviation))
+      return undefined;
+
+    return `${_abbreviations[abbreviation]}${plural ? "s" : ""}`;
+  }

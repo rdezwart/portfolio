@@ -211,6 +211,14 @@ mixin picture(/** @type {ProjectImage} */ image)
         width=`${image.width}` height=`${image.height}`
         alt=`${image.alt}`)
 
+
 //- Quick helper to pair an in-text citation with a proper time object.
 mixin citation(name, time)
   != `${name}, <time datetime="${time}">${time}</time>`
+
+
+include _abbreviations
+
+//- Creates an abbreviation tag with a matching title
+mixin abbr(text, plural = false)
+  abbr(title=getAbbr(text, plural))= text + (plural ? "s" : "")
