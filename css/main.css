@@ -1904,4 +1904,8 @@ gradio-app.gradio-app .embed-container.gradio-container {
 .libraries :is(p, .comma-list) {
   display: inline-block; /* 1 */
 }
+
+#intro .hgroup {
+  padding-block-end: 1rlh;
+}
 /*# sourceMappingURL=main.css.map */
