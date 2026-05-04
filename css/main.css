@@ -1893,4 +1893,15 @@ gradio-app.gradio-app .embed-container.gradio-container {
     scroll-margin-block-start: 100dvh;
   }
 }
+
+/**
+ * Library comma-separated lists, see AutolumeGallery
+ * 1. Place list inline with Library header/title text.
+ */
+.libraries {
+  font-size: 0.8rem;
+}
+.libraries :is(p, .comma-list) {
+  display: inline-block; /* 1 */
+}
 /*# sourceMappingURL=main.css.map */
