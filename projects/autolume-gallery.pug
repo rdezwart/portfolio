@@ -33,25 +33,26 @@ append overview
     li.
       Collaborated with #[+link("https://www.metacreation.net/philippepasquier/home") Dr. Philippe Pasquier] and
       #[+link("https://www.metacreation.net/team/arshia-sobhan") Arshia Sobhan] at the
-      #[+link("https://www.metacreation.net/") Metacreation Lab] to train and deploy a GAN using
-      #[+link("https://www.metacreation.net/autolume") Autolume-live] for real-time image generation.
+      #[+link("https://www.metacreation.net/") Metacreation Lab] to train and deploy a #[abbr GAN] using
+      #[+link("https://www.metacreation.net/autolume") Autolume-Live] for real-time image generation.
     li.
       Wrangled and preprocessed dataset of abstract artwork from artist and late grandfather,
       #[+link("https://voormeij.ca/") Peter John Voormeij].
     li.
-      Designed and implemented a Unity-based VR environment and built a communication pipeline using Open Sound Control
-      and Network Device Interface protocols for live model interaction.
+      Designed and implemented a Unity-based #[abbr VR] environment and built a communication pipeline using Open
+      Sound Control and Network Device Interface protocols for live model interaction.
     li.
-      Conducted qualitative evaluation of GAN model outputs to assess visual coherence and latent space behaviour.
+      Conducted qualitative evaluation of #[abbr GAN] model outputs to assess visual coherence and latent space
+      behaviour.
 
   section#abstract
     +h(3, "Abstract")
     p.introduction.
       AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
-      of a GAN in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the position
-      and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter the
-      piece and take an active role in its creation and appearance. The GAN model was trained on the abstract artwork
-      of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+      of a #[abbr GAN] in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the
+      position and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter
+      the piece and take an active role in its creation and appearance. The #[abbr GAN] model was trained on the
+      abstract artwork of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
 
   section#demo
     +h(3, "Demo")
@@ -114,93 +115,106 @@ append content
   section#introduction
     +h(2, "Introduction")
     p.
-      This project is dedicated to my grandfather, Peter John Voormeij, who passed away in early 2024. He was a Dutch
-      painter and printmaker, and with this "Generative AI and Computational Creativity" course I wanted to explore
-      and honour his abstract artwork in my own way. With the blessing of my family, I constructed a dataset of
-      ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
+      This project is dedicated to my grandfather, #[+link("https://voormeij.ca/") Peter John Voormeij], who passed away
+      in early 2024. He was a Dutch painter and printmaker, and I wanted to explore and honour his abstract artwork in
+      my own way. Thanks to this
+      #[+link("https://www.sfu.ca/outlines.html?2025/spring/iat/460/d100") Generative AI and Computational Creativity]
+      course with #[+link("https://www.metacreation.net/philippepasquier/home") Dr. Philippe Pasquier] at Simon Fraser
+      University (#[abbr SFU]), I found the perfect opportunity! With the blessing of my family, I constructed a dataset
+      of ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
       create an interactive experience that enables users to do the same.
     p.
-      Having recently completed a Unity-based virtual reality course, I found myself wanting to dive deeper and
-      further develop my skills in that area. With an improved understanding of what makes for an engaging experience,
-      I ended up settling on VR for the user interaction half of the project.
+      Having recently completed a Unity-based virtual reality (#[abbr VR]) course,
+      #[+link("https://www.sfu.ca/outlines.html?2024/fall/iat/445/d100") Immersive Environments], I found myself wanting
+      to dive deeper and further develop my skills in that area. With an improved understanding of what makes for an
+      engaging experience, I ended up settling on #[abbr VR] for the user interaction half of the project.
     p.
-      As the course progressed, it became clear that generative adversarial networks (GANs) would be a powerful
-      option, as they run faster than diffusion models (e.g., Midjourney) and don't require nearly as much data.
-      Essentially, GANs work by pitting two separate neural networks against each other in an arms race: a
-      \emph{generator} network and a \emph{discriminator} network. The generator's job is to create new images from
-      random noise, and the discriminator tries to tell apart the generator's fake output from the real training data.
-      Both networks learn from their mistakes and try to improve at their assigned tasks over time. If everything goes
-      perfectly, the discriminator ends up with a 50\% chance of making the correct prediction, meaning the
-      generator's images are impossible for it to tell apart from the real images.
+      As the course progressed, it became clear that #[dfn generative adversarial networks] (#[abbr GANs]) would be a
+      powerful option, as they run faster than
+      #[+link("https://en.wikipedia.org/wiki/Diffusion_model") diffusion models] (e.g., Midjourney) and don't require
+      nearly as much data. Essentially, #[abbr GANs] work by pitting two separate neural networks against each
+      other in an arms race: a #[dfn generator] network and a #[dfn discriminator] network. The #[em generator's] job is
+      to create new images from random noise, and the #[em discriminator] tries to tell apart the generator's fake
+      output from the real training data. Both networks learn from their mistakes and try to improve at their assigned
+      tasks over time. If everything goes perfectly, the discriminator ends up with a 50% chance of making the correct
+      prediction, meaning the generator's images are impossible for it to tell apart from the real images.
 
   section#literature-review
     +h(2, "Literature Review")
     p.
-      Enter Autolume-Live (#[+citation("Kraasch", "2023")]), a tool for training, tweaking, and running GAN models
-      locally in real-time. Initially created for Jonas Kraasch's Master's thesis, it has continued to see
-      development, improvements, and usage (#[+citation("Sobhan et al.", "2024")]).
+      Enter #[+link("https://www.metacreation.net/autolume") Autolume-Live], a tool for training, tweaking, and running
+      #[abbr GAN] models locally in real-time. Initially created for
+      #[+link("https://summit.sfu.ca/item/36414") Jonas Kraasch's Master's thesis], it has continued to see development,
+      improvements, and usage thanks to the #[+link("https://www.metacreation.net/") Metacreation Lab].
     p.
-      An in-class training workshop from PhD student Arshia Sobhan truly revealed the capabilities of the software,
-      highlighting the real-time image generation with a wide array of options and vectors to explore, all
-      configurable through Open SoundControl (OSC), a data communication protocol between computers and multimedia
-      devices (#[+citation("Wright &amp; Freed", "1997")]). Given the abstract nature of my dataset, working with
-      Autolume's unique visual style felt like the right approach for the project.
+      An in-class training workshop from PhD student
+      #[+link("https://www.metacreation.net/team/arshia-sobhan") Arshia Sobhan] truly revealed the capabilities of the
+      software, highlighting the real-time image generation with a wide array of options and vectors to explore, all
+      configurable through #[dfn #[+link("https://opensoundcontrol.stanford.edu/") Open Sound Control]] (#[abbr OSC]),
+      a data communication protocol between computers and multimedia devices. Given the abstract nature of my dataset,
+      working with Autolume's unique visual style felt like the right approach for the project.
     p.
-      Autolume also transmits its generated output to a Network Device Interface (NDI), another communication standard
-      that streams video and audio to connected multimedia devices (#[+citation("NDI", "2025")]).
+      Autolume also transmits its generated output to a #[dfn #[+link("https://ndi.video/") Network Device Interface]]
+      (#[abbr NDI]), another communication standard that streams video and audio to connected multimedia devices.
     p.
-      During the proposal peer review process, I was introduced to a demo video
-      (#[+citation("Hobby Technology", "2024")]) of a project with a similar concept, also using a VR headset to
-      manipulate the vectors of a latent space. While it featured a different type of model, the user interface served
-      as an inspiration and a confirmation that my initial idea was feasible.
+      During the proposal peer review process, I was introduced to a
+      #[+link("https://youtu.be/zyFAGmBXX90") demo video by Hobby Technology] of a project with a similar concept, also
+      using a #[abbr VR] headset to manipulate the vectors of a latent space. While it featured a different type of
+      model, the user interface served as an inspiration and a confirmation that my initial idea was feasible.
 
   section#system-design
     +h(2, "System Design")
     p.
-      I borrowed a Meta Quest headset through SFU's library and designed the system around it. Fortunately, thanks to
-      the XR Interaction Toolkit (#[+citation("Unity Technologies", "2025")]), other headsets are easily supportable
-      with little extra effort!
+      I borrowed a Meta Quest headset through #[abbr SFU]'s library and designed the system around it. Fortunately,
+      thanks to the
+      #[+link("https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.1/manual/index.html") XR Interaction Toolkit],
+      other headsets are easily supportable with little extra effort!
     p.
-      On the surface, AutolumeGallery is fairly simple and, apart from the VR hardware, is divided into two
-      components: \emph{Unity} and \emph{Autolume-Live}. Between them, the information flows and repeats as follows:
+      On the surface, AutolumeGallery is fairly simple and, apart from the
+      #[a(href="#vr-hardware") #[strong #[abbr VR] Hardware]], is divided into two components:
+      #[a(href="#unity") #[strong Unity]] and #[a(href="#autolume-live") #[strong Autolume-Live]]. Between them, the
+      information flows and repeats as follows:
 
     ul
-      li Unity receives user input from the VR hardware and in-world interactables.
-      li Unity uses OSC to send decimals to Autolume-Live.
+      li #[strong Unity] receives user input from the #[strong #[abbr VR] Hardware] and in-world interactables.
+      li #[strong Unity] uses #[abbr OSC] to send decimals to #[strong Autolume-Live].
         ul
-          li Unity receives user input from the VR hardware and in-world interactables.
-          li Unity uses OSC to send decimals to Autolume-Live.
-          li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
-          li Autolume-Live uses NDI to broadcast generated images back to Unity.
-          li Unity receives NDI output and updates the virtual canvas.
-      li Autolume-Live receives OSC output and adjusts the corresponding GAN settings.
-      li Autolume-Live uses NDI to broadcast generated images back to Unity.
-      li Unity receives NDI output and updates the virtual canvas.
+          li #[strong Unity] receives user input from the #[strong #[abbr VR] Hardware] and in-world interactables.
+          li #[strong Unity] uses #[abbr OSC] to send decimals to #[strong Autolume-Live].
+          li #[strong Autolume-Live] receives #[abbr OSC] output and adjusts the corresponding #[abbr GAN] settings.
+          li #[strong Autolume-Live] uses #[abbr NDI] to broadcast generated images back to #[strong Unity].
+          li #[strong Unity] receives #[abbr NDI] output and updates the virtual canvas.
+      li #[strong Autolume-Live] receives #[abbr OSC] output and adjusts the corresponding #[abbr GAN] settings.
+      li #[strong Autolume-Live] uses #[abbr NDI] to broadcast generated images back to #[strong Unity].
+      li #[strong Unity] receives #[abbr NDI] output and updates the virtual canvas.
 
   section#implementation-details
     +h(2, "Implementation Details")
     p.
-      The current implementation requires Unity and Autolume-Live to be running on the same machine, as they both look
-      to different ports on the local IP address. Detailed installation instructions can be found on the GitHub
-      repository for this project, linked below the Abstract.
+      The current implementation requires #[strong Unity] and #[strong Autolume-Live] to be running on the same machine,
+      as they both look to different ports on the local IP address. Detailed installation instructions can be found on
+      the #[+link("https://github.com/rdezwart/AutolumeGallery") GitHub repository] for this project.
 
     section#vr-hardware
       +h(3, "VR Hardware")
       p.
-        The Meta Quest is connected to a computer using the Meta Quest Link application (#[+citation("Meta", "2025")]),
-        either over Wi-Fi or USB cable. From there, the desktop link feature is used to mirror the computer's display to
-        the headset.
+        The Meta Quest is connected to a computer using the
+        #[+link("https://www.meta.com/help/quest/1517439565442928/") Meta Quest Link] application, either over Wi-Fi or
+        #[abbr USB] cable. From there, the desktop link feature is used to mirror the computer's display to the headset.
 
     section#unity
       +h(3, "Unity")
       p.
-        The heart of the system. Relies on OpenXR (#[+citation("The Khronos Group", "2016")]) and the XR Interaction
-        Toolkit (#[+citation("Unity Technologies", "2025")]) for the baseline virtual reality functionality.
+        The heart of the system. Relies on #[+link("https://www.khronos.org/openxr/") OpenXR] and the
+        #[+link("https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.1/manual/index.html") XR Interaction Toolkit]
+        for the baseline virtual reality functionality. Other notable external libraries included
+        #[+link("https://github.com/Iam1337/extOSC") extOSC] and #[+link("https://github.com/keijiro/KlakNDI") KlakNDI],
+        both of which greatly aided the process of connecting to and from Autolume.
       p.
         There are comments in every script I wrote linking to any external resources I drew from.
       p.
-        The hierarchy in #[+figure-link(counters["Figure"] + 1)] shows the game objects in a collapsed state, as they have too
-        many children to show. I will run through each object and any relevant children.
+        The hierarchy in #[+figure-link(counters["Figure"] + 1)] shows the game objects in a collapsed state, as they
+        have too many children to show. I will run through each object and any relevant children.
 
       +figure()
         +picture(new ProjectImage({
@@ -217,25 +231,29 @@ append content
         +h(4, "Directional Light")
         p.
           Standard Unity asset providing sunlight to the scene.
-        p.libraries.
-          Libraries: None.
+        div.libraries.secondary
+          p #[strong Libraries:] (none)
 
       section#xr-interaction-manager
         +h(4, "XR Interaction Manager")
         p.
           Responsible for handling and delegating interaction triggers and events around the scene. Collaborates with
-          the XR Origin.
-        p.libraries.
-          Libraries: XR Interaction Toolkit.
+          the #[a(href="#xr-origin") #[code XR Origin]].
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li XR Interaction Toolkit
 
       section#osc-manager
         +h(4, "OSC Manager")
         p.
           Responsible for transmitting and receiving information over OSC. The transmitter connects to
-          \texttt{127.0.0.1:1338} and is configured to send its packets in bundles instead of individually. It does
+          #[code 127.0.0.1:1338] and is configured to send its packets in bundles instead of individually. It does
           not trigger any of the transmissions itself, but will diligently send off any messages it's given.
-        p.libraries.
-          Libraries: Iam1337/extOSC (#[+citation("Sigalkin", "2025")]).
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li extOSC
 
       section#xr-origin
         +h(4, "XR Origin (XR Rig) Affordance Variant")
@@ -244,88 +262,115 @@ append content
           types. This object is the user's gateway into the scene, being the digital equivalent of the user's physical
           hardware.
         p.
-          The locomotion controllers are how the player can move around the scene. Types include "Turn" (rotating the
-          camera a fixed amount with the joystick), "Move" (walking around with the joystick), and "Teleportation"
-          (blinking the user to the target location).
+          The locomotion controllers are how the player can move around the scene. Types include #[dfn Turn] (rotating
+          the camera a fixed amount with the joystick), #[dfn Move] (walking around with the joystick), and
+          #[dfn Teleportation] (blinking the user to the target location).
         p.
-          The interactor children also have various specifications, such as "Gaze" (where the user is looking), "Poke"
-          (what the user is touching), "Near-Far" (what the user is pointing at), and "Teleport" (where the user wants
-          to go).
+          The interactor children also have various specifications, such as #[dfn Gaze] (where the user is looking),
+          #[dfn Poke] (what the user is touching), #[dfn Near-Far] (what the user is pointing at), and #[dfn Teleport]
+          (where the user wants to go).
         p.
-          There are also "Affordance Callouts" attached to the controller, which are in charge of displaying the
-          button mappings when the user looks at their controller (we can thank the "Gaze" interactor for this). These
-          affordances are lifted from one of Unity's template VR starter projects.
-        p.libraries.
-          Libraries: XR Interaction Toolkit.
+          There are also #[dfn Affordance Callouts] attached to the controller, which are in charge of displaying the
+          button mappings when the user looks at their controller (we can thank the #[dfn Gaze] interactor for this).
+          These affordances are lifted from one of Unity's template VR starter projects.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li XR Interaction Toolkit
 
       section#painting
         +h(4, "Painting")
         p.
-          The digital canvas Autolume is sending artwork to. There are four "Painting Panel" manipulator children,
-          each has an NDI receiver updating their texture, and a socket interactor that will grab and hold onto
-          Panels. The user can grab, move, rotate, and flip each panel. The NDI receivers are listening for "Autolume
-          Live" on the local machine.
-        p.libraries.
-          Libraries: Custom,  keijiro/KlakNDI (#[+citation("Takahashi", "2025")]), XR Interaction Toolkit.
+          The digital canvas Autolume is sending artwork to. There are four #[dfn Painting Panel] manipulator children,
+          each has an #[abbr NDI] receiver updating their texture, and a socket interactor that will grab and hold onto
+          Panels. The user can grab, move, rotate, and flip each panel. The #[abbr NDI] receivers are listening for
+          "Autolume Live" on the local machine.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom,
+            li KlakNDI,
+            li XR Interaction Toolkit
 
       section#vector-controllers
         +h(4, "Vector Controller Left/Right")
         p.
           Manipulator spheres floating above reset podiums. They can be grabbed by the user and can move in all axes,
-          but cannot rotate. They send their $x, y, z$ positions to Autolume via the OSC Manager. There are
-          affordances labelling each podium.
-        p.libraries.
-          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
+          but cannot rotate. They send their #[var x], #[var y], and #[var z] positions to Autolume via the OSC Manager.
+          There are affordances labelling each podium.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom,
+            li extOSC,
+            li XR Interaction Toolkit
 
       section#layer-controller
         +h(4, "Layer Controller")
         p.
           A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
-          the $x, y$ axes, and can rotate around the $z$ axis. It sends its $x, y$ position and $z$ rotation to
-          Autolume via the OSC Manager. There is an affordance labelling this podium.
-        p.libraries.
-          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
+          the #[var x],#[var y] axes, and can rotate around the #[var z] axis. It sends its #[var x], #[var y] position
+          and #[var z] rotation to Autolume via the OSC Manager. There is an affordance labelling this podium.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom,
+            li extOSC,
+            li XR Interaction Toolkit
 
       section#seed-controller
         +h(4, "Seed Controller")
         p.
           A directional manipulator wheel floating above a reset podium. It can be grabbed by the user, can move along
-          the $x$ axis, and can rotate around the $z$ axis. It sends its $x$ position and $z$ rotation to Autolume via
-          the OSC Manager. There is an affordance labelling this podium.
-        p.libraries.
-          Libraries: Custom,  Iam1337/extOSC (#[+citation("Sigalkin", "2025")]), XR Interaction Toolkit.
+          the #[var x] axis, and can rotate around the #[var z] axis. It sends its #[var x] position and #[var z]
+          rotation to Autolume via the OSC Manager. There is an affordance labelling this podium.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom,
+            li extOSC,
+            li XR Interaction Toolkit
 
       section#panel-resetter
         +h(4, "Panel Resetter")
         p.
           A reset podium without a manipulator. When pressed, it resets the Painting Panels to their original
           positions and orientations. There is an affordance labelling this podium.
-        p.libraries.
-          Libraries: Custom, XR Interaction Toolkit.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom,
+            li XR Interaction Toolkit
 
       section#environment
         +h(4, "Environment")
         p.
-          Contains objects such as the floor and their "Teleport Areas", as well as the introductory text callout when
-          the experience launches.
-        p.libraries.
-          Libraries: XR Interaction Toolkit.
+          Contains objects such as the floor and their #[dfn Teleport Areas], as well as the introductory text callout
+          when the experience launches.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li XR Interaction Toolkit
 
       section#camera
         +h(4, "Camera")
         p.
           A second, disabled camera responsible for taking photos of the canvas. When triggered, it renders what it
-          can see to a RenderTexture and converts it to a Texture2D, which is then saved as a \texttt{.png} in the
-          application's data folder.
-        p.libraries.
-          Libraries: Custom.
+          can see to a #[code RenderTexture] and converts it to a #[code Texture2D], which is then saved as a
+          #[code .png] in the application's data folder.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom
 
       section#quit-listener
         +h(4, "QuitListener")
         p.
-          Empty game object with a simple script to quit the application when the \texttt{ESC} key is pressed.
-        p.libraries.
-          Libraries: Custom.
+          Empty game object with a simple script to quit the application when the #[kbd ESC] key is pressed.
+        div.libraries.secondary
+          p: strong Libraries:
+          ul.comma-list(role="list")
+            li Custom
 
     section#autolume-live
       +h(3, "Autolume-Live")
@@ -334,26 +379,28 @@ append content
         my grandfather's artwork over the course of several days. He kept an eye on the training process while he was
         on campus, and eventually a suitable model emerged.
       p.
-        Once transferred to my home computer, I used Autolume's "Feature Extractor" to find six meaningful latent
+        Once transferred to my home computer, I used Autolume's #[dfn Feature Extractor] to find six meaningful latent
         space vectors. I chose vectors that created interesting changes in the artwork and was excited for users to
         explore.
       p.
         I created a preset containing the trained model, my chosen vectors, and several parameters listening to
         different OSC channels:
 
+      //- TODO: RESUME EDITING FROM AROUND HERE, AND MAYBE MAKE `VAR` BOLD
+
       ul
-        li Latent Seed: \texttt{seed/latent}: Seed Controller's $x$ position
-        li Noise Seed: \texttt{seed/noise}: Seed Controller's $z$ rotation
-        li Vector 1: \texttt{left/x}: Vector Controller Left's $x$ position
-        li Vector 2: \texttt{left/y}: Vector Controller Left's $y$ position
-        li Vector 3: \texttt{left/z}: Vector Controller Left's $z$ position
-        li Vector 4: \texttt{right/x}: Vector Controller Right's $x$ position
-        li Vector 5: \texttt{right/y}: Vector Controller Right's $y$ position
-        li Vector 6: \texttt{right/z}: Vector Controller Right's $z$ position
-        li Layer 3, Translation: \texttt{layer/x}: Layer Controller's $x$ position
-        li Layer 3, Translation: \texttt{layer/y}: Layer Controller's $y$ position
-        li Layer 3, Rotation: \texttt{layer/r}: Layer Controller's $z$ rotation
-        li Layer 3, Scale: \texttt{layer/s}: Layer Controller's $x$ scale
+        li Latent Seed (#[code seed/latent]): Seed Controller's #[var x] position
+        li Noise Seed (#[code seed/noise]): Seed Controller's #[var z] rotation
+        li Vector 1 (#[code left/x]): Vector Controller Left's #[var x] position
+        li Vector 2 (#[code left/y]): Vector Controller Left's #[var y] position
+        li Vector 3 (#[code left/z]): Vector Controller Left's #[var z] position
+        li Vector 4 (#[code right/x]): Vector Controller Right's #[var x] position
+        li Vector 5 (#[code right/y]): Vector Controller Right's #[var y] position
+        li Vector 6 (#[code right/z]): Vector Controller Right's #[var z] position
+        li Layer 3, Translation (#[code layer/x]): Layer Controller's #[var x] position
+        li Layer 3, Translation (#[code layer/y]): Layer Controller's #[var y] position
+        li Layer 3, Rotation (#[code layer/r]): Layer Controller's #[var z] rotation
+        li Layer 3, Scale (#[code layer/s]): Layer Controller's #[var x] scale
 
   section#results
     +h(2, "Results")
