@@ -581,6 +581,27 @@ b, strong {
 }
 
 /**
+ * Monospaced elements
+ */
+:is(code, kbd, samp, pre) {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 300;
+  background-color: var(--shade-2);
+  padding: 0 0.25em;
+  border-radius: 0.25rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/**
+ * Extra rendering to differentiate `kbd` elements from regular code blocks
+ */
+kbd {
+  border: 1px solid var(--shade-5);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 var(--kbd-shade) inset;
+}
+
+/**
  * Utility class to hide text visually, but leave it accessible to screen
  * readers.
  * FontAwesome also has this same class built in, but I need a backup for pages
