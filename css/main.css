@@ -407,6 +407,19 @@ a.skip:focus {
   }
 }
 /**
+ * Abbreviations
+ */
+abbr {
+  font-variant-caps: normal;
+}
+abbr[title] {
+  cursor: help;
+  -webkit-text-decoration: underline dotted from-font;
+          text-decoration: underline dotted from-font;
+  text-underline-position: from-font;
+}
+
+/**
  * Set base font size and line height according to WCAG criteria.
  */
 :root {

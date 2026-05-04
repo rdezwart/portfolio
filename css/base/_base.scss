@@ -212,3 +212,17 @@ a.skip {
     accent-color: var(--link);
   }
 }
+
+
+/**
+ * Abbreviations
+ */
+abbr {
+  font-variant-caps: normal;
+
+  &[title] {
+    cursor: help;
+    text-decoration: underline dotted from-font;
+    text-underline-position: from-font;
+  }
+}
