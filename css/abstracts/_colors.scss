@@ -3,35 +3,48 @@
 /// @author Robin de Zwart
 ////
 
-/// @type Color
-$black: #000000;
+@use "sass:color";
+@use "functions";
+
+/// @type color
+$black: hsl(240 6.25% 0%);
+/// @type color
+$dark: hsl(240 6.25% 12.5%); // #1e1e22
+/// @type color
+$dark-1: functions.color-shade($dark, 1); // #2a2a30
+/// @type color
+$dark-2: functions.color-shade($dark, 2); // #37373e
+/// @type color
+$dark-3: functions.color-shade($dark, 3); // #44444d
+/// @type color
+$dark-4: functions.color-shade($dark, 4); // #50505b
+/// @type color
+$dark-5: functions.color-shade($dark, 5); // #5d5d69
+
+$white: hsl(240 6.25% 100%);
+/// @type color
+$light: hsl(240 6.25% 100%);
+/// @type color
+$light-1: functions.color-shade($light, -1);
+/// @type color
+$light-2: functions.color-shade($light, -2);
+/// @type color
+$light-3: functions.color-shade($light, -3);
+/// @type color
+$light-4: functions.color-shade($light, -4);
+/// @type color
+$light-5: functions.color-shade($light, -5);
 
 /// @type Color
-$dark: #1e1e22;
+$teal: hsl(184 100% 27%); // #00818a
 
 /// @type Color
-$dark-banner: #2a2a2f;
+$blue: hsl(184 100% 50%); // #00eeff
 
 /// @type Color
-$grey: #3f3f3f;
+$orange: hsl(30 100% 60%); // #ff9933
 
 /// @type Color
-$teal: #00818a;
+$dutch: hsl(18 100% 42%); // #d64000
 
-/// @type Color
-$blue: #00eeff;
-
-/// @type Color
-$orange: #ff9933;
-
-/// @type Color
-$dutch: #ed4900;
-
-/// @type Color
-$silver: #cccccc;
-
-/// @type Color
-$pale: #f2f2f2;
-
-/// @type Color
-$white: #ffffff;
+// TODO: Add more Sass colors that are named based on usage

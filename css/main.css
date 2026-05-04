@@ -230,7 +230,7 @@ img {
  */
 @property --gradient-90 {
   syntax: "<color>";
-  initial-value: rgb(from #2a2a2f r g b/0.9);
+  initial-value: hsl(from hsl(240, 6.25%, 17.75%) h s l/0.9);
   inherits: true;
 }
 /**
@@ -239,7 +239,7 @@ img {
  */
 @property --gradient-70 {
   syntax: "<color>";
-  initial-value: rgb(from #2a2a2f r g b/0.7);
+  initial-value: hsl(from hsl(240, 6.25%, 17.75%) h s l/0.7);
   inherits: true;
 }
 /**
@@ -248,7 +248,7 @@ img {
  */
 @property --gradient-00 {
   syntax: "<color>";
-  initial-value: rgb(from #2a2a2f r g b/0);
+  initial-value: hsl(from hsl(240, 6.25%, 17.75%) h s l/0);
   inherits: true;
 }
 /**
@@ -258,18 +258,21 @@ img {
  */
 :root {
   overflow-wrap: break-word; /* 1 */
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+:root {
   --duration: 100ms;
   --max-weight: 800;
+  --base-weight: 300;
   --content-margin: 1.5rem;
 }
 @media screen and (max-width: 43rem) {
   :root {
     --content-margin: 0rem;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
   }
 }
 
@@ -279,34 +282,51 @@ img {
  */
 :root {
   color-scheme: dark; /* 1 */
-  --background: #1e1e22;
-  --banner: #2a2a2f;
-  --banner-alt: hsl(from var(--banner) h s calc(l + 15));
-  --highlight: #00eeff;
-  --link: #ff9933;
-  --active: #00818a;
-  --secondary: #cccccc;
-  --secondary-alt: rgb(from var(--secondary) calc(r + 17) calc(g + 17) calc(b + 17));
-  --text: #f2f2f2;
-  --absolute: #ffffff;
-  --base-weight: 200;
-  --gradient-90: rgb(from var(--banner) r g b / 0.90);
-  --gradient-70: rgb(from var(--banner) r g b / 0.70);
-  --gradient-00: rgb(from var(--banner) r g b / 0);
+  --background: hsl(240, 6.25%, 12.5%);
+  --shade-1: hsl(240, 6.25%, 17.75%);
+  --shade-2: hsl(240, 6.25%, 23%);
+  --shade-3: hsl(240, 6.25%, 28.25%);
+  --shade-4: hsl(240, 6.25%, 33.5%);
+  --shade-5: hsl(240, 6.25%, 38.75%);
+  --banner: hsl(240, 6.25%, 17.75%);
+  --banner-alt: hsl(240, 6.25%, 33.5%);
+  --highlight: hsl(184, 100%, 50%);
+  --link: hsl(30, 100%, 60%);
+  --active: hsl(184, 100%, 27%);
+  --secondary: hsl(240, 6.25%, 88%);
+  --secondary-alt: hsl(240, 6.25%, 94%);
+  --text: hsl(240, 6.25%, 100%);
+  --opposite: hsl(240, 6.25%, 100%);
+  --absolute: hsl(240, 6.25%, 0%);
+  --kbd-shade: hsla(240, 6.25%, 38.75%, 0.7);
+  --project-links-bg: hsla(240, 6.25%, 17.75%, 0.9);
+  --gradient-90: hsla(240, 6.25%, 17.75%, 0.9);
+  --gradient-70: hsla(240, 6.25%, 17.75%, 0.7);
+  --gradient-00: hsla(240, 6.25%, 17.75%, 0);
 }
 :root[data-theme=light] {
   color-scheme: light;
-  --background: #ffffff;
-  --banner: #f2f2f2;
-  --banner-alt: hsl(from var(--banner) h s calc(l - 15));
-  --highlight: #ed4900;
-  --link: #00818a;
-  --active: #ff9933;
-  --secondary: #3f3f3f;
-  --secondary-alt: rgb(from var(--secondary) calc(r - 17) calc(g - 17) calc(b - 17));
-  --text: #1e1e22;
-  --absolute: #000000;
-  --base-weight: 350;
+  --background: hsl(240, 6.25%, 100%);
+  --shade-1: hsl(240, 6.25%, 94%);
+  --shade-2: hsl(240, 6.25%, 88%);
+  --shade-3: hsl(240, 6.25%, 82%);
+  --shade-4: hsl(240, 6.25%, 76%);
+  --shade-5: hsl(240, 6.25%, 70%);
+  --banner: hsl(240, 6.25%, 88%);
+  --banner-alt: hsl(240, 6.25%, 82%);
+  --highlight: hsl(184, 100%, 27%);
+  --link: hsl(18, 100%, 42%);
+  --active: hsl(184, 100%, 17.28%);
+  --secondary: hsl(240, 6.25%, 23%);
+  --secondary-alt: hsl(240, 6.25%, 17.75%);
+  --text: hsl(240, 6.25%, 23%);
+  --opposite: hsl(240, 6.25%, 0%);
+  --absolute: hsl(240, 6.25%, 100%);
+  --kbd-shade: hsla(240, 6.25%, 100%, 0.7);
+  --project-links-bg: hsla(240, 6.25%, 94%, 0.9);
+  --gradient-90: hsla(240, 6.25%, 23%, 0.9);
+  --gradient-70: hsla(240, 6.25%, 23%, 0.7);
+  --gradient-00: hsla(240, 6.25%, 23%, 0);
 }
 
 body {
@@ -948,6 +968,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 }
 .header .description {
   color: var(--secondary-alt);
+  color: hsl(240, 6.25%, 94%);
 }
 @media screen and (max-width: 43rem) {
   .header {
@@ -1058,6 +1079,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   z-index: 1; /* 2 */
   transition-property: --gradient-90, --gradient-70;
   transition-duration: var(--duration);
+  color: hsl(240, 6.25%, 100%);
 }
 
 /**
@@ -1094,7 +1116,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 :is(ul, ol).links {
   padding-block: 0.5rlh;
   padding-inline: 1rlh;
-  background-color: rgb(from var(--banner) r g b/0.9); /* 1 */
+  background-color: var(--project-links-bg); /* 1 */
   transition: background-color var(--duration);
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
@@ -1117,7 +1139,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   font-weight: var(--max-weight);
   font-size: 0.8rem;
   font-weight: calc(var(--base-weight) + 200);
-  background-color: var(--banner-alt);
+  background-color: var(--shade-1);
   border: 0.1rem solid var(--active);
   transition-property: background-color, color, border;
   transition-duration: var(--duration);
@@ -1128,7 +1150,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
  * List of concepts in Overview section. Extends `.tools`.
  */
 .concepts li {
-  background-color: var(--banner);
+  background-color: var(--banner-alt);
 }
 
 /**
@@ -1207,7 +1229,7 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 }
 .nav-wrapper .name-wrapper p {
   margin-top: 0.125rlh;
-  color: var(--absolute);
+  color: var(--opposite);
   font-size: 1rem;
   font-weight: calc(var(--base-weight) + 200);
   font-style: normal;

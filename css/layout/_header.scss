@@ -25,6 +25,7 @@
   .description {
     //color: #DDDDDD; // TODO: Add variable
     color: var(--secondary-alt);
+    color: #{abstracts.$light-1};
   }
 
   @include abstracts.respond-to("full") {
@@ -133,6 +134,8 @@
   z-index: 1; /* 2 */
   transition-property: --gradient-90, --gradient-70;
   transition-duration: var(--duration);
+
+  color: #{abstracts.$light};
 }
 
 /**
@@ -172,7 +175,7 @@
   padding-block: #{abstracts.$page-padding * 0.5};
   padding-inline: #{abstracts.$page-padding};
 
-  background-color: rgb(from var(--banner) r g b / 0.9); /* 1 */
+  background-color: var(--project-links-bg); /* 1 */
   transition: background-color var(--duration);
 
   @include abstracts.heading-typeface();
@@ -193,7 +196,7 @@
     @include abstracts.heading-typeface();
     font-size: abstracts.font-size-scaled(-1);
     font-weight: calc(var(--base-weight) + 200);
-    background-color: var(--banner-alt);
+    background-color: var(--shade-1);
     border: 0.1rem solid var(--active);
 
     transition-property: background-color, color, border;
@@ -210,7 +213,7 @@
   @extend .tools;
 
   li {
-    background-color: var(--banner);
+    background-color: var(--banner-alt);
   }
 }
 

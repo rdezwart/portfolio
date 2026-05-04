@@ -1,4 +1,5 @@
 @use "../abstracts";
+@use "sass:color";
 
 /**
  * Custom property to allow header gradients to be animated.
@@ -6,7 +7,7 @@
  */
 @property --gradient-90 {
   syntax: "<color>";
-  initial-value: rgb(from #{abstracts.$dark-banner} r g b / 0.90);
+  initial-value: hsl(from #{abstracts.$dark-1} h s l / 0.90);
   inherits: true;
 }
 
@@ -16,7 +17,7 @@
  */
 @property --gradient-70 {
   syntax: "<color>";
-  initial-value: rgb(from #{abstracts.$dark-banner}  r g b / 0.70);
+  initial-value: hsl(from #{abstracts.$dark-1} h s l / 0.70);
   inherits: true;
 }
 
@@ -26,7 +27,7 @@
  */
 @property --gradient-00 {
   syntax: "<color>";
-  initial-value: rgb(from #{abstracts.$dark-banner} r g b / 0);
+  initial-value: hsl(from #{abstracts.$dark-1} h s l / 0);
   inherits: true;
 }
 
@@ -37,16 +38,16 @@
  */
 :root {
   overflow-wrap: break-word; /* 1 */
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 
   --duration: 100ms;
   --max-weight: 800;
+  --base-weight: 300;
   --content-margin: #{abstracts.$content-margin};
   @include abstracts.respond-to("full") {
     --content-margin: 0rem;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
   }
 }
 
@@ -56,35 +57,69 @@
  */
 :root {
   color-scheme: dark; /* 1 */
+
   --background: #{abstracts.$dark};
-  --banner: #{abstracts.$dark-banner};
-  --banner-alt: hsl(from var(--banner) h s calc(l + 15));
+  --shade-1: #{abstracts.$dark-1};
+  --shade-2: #{abstracts.$dark-2};
+  --shade-3: #{abstracts.$dark-3};
+  --shade-4: #{abstracts.$dark-4};
+  --shade-5: #{abstracts.$dark-5};
+
+  --banner: #{abstracts.$dark-1};
+  --banner-alt: #{abstracts.$dark-4};
+
   --highlight: #{abstracts.$blue};
+
   --link: #{abstracts.$orange};
   --active: #{abstracts.$teal};
-  --secondary: #{abstracts.$silver};
-  --secondary-alt: rgb(from var(--secondary) calc(r + 17) calc(g + 17) calc(b + 17));
-  --text: #{abstracts.$pale};
-  --absolute: #{abstracts.$white};
-  --base-weight: 200;
 
-  --gradient-90: rgb(from var(--banner) r g b / 0.90);
-  --gradient-70: rgb(from var(--banner) r g b / 0.70);
-  --gradient-00: rgb(from var(--banner) r g b / 0);
+  --secondary: #{abstracts.$light-2};
+  --secondary-alt: #{abstracts.$light-1};
+
+  --text: #{abstracts.$light};
+
+  --opposite: #{abstracts.$white};
+  --absolute: #{abstracts.$black};
+
+  --kbd-shade: #{color.change(abstracts.$dark-5, $alpha: 70%)};
+
+  --project-links-bg: #{color.change(abstracts.$dark-1, $alpha: 90%)};
+  --gradient-90: #{color.change(abstracts.$dark-1, $alpha: 90%)};
+  --gradient-70: #{color.change(abstracts.$dark-1, $alpha: 70%)};
+  --gradient-00: #{color.change(abstracts.$dark-1, $alpha: 0%)};
 
   &[data-theme="light"] {
     color-scheme: light;
+
     --background: #{abstracts.$white};
-    --banner: #{abstracts.$pale};
-    --banner-alt: hsl(from var(--banner) h s calc(l - 15));
-    --highlight: #{abstracts.$dutch};
-    --link: #{abstracts.$teal};
-    --active: #{abstracts.$orange};
-    --secondary: #{abstracts.$grey};
-    --secondary-alt: rgb(from var(--secondary) calc(r - 17) calc(g - 17) calc(b - 17));
-    --text: #{abstracts.$dark};
-    --absolute: #{abstracts.$black};
-    --base-weight: 350;
+    --shade-1: #{abstracts.$light-1};
+    --shade-2: #{abstracts.$light-2};
+    --shade-3: #{abstracts.$light-3};
+    --shade-4: #{abstracts.$light-4};
+    --shade-5: #{abstracts.$light-5};
+
+    --banner: #{abstracts.$light-2};
+    --banner-alt: #{abstracts.$light-3};
+
+    --highlight: #{abstracts.$teal};
+
+    --link: #{abstracts.$dutch};
+    --active: #{abstracts.color-shade(abstracts.$teal, -6)};
+
+    --secondary: #{abstracts.$dark-2};
+    --secondary-alt: #{abstracts.$dark-1};
+
+    --text: #{abstracts.$dark-2};
+
+    --opposite: #{abstracts.$black};
+    --absolute: #{abstracts.$white};
+
+    --kbd-shade: #{color.change(abstracts.$white, $alpha: 70%)};
+
+    --project-links-bg: #{color.change(abstracts.$light-1, $alpha: 90%)};
+    --gradient-90: #{color.change(abstracts.$dark-2, $alpha: 90%)};
+    --gradient-70: #{color.change(abstracts.$dark-2, $alpha: 70%)};
+    --gradient-00: #{color.change(abstracts.$dark-2, $alpha: 0%)};
   }
 }
 

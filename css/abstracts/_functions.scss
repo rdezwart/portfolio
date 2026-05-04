@@ -13,6 +13,7 @@
 @use "sass:string";
 @use "sass:list";
 @use "sass:map";
+@use "sass:color";
 
 /// Constructs a string of several arrows. For use with the `content` property.
 ///
@@ -82,4 +83,14 @@
   } @else {
     @error "Key '#{$axis}' not found in nav-list-gap.";
   }
+}
+
+
+/// Alters the lightness of a color by a fixed step.
+/// @param {color} $color
+/// @param {number} $steps
+/// @param {number} $base [6%]
+/// @return {color}
+@function color-shade($color, $steps, $base: 6%) {
+  @return color.scale($color, $lightness: calc($steps * $base), $space: hsl);
 }
