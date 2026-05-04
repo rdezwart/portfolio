@@ -4,8 +4,6 @@ append vars
   -
     title = "Portfolio"
     slug = "home"
-    description = "Hi, I'm Robin de Zwart; I've grown a deep fascination with machine learning and artificial " +
-            "intelligence and have been steadily building my skills and knowledge over the past few years. :]"
     grid = "pre-sidebar";
 
 block url
@@ -16,7 +14,8 @@ append pre-sidebar
   section#intro
     div.hgroup
       h1.h1 Welcome, I'm #[+name({full: false})]
-      p.secondary Hello world lorem ipsum
+      p.secondary.
+        I'm a multi-disciplinary developer with a love for creating interactive experiences and telling stories.
 
 append sidebar-content
   +sidebar({heading: "Skills"})(class="sticky")
