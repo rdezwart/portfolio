@@ -369,14 +369,25 @@ a span {
  * 3. Apply text decoration styles ONLY to the link text, and not any spans that
  *    are highlights.
  */
-a:not(.specificity):hover:not(:has(> .highlight)), a:not(.specificity):focus:not(:has(> .highlight)) {
+a:not(.specificity):focus:not(:has(> .highlight)) {
   text-decoration-color: currentColor; /* 2 */
 }
-a:not(.specificity):hover :not(.highlight), a:not(.specificity):focus :not(.highlight) {
+a:not(.specificity):focus :not(.highlight) {
   text-decoration-color: currentColor; /* 3 */
 }
-a:not(.specificity):hover, a:not(.specificity):hover .highlight, a:not(.specificity):focus, a:not(.specificity):focus .highlight { /* 1 */
+a:not(.specificity):focus, a:not(.specificity):focus .highlight { /* 1 */
   color: var(--highlight);
+}
+@media (hover: hover) {
+  a:not(.specificity):hover:not(:has(> .highlight)) {
+    text-decoration-color: currentColor; /* 2 */
+  }
+  a:not(.specificity):hover :not(.highlight) {
+    text-decoration-color: currentColor; /* 3 */
+  }
+  a:not(.specificity):hover, a:not(.specificity):hover .highlight { /* 1 */
+    color: var(--highlight);
+  }
 }
 a:not(.specificity):active, a:not(.specificity):active .highlight { /* 1 */
   color: var(--active);
@@ -850,13 +861,6 @@ body {
   font-weight: var(--max-weight);
   text-decoration-color: transparent;
 }
-.nav :is(ul, ol) li a:hover, .nav :is(ul, ol) li a:focus {
-  color: var(--highlight); /* 2 */
-  text-decoration-color: currentColor;
-}
-.nav :is(ul, ol) li a:active {
-  color: var(--active); /* 2 */
-}
 .nav :is(ul, ol) li::marker {
   font-family: "JetBrains Mono", monospace;
   font-weight: var(--max-weight);
@@ -875,8 +879,13 @@ body {
 .nav :is(ul, ol) li.current::marker {
   color: var(--highlight); /* 3 */
 }
-.nav :is(ul, ol) li:has(> a:focus, > a:hover)::marker {
+.nav :is(ul, ol) li:has(> a:focus)::marker {
   color: var(--highlight); /* 3 */
+}
+@media (hover: hover) {
+  .nav :is(ul, ol) li:has(> a:hover)::marker {
+    color: var(--highlight); /* 3 */
+  }
 }
 .nav :is(ul, ol) li:has(> a:active)::marker {
   color: var(--active); /* 4 */

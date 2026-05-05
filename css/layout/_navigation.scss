@@ -36,15 +36,6 @@
   a {
     font-weight: var(--max-weight);
     text-decoration-color: transparent;
-
-    &:hover, &:focus {
-      color: var(--highlight); /* 2 */
-      text-decoration-color: currentColor;
-    }
-
-    &:active {
-      color: var(--active); /* 2 */
-    }
   }
 
   &::marker {
@@ -66,8 +57,14 @@
     }
   }
 
-  &:has(> a:focus, > a:hover)::marker {
+  &:has(> a:focus)::marker {
     color: var(--highlight); /* 3 */
+  }
+
+  @media (hover: hover) {
+    &:has(> a:hover)::marker {
+      color: var(--highlight); /* 3 */
+    }
   }
 
   &:has(> a:active)::marker {
