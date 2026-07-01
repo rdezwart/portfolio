@@ -26,7 +26,7 @@ append sidebar-content
           if getMatchingProjects(category).length !== 0
             ol(role="list")
               each project in getMatchingProjects(category)
-                li: a(href=`#${project.slug}`)!= project.title
+                li: a(href=`/projects/${project.slug}.html`)!= project.title
 
 append content
   each category in categories
