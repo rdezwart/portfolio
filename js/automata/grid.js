@@ -145,9 +145,11 @@ class Grid {
   /**
    * Calculates the appropriate size and scale for the {@linkcode Grid}. Ensures
    * that the `canvasWord` always fits on screen, regardless of size.
+   * @param {number} padding - How many cells of padding to check for. Bit of a
+   *     magic number to match the page padding.
    * @returns {[number, number, number]} - [cols, rows, scaleFactor]
    */
-  calculateSizeAndScale() {
+  calculateSizeAndScale(padding = 7) {
     /** @type {number} */
     let cols, rows;
     let testFactor = Grid.BASE_SCALE_FACTOR + 1; // +1, for doWhile
@@ -161,7 +163,7 @@ class Grid {
 
       // Make sure canvasWord always fits on screen, with one cell of padding
     } while (
-      cols <= this.#canvasWord.cols + 2 || rows <= this.#canvasWord.rows + 2);
+      cols <= this.#canvasWord.cols + padding || rows <= this.#canvasWord.rows + padding);
 
     return [cols, rows, testFactor];
   }
