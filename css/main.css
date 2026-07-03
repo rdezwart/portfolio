@@ -1255,17 +1255,41 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
 }
 
 /**
+ * On smaller screens, rearrange the nav section to conserve vertical space.
+ * 1. Remove padding from taller layout
+ * 2. Increase column gap to account for active indicators
+ */
+@media screen and (max-width: 43rem) {
+  .nav-wrapper .nav :is(ul, ol) {
+    padding-inline-start: 0; /* 1 */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    -moz-column-gap: 2.5rlh;
+         column-gap: 2.5rlh; /* 2 */
+  }
+}
+
+/**
  * Uses the same gap as the flex layout applied to top-level nav lists.
+ * 1. Hide categories from main nav on smaller viewports. These are just
+ *    convenience anchors for the same page, anyways.
  */
 .nav-wrapper .nav :is(ul, ol) :is(ul, ol) {
   display: grid;
   gap: 0.375rlh 1.5rlh;
   grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 }
+@media screen and (max-width: 43rem) {
+  .nav-wrapper .nav :is(ul, ol) :is(ul, ol) {
+    display: none; /* 1 */
+  }
+}
 
 /**
  * Wrapper for name and tagline at the top of the sidebar
  * 1. Aligning to start stops the anchor from being wider than its text.
+ * 2. Center text on smaller viewports.
  */
 .nav-wrapper .name-wrapper {
   align-items: start; /* 1 */
@@ -1276,6 +1300,11 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   font-size: 1rem;
   font-weight: calc(var(--base-weight) + 200);
   font-style: normal;
+}
+@media screen and (max-width: 43rem) {
+  .nav-wrapper .name-wrapper {
+    text-align: center; /* 2 */
+  }
 }
 
 /**
