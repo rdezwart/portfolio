@@ -52,11 +52,10 @@
 .sidebar .scrollable {
   margin: 0;
   @include abstracts.flex-column();
-  overflow-y: auto; /* 1 */
-  overflow-block: auto; /* 1 */
 
-  padding-block-end: 1px; /* 2 */
-  margin-block-end: -1px; /* 2 */
+  .nav {
+    padding-block-end: 1px; /* 2 */
+  }
 }
 
 /**
@@ -87,8 +86,8 @@
   inset-block-start: #{abstracts.$page-padding};
 
   max-block-size: calc(100vh - (#{abstracts.$page-padding} * 2)); /* 1 */
-  @supports (max-block-size: 100dvh) {
-    max-block-size: calc(100dvh - (#{abstracts.$page-padding} * 2)); /* 1 */
+  @supports (max-block-size: 100lvh) {
+    max-block-size: calc(100lvh - (#{abstracts.$page-padding} * 2)); /* 1 */
   }
 
   @include abstracts.respond-to("full") {

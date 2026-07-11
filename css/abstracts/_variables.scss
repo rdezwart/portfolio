@@ -111,3 +111,11 @@ $nav-list-gap: (
         "row": $text-gap * 0.75,
         "col": $page-padding * 1.5
 );
+
+/// How large the shadows should be on scrollable containers.
+/// @type Length
+$scroll-shadow-size: 0.5rem;
+
+/// How large the gradients covering the scroll-shadows should be.
+/// @type Length
+$scroll-cover-size: 2rem;

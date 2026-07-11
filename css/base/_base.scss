@@ -3,6 +3,16 @@
 
 /**
  * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 100% opacity.
+ */
+@property --gradient-100 {
+  syntax: "<color>";
+  initial-value: hsl(from #{abstracts.$dark-1} h s l / 1);
+  inherits: true;
+}
+
+/**
+ * Custom property to allow header gradients to be animated.
  * Default value is the banner color at 90% opacity.
  */
 @property --gradient-90 {
@@ -28,6 +38,26 @@
 @property --gradient-00 {
   syntax: "<color>";
   initial-value: hsl(from #{abstracts.$dark-1} h s l / 0);
+  inherits: true;
+}
+
+/**
+ * Custom property to allow gradients to be animated.
+ * Default value is the opposing theme's background color at 50% opacity.
+ */
+@property --gradient-shadow {
+  syntax: "<color>";
+  initial-value: hsl(from #{abstracts.$white} h s l / 0.5);
+  inherits: true;
+}
+
+/**
+ * Custom property to allow gradients to be animated.
+ * Default value is the background color at 100% opacity.
+ */
+@property --gradient-bg {
+  syntax: "<color>";
+  initial-value: hsl(from #{abstracts.$dark} h s l / 1);
   inherits: true;
 }
 
@@ -82,8 +112,11 @@
   --absolute: #{abstracts.$black};
 
   --kbd-shade: #{color.change(abstracts.$dark-5, $alpha: 70%)};
-
+  --gradient-bg: #{color.change(abstracts.$dark, $alpha: 100%)};
+  --gradient-shadow: #{color.change(abstracts.$white, $alpha: 50%)};
   --project-links-bg: #{color.change(abstracts.$dark-1, $alpha: 90%)};
+
+  --gradient-100: #{color.change(abstracts.$dark-1, $alpha: 100%)};
   --gradient-90: #{color.change(abstracts.$dark-1, $alpha: 90%)};
   --gradient-70: #{color.change(abstracts.$dark-1, $alpha: 70%)};
   --gradient-00: #{color.change(abstracts.$dark-1, $alpha: 0%)};
@@ -115,8 +148,11 @@
     --absolute: #{abstracts.$white};
 
     --kbd-shade: #{color.change(abstracts.$white, $alpha: 70%)};
-
+    --gradient-bg: #{color.change(abstracts.$white, $alpha: 100%)};
+    --gradient-shadow: #{color.change(abstracts.$dark, $alpha: 50%)};
     --project-links-bg: #{color.change(abstracts.$light-1, $alpha: 90%)};
+
+    --gradient-100: #{color.change(abstracts.$dark-2, $alpha: 100%)};
     --gradient-90: #{color.change(abstracts.$dark-2, $alpha: 90%)};
     --gradient-70: #{color.change(abstracts.$dark-2, $alpha: 70%)};
     --gradient-00: #{color.change(abstracts.$dark-2, $alpha: 0%)};

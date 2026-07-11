@@ -1,0 +1,25 @@
+@use "../abstracts";
+
+/**
+ * Adds scroll shadows to the top and bottom of a scroll container, if there is
+ * more content to be seen. Uses `background-attachment` to overlay the
+ * background images.
+ * Referenced: https://lea.verou.me/blog/2012/04/background-attachment-local/
+ */
+.scrollable {
+  overflow-y: auto;
+  overflow-block: auto;
+
+  background: linear-gradient(var(--gradient-bg) 30%, var(--gradient-00)) 0 0 no-repeat local,
+  linear-gradient(var(--gradient-00), var(--gradient-bg) 70%) 0 100% no-repeat local,
+  radial-gradient(farthest-side at 50% 0, var(--gradient-shadow), var(--gradient-00)) 0 0 no-repeat scroll,
+  radial-gradient(farthest-side at 50% 100%, var(--gradient-shadow), var(--gradient-00)) 0 100% no-repeat scroll;
+
+  background-size: 100% #{abstracts.$scroll-cover-size},
+  100% #{abstracts.$scroll-cover-size},
+  100% #{abstracts.$scroll-shadow-size},
+  100% #{abstracts.$scroll-shadow-size};
+
+  transition-property: --gradient-bg, --gradient-shadow, --gradient-00;
+  transition-duration: var(--duration);
+}
