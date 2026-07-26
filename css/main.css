@@ -226,6 +226,15 @@ img {
 
 /**
  * Custom property to allow header gradients to be animated.
+ * Default value is the banner color at 100% opacity.
+ */
+@property --gradient-100 {
+  syntax: "<color>";
+  initial-value: hsl(from hsl(240, 6.25%, 17.75%) h s l/1);
+  inherits: true;
+}
+/**
+ * Custom property to allow header gradients to be animated.
  * Default value is the banner color at 90% opacity.
  */
 @property --gradient-90 {
@@ -249,6 +258,24 @@ img {
 @property --gradient-00 {
   syntax: "<color>";
   initial-value: hsl(from hsl(240, 6.25%, 17.75%) h s l/0);
+  inherits: true;
+}
+/**
+ * Custom property to allow gradients to be animated.
+ * Default value is the opposing theme's background color at 50% opacity.
+ */
+@property --gradient-shadow {
+  syntax: "<color>";
+  initial-value: hsl(from hsl(240, 6.25%, 100%) h s l/0.5);
+  inherits: true;
+}
+/**
+ * Custom property to allow gradients to be animated.
+ * Default value is the background color at 100% opacity.
+ */
+@property --gradient-bg {
+  syntax: "<color>";
+  initial-value: hsl(from hsl(240, 6.25%, 12.5%) h s l/1);
   inherits: true;
 }
 /**
@@ -299,7 +326,10 @@ img {
   --opposite: hsl(240, 6.25%, 100%);
   --absolute: hsl(240, 6.25%, 0%);
   --kbd-shade: hsla(240, 6.25%, 38.75%, 0.7);
+  --gradient-bg: hsl(240, 6.25%, 12.5%);
+  --gradient-shadow: hsla(240, 6.25%, 100%, 0.5);
   --project-links-bg: hsla(240, 6.25%, 17.75%, 0.9);
+  --gradient-100: hsl(240, 6.25%, 17.75%);
   --gradient-90: hsla(240, 6.25%, 17.75%, 0.9);
   --gradient-70: hsla(240, 6.25%, 17.75%, 0.7);
   --gradient-00: hsla(240, 6.25%, 17.75%, 0);
@@ -323,7 +353,10 @@ img {
   --opposite: hsl(240, 6.25%, 0%);
   --absolute: hsl(240, 6.25%, 100%);
   --kbd-shade: hsla(240, 6.25%, 100%, 0.7);
+  --gradient-bg: hsl(240, 6.25%, 100%);
+  --gradient-shadow: hsla(240, 6.25%, 12.5%, 0.5);
   --project-links-bg: hsla(240, 6.25%, 94%, 0.9);
+  --gradient-100: hsl(240, 6.25%, 23%);
   --gradient-90: hsla(240, 6.25%, 23%, 0.9);
   --gradient-70: hsla(240, 6.25%, 23%, 0.7);
   --gradient-00: hsla(240, 6.25%, 23%, 0);
@@ -942,7 +975,7 @@ body {
 }
 .content section:first-child {
   padding-block-start: 0; /* 2 */
-  scroll-margin-block-start: 0.5rlh; /* 3 */
+  scroll-margin-block-start: 1rlh; /* 3 */
 }
 
 /**
@@ -1386,10 +1419,9 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   display: flex;
   flex-direction: column;
   gap: 0.5rlh;
-  overflow-y: auto; /* 1 */
-  overflow-block: auto; /* 1 */
+}
+.sidebar .scrollable .nav {
   padding-block-end: 1px; /* 2 */
-  margin-block-end: -1px; /* 2 */
 }
 
 /**
@@ -1869,6 +1901,21 @@ gradio-app.gradio-app .embed-container.gradio-container {
 }
 
 /**
+ * Adds scroll shadows to the top and bottom of a scroll container, if there is
+ * more content to be seen. Uses `background-attachment` to overlay the
+ * background images.
+ * Referenced: https://lea.verou.me/blog/2012/04/background-attachment-local/
+ */
+.scrollable {
+  overflow-y: auto;
+  overflow-block: auto;
+  background: linear-gradient(var(--gradient-bg) 30%, var(--gradient-00)) 0 0 no-repeat local, linear-gradient(var(--gradient-00), var(--gradient-bg) 70%) 0 100% no-repeat local, radial-gradient(farthest-side at 50% 0, var(--gradient-shadow), var(--gradient-00)) 0 0 no-repeat scroll, radial-gradient(farthest-side at 50% 100%, var(--gradient-shadow), var(--gradient-00)) 0 100% no-repeat scroll;
+  background-size: 100% 2rem, 100% 2rem, 100% 0.5rem, 100% 0.5rem;
+  transition-property: --gradient-bg, --gradient-shadow, --gradient-00;
+  transition-duration: var(--duration);
+}
+
+/**
  * Center "Hi, I'm Robin;" text on smaller viewports.
  */
 .grid-pre-sidebar-low .pre-sidebar {
@@ -1917,19 +1964,6 @@ gradio-app.gradio-app .embed-container.gradio-container {
 
 .error-heading {
   font-size: 1.953125rem;
-}
-
-/**
- * When jumping to the Overview anchor, scroll to the very top of the page so
- * that the header is included. Then this also doubles as a back-to-top button.
- */
-#overview {
-  scroll-margin-block-start: 100vh;
-}
-@supports (scroll-margin-block-start: 100dvh) {
-  #overview {
-    scroll-margin-block-start: 100dvh;
-  }
 }
 
 /**
