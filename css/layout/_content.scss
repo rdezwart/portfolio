@@ -14,7 +14,7 @@
 
   section:first-child {
     padding-block-start: 0; /* 2 */
-    scroll-margin-block-start: #{abstracts.$text-gap}; /* 3 */
+    scroll-margin-block-start: #{abstracts.$page-padding}; /* 3 */
   }
 }
 

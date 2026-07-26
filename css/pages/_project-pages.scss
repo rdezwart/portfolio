@@ -1,17 +1,6 @@
 @use "../abstracts";
 
 /**
- * When jumping to the Overview anchor, scroll to the very top of the page so
- * that the header is included. Then this also doubles as a back-to-top button.
- */
-#overview {
-  scroll-margin-block-start: 100vh;
-  @supports (scroll-margin-block-start: 100dvh) {
-    scroll-margin-block-start: 100dvh;
-  }
-}
-
-/**
  * Library comma-separated lists, see AutolumeGallery
  * 1. Place list inline with Library header/title text.
  */
