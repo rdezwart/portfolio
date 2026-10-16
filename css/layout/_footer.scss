@@ -5,36 +5,71 @@
  * 1. Rearrange footer contents when screen becomes too small.
  */
 .footer {
+  //position: relative;
+
   display: grid;
-  grid-auto-rows: auto;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column; /* 1 */
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  justify-items: stretch; /* 2 */
+  //align-items: center;
+  //
+  //grid-column: 1 / -1; /* 1 */
+  //grid-row: -1 / -1; /* 1 */
 
-  gap: #{abstracts.$text-gap};
-  justify-items: center;
-  align-items: center;
+  .footer-contents {
 
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column; /* 1 */
+
+    gap: #{abstracts.$text-gap};
+    justify-items: center;
+    align-items: center;
+
+    grid-column: 1 / span 2; /* 1 */
+    grid-row: -1 / -1; /* 1 */
+
+    :first-child {
+      justify-self: start;
+    }
+
+    :last-child {
+      justify-self: end;
+    }
+
+    @include abstracts.respond-to("full") {
+      grid-auto-flow: row; /* 1 */
+
+      :first-child, :last-child {
+        justify-self: center;
+      }
+    }
+  }
+
+  // TODO: Maybe i can adjust the padding on the wrapper for everything except the last child (footer?)
+  //   might have to change where the padding is applied directly, but shouldn't be a problem
+
+  // TODO: Can't i just like, keep it all full width then add logical padding to handle the safe-areas after
+  //   the fact?
+
+  //max-inline-size: #{abstracts.$total-width};
   background-color: var(--banner);
   transition: background-color var(--duration);
   font-size: abstracts.font-size-scaled(-1);
 
-  padding: #{abstracts.$page-padding};
-  margin-block-end: #{abstracts.$page-padding * -1};
-  margin-inline: #{abstracts.$page-padding * -1};
+  padding-left: max(#{abstracts.$page-padding}, env(safe-area-inset-left));
+  padding-right: max(#{abstracts.$page-padding}, env(safe-area-inset-right));
+  padding-block: #{abstracts.$page-padding};
+  padding-block-end: max(#{abstracts.$page-padding}, env(safe-area-inset-bottom));
 
-  :first-child {
-    justify-self: start;
-  }
+  //margin: auto;
+  //margin-block-end: #{abstracts.$page-padding * -1};
+  margin-left: calc(-1 * max(#{abstracts.$page-padding}, env(safe-area-inset-left)));
+  margin-right: calc(-1 * max(#{abstracts.$page-padding}, env(safe-area-inset-right)));
+  margin-block-start: #{abstracts.$page-padding * 1};
+  //margin-bottom: #{abstracts.$page-padding * -1};
+  margin-bottom: calc(-1 * max(#{abstracts.$page-padding}, env(safe-area-inset-bottom)));
+  //margin-inline: calc(-50%);
 
-  :last-child {
-    justify-self: end;
-  }
-
-  @include abstracts.respond-to("full") {
-    grid-auto-flow: row; /* 1 */
-
-    :first-child, :last-child {
-      justify-self: center;
-    }
-  }
 }

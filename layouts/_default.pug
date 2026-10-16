@@ -24,7 +24,7 @@ html(lang="en")
   head
     block meta
       meta(charset="UTF-8")
-      meta(content="width=device-width, initial-scale=1.0" name="viewport")
+      meta(content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport")
       title= pageTitle
       meta(name="description" content=description)
       meta(name="color-scheme" content="dark light")
@@ -79,7 +79,8 @@ html(lang="en")
             block content
 
       footer.footer
-        block footer
-          a.button(href="#") Back to Top
-          p.secondary Made by hand with love.
-          include ../inc/_social-icons
+        div.footer-contents
+          block footer
+            a.button(href="#") Back to Top
+            p.secondary Made by hand with love.
+            include ../inc/_social-icons
