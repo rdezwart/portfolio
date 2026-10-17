@@ -725,8 +725,15 @@ body {
  */
 .wrapper {
   margin: auto;
-  padding: 1rlh;
   min-block-size: 100dvh; /* 1 */
+}
+@supports (padding: max(0px)) {
+  .wrapper {
+    padding-top: max(1rlh, env(safe-area-inset-top));
+    padding-left: max(1rlh, env(safe-area-inset-left));
+    padding-right: max(1rlh, env(safe-area-inset-right));
+    padding-bottom: max(1rlh, env(safe-area-inset-bottom));
+  }
 }
 
 /**
