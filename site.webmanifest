@@ -22,7 +22,7 @@
             "sizes": "any"
         }
     ],
-    "theme_color": "#1e1e22",
+    "theme_color": "#2a2a30",
     "background_color": "#1e1e22",
     "display": "minimal-ui"
 }
