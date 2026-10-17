@@ -6,8 +6,16 @@
  */
 .wrapper {
   margin: auto;
-  padding: #{abstracts.$page-padding};
+  //padding: #{abstracts.$page-padding};
+  //padding-block-end: 0;
   min-block-size: 100dvh; /* 1 */
+
+  @supports (padding: max(0px)) {
+    padding-top: max(#{abstracts.$page-padding}, env(safe-area-inset-top));
+    padding-left: max(#{abstracts.$page-padding}, env(safe-area-inset-left));
+    padding-right: max(#{abstracts.$page-padding}, env(safe-area-inset-right));
+    padding-bottom: max(#{abstracts.$page-padding}, env(safe-area-inset-bottom));
+  }
 }
 
 /**
