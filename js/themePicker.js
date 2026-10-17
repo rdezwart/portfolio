@@ -32,7 +32,7 @@
     const gradioApplets = document.querySelectorAll("gradio-app");
 
     /**
-     * Sets the correct them as active on a theme picker form.
+     * Sets the correct theme as active on a theme picker form.
      * @param {HTMLFormElement} themePickerForm
      * @param {?string} theme
      */
