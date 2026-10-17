@@ -115,7 +115,7 @@ mixin list(items = [], type="ul")
 
 
 mixin project-card(project)
-  li.project-card(id=`${project.slug}`)
+  li.project-card(id=`${project.slug}` class={featured: project.featured})
     h3.project-heading
       a(href=`/projects/${project.slug}.html`)!= project.title
 

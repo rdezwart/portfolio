@@ -9,6 +9,6 @@
    */
   function getMatchingProjects(category) {
     return Object.values(projects).filter(
-            (project) => project.category === category
+            (project) => project.category === category && project.enabled
     );
   }

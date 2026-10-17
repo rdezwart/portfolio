@@ -1028,6 +1028,9 @@ section > :where(:not(section)):last-child, section > :where(:not(section)):has(
   gap: 1rlh;
   margin-inline: 0; /* 2 */
 }
+:is(ul, ol).project-grid li.featured {
+  grid-column: span 2;
+}
 
 /**
  * Header at the top of project pages.

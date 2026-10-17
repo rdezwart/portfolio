@@ -125,6 +125,9 @@
      * @param {ProjectLink[]} [options.links] - Links associated to this project.
      * @param {string[]} [options.tools] - Tools used in this project.
      * @param {string[]} [options.concepts] - Concepts involved in this project.
+     * @param {boolean} [options.enabled] - If this project should be displayed on the site at all.
+     * @param {boolean} [options.featured] - If this project should take up extra room in a project grid.
+     * @param {boolean} [options.construction] - If this project is currently under construction.
      */
     constructor(
             {
@@ -136,7 +139,10 @@
               imageOptions = {},
               links = [],
               tools = [],
-              concepts = []
+              concepts = [],
+              enabled = true,
+              featured = false,
+              construction = false
             } = {}
     ) {
       this.title = title;
@@ -154,6 +160,9 @@
       this.links = links;
       this.tools = tools;
       this.concepts = concepts;
+      this.enabled = enabled;
+      this.featured = featured;
+      this.construction = construction;
     }
   }
 
@@ -171,7 +180,8 @@
         new ProjectLink({title: "Original Paper", url: "/files/AutolumeGallery_RobinDeZwart.pdf", text: "View PDF"})
       ],
       tools: ["Unity", "C#", "OSC", "NDI"],
-      concepts: ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space"]
+      concepts: ["Virtual Reality", "Creative AI", "Image Generation", "Latent Space"],
+      featured: true
     }),
 
     "Food Identifier": new Project({
@@ -201,7 +211,8 @@
         new ProjectLink({title: "Code", url: "https://github.com/rdezwart/SightNeverSeen", text: "GitHub"}),
         new ProjectLink({title: "Game", url: "https://rdezwart.itch.io/sightneverseen", text: "Itch.io"})
       ],
-      tools: ["Ren'Py", "Python"]
+      tools: ["Ren'Py", "Python"],
+      construction: true
     }),
 
     "Sewer Saviour": new Project({
@@ -214,7 +225,8 @@
         new ProjectLink({title: "Code", url: "https://github.com/rdezwart/SewerSaviour", text: "GitHub"}),
         new ProjectLink({title: "Details", url: "https://sylviazhangsiqi.wixsite.com/sewer-saviour", text: "Team Site"})
       ],
-      tools: ["Unity", "C#", "VR"]
+      tools: ["Unity", "C#", "VR"],
+      construction: true
     }),
 
     "Freelance": new Project({
@@ -222,6 +234,7 @@
       slug: "freelance",
       description: "Freelance web development work for members of the local community.",
       category: categories.WEB_DEVELOPMENT,
-      tools: ["WordPress", "Squarespace", "Wix"]
+      tools: ["WordPress", "Squarespace", "Wix"],
+      construction: true
     })
   };
