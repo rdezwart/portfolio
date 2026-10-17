@@ -92,7 +92,7 @@ $page-padding: 1rlh;
 
 /// Combined width of all elements and padding.
 /// @type Length
-$total-width: calc($main-width + $content-gap + $nav-width + ($page-padding * 2));
+$total-width: calc($main-width-margins);
 
 /// List of media query breakpoints by name.
 /// NOTE: calc() and var() cannot be used in media queries, so we're not allowed
