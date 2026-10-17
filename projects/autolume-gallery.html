@@ -102,13 +102,17 @@
                   <ol role="list">
                     <li><a href="#overview">Overview</a>
                       <ol role="list">
-                        <li><a href="#abstract">Abstract</a></li>
                         <li><a href="#demo">Demo</a></li>
                         <li><a href="#examples">Examples</a></li>
                       </ol>
                     </li>
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#literature-review">Literature Review</a></li>
+                    <li><a href="#project-breakdown">Project Breakdown</a>
+                      <ol role="list">
+                        <li><a href="#abstract">Abstract</a></li>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#literature-review">Literature Review</a></li>
+                      </ol>
+                    </li>
                     <li><a href="#system-design">System Design</a></li>
                     <li><a href="#implementation-details">Implementation Details</a>
                       <ol role="list">
@@ -118,9 +122,12 @@
                       </ol>
                     </li>
                     <li><a href="#results">Results</a></li>
-                    <li><a href="#conclusion-future-work">Conclusion &amp; Future Work</a></li>
-                    <li><a href="#ethical-statement">Ethical Statement</a></li>
-                    <li><a href="#acknowledgements">Acknowledgements</a></li>
+                    <li><a href="#conclusion-future-work">Conclusion &amp; Future Work</a>
+                      <ol role="list">
+                        <li><a href="#ethical-statement">Ethical Statement</a></li>
+                        <li><a href="#acknowledgements">Acknowledgements</a></li>
+                      </ol>
+                    </li>
                     <li><a href="#references">References</a></li>
                   </ol>
                 </nav>
@@ -163,17 +170,6 @@
                   
                 </li>
               </ul>
-              <section id="abstract">
-                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Abstract</h3>
-                <p class="introduction">
-                  AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
-                  of a <abbr>GAN</abbr> in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the
-                  position and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter
-                  the piece and take an active role in its creation and appearance. The <abbr>GAN</abbr> model was trained on the
-                  abstract artwork of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
-                  
-                </p>
-              </section>
               <section id="demo">
                 <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Demo</h3>
                 <div class="youtube-container">
@@ -241,66 +237,85 @@
                 </ol>
               </section>
             </section>
-            <section id="introduction">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Introduction</h2>
-              <p>This project is dedicated to my grandfather, <a href="https://voormeij.ca/" rel="external noreferrer">Peter John Voormeij<span class="visually-hidden"> (external link)</span></a>, who passed away
-                in early 2024. He was a Dutch painter and printmaker, and I wanted to explore and honour his abstract artwork in
-                my own way. Thanks to this
-                <a href="https://www.sfu.ca/outlines.html?2025/spring/iat/460/d100" rel="external noreferrer">Generative AI and Computational Creativity<span class="visually-hidden"> (external link)</span></a>
-                course with <a href="https://www.metacreation.net/philippepasquier/home" rel="external noreferrer">Dr. Philippe Pasquier<span class="visually-hidden"> (external link)</span></a> at Simon Fraser
-                University (<abbr>SFU</abbr>), I found the perfect opportunity! With the blessing of my family, I constructed a dataset
-                of ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
-                create an interactive experience that enables users to do the same.
-              </p>
-              <p>Having recently completed a Unity-based virtual reality (<abbr>VR</abbr>) course,
-                <a href="https://www.sfu.ca/outlines.html?2024/fall/iat/445/d100" rel="external noreferrer">Immersive Environments<span class="visually-hidden"> (external link)</span></a>, I found myself wanting
-                to dive deeper and further develop my skills in that area. With an improved understanding of what makes for an
-                engaging experience, I ended up settling on <abbr>VR</abbr> for the user interaction half of the project.
-              </p>
-              <p>As the course progressed, it became clear that 
-                <dfn>generative adversarial networks</dfn> (<abbr>GANs</abbr>) would be a
-                powerful option, as they run faster than
-                <a href="https://en.wikipedia.org/wiki/Diffusion_model" rel="external noreferrer">diffusion models<span class="visually-hidden"> (external link)</span></a> (e.g., Midjourney) and don't require
-                nearly as much data. Essentially, <abbr>GANs</abbr> work by pitting two separate neural networks against each
-                other in an arms race: a 
-                <dfn>generator</dfn> network and a 
-                <dfn>discriminator</dfn> network. The <em>generator's</em> job is
-                to create new images from random noise, and the <em>discriminator</em> tries to tell apart the generator's fake
-                output from the real training data. Both networks learn from their mistakes and try to improve at their assigned
-                tasks over time. If everything goes perfectly, the discriminator ends up with a 50% chance of making the correct
-                prediction, meaning the generator's images are impossible for it to tell apart from the real images.
+            <section id="project-breakdown">
+              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Project Breakdown</h2>
+              <p>The following report is drawn from <a href="/files/AutolumeGallery_RobinDeZwart.pdf" rel="external noreferrer">the paper I wrote<span class="visually-hidden"> (external link)</span></a> for the
+                project, which is also available to read!
                 
               </p>
-            </section>
-            <section id="literature-review">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Literature Review</h2>
-              <p>Enter <a href="https://www.metacreation.net/autolume" rel="external noreferrer">Autolume-Live<span class="visually-hidden"> (external link)</span></a>, a tool for training, tweaking, and running
-                <abbr>GAN</abbr> models locally in real-time. Initially created for
-                <a href="https://summit.sfu.ca/item/36414" rel="external noreferrer">Jonas Kraasch's Master's thesis<span class="visually-hidden"> (external link)</span></a>, it has continued to see development,
-                improvements, and usage thanks to the <a href="https://www.metacreation.net/" rel="external noreferrer">Metacreation Lab<span class="visually-hidden"> (external link)</span></a>.
-              </p>
-              <p>
-                An in-class training workshop from PhD student
-                <a href="https://www.metacreation.net/team/arshia-sobhan" rel="external noreferrer">Arshia Sobhan<span class="visually-hidden"> (external link)</span></a> truly revealed the capabilities of the
-                software, highlighting the real-time image generation with a wide array of options and vectors to explore, all
-                configurable through 
-                <dfn><a href="https://opensoundcontrol.stanford.edu/" rel="external noreferrer">Open Sound Control<span class="visually-hidden"> (external link)</span></a>
-                </dfn> (<abbr>OSC</abbr>),
-                a data communication protocol between computers and multimedia devices. Given the abstract nature of my dataset,
-                working with Autolume's unique visual style felt like the right approach for the project.
-              </p>
-              <p>Autolume also transmits its generated output to a 
-                <dfn><a href="https://ndi.video/" rel="external noreferrer">Network Device Interface<span class="visually-hidden"> (external link)</span></a>
-                </dfn>
-                (<abbr>NDI</abbr>), another communication standard that streams video and audio to connected multimedia devices.
-              </p>
-              <p>
-                During the proposal peer review process, I was introduced to a
-                <a href="https://youtu.be/zyFAGmBXX90" rel="external noreferrer">demo video by Hobby Technology<span class="visually-hidden"> (external link)</span></a> of a project with a similar concept, also
-                using a <abbr>VR</abbr> headset to manipulate the vectors of a latent space. While it featured a different type of
-                model, the user interface served as an inspiration and a confirmation that my initial idea was feasible.
-                
-              </p>
+              <section id="abstract">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Abstract</h3>
+                <p class="introduction">
+                  AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
+                  of a <abbr>GAN</abbr> in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the
+                  position and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter
+                  the piece and take an active role in its creation and appearance. The <abbr>GAN</abbr> model was trained on the
+                  abstract artwork of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+                  
+                  
+                </p>
+              </section>
+              <section id="introduction">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Introduction</h3>
+                <p>This project is dedicated to my grandfather, <a href="https://voormeij.ca/" rel="external noreferrer">Peter John Voormeij<span class="visually-hidden"> (external link)</span></a>, who passed away
+                  in early 2024. He was a Dutch painter and printmaker, and I wanted to explore and honour his abstract artwork in
+                  my own way. Thanks to this
+                  <a href="https://www.sfu.ca/outlines.html?2025/spring/iat/460/d100" rel="external noreferrer">Generative AI and Computational Creativity<span class="visually-hidden"> (external link)</span></a>
+                  course with <a href="https://www.metacreation.net/philippepasquier/home" rel="external noreferrer">Dr. Philippe Pasquier<span class="visually-hidden"> (external link)</span></a> at Simon Fraser
+                  University (<abbr>SFU</abbr>), I found the perfect opportunity! With the blessing of my family, I constructed a dataset
+                  of ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
+                  create an interactive experience that enables users to do the same.
+                </p>
+                <p>Having recently completed a Unity-based virtual reality (<abbr>VR</abbr>) course,
+                  <a href="https://www.sfu.ca/outlines.html?2024/fall/iat/445/d100" rel="external noreferrer">Immersive Environments<span class="visually-hidden"> (external link)</span></a>, I found myself wanting
+                  to dive deeper and further develop my skills in that area. With an improved understanding of what makes for an
+                  engaging experience, I ended up settling on <abbr>VR</abbr> for the user interaction half of the project.
+                </p>
+                <p>As the course progressed, it became clear that 
+                  <dfn>generative adversarial networks</dfn> (<abbr>GANs</abbr>) would be a
+                  powerful option, as they run faster than
+                  <a href="https://en.wikipedia.org/wiki/Diffusion_model" rel="external noreferrer">diffusion models<span class="visually-hidden"> (external link)</span></a> (e.g., Midjourney) and don't require
+                  nearly as much data. Essentially, <abbr>GANs</abbr> work by pitting two separate neural networks against each
+                  other in an arms race: a 
+                  <dfn>generator</dfn> network and a 
+                  <dfn>discriminator</dfn> network. The <em>generator's</em> job is
+                  to create new images from random noise, and the <em>discriminator</em> tries to tell apart the generator's fake
+                  output from the real training data. Both networks learn from their mistakes and try to improve at their assigned
+                  tasks over time. If everything goes perfectly, the discriminator ends up with a 50% chance of making the correct
+                  prediction, meaning the generator's images are impossible for it to tell apart from the real images.
+                  
+                </p>
+              </section>
+              <section id="literature-review">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Literature Review</h3>
+                <p>Enter <a href="https://www.metacreation.net/autolume" rel="external noreferrer">Autolume-Live<span class="visually-hidden"> (external link)</span></a>, a tool for training, tweaking, and running
+                  <abbr>GAN</abbr> models locally in real-time. Initially created for
+                  <a href="https://summit.sfu.ca/item/36414" rel="external noreferrer">Jonas Kraasch's Master's thesis<span class="visually-hidden"> (external link)</span></a>, it has continued to see development,
+                  improvements, and usage thanks to the <a href="https://www.metacreation.net/" rel="external noreferrer">Metacreation Lab<span class="visually-hidden"> (external link)</span></a>.
+                </p>
+                <p>
+                  An in-class training workshop from PhD student
+                  <a href="https://www.metacreation.net/team/arshia-sobhan" rel="external noreferrer">Arshia Sobhan<span class="visually-hidden"> (external link)</span></a> truly revealed the capabilities of the
+                  software, highlighting the real-time image generation with a wide array of options and vectors to explore, all
+                  configurable through 
+                  <dfn><a href="https://opensoundcontrol.stanford.edu/" rel="external noreferrer">Open Sound Control<span class="visually-hidden"> (external link)</span></a>
+                  </dfn> (<abbr>OSC</abbr>),
+                  a data communication protocol between computers and multimedia devices. Given the abstract nature of my dataset,
+                  working with Autolume's unique visual style felt like the right approach for the project.
+                </p>
+                <p>Autolume also transmits its generated output to a 
+                  <dfn><a href="https://ndi.video/" rel="external noreferrer">Network Device Interface<span class="visually-hidden"> (external link)</span></a>
+                  </dfn>
+                  (<abbr>NDI</abbr>), another communication standard that streams video and audio to connected multimedia devices.
+                </p>
+                <p>
+                  During the proposal peer review process, I was introduced to a
+                  <a href="https://youtu.be/zyFAGmBXX90" rel="external noreferrer">demo video by Hobby Technology<span class="visually-hidden"> (external link)</span></a> of a project with a similar concept, also
+                  using a <abbr>VR</abbr> headset to manipulate the vectors of a latent space. While it featured a different type of
+                  model, the user interface served as an inspiration and a confirmation that my initial idea was feasible.
+                  
+                </p>
+              </section>
             </section>
             <section id="system-design">
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>System Design</h2>
@@ -683,38 +698,38 @@
                 no longer line up. I want to give this a shot, but need some help.
                 
               </p>
-            </section>
-            <section id="ethical-statement">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Ethical Statement</h2>
-              <p>
-                At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
-                as their own human art; the original authors/artists deserve credit and compensation.
-              </p>
-              <p>
-                That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
-                where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
-                my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
-                and can give it the proper credit and respect it deserves.
-                
-              </p>
-            </section>
-            <section id="acknowledgements">
-              <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>Acknowledgements</h2>
-              <p>
-                With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
-                assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
-                what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
-              </p>
-              <p>
-                I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
-                process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
-                strong enough, and he saved the day.
-              </p>
-              <p>
-                Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
-                of what I've got so far. Love and miss you, Opa.
-                
-              </p>
+              <section id="ethical-statement">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Ethical Statement</h3>
+                <p>
+                  At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
+                  as their own human art; the original authors/artists deserve credit and compensation.
+                </p>
+                <p>
+                  That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
+                  where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
+                  my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
+                  and can give it the proper credit and respect it deserves.
+                  
+                </p>
+              </section>
+              <section id="acknowledgements">
+                <h3 class="h3"><span class="highlight" aria-hidden="true">&gt;&gt; </span>Acknowledgements</h3>
+                <p>
+                  With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
+                  assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
+                  what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
+                </p>
+                <p>
+                  I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
+                  process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
+                  strong enough, and he saved the day.
+                </p>
+                <p>
+                  Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
+                  of what I've got so far. Love and miss you, Opa.
+                  
+                </p>
+              </section>
             </section>
             <section id="references">
               <h2 class="h2"><span class="highlight" aria-hidden="true">&gt; </span>References</h2>

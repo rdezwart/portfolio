@@ -8,11 +8,14 @@ block toc
   li
     a(href="#overview") Overview
     ol(role="list")
-      li: a(href="#abstract") Abstract
       li: a(href="#demo") Demo
       li: a(href="#examples") Examples
-  li: a(href="#introduction") Introduction
-  li: a(href="#literature-review") Literature Review
+  li
+    a(href="#project-breakdown") Project Breakdown
+    ol(role="list")
+      li: a(href="#abstract") Abstract
+      li: a(href="#introduction") Introduction
+      li: a(href="#literature-review") Literature Review
   li: a(href="#system-design") System Design
   li
     a(href="#implementation-details") Implementation Details
@@ -21,9 +24,11 @@ block toc
       li: a(href="#unity") Unity
       li: a(href="#autolume-live") Autolume-Live
   li: a(href="#results") Results
-  li: a(href="#conclusion-future-work") Conclusion &amp; Future Work
-  li: a(href="#ethical-statement") Ethical Statement
-  li: a(href="#acknowledgements") Acknowledgements
+  li
+    a(href="#conclusion-future-work") Conclusion &amp; Future Work
+    ol(role="list")
+      li: a(href="#ethical-statement") Ethical Statement
+      li: a(href="#acknowledgements") Acknowledgements
   li: a(href="#references") References
 
 
@@ -44,15 +49,6 @@ append overview
     li.
       Conducted qualitative evaluation of #[abbr GAN] model outputs to assess visual coherence and latent space
       behaviour.
-
-  section#abstract
-    +h(3, "Abstract")
-    p.introduction.
-      AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
-      of a #[abbr GAN] in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the
-      position and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter
-      the piece and take an active role in its creation and appearance. The #[abbr GAN] model was trained on the
-      abstract artwork of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
 
   section#demo
     +h(3, "Demo")
@@ -112,55 +108,71 @@ append overview
 
 
 append content
-  section#introduction
-    +h(2, "Introduction")
+  section#project-breakdown
+    +h(2, "Project Breakdown")
     p.
-      This project is dedicated to my grandfather, #[+link("https://voormeij.ca/") Peter John Voormeij], who passed away
-      in early 2024. He was a Dutch painter and printmaker, and I wanted to explore and honour his abstract artwork in
-      my own way. Thanks to this
-      #[+link("https://www.sfu.ca/outlines.html?2025/spring/iat/460/d100") Generative AI and Computational Creativity]
-      course with #[+link("https://www.metacreation.net/philippepasquier/home") Dr. Philippe Pasquier] at Simon Fraser
-      University (#[abbr SFU]), I found the perfect opportunity! With the blessing of my family, I constructed a dataset
-      of ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
-      create an interactive experience that enables users to do the same.
-    p.
-      Having recently completed a Unity-based virtual reality (#[abbr VR]) course,
-      #[+link("https://www.sfu.ca/outlines.html?2024/fall/iat/445/d100") Immersive Environments], I found myself wanting
-      to dive deeper and further develop my skills in that area. With an improved understanding of what makes for an
-      engaging experience, I ended up settling on #[abbr VR] for the user interaction half of the project.
-    p.
-      As the course progressed, it became clear that #[dfn generative adversarial networks] (#[abbr GANs]) would be a
-      powerful option, as they run faster than
-      #[+link("https://en.wikipedia.org/wiki/Diffusion_model") diffusion models] (e.g., Midjourney) and don't require
-      nearly as much data. Essentially, #[abbr GANs] work by pitting two separate neural networks against each
-      other in an arms race: a #[dfn generator] network and a #[dfn discriminator] network. The #[em generator's] job is
-      to create new images from random noise, and the #[em discriminator] tries to tell apart the generator's fake
-      output from the real training data. Both networks learn from their mistakes and try to improve at their assigned
-      tasks over time. If everything goes perfectly, the discriminator ends up with a 50% chance of making the correct
-      prediction, meaning the generator's images are impossible for it to tell apart from the real images.
+      The following report is drawn from #[+link("/files/AutolumeGallery_RobinDeZwart.pdf") the paper I wrote] for the
+      project, which is also available to read!
 
-  section#literature-review
-    +h(2, "Literature Review")
-    p.
-      Enter #[+link("https://www.metacreation.net/autolume") Autolume-Live], a tool for training, tweaking, and running
-      #[abbr GAN] models locally in real-time. Initially created for
-      #[+link("https://summit.sfu.ca/item/36414") Jonas Kraasch's Master's thesis], it has continued to see development,
-      improvements, and usage thanks to the #[+link("https://www.metacreation.net/") Metacreation Lab].
-    p.
-      An in-class training workshop from PhD student
-      #[+link("https://www.metacreation.net/team/arshia-sobhan") Arshia Sobhan] truly revealed the capabilities of the
-      software, highlighting the real-time image generation with a wide array of options and vectors to explore, all
-      configurable through #[dfn #[+link("https://opensoundcontrol.stanford.edu/") Open Sound Control]] (#[abbr OSC]),
-      a data communication protocol between computers and multimedia devices. Given the abstract nature of my dataset,
-      working with Autolume's unique visual style felt like the right approach for the project.
-    p.
-      Autolume also transmits its generated output to a #[dfn #[+link("https://ndi.video/") Network Device Interface]]
-      (#[abbr NDI]), another communication standard that streams video and audio to connected multimedia devices.
-    p.
-      During the proposal peer review process, I was introduced to a
-      #[+link("https://youtu.be/zyFAGmBXX90") demo video by Hobby Technology] of a project with a similar concept, also
-      using a #[abbr VR] headset to manipulate the vectors of a latent space. While it featured a different type of
-      model, the user interface served as an inspiration and a confirmation that my initial idea was feasible.
+    section#abstract
+      +h(3, "Abstract")
+      p.introduction.
+        AutolumeGallery is an interactive virtual gallery space where users can manipulate and explore the latent space
+        of a #[abbr GAN] in 3D. A canvas receives artwork generated in real-time from Autolume-Live, influenced by the
+        position and rotation of several objects in the virtual environment. Users can use these "manipulators" to alter
+        the piece and take an active role in its creation and appearance. The #[abbr GAN] model was trained on the
+        abstract artwork of my late grandfather, Peter John Voormeij, as my way of honouring and connecting with his work.
+
+
+    section#introduction
+      +h(3, "Introduction")
+      p.
+        This project is dedicated to my grandfather, #[+link("https://voormeij.ca/") Peter John Voormeij], who passed away
+        in early 2024. He was a Dutch painter and printmaker, and I wanted to explore and honour his abstract artwork in
+        my own way. Thanks to this
+        #[+link("https://www.sfu.ca/outlines.html?2025/spring/iat/460/d100") Generative AI and Computational Creativity]
+        course with #[+link("https://www.metacreation.net/philippepasquier/home") Dr. Philippe Pasquier] at Simon Fraser
+        University (#[abbr SFU]), I found the perfect opportunity! With the blessing of my family, I constructed a dataset
+        of ~360 works and began brainstorming. I wanted to explore the shapes, patterns, and colours found in his work and
+        create an interactive experience that enables users to do the same.
+      p.
+        Having recently completed a Unity-based virtual reality (#[abbr VR]) course,
+        #[+link("https://www.sfu.ca/outlines.html?2024/fall/iat/445/d100") Immersive Environments], I found myself wanting
+        to dive deeper and further develop my skills in that area. With an improved understanding of what makes for an
+        engaging experience, I ended up settling on #[abbr VR] for the user interaction half of the project.
+      p.
+        As the course progressed, it became clear that #[dfn generative adversarial networks] (#[abbr GANs]) would be a
+        powerful option, as they run faster than
+        #[+link("https://en.wikipedia.org/wiki/Diffusion_model") diffusion models] (e.g., Midjourney) and don't require
+        nearly as much data. Essentially, #[abbr GANs] work by pitting two separate neural networks against each
+        other in an arms race: a #[dfn generator] network and a #[dfn discriminator] network. The #[em generator's] job is
+        to create new images from random noise, and the #[em discriminator] tries to tell apart the generator's fake
+        output from the real training data. Both networks learn from their mistakes and try to improve at their assigned
+        tasks over time. If everything goes perfectly, the discriminator ends up with a 50% chance of making the correct
+        prediction, meaning the generator's images are impossible for it to tell apart from the real images.
+
+    section#literature-review
+      +h(3, "Literature Review")
+      p.
+        Enter #[+link("https://www.metacreation.net/autolume") Autolume-Live], a tool for training, tweaking, and running
+        #[abbr GAN] models locally in real-time. Initially created for
+        #[+link("https://summit.sfu.ca/item/36414") Jonas Kraasch's Master's thesis], it has continued to see development,
+        improvements, and usage thanks to the #[+link("https://www.metacreation.net/") Metacreation Lab].
+      p.
+        An in-class training workshop from PhD student
+        #[+link("https://www.metacreation.net/team/arshia-sobhan") Arshia Sobhan] truly revealed the capabilities of the
+        software, highlighting the real-time image generation with a wide array of options and vectors to explore, all
+        configurable through #[dfn #[+link("https://opensoundcontrol.stanford.edu/") Open Sound Control]] (#[abbr OSC]),
+        a data communication protocol between computers and multimedia devices. Given the abstract nature of my dataset,
+        working with Autolume's unique visual style felt like the right approach for the project.
+      p.
+        Autolume also transmits its generated output to a #[dfn #[+link("https://ndi.video/") Network Device Interface]]
+        (#[abbr NDI]), another communication standard that streams video and audio to connected multimedia devices.
+      p.
+        During the proposal peer review process, I was introduced to a
+        #[+link("https://youtu.be/zyFAGmBXX90") demo video by Hobby Technology] of a project with a similar concept, also
+        using a #[abbr VR] headset to manipulate the vectors of a latent space. While it featured a different type of
+        model, the user interface served as an inspiration and a confirmation that my initial idea was feasible.
 
   section#system-design
     +h(2, "System Design")
@@ -453,30 +465,30 @@ append content
       "intermediate latent fields", which was a potential way of smoothing the harsh panel boundaries when textures
       no longer line up. I want to give this a shot, but need some help.
 
-  section#ethical-statement
-    +h(2, "Ethical Statement")
-    p.
-      At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
-      as their own human art; the original authors/artists deserve credit and compensation.
-    p.
-      That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
-      where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
-      my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
-      and can give it the proper credit and respect it deserves.
+    section#ethical-statement
+      +h(3, "Ethical Statement")
+      p.
+        At the end of the day, I am not a fan of models trained on stolen data, or when people try to pass off AI art
+        as their own human art; the original authors/artists deserve credit and compensation.
+      p.
+        That's why it's so important to me that I can train models locally with Autolume; I know with absolute certainty
+        where the data is coming from and how the model has been created. The dataset of my grandfather’s art belongs to
+        my family and always will. I am infinitely more comfortable generating from it knowing that I am in full control
+        and can give it the proper credit and respect it deserves.
 
-  section#acknowledgements
-    +h(2, "Acknowledgements")
-    p.
-      With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
-      assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
-      what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
-    p.
-      I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
-      process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
-      strong enough, and he saved the day.
-    p.
-      Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
-      of what I've got so far. Love and miss you, Opa.
+    section#acknowledgements
+      +h(3, "Acknowledgements")
+      p.
+        With this course nearing its end, I am extremely grateful for my professor Philippe Pasquier and teaching
+        assistant Griffin Page, I have had a wonderful time and learned so much this semester. I am very excited to see
+        what the future holds for the work being done at the Metacreation Lab, and hope to contribute some myself!
+      p.
+        I also want to give my endless thanks to Arshia Sobhan for guiding me through the Autolume model training
+        process and lending me time on his lab machine to get the training done. My computer at home is nowhere near
+        strong enough, and he saved the day.
+      p.
+        Lastly, I want to acknowledge my grandfather. I've had so much fun working on this project and hope you're proud
+        of what I've got so far. Love and miss you, Opa.
 
   section#references
     +h(2, "References")
