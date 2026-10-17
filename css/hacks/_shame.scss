@@ -5,3 +5,38 @@
 #intro .hgroup {
   padding-block-end: #{abstracts.$page-padding};
 }
+
+/**
+ * Adds border beneath the end of the overview section in the TOC
+ */
+.toc .nav > ol > li:first-child {
+
+  padding-block-start: 0.5rlh;
+
+  &::after {
+    content: '';
+    padding-block-end: 0.75rlh;
+    border-block-end: thin solid var(--shade-2);
+    transition-property: border-bottom-color;
+    transition-duration: var(--duration);
+    margin-block-end: 0.5rlh;
+    display: block;
+  }
+}
+
+/**
+ * Adds border between sections, where the report/breakdown separation is
+ */
+section#overview {
+  &:not(:has(section)),
+  &:has(section) > section:last-child {
+    padding-block-end: 2rlh;
+    border-block-end: thin solid var(--shade-2);
+    transition-property: border-bottom-color;
+    transition-duration: var(--duration);
+  }
+
+  & + section {
+    padding-block-start: 2rlh;
+  }
+}
